@@ -24,3 +24,5 @@ yarn-error.log
 /.zed
 *.lock
 /*lock*
+*.zip
+data/
