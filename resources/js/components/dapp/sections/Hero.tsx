@@ -7,8 +7,8 @@ import { Button } from '../common/Button';
 import { ProgressBar } from '../common/ProgressBar';
 
 export const Hero: React.FC = () => {
-    const scrollToICO = () => {
-        const element = document.getElementById('ieo-overview');
+    const scrollToPrivateSale = () => {
+        const element = document.getElementById('private-sale-overview');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
@@ -101,7 +101,7 @@ export const Hero: React.FC = () => {
                             transition={{ delay: 0.75, duration: 0.7 }}
                             className="mt-10 flex flex-col gap-4 sm:flex-row"
                         >
-                            <Button variant="primary" className="gap-2 px-7 py-3 text-base" onClick={scrollToICO}>
+                            <Button variant="primary" className="gap-2 px-7 py-3 text-base" onClick={scrollToPrivateSale}>
                                 <span>立即参与代币认购</span>
                                 <ArrowRight className="h-4 w-4" />
                             </Button>

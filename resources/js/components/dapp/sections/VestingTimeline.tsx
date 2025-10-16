@@ -7,7 +7,7 @@ const phases = [
         id: 1,
         range: 'TGE',
         title: '初始释放',
-        description: 'ICO 结束后 7 天内完成 10% 发放，保障早期参与者权益。',
+        description: '私募结束后 7 天内完成 10% 发放，保障早期参与者权益。',
         percentage: '10%',
         tag: '一次性释放',
     },
@@ -38,7 +38,7 @@ const phases = [
 ];
 
 const summary = [
-    { label: '初始释放', value: '10%', note: 'ICO 结束后 7 天' },
+    { label: '初始释放', value: '10%', note: '私募结束后 7 天' },
     { label: '线性释放', value: '90%', note: '12 个月平均释放' },
     { label: '月度释放', value: '7.5%', note: '固定月度解锁' },
 ];

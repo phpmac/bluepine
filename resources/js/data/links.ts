@@ -11,7 +11,7 @@ export const links = {
     // twitter链接
     twitter: 'https://x.com/bluepinefoundation',
     // discord链接
-    discord: 'https://discord.gg/bluepinefoundation',
+    discord: 'https://discord.gg/YY7JG6kr',
     // medium链接
     medium: 'https://medium.com/bluepinefoundation',
     // reddit链接

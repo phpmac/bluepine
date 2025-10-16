@@ -3,7 +3,7 @@ import { Footer } from '@/components/dapp/layout/Footer';
 import { Header } from '@/components/dapp/layout/Header';
 import { About } from '@/components/dapp/sections/About';
 import { Hero } from '@/components/dapp/sections/Hero';
-import { ICOOverview } from '@/components/dapp/sections/ICOOverview';
+import { PrivateSaleOverview } from '@/components/dapp/sections/ICOOverview';
 import { Tokenomics } from '@/components/dapp/sections/Tokenomics';
 import { VestingTimeline } from '@/components/dapp/sections/VestingTimeline';
 import { Head } from '@inertiajs/react';
@@ -32,8 +32,8 @@ export default function Welcome() {
                         {/* Hero 区域 */}
                         <Hero />
 
-                        {/* ICO 概览 */}
-                        <ICOOverview />
+                        {/* 私募概览 */}
+                        <PrivateSaleOverview />
 
                         {/* 代币经济学 */}
                         <Tokenomics />

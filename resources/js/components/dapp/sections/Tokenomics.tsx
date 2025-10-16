@@ -110,8 +110,8 @@ export const Tokenomics: React.FC = () => {
                                 <div className="rounded-2xl border border-white/12 bg-white/10 px-4 py-3 text-left">
                                     <p className="text-[11px] tracking-[0.28em] text-slate-300/70 uppercase">公募额度</p>
                                     <p className="text-sm font-semibold text-white">
-                                        {tokenomicsData.find((item) => item.name === 'ICO销售')?.percentage}% ·{' '}
-                                        {formatMillions(tokenomicsData.find((item) => item.name === 'ICO销售')?.value ?? 0)}
+                                        {tokenomicsData.find((item) => item.name === '私募销售')?.percentage}% ·{' '}
+                                        {formatMillions(tokenomicsData.find((item) => item.name === '私募销售')?.value ?? 0)}
                                     </p>
                                 </div>
                             </div>

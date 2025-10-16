@@ -25,7 +25,7 @@ export const Header: React.FC = () => {
 
     const navItems = [
         { id: 'hero', label: '愿景' },
-        { id: 'ieo-overview', label: '发售计划' },
+        { id: 'private-sale-overview', label: '发售计划' },
         { id: 'tokenomics', label: '代币分配' },
         { id: 'vesting', label: '释放节奏' },
         { id: 'about', label: '生态蓝图' },
@@ -35,11 +35,10 @@ export const Header: React.FC = () => {
         <motion.header
             initial={{ y: -80 }}
             animate={{ y: 0 }}
-            className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
-                isScrolled
-                    ? 'border-b border-white/10 bg-[#050a1a]/90 shadow-[0_20px_50px_-30px_rgba(76,107,255,0.65)] backdrop-blur-xl'
-                    : 'border-b border-transparent bg-transparent'
-            }`}
+            className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${isScrolled
+                ? 'border-b border-white/10 bg-[#050a1a]/90 shadow-[0_20px_50px_-30px_rgba(76,107,255,0.65)] backdrop-blur-xl'
+                : 'border-b border-transparent bg-transparent'
+                }`}
         >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20 items-center justify-between">

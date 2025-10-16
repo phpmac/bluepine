@@ -1,6 +1,6 @@
-// AESC Token ICO 数据常量
+// AESC Token 私募数据常量
 
-export interface ICOStage {
+export interface PrivateSaleStage {
     id: number;
     stage: string;
     tokens: number;
@@ -23,8 +23,8 @@ export interface VestingMilestone {
     description: string;
 }
 
-// ICO三阶段销售数据
-export const ieoStages: ICOStage[] = [
+// 私募三阶段销售数据
+export const ieoStages: PrivateSaleStage[] = [
     {
         id: 1,
         stage: '第一阶段',
@@ -58,13 +58,13 @@ export const tokenInfo = {
     totalSupply: 1600000000, // 16亿
     ieoTokens: 320000000, // 3.2亿
     totalTarget: 48250000, // 总募集目标
-    ieoPercentage: 20, // ICO占总量20%
+    ieoPercentage: 20, // 私募占总量20%,
 };
 
 // 代币经济学分配
 export const tokenomicsData: TokenomicsData[] = [
     {
-        name: 'ICO销售',
+        name: '私募销售',
         value: 320000000,
         percentage: 20,
         color: '#4ade80', // 生态绿
@@ -105,7 +105,7 @@ export const tokenomicsData: TokenomicsData[] = [
 export const vestingSchedule: VestingMilestone[] = [
     {
         id: 1,
-        date: 'ICO结束后7天',
+        date: '私募结束后7天',
         percentage: 10,
         description: '初始释放',
     },
@@ -186,9 +186,9 @@ export const vestingSchedule: VestingMilestone[] = [
 // 推荐奖励信息
 export const referralInfo = {
     rewardPercentage: 5, // 推荐人获得5%
-    releaseTime: 'ICO结束后7天内',
+    releaseTime: '私募结束后7天内',
     rewardLevel: '仅奖励一级推荐人',
-    description: '邀请好友参与ICO，获得其购买金额5%的代币奖励',
+    description: '邀请好友参与私募，获得其购买金额5%的代币奖励',
 };
 
 // FAQ数据
@@ -200,18 +200,18 @@ export const faqData = [
     },
     {
         id: 2,
-        question: '如何参与ICO？',
-        answer: '参与ICO非常简单：1) 连接您的数字钱包；2) 选择购买阶段和数量；3) 确认交易并完成支付。整个过程安全透明，基于智能合约执行。',
+        question: '如何参与私募？',
+        answer: '参与私募非常简单：1) 连接您的数字钱包；2) 选择购买阶段和数量；3) 确认交易并完成支付。整个过程安全透明，基于智能合约执行。',
     },
     {
         id: 3,
         question: '代币解锁机制是怎样的？',
-        answer: '为保护投资者利益，我们采用渐进式解锁机制：ICO结束后7天内释放10%，剩余90%在12个月内线性释放，每月释放7.5%。',
+        answer: '为保护投资者利益，我们采用渐进式解锁机制：私募结束后7天内释放10%，剩余90%在12个月内线性释放，每月释放7.5%。',
     },
     {
         id: 4,
         question: '推荐奖励如何获得？',
-        answer: '当您成功推荐好友参与ICO时，您将获得其购买金额5%的代币奖励。奖励将在ICO结束后7天内一次性发放到您的钱包地址。',
+        answer: '当您成功推荐好友参与私募时，您将获得其购买金额5%的代币奖励。奖励将在私募结束后7天内一次性发放到您的钱包地址。',
     },
     {
         id: 5,

@@ -12,7 +12,7 @@ const stageOverlays = [
     'from-[#6b7dff1f] via-[#1b1f4140] to-transparent',
 ];
 
-export const ICOOverview: React.FC = () => {
+export const PrivateSaleOverview: React.FC = () => {
     const totalProgress = ieoStages.reduce((acc, stage) => acc + (stage.target * stage.progress) / 100, 0);
     const overallProgress = (totalProgress / tokenInfo.totalTarget) * 100;
 
@@ -86,7 +86,7 @@ export const ICOOverview: React.FC = () => {
     );
 
     return (
-        <section id="ieo-overview" className="relative z-10 overflow-hidden py-24">
+        <section id="private-sale-overview" className="relative z-10 overflow-hidden py-24">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050a1a]/85 to-[#030712]" />
             <div className="absolute inset-x-0 top-0 h-64 bg-[radial-gradient(circle_at_top,rgba(111,140,255,0.18),transparent_60%)]" />
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -246,13 +246,12 @@ export const ICOOverview: React.FC = () => {
                                                         <p className="text-sm text-slate-300">单价 ${stage.price.toFixed(3)}</p>
                                                     </div>
                                                     <span
-                                                        className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium ${
-                                                            isCompleted
+                                                        className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium ${isCompleted
                                                                 ? 'border-[#22edc7]/30 bg-[#22edc7]/12 text-[#22edc7]'
                                                                 : isUpcoming
-                                                                  ? 'border-white/15 bg-white/10 text-slate-300'
-                                                                  : 'border-[#56f1ff]/35 bg-[#56f1ff]/18 text-[#56f1ff]'
-                                                        }`}
+                                                                    ? 'border-white/15 bg-white/10 text-slate-300'
+                                                                    : 'border-[#56f1ff]/35 bg-[#56f1ff]/18 text-[#56f1ff]'
+                                                            }`}
                                                     >
                                                         {statusLabel}
                                                     </span>
@@ -298,13 +297,12 @@ export const ICOOverview: React.FC = () => {
                                                     whileHover={!isUpcoming && !isCompleted ? { scale: 1.02 } : {}}
                                                     whileTap={!isUpcoming && !isCompleted ? { scale: 0.98 } : {}}
                                                     disabled={isUpcoming || isCompleted}
-                                                    className={`relative z-10 mt-6 w-full rounded-xl border px-4 py-3 text-sm font-semibold transition-all duration-300 ${
-                                                        isUpcoming
+                                                    className={`relative z-10 mt-6 w-full rounded-xl border px-4 py-3 text-sm font-semibold transition-all duration-300 ${isUpcoming
                                                             ? 'cursor-not-allowed border-white/10 bg-white/8 text-slate-400'
                                                             : isCompleted
-                                                              ? 'cursor-not-allowed border-[#22edc7]/40 bg-[#22edc7]/18 text-[#22edc7]'
-                                                              : 'border-transparent bg-gradient-to-r from-[#616bff] via-[#4b76ff] to-[#37e7ff] text-slate-900 shadow-[0_25px_60px_-30px_rgba(82,115,255,0.65)] hover:shadow-[0_30px_70px_-30px_rgba(67,240,255,0.65)]'
-                                                    }`}
+                                                                ? 'cursor-not-allowed border-[#22edc7]/40 bg-[#22edc7]/18 text-[#22edc7]'
+                                                                : 'border-transparent bg-gradient-to-r from-[#616bff] via-[#4b76ff] to-[#37e7ff] text-slate-900 shadow-[0_25px_60px_-30px_rgba(82,115,255,0.65)] hover:shadow-[0_30px_70px_-30px_rgba(67,240,255,0.65)]'
+                                                        }`}
                                                 >
                                                     {isUpcoming ? '即将开放' : isCompleted ? '已全部售罄' : '立即参与认购'}
                                                 </motion.button>
