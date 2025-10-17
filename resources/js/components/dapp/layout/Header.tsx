@@ -4,6 +4,7 @@ import { Menu, Wallet, X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useConfig, useSignMessage } from 'wagmi';
 import { Button } from '../common/Button';
+import { LanguageSwitcher } from '../common/LanguageSwitcher';
 
 export const Header: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -99,6 +100,7 @@ export const Header: React.FC = () => {
 
                     {/* Desktop Buttons */}
                     <div className="hidden items-center gap-3 md:flex">
+                        <LanguageSwitcher />
                         <Button variant={isConnected ? 'secondary' : 'primary'} className="gap-2 px-5 py-2.5 text-sm" onClick={handleWalletClick}>
                             <Wallet className="h-4 w-4" />
                             <span>{isConnected ? displayAddress : '连接钱包'}</span>
@@ -130,6 +132,7 @@ export const Header: React.FC = () => {
                                 </button>
                             ))}
                             <div className="space-y-3 border-t border-white/10 pt-4">
+                                <LanguageSwitcher />
                                 <Button variant="primary" className="w-full gap-2 text-sm" onClick={handleWhitelistClick}>
                                     <Wallet className="h-4 w-4" />
                                     <span>加入白名单</span>

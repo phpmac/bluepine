@@ -7,9 +7,37 @@ import { Hero } from '@/components/dapp/sections/Hero';
 import { PrivateSaleOverview } from '@/components/dapp/sections/ICOOverview';
 import { Tokenomics } from '@/components/dapp/sections/Tokenomics';
 import { VestingTimeline } from '@/components/dapp/sections/VestingTimeline';
+import ieoAbi from '@/lib/abi';
+import { config as address } from '@/lib/address';
 import { Head } from '@inertiajs/react';
+import { useEffect } from 'react';
+import { useReadContract, useWriteContract } from 'wagmi';
 
 export default function Welcome() {
+    const { writeContract: invest } = useWriteContract();
+
+    // TODO 获取相关数据
+    const { data: currentStageData, error: currentStageError } = useReadContract({
+        address: address.aescIeo as `0x${string}`,
+        abi: ieoAbi,
+        functionName: 'getCurrentStage',
+    });
+
+    // getStageCount
+    const { data: stageCount } = useReadContract({
+        address: address.aescIeo as `0x${string}`,
+        abi: ieoAbi,
+        functionName: 'getStageCount',
+    });
+
+    useEffect(() => {
+        console.debug('test', stageCount, currentStageData);
+
+        if (currentStageError) {
+            console.error('currentStageError', currentStageError);
+        }
+    }, [currentStageData, stageCount, currentStageError]);
+
     return (
         <>
             <Head title="Agri-Eco Smart Chain - 下一代链上基础设施">
