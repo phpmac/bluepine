@@ -246,12 +246,13 @@ export const PrivateSaleOverview: React.FC = () => {
                                                         <p className="text-sm text-slate-300">单价 ${stage.price.toFixed(3)}</p>
                                                     </div>
                                                     <span
-                                                        className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium ${isCompleted
+                                                        className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium ${
+                                                            isCompleted
                                                                 ? 'border-[#22edc7]/30 bg-[#22edc7]/12 text-[#22edc7]'
                                                                 : isUpcoming
-                                                                    ? 'border-white/15 bg-white/10 text-slate-300'
-                                                                    : 'border-[#56f1ff]/35 bg-[#56f1ff]/18 text-[#56f1ff]'
-                                                            }`}
+                                                                  ? 'border-white/15 bg-white/10 text-slate-300'
+                                                                  : 'border-[#56f1ff]/35 bg-[#56f1ff]/18 text-[#56f1ff]'
+                                                        }`}
                                                     >
                                                         {statusLabel}
                                                     </span>
@@ -297,12 +298,13 @@ export const PrivateSaleOverview: React.FC = () => {
                                                     whileHover={!isUpcoming && !isCompleted ? { scale: 1.02 } : {}}
                                                     whileTap={!isUpcoming && !isCompleted ? { scale: 0.98 } : {}}
                                                     disabled={isUpcoming || isCompleted}
-                                                    className={`relative z-10 mt-6 w-full rounded-xl border px-4 py-3 text-sm font-semibold transition-all duration-300 ${isUpcoming
+                                                    className={`relative z-10 mt-6 w-full rounded-xl border px-4 py-3 text-sm font-semibold transition-all duration-300 ${
+                                                        isUpcoming
                                                             ? 'cursor-not-allowed border-white/10 bg-white/8 text-slate-400'
                                                             : isCompleted
-                                                                ? 'cursor-not-allowed border-[#22edc7]/40 bg-[#22edc7]/18 text-[#22edc7]'
-                                                                : 'border-transparent bg-gradient-to-r from-[#616bff] via-[#4b76ff] to-[#37e7ff] text-slate-900 shadow-[0_25px_60px_-30px_rgba(82,115,255,0.65)] hover:shadow-[0_30px_70px_-30px_rgba(67,240,255,0.65)]'
-                                                        }`}
+                                                              ? 'cursor-not-allowed border-[#22edc7]/40 bg-[#22edc7]/18 text-[#22edc7]'
+                                                              : 'border-transparent bg-gradient-to-r from-[#616bff] via-[#4b76ff] to-[#37e7ff] text-slate-900 shadow-[0_25px_60px_-30px_rgba(82,115,255,0.65)] hover:shadow-[0_30px_70px_-30px_rgba(67,240,255,0.65)]'
+                                                    }`}
                                                 >
                                                     {isUpcoming ? '即将开放' : isCompleted ? '已全部售罄' : '立即参与认购'}
                                                 </motion.button>
