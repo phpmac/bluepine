@@ -1,11 +1,20 @@
+import { useAppKit, useAppKitAccount, useDisconnect } from '@reown/appkit/react';
 import { motion } from 'framer-motion';
 import { Menu, Wallet, X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import { useConfig, useSignMessage } from 'wagmi';
 import { Button } from '../common/Button';
 
 export const Header: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [displayAddress, setDisplayAddress] = useState<string | null>(null);
+
+    const config = useConfig();
+    const { open } = useAppKit();
+    const { signMessage } = useSignMessage();
+    const { isConnected, address, caipAddress } = useAppKitAccount();
+    const { disconnect } = useDisconnect();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -15,12 +24,32 @@ export const Header: React.FC = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        if (address) {
+            setDisplayAddress(`${address.slice(0, 6)}...${address.slice(-4)}`);
+        } else {
+            setDisplayAddress(null);
+        }
+    }, [address]);
+
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
         setIsMobileMenuOpen(false);
+    };
+
+    const handleWhitelistClick = async () => {
+        if (!isConnected) {
+            open();
+        } else {
+            window.location.href = '#whitelist';
+        }
+    };
+
+    const handleWalletClick = () => {
+        open();
     };
 
     const navItems = [
@@ -68,11 +97,11 @@ export const Header: React.FC = () => {
                         ))}
                     </nav>
 
-                    {/* Connect Wallet Button */}
-                    <div className="hidden md:block">
-                        <Button variant="primary" className="gap-2 px-5 py-2.5 text-sm">
+                    {/* Desktop Buttons */}
+                    <div className="hidden items-center gap-3 md:flex">
+                        <Button variant={isConnected ? 'secondary' : 'primary'} className="gap-2 px-5 py-2.5 text-sm" onClick={handleWalletClick}>
                             <Wallet className="h-4 w-4" />
-                            <span>加入白名单</span>
+                            <span>{isConnected ? displayAddress : '连接钱包'}</span>
                         </Button>
                     </div>
 
@@ -100,10 +129,14 @@ export const Header: React.FC = () => {
                                     {item.label}
                                 </button>
                             ))}
-                            <div className="border-t border-white/10 pt-4">
-                                <Button variant="primary" className="w-full gap-2 text-sm">
+                            <div className="space-y-3 border-t border-white/10 pt-4">
+                                <Button variant="primary" className="w-full gap-2 text-sm" onClick={handleWhitelistClick}>
                                     <Wallet className="h-4 w-4" />
                                     <span>加入白名单</span>
+                                </Button>
+                                <Button variant={isConnected ? 'secondary' : 'primary'} className="w-full gap-2 text-sm" onClick={handleWalletClick}>
+                                    <Wallet className="h-4 w-4" />
+                                    <span>{isConnected ? displayAddress : '连接钱包'}</span>
                                 </Button>
                             </div>
                         </div>

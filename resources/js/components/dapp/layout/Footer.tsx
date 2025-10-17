@@ -4,7 +4,7 @@ import { Github, Mail, MessageCircle, Twitter } from 'lucide-react';
 import React from 'react';
 
 const resourceLinks = [
-    { label: '技术白皮书', href: links.enWhitepaper },
+    { label: '白皮书', href: links.enWhitepaper },
     { label: '品牌素材', href: links.brandAssets },
     { label: '安全审计', href: links.audit },
 ];

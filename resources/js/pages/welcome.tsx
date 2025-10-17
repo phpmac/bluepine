@@ -1,4 +1,5 @@
 import { BlockchainBackground, ParallaxBackground } from '@/components/dapp/background';
+import { CookieConsent } from '@/components/dapp/common/CookieConsent';
 import { Footer } from '@/components/dapp/layout/Footer';
 import { Header } from '@/components/dapp/layout/Header';
 import { About } from '@/components/dapp/sections/About';
@@ -47,6 +48,9 @@ export default function Welcome() {
 
                     {/* 底部 */}
                     <Footer />
+
+                    {/* Cookie 同意提示 */}
+                    <CookieConsent />
                 </div>
             </div>
         </>
