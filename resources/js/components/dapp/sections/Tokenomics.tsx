@@ -15,7 +15,16 @@ const featuredKeys = ['ecofund', 'airdrop', 'reserve', 'partners'] as const;
 export const Tokenomics: React.FC = () => {
     const [hovered, setHovered] = useState<number | null>(null);
     const { t } = useLaravelReactI18n();
+    // 优先依据 i18n key 匹配, 回退到中文名称
     const resolveItemByKey = (key: (typeof featuredKeys)[number]) => {
+        const keyMap = {
+            ecofund: 'tokenomics.cards.ecofund.title',
+            airdrop: 'tokenomics.cards.airdrop.title',
+            reserve: 'tokenomics.cards.reserve.title',
+            partners: 'tokenomics.cards.partners.title',
+        } as const;
+        const byKey = tokenomicsData.find((i) => i.nameKey === keyMap[key]);
+        if (byKey) return byKey;
         switch (key) {
             case 'ecofund':
                 return tokenomicsData.find((i) => i.name === '生态基金');
@@ -79,8 +88,16 @@ export const Tokenomics: React.FC = () => {
                                 <div className="rounded-2xl border border-white/12 bg-white/10 px-4 py-3 text-left">
                                     <p className="text-[11px] tracking-[0.28em] text-slate-300/70 uppercase">{t('tokenomics.private_quota')}</p>
                                     <p className="text-sm font-semibold text-white">
-                                        {tokenomicsData.find((item) => item.name === '私募销售')?.percentage}% ·{' '}
-                                        {formatMillions(tokenomicsData.find((item) => item.name === '私募销售')?.value ?? 0)}
+                                        {(
+                                            tokenomicsData.find(
+                                                (item) => item.nameKey === 'tokenomics.cards.private_sale.title' || item.name === '私募销售',
+                                            )?.percentage ?? 0
+                                        )}% ·{' '}
+                                        {formatMillions(
+                                            tokenomicsData.find(
+                                                (item) => item.nameKey === 'tokenomics.cards.private_sale.title' || item.name === '私募销售',
+                                            )?.value ?? 0,
+                                        )}
                                     </p>
                                 </div>
                             </div>
@@ -107,7 +124,7 @@ export const Tokenomics: React.FC = () => {
                                                         }}
                                                     />
                                                     <div>
-                                                        <p className="text-sm font-semibold text-white">{item.name}</p>
+                                                        <p className="text-sm font-semibold text-white">{item.nameKey ? t(item.nameKey) : item.name}</p>
                                                         <p className="mt-0.5 text-[11px] text-slate-400">{formatMillions(item.value)}</p>
                                                     </div>
                                                 </div>
@@ -137,20 +154,26 @@ export const Tokenomics: React.FC = () => {
                         className="grid max-h-[360px] min-h-0 grid-cols-1 gap-3 overflow-y-auto md:grid-cols-2"
                     >
                         {featuredItems.map((data) => {
-                            const displayName =
-                                data.name === '生态基金'
+                            // 基于 nameKey 推导卡片基础 key, 回退到中文名称匹配
+                            const baseKey = data.nameKey ? data.nameKey.replace(/\.title$/, '') : null;
+                            const displayName = baseKey
+                                ? t(`${baseKey}.title`)
+                                : data.name === '生态基金'
                                     ? t('tokenomics.cards.ecofund.title')
                                     : data.name === '社区空投'
-                                      ? t('tokenomics.cards.airdrop.title')
-                                      : data.name === '储备额'
-                                        ? t('tokenomics.cards.reserve.title')
-                                        : data.name === '合作伙伴'
-                                          ? t('tokenomics.cards.partners.title')
-                                          : data.name;
+                                        ? t('tokenomics.cards.airdrop.title')
+                                        : data.name === '储备额'
+                                            ? t('tokenomics.cards.reserve.title')
+                                            : data.name === '合作伙伴'
+                                                ? t('tokenomics.cards.partners.title')
+                                                : data.name;
 
                             let desc = '';
                             let quote = '';
-                            if (data.name === '生态基金') {
+                            if (baseKey) {
+                                desc = t(`${baseKey}.desc`);
+                                quote = t(`${baseKey}.quote`);
+                            } else if (data.name === '生态基金') {
                                 desc = t('tokenomics.cards.ecofund.desc');
                                 quote = t('tokenomics.cards.ecofund.quote');
                             } else if (data.name === '社区空投') {

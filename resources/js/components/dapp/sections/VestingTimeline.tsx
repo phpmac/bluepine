@@ -7,18 +7,18 @@ const phases = [
     {
         id: 1,
         range: '1',
-        title: '初始释放',
-        description: '私募结束后 7 天内, 立即释放投资者购买代币总量的 10%.',
+        titleKey: 'vesting.tag.oneoff',
+        descKey: 'vesting.phase.initial',
         percentage: '10%',
-        tag: '一次性释放',
+        tagKey: 'vesting.tag.oneoff',
     },
     {
         id: 2,
         range: '2',
-        title: '线性释放',
-        description: '自第 8 天起, 每月释放 7.5%, 12 个月合计 90%.',
+        titleKey: 'vesting.tag.linear',
+        descKey: 'vesting.phase.linear',
         percentage: '90%',
-        tag: '线性释放',
+        tagKey: 'vesting.tag.linear',
     },
 ];
 
@@ -39,7 +39,7 @@ export const VestingTimeline: React.FC = () => {
                     className="mx-auto max-w-3xl text-center"
                 >
                     <span className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs tracking-[0.3em] text-slate-200/80 uppercase backdrop-blur-xl">
-                        Release Strategy
+                        {t('vesting.badge')}
                     </span>
                     <h2 className="mt-6 text-3xl font-bold text-white md:text-4xl">{t('vesting.title')}</h2>
                     <p className="mt-4 text-base leading-relaxed text-slate-300/85">{t('vesting.subtitle')}</p>
@@ -57,12 +57,10 @@ export const VestingTimeline: React.FC = () => {
                         <div className="relative">
                             <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs tracking-[0.32em] text-slate-200/80 uppercase">
                                 <ShieldCheck className="h-4 w-4" />
-                                Token Security
+                                {t('vesting.security')}
                             </div>
-                            <h3 className="mt-4 text-xl leading-tight font-bold text-white">三段式释放模型，兼顾增长与流动性安全</h3>
-                            <p className="mt-2 text-sm leading-relaxed text-slate-300/80">
-                                初始释放, 锁定期与稳定月度发放组合, 平衡社区回报与市场供需.
-                            </p>
+                            <h3 className="mt-4 text-xl leading-tight font-bold text-white">{t('vesting.header')}</h3>
+                            <p className="mt-2 text-sm leading-relaxed text-slate-300/80">{t('vesting.header_desc')}</p>
                         </div>
 
                         <div className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/7 px-5 py-4">
@@ -78,21 +76,21 @@ export const VestingTimeline: React.FC = () => {
                                 </div>
                                 <div className="flex flex-col gap-2 text-xs text-slate-300/70">
                                     <span className="inline-flex items-center gap-2">
-                                        <span className="inline-flex size-2 rounded-full bg-[#22edc7]" /> 私募+7天 · 10%
+                                        <span className="inline-flex size-2 rounded-full bg-[#22edc7]" /> {t('vesting.badge_initial')}
                                     </span>
                                     <span className="inline-flex items-center gap-2">
-                                        <span className="inline-flex size-2 rounded-full bg-[#56f1ff]" /> 第8天起 · 每月 7.5%
+                                        <span className="inline-flex size-2 rounded-full bg-[#56f1ff]" /> {t('vesting.badge_linear')}
                                     </span>
                                 </div>
                             </div>
                             <div className="flex flex-wrap gap-2 text-[11px] text-slate-300/70">
                                 <span className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1">
                                     <Sparkles className="h-3.5 w-3.5 text-[#56f1ff]" />
-                                    社区持有人福利
+                                    {t('vesting.benefit.holder')}
                                 </span>
                                 <span className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1">
                                     <Layers className="h-3.5 w-3.5 text-[#22edc7]" />
-                                    市场流动性防护
+                                    {t('vesting.benefit.liquidity')}
                                 </span>
                             </div>
                         </div>
@@ -122,8 +120,8 @@ export const VestingTimeline: React.FC = () => {
                                     <div className="rounded-2xl border border-white/12 bg-white/[0.08] px-4 py-4 backdrop-blur-xl">
                                         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                                             <div>
-                                                <h3 className="text-sm font-semibold text-white">{phase.title}</h3>
-                                                <p className="mt-1 text-sm leading-relaxed text-white/85">{phase.description}</p>
+                                                <h3 className="text-sm font-semibold text-white">{t(phase.titleKey)}</h3>
+                                                <p className="mt-1 text-sm leading-relaxed text-white/85">{t(phase.descKey)}</p>
                                             </div>
                                             <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white">
                                                 {phase.percentage}
@@ -131,7 +129,7 @@ export const VestingTimeline: React.FC = () => {
                                         </div>
                                         <span className="mt-3 inline-flex items-center gap-2 text-[11px] tracking-[0.28em] text-slate-300/70 uppercase">
                                             <CalendarDays className="h-3.5 w-3.5" />
-                                            {phase.tag}
+                                            {t(phase.tagKey)}
                                         </span>
                                     </div>
                                 </motion.div>

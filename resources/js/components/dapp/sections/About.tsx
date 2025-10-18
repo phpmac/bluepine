@@ -4,9 +4,9 @@ import { Cpu, Globe2, Link2, ShieldCheck, Users, Zap } from 'lucide-react';
 import React from 'react';
 
 const stats = [
-    { label: '语义区块链', value: '240+', note: '数据可信存证构建信任基石' },
-    { label: '农业AI引擎', value: '8,500+', note: '精准诊断预警 化身田间专家' },
-    { label: 'Web3协议', value: '60+', note: '价值自主流转重塑分配规则' },
+    { labelKey: 'features.stats.semantic.label', value: '240+', noteKey: 'features.stats.semantic.note' },
+    { labelKey: 'features.stats.ai_engine.label', value: '8,500+', noteKey: 'features.stats.ai_engine.note' },
+    { labelKey: 'features.stats.web3.label', value: '60+', noteKey: 'features.stats.web3.note' },
 ];
 
 const features = [
@@ -106,12 +106,12 @@ export const About: React.FC = () => {
 
                         <div className="grid grid-cols-3 gap-3">
                             {stats.map((stat) => (
-                                <div key={stat.label} className="rounded-2xl border border-white/12 bg-white/10 px-4 py-5 text-left backdrop-blur-lg">
-                                    <p className="text-[11px] tracking-[0.28em] text-slate-300/75 uppercase">{stat.label}</p>
+                                <div key={stat.labelKey} className="rounded-2xl border border-white/12 bg-white/10 px-4 py-5 text-left backdrop-blur-lg">
+                                    <p className="text-[11px] tracking-[0.28em] text-slate-300/75 uppercase">{t(stat.labelKey)}</p>
                                     <p className="mt-2 bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-2xl font-bold text-transparent">
                                         {stat.value}
                                     </p>
-                                    <p className="mt-2 text-[12px] text-slate-400/80">{stat.note}</p>
+                                    <p className="mt-2 text-[12px] text-slate-400/80">{t(stat.noteKey)}</p>
                                 </div>
                             ))}
                         </div>
@@ -166,8 +166,8 @@ export const About: React.FC = () => {
                 >
                     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         <div>
-                            <h3 className="text-2xl font-bold text-white">发展路线图</h3>
-                            <p className="mt-2 text-sm text-slate-300/85">分阶段推进基础设施、现实资产与全球扩展.</p>
+                            <h3 className="text-2xl font-bold text-white">{t('roadmap.header', { defaultValue: 'Roadmap' })}</h3>
+                            <p className="mt-2 text-sm text-slate-300/85">{t('roadmap.header_desc', { defaultValue: 'Phased delivery for infra, real-world assets and global expansion.' })}</p>
                         </div>
                     </div>
 
@@ -186,23 +186,21 @@ export const About: React.FC = () => {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.45, delay: index * 0.08 }}
-                                        className={`relative h-full rounded-2xl border px-6 py-6 backdrop-blur-lg ${
-                                            isActive
-                                                ? 'border-[#56f1ff]/40 bg-gradient-to-br from-[#54e7ff26] via-[#0f1a3c] to-[#041223] shadow-[0_30px_70px_-35px_rgba(86,241,255,0.55)]'
-                                                : isUpcoming
-                                                  ? 'border-[#5eead4]/12 bg-gradient-to-br from-[#5eead40d] via-white/5 to-transparent'
-                                                  : 'border-[#c4b5fd]/12 bg-gradient-to-br from-[#c4b5fd0d] via-white/5 to-transparent'
-                                        }`}
+                                        className={`relative h-full rounded-2xl border px-6 py-6 backdrop-blur-lg ${isActive
+                                            ? 'border-[#56f1ff]/40 bg-gradient-to-br from-[#54e7ff26] via-[#0f1a3c] to-[#041223] shadow-[0_30px_70px_-35px_rgba(86,241,255,0.55)]'
+                                            : isUpcoming
+                                                ? 'border-[#5eead4]/12 bg-gradient-to-br from-[#5eead40d] via-white/5 to-transparent'
+                                                : 'border-[#c4b5fd]/12 bg-gradient-to-br from-[#c4b5fd0d] via-white/5 to-transparent'
+                                            }`}
                                     >
                                         <div className="flex items-center justify-between">
                                             <span
-                                                className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
-                                                    isActive
-                                                        ? 'bg-[#56f1ff]/20 text-[#56f1ff]'
-                                                        : isUpcoming
-                                                          ? 'bg-[#5eead4]/10 text-[#5eead4]/80'
-                                                          : 'bg-[#c4b5fd]/10 text-[#c4b5fd]/80'
-                                                }`}
+                                                className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${isActive
+                                                    ? 'bg-[#56f1ff]/20 text-[#56f1ff]'
+                                                    : isUpcoming
+                                                        ? 'bg-[#5eead4]/10 text-[#5eead4]/80'
+                                                        : 'bg-[#c4b5fd]/10 text-[#c4b5fd]/80'
+                                                    }`}
                                             >
                                                 {phase.phase}
                                             </span>
@@ -213,9 +211,8 @@ export const About: React.FC = () => {
                                             {phase.points.map((point) => (
                                                 <li key={point} className="flex items-start gap-2">
                                                     <span
-                                                        className={`mt-1 inline-flex size-1.5 rounded-full ${
-                                                            isActive ? 'bg-[#56f1ff]' : isUpcoming ? 'bg-[#5eead4]/80' : 'bg-[#c4b5fd]/80'
-                                                        }`}
+                                                        className={`mt-1 inline-flex size-1.5 rounded-full ${isActive ? 'bg-[#56f1ff]' : isUpcoming ? 'bg-[#5eead4]/80' : 'bg-[#c4b5fd]/80'
+                                                            }`}
                                                     />
                                                     <span>{point}</span>
                                                 </li>

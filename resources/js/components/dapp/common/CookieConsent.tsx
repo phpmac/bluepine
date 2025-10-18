@@ -60,14 +60,6 @@ export const CookieConsent: React.FC = () => {
                                     </button>
                                 </div>
 
-                                {/* 说明文本 */}
-                                <p className="text-xs leading-relaxed text-slate-300/90 md:text-sm">
-                                    {t('cookie.text_prefix')}
-                                    <a href="#" className="text-[#56f1ff] transition-colors hover:text-[#43f0ff]">
-                                        {t('cookie.privacy')}
-                                    </a>
-                                    .
-                                </p>
 
                                 {/* 按钮组 */}
                                 <div className="flex flex-col gap-2 md:gap-3">
