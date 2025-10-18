@@ -1,5 +1,6 @@
 import { StageData } from '@/types';
 import { motion } from 'framer-motion';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { ArrowRight } from 'lucide-react';
 import React from 'react';
 import { formatEther } from 'viem';
@@ -9,6 +10,7 @@ import { Button } from '../common/Button';
 import { ProgressBar } from '../common/ProgressBar';
 
 export const Hero: React.FC<{ currentStageData: StageData | null }> = ({ currentStageData }) => {
+    const { t } = useLaravelReactI18n();
     const scrollToPrivateSale = () => {
         const element = document.getElementById('private-sale-overview');
         if (element) {
@@ -46,7 +48,7 @@ export const Hero: React.FC<{ currentStageData: StageData | null }> = ({ current
                             transition={{ delay: 0.2, duration: 0.6 }}
                             className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs tracking-[0.3em] text-slate-100/80 uppercase backdrop-blur-xl"
                         >
-                            耕耘未来, 链上生长
+                            {t('hero.badge')}
                         </motion.span>
 
                         <motion.h1
@@ -55,9 +57,9 @@ export const Hero: React.FC<{ currentStageData: StageData | null }> = ({ current
                             transition={{ delay: 0.4, duration: 0.7 }}
                             className="mt-6 text-2xl leading-tight font-black text-white sm:text-3xl xl:text-5xl"
                         >
-                            构建未来农业的数字基石
+                            {t('hero.title1')}
                             <span className="block bg-gradient-to-r from-[#6a74ff] via-[#4fe3ff] to-[#20e3b2] bg-clip-text text-transparent">
-                                全球 AI 农业大数据服务平台
+                                {t('hero.title2')}
                             </span>
                         </motion.h1>
 
@@ -67,9 +69,7 @@ export const Hero: React.FC<{ currentStageData: StageData | null }> = ({ current
                             transition={{ delay: 0.55, duration: 0.7 }}
                             className="mt-8 max-w-xl text-lg leading-relaxed text-slate-200/90"
                         >
-                            AESC是由 Bluepine Tech Foundation(蓝松科技基金会) 打造的一个融合区块链, AI, IoT与WEB3技术, 结合RWA ,
-                            RDA及DEFI金融的全球智慧农业大数据服务平台, 旨在通过数据可信采集, AI精准服务与代币经济模型, 构建一个"数据可信流转,
-                            服务精准触达, 价值公平分配"的农业数字化生态系统.
+                            {t('hero.desc')}
                         </motion.p>
 
                         <motion.div
@@ -79,7 +79,7 @@ export const Hero: React.FC<{ currentStageData: StageData | null }> = ({ current
                             className="mt-10 flex flex-col gap-4 sm:flex-row"
                         >
                             <Button variant="primary" className="gap-2 px-7 py-3 text-base" onClick={scrollToPrivateSale}>
-                                <span>立即参与代币认购</span>
+                                <span>{t('hero.cta.primary')}</span>
                                 <ArrowRight className="h-4 w-4" />
                             </Button>
                             <Button
@@ -87,7 +87,7 @@ export const Hero: React.FC<{ currentStageData: StageData | null }> = ({ current
                                 className="gap-2 px-7 py-3 text-base"
                                 onClick={() => window.open(links.enWhitepaper, '_blank')}
                             >
-                                <span>获取白皮书</span>
+                                <span>{t('hero.cta.whitepaper')}</span>
                                 <ArrowRight className="h-4 w-4" />
                             </Button>
                         </motion.div>
@@ -108,14 +108,14 @@ export const Hero: React.FC<{ currentStageData: StageData | null }> = ({ current
                         >
                             <div className="absolute -top-24 -right-24 size-48 rounded-full bg-[#52e3ff]/20 blur-3xl" />
                             <div className="relative">
-                                <p className="mb-4 text-sm tracking-[0.3em] text-slate-200/80 uppercase">Token Sale</p>
+                                <p className="mb-4 text-sm tracking-[0.3em] text-slate-200/80 uppercase">{t('hero.token_sale')}</p>
                                 <div className="flex flex-wrap items-center justify-between gap-4">
                                     <div>
                                         <h3 className="mb-1 text-2xl font-bold text-white">
-                                            {chainStageIndex ? `第 ${chainStageIndex} 阶段` : activeStage.stage}
+                                            {chainStageIndex ? t('hero.stage_fmt', { num: chainStageIndex }) : activeStage.stage}
                                         </h3>
                                         <p className="text-sm text-slate-300">
-                                            当前价格&nbsp;/&nbsp;
+                                            {t('hero.current_price_prefix')}&nbsp;
                                             <span className="font-semibold text-[#56f1ff]">
                                                 ${chainPrice !== null ? chainPrice.toFixed(3) : activeStage.price.toFixed(3)}
                                             </span>
@@ -125,13 +125,13 @@ export const Hero: React.FC<{ currentStageData: StageData | null }> = ({ current
                                         <p className="bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-3xl font-black text-transparent">
                                             {chainProgress !== null ? chainProgress : activeStage.progress}%
                                         </p>
-                                        <p className="text-xs text-slate-400">阶段完成度</p>
+                                        <p className="text-xs text-slate-400">{t('hero.stage_progress')}</p>
                                     </div>
                                 </div>
 
                                 <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4">
                                     <div className="mb-3 flex justify-between text-xs text-slate-300">
-                                        <span>已售代币</span>
+                                        <span>{t('hero.sold_label')}</span>
                                         <span>
                                             {currentStageData
                                                 ? `${toMillions(currentStageData.sold)}M\u00A0/\u00A0${toMillions(currentStageData.cap)}M`

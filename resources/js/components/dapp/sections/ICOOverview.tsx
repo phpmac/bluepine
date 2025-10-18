@@ -11,6 +11,7 @@ import { AnimatedCounter } from '../common/AnimatedCounter';
 import { ProgressBar } from '../common/ProgressBar';
 
 import { StageData } from '@/types';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 const stageOverlays = [
     'from-[#56f1ff1f] via-[#13264230] to-transparent',
@@ -19,6 +20,7 @@ const stageOverlays = [
 ];
 
 export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null }> = ({ currentStageData }) => {
+    const { t } = useLaravelReactI18n();
     const publicClient = usePublicClient();
     const { data: chainStageCount } = useReadContract({
         address: address.aescIeo as `0x${string}`,
@@ -187,12 +189,10 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                     className="mx-auto max-w-3xl text-center"
                 >
                     <span className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs tracking-[0.3em] text-slate-200/80 uppercase backdrop-blur-xl">
-                        Token Sale Overview
+                        {t('overview.badge')}
                     </span>
-                    <h2 className="mt-6 text-3xl font-bold text-white sm:text-4xl">财富农业, 播种未来 | AESC全球发售计划</h2>
-                    <p className="mt-4 text-base leading-relaxed text-slate-300/90">
-                        我们不仅在发行代币, 更在构建一个连接区块链与实体农业的全新经济生态.
-                    </p>
+                    <h2 className="mt-6 text-3xl font-bold text-white sm:text-4xl">{t('overview.title')}</h2>
+                    <p className="mt-4 text-base leading-relaxed text-slate-300/90">{t('overview.subtitle')}</p>
                 </motion.div>
 
                 <div className="mt-16 grid grid-cols-1 items-stretch gap-10 xl:grid-cols-2 xl:gap-14">
@@ -208,8 +208,8 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                         <div className="relative flex flex-1 flex-col gap-8 p-8">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-xs tracking-[0.32em] text-slate-200/70 uppercase">Token Metrics</p>
-                                    <h3 className="mt-2 text-2xl font-bold text-white">AESC发售窗口数据</h3>
+                                    <p className="text-xs tracking-[0.32em] text-slate-200/70 uppercase">{t('overview.metrics')}</p>
+                                    <h3 className="mt-2 text-2xl font-bold text-white">{t('overview.metrics_title')}</h3>
                                 </div>
                                 <div className="hidden items-center gap-2 text-[11px] text-slate-300/70 md:flex">
                                     <Sparkles className="h-4 w-4 text-[#56f1ff]" /> 实时同步
@@ -242,8 +242,8 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                             <div className="flex flex-1 flex-col justify-end rounded-2xl border border-white/10 bg-gradient-to-br from-[#616bff1f] via-[#0e1531] to-[#06101f] p-6 shadow-[0_25px_60px_-45px_rgba(60,110,255,0.6)]">
                                 <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                                     <div>
-                                        <p className="mb-2 text-xs tracking-[0.3em] text-slate-300/80 uppercase">总体进度</p>
-                                        <h3 className="text-xl font-bold text-white">发售完成度</h3>
+                                        <p className="mb-2 text-xs tracking-[0.3em] text-slate-300/80 uppercase">{t('overview.overall')}</p>
+                                        <h3 className="text-xl font-bold text-white">{t('overview.completion')}</h3>
                                     </div>
                                     <div className="flex items-end gap-6">
                                         <div className="text-right">
@@ -254,7 +254,7 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                                 suffix="M"
                                                 className="bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-2xl font-black text-transparent"
                                             />
-                                            <p className="mt-1 text-[11px] text-slate-400">已募集</p>
+                                            <p className="mt-1 text-[11px] text-slate-400">{t('overview.raised')}</p>
                                         </div>
                                         <div className="text-right">
                                             <AnimatedCounter
@@ -264,7 +264,7 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                                 suffix="M"
                                                 className="text-lg font-semibold text-white"
                                             />
-                                            <p className="mt-1 text-[11px] text-slate-400">目标</p>
+                                            <p className="mt-1 text-[11px] text-slate-400">{t('overview.target')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -277,7 +277,7 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                         showPercentage={false}
                                     />
                                     <div className="mt-3 flex items-center justify-between text-[11px] text-slate-400">
-                                        <span>早期认购者享受最优价格</span>
+                                        <span>{t('overview.early_benefit')}</span>
                                         <span>{displayProgress.toFixed(1)}%</span>
                                     </div>
                                 </div>
@@ -305,7 +305,11 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                     const isSelected = index === selectedIndex;
                                     const isCompleted = stage.progress === 100;
                                     const isUpcoming = stage.progress === 0;
-                                    const statusLabel = isCompleted ? '已完成' : isUpcoming ? '筹备中' : '进行中';
+                                    const statusLabel = isCompleted
+                                        ? t('overview.status.completed')
+                                        : isUpcoming
+                                          ? t('overview.status.upcoming')
+                                          : t('overview.status.active');
                                     const overlay = stageOverlays[index % stageOverlays.length];
 
                                     return (
@@ -329,7 +333,7 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                                 <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                                                     <div>
                                                         <p className="mb-1 text-xs tracking-[0.3em] text-slate-300/70 uppercase">
-                                                            Stage {stage.id.toString().padStart(2, '0')}
+                                                            {t('overview.stage_label', { num: stage.id.toString().padStart(2, '0') })}
                                                         </p>
                                                         <h3 className="mb-1 text-xl font-semibold text-white">{stage.stage}</h3>
                                                         <p className="text-sm text-slate-300">单价 ${stage.price.toFixed(3)}</p>
@@ -355,11 +359,15 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                                         </p>
                                                     </div>
                                                     <div>
-                                                        <p className="mb-2 text-xs tracking-[0.25em] text-slate-400 uppercase">目标募集</p>
+                                                        <p className="mb-2 text-xs tracking-[0.25em] text-slate-400 uppercase">
+                                                            {t('overview.target_raise')}
+                                                        </p>
                                                         <p className="text-lg font-semibold text-white">${(stage.target / 1000000).toFixed(1)}M</p>
                                                     </div>
                                                     <div>
-                                                        <p className="mb-2 text-xs tracking-[0.25em] text-slate-400 uppercase">已募集</p>
+                                                        <p className="mb-2 text-xs tracking-[0.25em] text-slate-400 uppercase">
+                                                            {t('overview.raised')}
+                                                        </p>
                                                         <p className="bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-lg font-semibold text-transparent">
                                                             ${(raised / 1000000).toFixed(2)}M
                                                         </p>
@@ -395,7 +403,7 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                                               : 'border-transparent bg-gradient-to-r from-[#616bff] via-[#4b76ff] to-[#37e7ff] text-slate-900 shadow-[0_25px_60px_-30px_rgba(82,115,255,0.65)] hover:shadow-[0_30px_70px_-30px_rgba(67,240,255,0.65)]'
                                                     }`}
                                                 >
-                                                    {isUpcoming ? '即将开放' : isCompleted ? '已全部售罄' : '立即参与认购'}
+                                                    {isUpcoming ? t('overview.soon') : isCompleted ? t('overview.soldout') : t('overview.open')}
                                                 </motion.button>
                                             </div>
                                         </motion.div>

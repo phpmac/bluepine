@@ -1,9 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Cookie, X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 
 export const CookieConsent: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const { t } = useLaravelReactI18n();
 
     useEffect(() => {
         const cookieConsent = localStorage.getItem('cookieConsent');
@@ -46,8 +48,8 @@ export const CookieConsent: React.FC = () => {
                                             <Cookie className="h-4 w-4" />
                                         </div>
                                         <div>
-                                            <h3 className="text-sm font-semibold text-white md:text-base">Cookie 政策</h3>
-                                            <p className="mt-0.5 text-xs text-slate-400">改善您的浏览体验</p>
+                                            <h3 className="text-sm font-semibold text-white md:text-base">{t('cookie.title')}</h3>
+                                            <p className="mt-0.5 text-xs text-slate-400">{t('cookie.subtitle')}</p>
                                         </div>
                                     </div>
                                     <button
@@ -60,9 +62,9 @@ export const CookieConsent: React.FC = () => {
 
                                 {/* 说明文本 */}
                                 <p className="text-xs leading-relaxed text-slate-300/90 md:text-sm">
-                                    我们使用 Cookie 优化网站功能. 详见
+                                    {t('cookie.text_prefix')}
                                     <a href="#" className="text-[#56f1ff] transition-colors hover:text-[#43f0ff]">
-                                        隐私政策
+                                        {t('cookie.privacy')}
                                     </a>
                                     .
                                 </p>
@@ -73,13 +75,13 @@ export const CookieConsent: React.FC = () => {
                                         onClick={handleAccept}
                                         className="group relative w-full cursor-pointer rounded-lg bg-gradient-to-r from-[#6065ff] via-[#4b76ff] to-[#37e7ff] px-3 py-2 text-xs font-semibold text-slate-900 shadow-[0_20px_45px_-25px_rgba(82,115,255,0.75)] transition-all duration-300 hover:scale-105 hover:shadow-[0_25px_55px_-20px_rgba(82,115,255,0.85)] md:text-sm"
                                     >
-                                        <span className="relative z-10">接受</span>
+                                        <span className="relative z-10">{t('cookie.accept')}</span>
                                     </button>
                                     <button
                                         onClick={handleReject}
                                         className="group relative w-full cursor-pointer rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-100 transition-all duration-300 hover:scale-105 hover:border-white/30 hover:bg-white/10 md:text-sm"
                                     >
-                                        <span className="relative z-10">拒绝</span>
+                                        <span className="relative z-10">{t('cookie.reject')}</span>
                                     </button>
                                 </div>
                             </div>

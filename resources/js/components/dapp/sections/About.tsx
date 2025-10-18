@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Cpu, Globe2, Link2, ShieldCheck, Users, Zap } from 'lucide-react';
 import React from 'react';
 
@@ -10,62 +11,69 @@ const stats = [
 
 const features = [
     {
+        key: 'modular',
         icon: Cpu,
         title: '模块化执行层',
         description: '可插拔虚拟机与共识层, 实现企业级性能弹性.',
     },
     {
+        key: 'interop',
         icon: Link2,
         title: '跨链互操作',
         description: '原生跨链消息与桥接协议, 统一多链价值流动.',
     },
     {
+        key: 'rwa',
         icon: Globe2,
         title: '现实资产上链',
         description: '完善的合规凭证体系, 助力 RWA、供应链、碳资产落地.',
     },
     {
+        key: 'compliance',
         icon: ShieldCheck,
         title: '合规安全框架',
         description: '身份治理与权限控制模块, 满足全球监管审计需求.',
     },
     {
+        key: 'liquidity',
         icon: Zap,
         title: '流动性引擎',
         description: '跨链流动性与收益聚合协议, 放大资产效率.',
     },
     {
+        key: 'governance',
         icon: Users,
         title: '治理共识',
         description: 'DAO 与节点协同治理, 推动生态持续演进.',
     },
 ];
 
-const roadmap = [
+const roadmap = (t: (k: string) => string) => [
     {
-        phase: '阶段一',
-        title: '主网与权限层',
-        timeline: '2026 Q1-Q2',
-        points: ['主网公测上线', '验证者网络部署', '身份与权限层开放'],
+        phase: t('roadmap.phase1.phase'),
+        title: t('roadmap.phase1.title'),
+        timeline: t('roadmap.phase1.timeline'),
+        points: [t('roadmap.phase1.p1'), t('roadmap.phase1.p2')],
         status: 'active',
     },
     {
-        phase: '阶段二',
-        title: '现实资产整合',
-        timeline: '2026 Q3-Q4',
-        points: ['RWA 发行工具', '跨链桥稳定运行', '机构级托管集成'],
+        phase: t('roadmap.phase2.phase'),
+        title: t('roadmap.phase2.title'),
+        timeline: t('roadmap.phase2.timeline'),
+        points: [t('roadmap.phase2.p1'), t('roadmap.phase2.p2')],
         status: 'upcoming',
     },
     {
-        phase: '阶段三',
-        title: '生态规模化',
-        timeline: '2027 Q1-Q2',
-        points: ['全球节点联盟', '跨链清算系统', '企业级 API 服务'],
+        phase: t('roadmap.phase3.phase'),
+        title: t('roadmap.phase3.title'),
+        timeline: t('roadmap.phase3.timeline'),
+        points: [t('roadmap.phase3.p1'), t('roadmap.phase3.p2')],
         status: 'future',
     },
 ];
 
 export const About: React.FC = () => {
+    const { t } = useLaravelReactI18n();
     return (
         <section id="about" className="relative z-10 overflow-hidden py-24">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#030713] to-[#050a1a]" />
@@ -161,7 +169,7 @@ export const About: React.FC = () => {
                     <div className="relative overflow-hidden rounded-[28px] border border-white/12 bg-white/10 px-6 py-8 backdrop-blur-xl">
                         <div className="absolute top-[74px] right-12 left-12 hidden h-px bg-gradient-to-r from-transparent via-white/35 to-transparent lg:flex" />
                         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-                            {roadmap.map((phase, index) => {
+                            {roadmap(t).map((phase, index) => {
                                 const isActive = phase.status === 'active';
                                 const isUpcoming = phase.status === 'upcoming';
                                 // future 阶段使用与上面分支的第三态样式

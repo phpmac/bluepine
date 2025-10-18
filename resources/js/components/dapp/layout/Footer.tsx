@@ -1,13 +1,8 @@
 import { links } from '@/data/links';
 import { motion } from 'framer-motion';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Github, Mail, MessageCircle, Twitter } from 'lucide-react';
 import React from 'react';
-
-const resourceLinks = [
-    { label: '白皮书', href: links.enWhitepaper },
-    { label: '品牌素材', href: links.brandAssets },
-    { label: '安全审计', href: links.audit },
-];
 
 const socialLinks = [
     { icon: Twitter, href: links.twitter, label: 'Twitter' },
@@ -17,6 +12,12 @@ const socialLinks = [
 ];
 
 export const Footer: React.FC = () => {
+    const { t } = useLaravelReactI18n();
+    const resources = [
+        { label: t('footer.link.whitepaper'), href: links.enWhitepaper },
+        { label: t('footer.link.brand_assets'), href: links.brandAssets },
+        { label: t('footer.link.audit'), href: links.audit },
+    ];
     return (
         <footer className="relative overflow-hidden border-t border-white/10">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050a1a]/80 to-[#020510]" />
@@ -34,16 +35,13 @@ export const Footer: React.FC = () => {
                                 <p className="text-xs tracking-[0.3em] text-slate-300/80 uppercase">Modular Web3 Infrastructure</p>
                             </div>
                         </div>
-                        <p className="max-w-md text-xs leading-relaxed text-slate-300/90">
-                            从一片田, 到一颗星球的智慧网络. 我们构建的, 是农业的未来. Agri-Eco Smart
-                            Chian致力于实现全球农业的数字化、智能化与去中心化革新. 在这里, 每一份贡献都被铭记, 每一份价值都被尊重.
-                        </p>
+                        <p className="max-w-md text-xs leading-relaxed text-slate-300/90">{t('footer.description')}</p>
                     </div>
 
                     <div className="text-right">
-                        <h4 className="mb-4 text-sm font-semibold tracking-[0.2em] text-white uppercase">资源</h4>
+                        <h4 className="mb-4 text-sm font-semibold tracking-[0.2em] text-white uppercase">{t('footer.resources')}</h4>
                         <ul className="space-y-2">
-                            {resourceLinks.map((item) => (
+                            {resources.map((item) => (
                                 <li key={item.label}>
                                     <a href={item.href} target="_blank" className="text-sm text-slate-300/90 transition-colors hover:text-white">
                                         {item.label}
@@ -74,7 +72,9 @@ export const Footer: React.FC = () => {
                     </div>
 
                     <div className="text-sm text-slate-400/90">
-                        <p>© {new Date().getFullYear()} Agri-Eco Smart Chain. 保留所有权利.</p>
+                        <p>
+                            © {new Date().getFullYear()} Agri-Eco Smart Chain. {t('footer.copyright')}
+                        </p>
                     </div>
                 </div>
             </div>

@@ -28,8 +28,8 @@ export const LanguageSwitcher: React.FC = () => {
     }, [isOpen]);
 
     const languages = [
-        { code: 'zh', label: '中文', flag: '🇨🇳' },
         { code: 'en' as const, label: 'English', flag: '🇺🇸' },
+        { code: 'zh', label: '中文', flag: '🇨🇳' },
     ];
 
     // 根据服务端 locale 初始化与同步

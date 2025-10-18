@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { PieChart as PieChartIcon } from 'lucide-react';
 import React, { useState } from 'react';
 import { tokenInfo, tokenomicsData } from '../../../data/icoData';
@@ -18,6 +19,7 @@ const formatYi = (tokens: number) => {
 
 export const Tokenomics: React.FC = () => {
     const [hovered, setHovered] = useState<number | null>(null);
+    const { t } = useLaravelReactI18n();
     const featuredItems = featuredNames.map((n) => tokenomicsData.find((i) => i.name === n)).filter(Boolean) as typeof tokenomicsData;
 
     return (
@@ -34,7 +36,7 @@ export const Tokenomics: React.FC = () => {
                     className="mx-auto max-w-3xl text-center"
                 >
                     <span className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs tracking-[0.3em] text-slate-200/80 uppercase backdrop-blur-xl">
-                        Token Allocation
+                        {t('tokenomics.badge')}
                     </span>
                     <h2 className="mt-6 text-3xl font-bold text-white sm:text-4xl">立体化分配结构，兼顾流动性与长期价值</h2>
                     <p className="mt-4 text-base leading-relaxed text-slate-300/85">
@@ -58,7 +60,7 @@ export const Tokenomics: React.FC = () => {
                                         <PieChartIcon className="h-5 w-5 text-white" />
                                     </div>
                                     <div>
-                                        <p className="text-xs tracking-[0.28em] text-slate-300/80 uppercase">总供应量</p>
+                                        <p className="text-xs tracking-[0.28em] text-slate-300/80 uppercase">{t('tokenomics.total_supply')}</p>
                                         <AnimatedCounter
                                             end={tokenInfo.totalSupply / 1000000000}
                                             decimals={1}
@@ -68,7 +70,7 @@ export const Tokenomics: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="rounded-2xl border border-white/12 bg-white/10 px-4 py-3 text-left">
-                                    <p className="text-[11px] tracking-[0.28em] text-slate-300/70 uppercase">私募额度</p>
+                                    <p className="text-[11px] tracking-[0.28em] text-slate-300/70 uppercase">{t('tokenomics.private_quota')}</p>
                                     <p className="text-sm font-semibold text-white">
                                         {tokenomicsData.find((item) => item.name === '私募销售')?.percentage}% ·{' '}
                                         {formatMillions(tokenomicsData.find((item) => item.name === '私募销售')?.value ?? 0)}
@@ -77,9 +79,9 @@ export const Tokenomics: React.FC = () => {
                             </div>
                         </div>
 
-                        <div className="relative flex-1">
+                        <div className="relative min-h-0 flex-1">
                             <div className="grid h-full grid-cols-1 gap-4">
-                                <div className="max-h-[290px] space-y-2 overflow-y-auto pr-1">
+                                <div className="h-full space-y-2 overflow-y-auto pr-1">
                                     {tokenomicsData.map((item, index) => (
                                         <motion.div
                                             key={item.name}
@@ -128,24 +130,33 @@ export const Tokenomics: React.FC = () => {
                         className="grid grid-cols-1 gap-3 md:grid-cols-2"
                     >
                         {featuredItems.map((data) => {
-                            const displayName = data.name === '生态基金' ? '生态建设基金' : data.name;
+                            const displayName =
+                                data.name === '生态基金'
+                                    ? t('tokenomics.cards.ecofund.title')
+                                    : data.name === '社区空投'
+                                      ? t('tokenomics.cards.airdrop.title')
+                                      : data.name === '储备额'
+                                        ? t('tokenomics.cards.reserve.title')
+                                        : data.name === '合作伙伴'
+                                          ? t('tokenomics.cards.partners.title')
+                                          : data.name;
                             const tokens = (tokenInfo.totalSupply * data.percentage) / 100;
                             const tokensLabel = formatYi(tokens);
 
                             let desc = '';
                             let quote = '';
                             if (data.name === '生态基金') {
-                                desc = '用于项目生态系统的持续建设, 包括技术迭代, 生态激励, 节点奖励, 社区活动等.';
-                                quote = '"生态建设基金是AESC长远发展的基石. 每月释放1/40, 持续40个月, 稳步推动生态繁荣与技术创新."';
+                                desc = t('tokenomics.cards.ecofund.desc');
+                                quote = t('tokenomics.cards.ecofund.quote');
                             } else if (data.name === '社区空投') {
-                                desc = '奖励早期社区用户, 测试参与者, 活跃贡献者, 增强社区凝聚力与参与感.';
-                                quote = '"完成任务的社区用户将获得空投奖励, 分6个月线性释放, 感谢每一位陪伴AESC成长的你!"';
+                                desc = t('tokenomics.cards.airdrop.desc');
+                                quote = t('tokenomics.cards.airdrop.quote');
                             } else if (data.name === '储备额') {
-                                desc = '作为项目风险储备金, 用于应对突发情况, 市场波动, 应急补贴等, 由社区投票决定使用.';
-                                quote = '"储备额度由社区共同决策, 透明管理, 用于应对未来不确定性与支持生态应急需求, 守护项目安全前行."';
+                                desc = t('tokenomics.cards.reserve.desc');
+                                quote = t('tokenomics.cards.reserve.quote');
                             } else if (data.name === '合作伙伴') {
-                                desc = '用于激励战略合作伙伴, 技术合作方, 生态共建者, 推动项目多边合作与资源整合.';
-                                quote = '"合作伙伴代币按合作进度逐步解锁, 最高分12个月释放, 助力生态共赢与长期合作关系的建立."';
+                                desc = t('tokenomics.cards.partners.desc');
+                                quote = t('tokenomics.cards.partners.quote');
                             }
 
                             return (
