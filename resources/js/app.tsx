@@ -5,6 +5,7 @@ import { createInertiaApp } from '@inertiajs/react';
 import { configureEcho } from '@laravel/echo-react';
 import { createAppKit } from '@reown/appkit/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { LaravelReactI18nProvider } from 'laravel-react-i18n';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
 import { WagmiProvider } from 'wagmi';
@@ -58,12 +59,17 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
 
+        const stored = typeof window !== 'undefined' ? localStorage.getItem('appLanguage') : null;
+        const initialLocale = stored || document.documentElement.lang || 'en';
+
         root.render(
-            <WagmiProvider config={wagmiAdapter.wagmiConfig}>
-                <QueryClientProvider client={queryClient}>
-                    <App {...props} />
-                </QueryClientProvider>
-            </WagmiProvider>,
+            <LaravelReactI18nProvider locale={initialLocale} fallbackLocale={'en'} files={import.meta.glob('/lang/*.json', { eager: true })}>
+                <WagmiProvider config={wagmiAdapter.wagmiConfig}>
+                    <QueryClientProvider client={queryClient}>
+                        <App {...props} />
+                    </QueryClientProvider>
+                </WagmiProvider>
+            </LaravelReactI18nProvider>,
         );
     },
     progress: {

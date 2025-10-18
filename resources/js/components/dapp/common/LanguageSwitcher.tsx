@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Globe } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -8,6 +9,7 @@ export const LanguageSwitcher: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [currentLang, setCurrentLang] = useState<Language>('zh');
     const menuRef = useRef<HTMLDivElement>(null);
+    const { currentLocale, setLocale } = useLaravelReactI18n();
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -30,12 +32,22 @@ export const LanguageSwitcher: React.FC = () => {
         { code: 'en' as const, label: 'English', flag: '🇺🇸' },
     ];
 
+    // 根据服务端 locale 初始化与同步
+    useEffect(() => {
+        const cur = currentLocale();
+        setCurrentLang(cur === 'zh-CN' || cur === 'zh' ? 'zh' : 'en');
+    }, [currentLocale]);
+
     const handleLanguageChange = (lang: Language) => {
         setCurrentLang(lang);
-        localStorage.setItem('appLanguage', lang);
         setIsOpen(false);
-        // 触发全局语言变更事件，可根据需要实现具体的翻译逻辑
-        window.dispatchEvent(new CustomEvent('languageChange', { detail: { language: lang } }));
+        const mapped = lang === 'zh' ? 'zh-CN' : 'en';
+        try {
+            localStorage.setItem('appLanguage', mapped);
+        } catch {
+            /* ignore */
+        }
+        setLocale(mapped);
     };
 
     return (

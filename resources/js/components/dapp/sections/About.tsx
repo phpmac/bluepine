@@ -3,41 +3,41 @@ import { Cpu, Globe2, Link2, ShieldCheck, Users, Zap } from 'lucide-react';
 import React from 'react';
 
 const stats = [
-    { label: '全球节点', value: '240+', note: '分布式验证者' },
-    { label: '峰值 TPS', value: '8,500+', note: '模块化执行层' },
-    { label: '生态伙伴', value: '60+', note: '金融 · 能源 · 公共服务' },
+    { label: '语义区块链', value: '240+', note: '数据可信存证构建信任基石' },
+    { label: '农业AI引擎', value: '8,500+', note: '精准诊断预警 化身田间专家' },
+    { label: 'Web3协议', value: '60+', note: '价值自主流转重塑分配规则' },
 ];
 
 const features = [
     {
         icon: Cpu,
         title: '模块化执行层',
-        description: '可插拔虚拟机与共识层，实现企业级性能弹性。',
+        description: '可插拔虚拟机与共识层, 实现企业级性能弹性.',
     },
     {
         icon: Link2,
         title: '跨链互操作',
-        description: '原生跨链消息与桥接协议，统一多链价值流动。',
+        description: '原生跨链消息与桥接协议, 统一多链价值流动.',
     },
     {
         icon: Globe2,
         title: '现实资产上链',
-        description: '完善的合规凭证体系，助力 RWA、供应链、碳资产落地。',
+        description: '完善的合规凭证体系, 助力 RWA、供应链、碳资产落地.',
     },
     {
         icon: ShieldCheck,
         title: '合规安全框架',
-        description: '身份治理与权限控制模块，满足全球监管审计需求。',
+        description: '身份治理与权限控制模块, 满足全球监管审计需求.',
     },
     {
         icon: Zap,
         title: '流动性引擎',
-        description: '跨链流动性与收益聚合协议，放大资产效率。',
+        description: '跨链流动性与收益聚合协议, 放大资产效率.',
     },
     {
         icon: Users,
         title: '治理共识',
-        description: 'DAO 与节点协同治理，推动生态持续演进。',
+        description: 'DAO 与节点协同治理, 推动生态持续演进.',
     },
 ];
 
@@ -45,21 +45,21 @@ const roadmap = [
     {
         phase: '阶段一',
         title: '主网与权限层',
-        timeline: '2025 Q1-Q2',
+        timeline: '2026 Q1-Q2',
         points: ['主网公测上线', '验证者网络部署', '身份与权限层开放'],
         status: 'active',
     },
     {
         phase: '阶段二',
         title: '现实资产整合',
-        timeline: '2025 Q3-Q4',
+        timeline: '2026 Q3-Q4',
         points: ['RWA 发行工具', '跨链桥稳定运行', '机构级托管集成'],
         status: 'upcoming',
     },
     {
         phase: '阶段三',
         title: '生态规模化',
-        timeline: '2026 Q1-Q2',
+        timeline: '2027 Q1-Q2',
         points: ['全球节点联盟', '跨链清算系统', '企业级 API 服务'],
         status: 'future',
     },
@@ -83,13 +83,11 @@ export const About: React.FC = () => {
                     <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
                         <div>
                             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs tracking-[0.32em] text-slate-200/80 uppercase">
-                                Ecosystem Vision
+                                探索我们的技术架构
                             </span>
-                            <h2 className="mt-6 text-3xl leading-tight font-bold text-white md:text-4xl">
-                                Agri-Eco Smart Chain · 构建可信的多链价值网络
-                            </h2>
-                            <p className="mt-4 text-base leading-relaxed text-slate-300/90">
-                                我们把链上合规、跨链互操作与现实资产发行融为一体，提供覆盖金融、供应链、能源与公共治理的下一代 Web3 基础设施。
+                            <h2 className="mt-6 text-3xl leading-tight font-bold text-white md:text-3xl">Agri-Eco Smart Chian三元融合, 技术赋能</h2>
+                            <p className="mt-4 text-xs leading-relaxed text-slate-300/90">
+                                平台采用 "人 - 机 - 物" 三元融合架构, 构建多层次技术体系, 实现数据采集、处理、应用全流程的可信与高效.
                             </p>
                         </div>
 
@@ -117,7 +115,7 @@ export const About: React.FC = () => {
                     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         <div>
                             <h3 className="text-2xl font-bold text-white">核心能力矩阵</h3>
-                            <p className="mt-2 text-sm text-slate-300/85">从执行层、互操作再到治理，我们提供完整的基础设施能力栈。</p>
+                            <p className="mt-2 text-sm text-slate-300/85">从执行层、互操作再到治理, 我们提供完整的基础设施能力栈.</p>
                         </div>
                     </div>
 
@@ -156,7 +154,7 @@ export const About: React.FC = () => {
                     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         <div>
                             <h3 className="text-2xl font-bold text-white">发展路线图</h3>
-                            <p className="mt-2 text-sm text-slate-300/85">分阶段推进基础设施、现实资产与全球扩展。</p>
+                            <p className="mt-2 text-sm text-slate-300/85">分阶段推进基础设施、现实资产与全球扩展.</p>
                         </div>
                     </div>
 
@@ -166,6 +164,7 @@ export const About: React.FC = () => {
                             {roadmap.map((phase, index) => {
                                 const isActive = phase.status === 'active';
                                 const isUpcoming = phase.status === 'upcoming';
+                                // future 阶段使用与上面分支的第三态样式
 
                                 return (
                                     <motion.div
@@ -178,13 +177,19 @@ export const About: React.FC = () => {
                                             isActive
                                                 ? 'border-[#56f1ff]/40 bg-gradient-to-br from-[#54e7ff26] via-[#0f1a3c] to-[#041223] shadow-[0_30px_70px_-35px_rgba(86,241,255,0.55)]'
                                                 : isUpcoming
-                                                  ? 'border-white/15 bg-white/10'
-                                                  : 'border-white/10 bg-white/10'
+                                                  ? 'border-[#5eead4]/12 bg-gradient-to-br from-[#5eead40d] via-white/5 to-transparent'
+                                                  : 'border-[#c4b5fd]/12 bg-gradient-to-br from-[#c4b5fd0d] via-white/5 to-transparent'
                                         }`}
                                     >
                                         <div className="flex items-center justify-between">
                                             <span
-                                                className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${isActive ? 'bg-[#56f1ff]/20 text-[#56f1ff]' : 'bg-white/10 text-slate-200/80'}`}
+                                                className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
+                                                    isActive
+                                                        ? 'bg-[#56f1ff]/20 text-[#56f1ff]'
+                                                        : isUpcoming
+                                                          ? 'bg-[#5eead4]/10 text-[#5eead4]/80'
+                                                          : 'bg-[#c4b5fd]/10 text-[#c4b5fd]/80'
+                                                }`}
                                             >
                                                 {phase.phase}
                                             </span>
@@ -195,7 +200,9 @@ export const About: React.FC = () => {
                                             {phase.points.map((point) => (
                                                 <li key={point} className="flex items-start gap-2">
                                                     <span
-                                                        className={`mt-1 inline-flex size-1.5 rounded-full ${isActive ? 'bg-[#56f1ff]' : 'bg-slate-400/60'}`}
+                                                        className={`mt-1 inline-flex size-1.5 rounded-full ${
+                                                            isActive ? 'bg-[#56f1ff]' : isUpcoming ? 'bg-[#5eead4]/80' : 'bg-[#c4b5fd]/80'
+                                                        }`}
                                                     />
                                                     <span>{point}</span>
                                                 </li>

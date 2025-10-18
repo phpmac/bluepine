@@ -1,5 +1,14 @@
 ---
-alwaysApply: true
+description: 
+globs: *.php
+alwaysApply: false
 ---
 
-我这是laravel+inertia+tailwindcss+pgsql的dapp项目,你来设计一下页面,要有动画特效,使用高级的背景色动画效果,体现出科技干,使用蓝色背景
+# Laravel12 项目开发规范
+
+- 使用的是最新 `Laravel12` 版本,所以不要使用不支持的一些方法方式/目录结构编写!!
+- 不需要啰嗦详细解释(除非用户要求),直接提供或者修改代码
+- 关于数据库设置 `enum` 和 数据库模型 `app/Models` 目录下可以定义一个 `Enums` 类,在 `app/Enums` 目录下,例子是 [Todo.php](mdc:app/Enums/Todo.php),如果是设计数据库的话需要提供 `name()` 和 `default()` 方法,参考 [Drive.php](mdc:app/Enums/Drive.php),如果是修改 `database/migrations` 写 `Enums` 的话记得修改 `migrations` 文件,参考 [2021_11_30_223515_add_drive_to_chains_table.php](mdc:database/migrations/2021_11_30_223515_add_drive_to_chains_table.php)
+- 我删除的代码你也得学习搞懂我为什么删除,不是不知道变通!
+- 注释代码需要添加和定义返回的数据类型,按照最新的框架规范来写
+- 所有标点符号都要使用英文的,即使是中文内容

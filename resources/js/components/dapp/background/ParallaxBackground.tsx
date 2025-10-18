@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 interface Layer {
     id: string;
@@ -19,6 +19,8 @@ interface LayerElement {
 export const ParallaxBackground: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const scrollY = useRef(0);
+    const isPageVisibleRef = useRef(true);
+    const [isPageVisible, setIsPageVisible] = useState(true);
 
     // 使用 useMemo 缓存 layers，避免依赖问题
     const layers = useMemo<Layer[]>(
@@ -67,24 +69,44 @@ export const ParallaxBackground: React.FC = () => {
     );
 
     useEffect(() => {
+        const handleVisibility = () => {
+            const visible = !document.hidden;
+            isPageVisibleRef.current = visible;
+            setIsPageVisible(visible);
+        };
+        document.addEventListener('visibilitychange', handleVisibility);
+        handleVisibility();
+        return () => document.removeEventListener('visibilitychange', handleVisibility);
+    }, []);
+
+    useEffect(() => {
+        let ticking = false;
         const handleScroll = () => {
-            scrollY.current = window.scrollY;
-
-            const container = containerRef.current;
-            if (!container) return;
-
-            // 更新每一层的位置
-            layers.forEach((layer) => {
-                const layerElement = container.querySelector(`[data-layer="${layer.id}"]`) as HTMLElement;
-                if (layerElement) {
-                    const translateY = scrollY.current * layer.speed;
-                    layerElement.style.transform = `translateY(${translateY}px)`;
+            if (!isPageVisibleRef.current) return;
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                if (!isPageVisibleRef.current) {
+                    ticking = false;
+                    return;
                 }
+                scrollY.current = window.scrollY;
+                const container = containerRef.current;
+                if (container) {
+                    layers.forEach((layer) => {
+                        const layerElement = container.querySelector(`[data-layer="${layer.id}"]`) as HTMLElement | null;
+                        if (layerElement) {
+                            const translateY = scrollY.current * layer.speed;
+                            layerElement.style.transform = `translateY(${translateY}px) translateZ(0)`;
+                        }
+                    });
+                }
+                ticking = false;
             });
         };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll as EventListener);
     }, [layers]);
 
     const renderShape = (element: LayerElement, index: number) => {
@@ -162,7 +184,12 @@ export const ParallaxBackground: React.FC = () => {
     return (
         <div ref={containerRef} className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
             {layers.map((layer) => (
-                <div key={layer.id} data-layer={layer.id} className="absolute inset-0 h-[120vh] w-full" style={{ opacity: layer.opacity }}>
+                <div
+                    key={layer.id}
+                    data-layer={layer.id}
+                    className="absolute inset-0 h-[120vh] w-full"
+                    style={{ opacity: layer.opacity, willChange: 'transform' }}
+                >
                     {layer.elements.map((element, index) => renderShape(element, index))}
                 </div>
             ))}
@@ -177,6 +204,7 @@ export const ParallaxBackground: React.FC = () => {
                             left: `${20 + i * 20}%`,
                             animationDelay: `${i * 0.5}s`,
                             animation: 'pulse 3s ease-in-out infinite',
+                            animationPlayState: isPageVisible ? 'running' : 'paused',
                         }}
                     />
                 ))}

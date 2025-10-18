@@ -1,28 +1,34 @@
-import { useAppKit, useAppKitAccount, useDisconnect } from '@reown/appkit/react';
+import { useAppKit, useAppKitAccount } from '@reown/appkit/react';
 import { motion } from 'framer-motion';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Menu, Wallet, X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
-import { useConfig, useSignMessage } from 'wagmi';
 import { Button } from '../common/Button';
 import { LanguageSwitcher } from '../common/LanguageSwitcher';
 
 export const Header: React.FC = () => {
+    const { t } = useLaravelReactI18n();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [displayAddress, setDisplayAddress] = useState<string | null>(null);
 
-    const config = useConfig();
     const { open } = useAppKit();
-    const { signMessage } = useSignMessage();
-    const { isConnected, address, caipAddress } = useAppKitAccount();
-    const { disconnect } = useDisconnect();
+    const { isConnected, address } = useAppKitAccount();
 
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+        let ticking = false;
+        const onScroll = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const scrolled = window.scrollY > 20;
+                setIsScrolled((prev) => (prev !== scrolled ? scrolled : prev));
+                ticking = false;
+            });
         };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+        return () => window.removeEventListener('scroll', onScroll as EventListener);
     }, []);
 
     useEffect(() => {
@@ -54,11 +60,11 @@ export const Header: React.FC = () => {
     };
 
     const navItems = [
-        { id: 'hero', label: '愿景' },
-        { id: 'private-sale-overview', label: '发售计划' },
-        { id: 'tokenomics', label: '代币分配' },
-        { id: 'vesting', label: '释放节奏' },
-        { id: 'about', label: '生态蓝图' },
+        { id: 'hero', label: t('nav.hero') },
+        { id: 'private-sale-overview', label: t('nav.private_sale_overview') },
+        { id: 'tokenomics', label: t('nav.tokenomics') },
+        { id: 'vesting', label: t('nav.vesting') },
+        { id: 'about', label: t('nav.about') },
     ];
 
     return (
@@ -80,7 +86,7 @@ export const Header: React.FC = () => {
                         </div>
                         <div>
                             <p className="text-lg leading-tight font-bold text-white">Agri-Eco Smart Chain</p>
-                            <p className="text-xs tracking-wider text-slate-400">Modular Web3 Infrastructure</p>
+                            <p className="text-xs tracking-wider text-slate-400">{t('tagline')}</p>
                         </div>
                     </button>
 
@@ -103,7 +109,7 @@ export const Header: React.FC = () => {
                         <LanguageSwitcher />
                         <Button variant={isConnected ? 'secondary' : 'primary'} className="gap-2 px-5 py-2.5 text-sm" onClick={handleWalletClick}>
                             <Wallet className="h-4 w-4" />
-                            <span>{isConnected ? displayAddress : '连接钱包'}</span>
+                            <span>{isConnected ? displayAddress : t('buttons.connect_wallet')}</span>
                         </Button>
                     </div>
 
@@ -135,11 +141,11 @@ export const Header: React.FC = () => {
                                 <LanguageSwitcher />
                                 <Button variant="primary" className="w-full gap-2 text-sm" onClick={handleWhitelistClick}>
                                     <Wallet className="h-4 w-4" />
-                                    <span>加入白名单</span>
+                                    <span>{t('buttons.join_whitelist')}</span>
                                 </Button>
                                 <Button variant={isConnected ? 'secondary' : 'primary'} className="w-full gap-2 text-sm" onClick={handleWalletClick}>
                                     <Wallet className="h-4 w-4" />
-                                    <span>{isConnected ? displayAddress : '连接钱包'}</span>
+                                    <span>{isConnected ? displayAddress : t('buttons.connect_wallet')}</span>
                                 </Button>
                             </div>
                         </div>

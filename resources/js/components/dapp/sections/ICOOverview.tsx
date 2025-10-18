@@ -1,10 +1,16 @@
+import ieoAbi from '@/lib/abi';
+import { config as address } from '@/lib/address';
 import useEmblaCarousel from 'embla-carousel-react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Coins, Sparkles, Target, TrendingUp } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Sparkles, Target, TrendingUp } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ieoStages, tokenInfo } from '../../../data/icoData';
+import { formatEther } from 'viem';
+import { usePublicClient, useReadContract } from 'wagmi';
+import { ieoStages } from '../../../data/icoData';
 import { AnimatedCounter } from '../common/AnimatedCounter';
 import { ProgressBar } from '../common/ProgressBar';
+
+import { StageData } from '@/types';
 
 const stageOverlays = [
     'from-[#56f1ff1f] via-[#13264230] to-transparent',
@@ -12,18 +18,107 @@ const stageOverlays = [
     'from-[#6b7dff1f] via-[#1b1f4140] to-transparent',
 ];
 
-export const PrivateSaleOverview: React.FC = () => {
-    const totalProgress = ieoStages.reduce((acc, stage) => acc + (stage.target * stage.progress) / 100, 0);
-    const overallProgress = (totalProgress / tokenInfo.totalTarget) * 100;
+export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null }> = ({ currentStageData }) => {
+    const publicClient = usePublicClient();
+    const { data: chainStageCount } = useReadContract({
+        address: address.aescIeo as `0x${string}`,
+        abi: ieoAbi,
+        functionName: 'getStageCount',
+    });
 
-    const activeStage = ieoStages.find((stage) => stage.progress > 0 && stage.progress < 100) ?? null;
-    const activeStageIndex = activeStage ? ieoStages.findIndex((stage) => stage.id === activeStage.id) : 0;
+    const [chainStages, setChainStages] = useState<Array<{ cap: bigint; sold: bigint; priceNumerator: bigint; priceDenominator: bigint }>>([]);
 
-    const [selectedIndex, setSelectedIndex] = useState(activeStageIndex >= 0 ? activeStageIndex : 0);
+    // 仅对接合约, 不请求后端
+
+    useEffect(() => {
+        if (!publicClient || !chainStageCount) return;
+        (async () => {
+            const count = Number(chainStageCount);
+            if (!count || count < 1) return;
+            const contracts = Array.from({ length: count }, (_, i) => ({
+                address: address.aescIeo as `0x${string}`,
+                abi: ieoAbi,
+                functionName: 'getStageInfo',
+                args: [BigInt(i)] as const,
+            }));
+            const res = await publicClient.multicall({ contracts });
+            const list: Array<{ cap: bigint; sold: bigint; priceNumerator: bigint; priceDenominator: bigint }> = [];
+            res.forEach((r, i) => {
+                if (r.status === 'success') {
+                    const [cap, sold, priceNumerator, priceDenominator] = r.result as unknown as readonly [bigint, bigint, bigint, bigint];
+                    list[i] = { cap, sold, priceNumerator, priceDenominator };
+                }
+            });
+            setChainStages(list);
+        })().catch(console.error);
+    }, [publicClient, chainStageCount]);
+
+    const stages = useMemo(() => {
+        if (chainStages.length) {
+            return ieoStages.map((s, i) => {
+                const c = chainStages[i];
+                if (!c) return s;
+                const progress = c.cap > 0n ? Number((c.sold * 10000n) / c.cap) / 100 : 0;
+                const tokens = Number.parseFloat(String(formatEther(c.cap)));
+                const denom = Number(c.priceDenominator);
+                const rawPrice = denom > 0 ? Number(c.priceNumerator) / denom : Number.NaN;
+                const price = Number.isFinite(rawPrice) && rawPrice >= 0 ? rawPrice : s.price;
+                const tentativeTarget = tokens * price;
+                const targetUsd =
+                    Number.isFinite(tentativeTarget) && tentativeTarget >= 0 ? tentativeTarget : Number.isFinite(s.target) ? s.target : 0;
+                return {
+                    ...s,
+                    tokens,
+                    price,
+                    // 用合约cap与价格计算阶段目标(USD)
+                    target: targetUsd,
+                    progress: Math.max(0, Math.min(100, Number(progress.toFixed(2)))),
+                };
+            });
+        }
+        return ieoStages;
+    }, [chainStages]);
+
+    // 以合约阶段信息计算总募集目标与已募集(USD)
+    const totalTargetUsd = stages.reduce((acc, stage) => acc + (Number.isFinite(stage.target) ? stage.target : 0), 0);
+    const totalRaisedUsd = stages.reduce(
+        (acc, stage) => acc + ((Number.isFinite(stage.target) ? stage.target : 0) * (Number.isFinite(stage.progress) ? stage.progress : 0)) / 100,
+        0,
+    );
+    const overallProgress = totalTargetUsd > 0 ? (totalRaisedUsd / totalTargetUsd) * 100 : 0;
+
+    const displayRaisedM = Number.isFinite(totalRaisedUsd) ? totalRaisedUsd / 1000000 : 0;
+    const displayTargetM = Number.isFinite(totalTargetUsd) ? totalTargetUsd / 1000000 : 0;
+    const displayProgress = Number.isFinite(overallProgress) ? overallProgress : 0;
+
+    // 基于传入的 currentStageData 决定默认阶段索引
+    const chainStageIndex = currentStageData ? Number(currentStageData.index) : null;
+    const computedDefault = stages.find((stage) => stage.progress > 0 && stage.progress < 100) ?? null;
+    const computedDefaultIndex = computedDefault ? stages.findIndex((s) => s.id === computedDefault.id) : 0;
+    const preferredIndex =
+        chainStageIndex !== null && chainStageIndex !== undefined && chainStageIndex >= 0 && chainStageIndex < stages.length ? chainStageIndex : -1;
+
+    const [selectedIndex, setSelectedIndex] = useState(preferredIndex >= 0 ? preferredIndex : computedDefaultIndex);
+
+    useEffect(() => {
+        if (preferredIndex >= 0) {
+            setSelectedIndex(preferredIndex);
+        }
+    }, [preferredIndex]);
+
+    const activeStage = stages[selectedIndex] ?? null;
     const [canScrollPrev, setCanScrollPrev] = useState(false);
     const [canScrollNext, setCanScrollNext] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start', startIndex: selectedIndex, loop: true });
+    const [isPageVisible, setIsPageVisible] = useState(true);
+
+    useEffect(() => {
+        const handleVisibility = () => setIsPageVisible(!document.hidden);
+        document.addEventListener('visibilitychange', handleVisibility);
+        handleVisibility();
+        return () => document.removeEventListener('visibilitychange', handleVisibility);
+    }, []);
 
     const updateScrollStates = useCallback(() => {
         if (!emblaApi) return;
@@ -49,13 +144,13 @@ export const PrivateSaleOverview: React.FC = () => {
     }, [emblaApi, handleSelect]);
 
     useEffect(() => {
-        if (!emblaApi || isHovered) return;
+        if (!emblaApi || isHovered || !isPageVisible) return;
         const autoplayId = window.setInterval(() => {
-            if (!emblaApi) return;
+            if (!emblaApi || !isPageVisible) return;
             emblaApi.scrollNext();
         }, 6000);
         return () => window.clearInterval(autoplayId);
-    }, [emblaApi, isHovered]);
+    }, [emblaApi, isHovered, isPageVisible]);
 
     const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
     const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
@@ -66,14 +161,8 @@ export const PrivateSaleOverview: React.FC = () => {
             {
                 icon: Target,
                 label: '总募集目标',
-                value: `$${(tokenInfo.totalTarget / 1000000).toFixed(1)}M`,
-                detail: '公募 + 战略轮规模',
-            },
-            {
-                icon: Coins,
-                label: 'IEO 配售量',
-                value: `${(tokenInfo.ieoTokens / 1000000).toFixed(1)}M AESC`,
-                detail: `${tokenInfo.ieoPercentage}% 代币流通占比`,
+                value: `$${displayTargetM.toFixed(2)}M`,
+                detail: '私募规模',
             },
             {
                 icon: TrendingUp,
@@ -82,7 +171,7 @@ export const PrivateSaleOverview: React.FC = () => {
                 detail: activeStage ? `单价 $${activeStage.price.toFixed(3)}` : '敬请期待',
             },
         ],
-        [activeStage],
+        [activeStage, displayTargetM],
     );
 
     return (
@@ -100,9 +189,9 @@ export const PrivateSaleOverview: React.FC = () => {
                     <span className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs tracking-[0.3em] text-slate-200/80 uppercase backdrop-blur-xl">
                         Token Sale Overview
                     </span>
-                    <h2 className="mt-6 text-3xl font-bold text-white sm:text-4xl">多阶段发售矩阵，奖励最早的共建者</h2>
+                    <h2 className="mt-6 text-3xl font-bold text-white sm:text-4xl">财富农业, 播种未来 | AESC全球发售计划</h2>
                     <p className="mt-4 text-base leading-relaxed text-slate-300/90">
-                        AESC 采用三阶段动态定价策略，确保价格发现过程透明可控，并兼顾生态长期建设需求。
+                        我们不仅在发行代币, 更在构建一个连接区块链与实体农业的全新经济生态.
                     </p>
                 </motion.div>
 
@@ -120,14 +209,14 @@ export const PrivateSaleOverview: React.FC = () => {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-xs tracking-[0.32em] text-slate-200/70 uppercase">Token Metrics</p>
-                                    <h3 className="mt-2 text-2xl font-bold text-white">AESC 公募窗口数据</h3>
+                                    <h3 className="mt-2 text-2xl font-bold text-white">AESC发售窗口数据</h3>
                                 </div>
                                 <div className="hidden items-center gap-2 text-[11px] text-slate-300/70 md:flex">
                                     <Sparkles className="h-4 w-4 text-[#56f1ff]" /> 实时同步
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+                            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                                 {metrics.map((item) => {
                                     const Icon = item.icon;
                                     return (
@@ -159,7 +248,7 @@ export const PrivateSaleOverview: React.FC = () => {
                                     <div className="flex items-end gap-6">
                                         <div className="text-right">
                                             <AnimatedCounter
-                                                end={totalProgress / 1000000}
+                                                end={displayRaisedM}
                                                 decimals={2}
                                                 prefix="$"
                                                 suffix="M"
@@ -169,7 +258,7 @@ export const PrivateSaleOverview: React.FC = () => {
                                         </div>
                                         <div className="text-right">
                                             <AnimatedCounter
-                                                end={tokenInfo.totalTarget / 1000000}
+                                                end={displayTargetM}
                                                 decimals={1}
                                                 prefix="$"
                                                 suffix="M"
@@ -182,14 +271,14 @@ export const PrivateSaleOverview: React.FC = () => {
 
                                 <div className="mt-6">
                                     <ProgressBar
-                                        progress={parseFloat(overallProgress.toFixed(1))}
+                                        progress={parseFloat(displayProgress.toFixed(1))}
                                         color="from-[#6f89ff] via-[#4fe3ff] to-[#20e3b2]"
                                         height="h-2.5"
                                         showPercentage={false}
                                     />
                                     <div className="mt-3 flex items-center justify-between text-[11px] text-slate-400">
                                         <span>早期认购者享受最优价格</span>
-                                        <span>{overallProgress.toFixed(1)}%</span>
+                                        <span>{displayProgress.toFixed(1)}%</span>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +300,7 @@ export const PrivateSaleOverview: React.FC = () => {
                         >
                             <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                             <div className="flex h-full touch-pan-y select-none">
-                                {ieoStages.map((stage, index) => {
+                                {stages.map((stage, index) => {
                                     const raised = (stage.target * stage.progress) / 100;
                                     const isSelected = index === selectedIndex;
                                     const isCompleted = stage.progress === 100;
@@ -317,7 +406,7 @@ export const PrivateSaleOverview: React.FC = () => {
 
                         <div className="mt-6 flex items-center justify-between gap-4">
                             <div className="flex items-center gap-2">
-                                {ieoStages.map((stage, index) => (
+                                {stages.map((stage, index) => (
                                     <button
                                         key={stage.id}
                                         onClick={() => scrollTo(index)}

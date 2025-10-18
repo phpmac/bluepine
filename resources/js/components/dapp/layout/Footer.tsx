@@ -34,9 +34,9 @@ export const Footer: React.FC = () => {
                                 <p className="text-xs tracking-[0.3em] text-slate-300/80 uppercase">Modular Web3 Infrastructure</p>
                             </div>
                         </div>
-                        <p className="max-w-md text-sm leading-relaxed text-slate-300/90">
-                            Agri-Eco Smart Chain 提供一套面向现实资产与跨链协同的全面基础设施，从协议层到合规层，帮助机构与开发者快速构建可信的 Web3
-                            应用。
+                        <p className="max-w-md text-xs leading-relaxed text-slate-300/90">
+                            从一片田, 到一颗星球的智慧网络. 我们构建的, 是农业的未来. Agri-Eco Smart
+                            Chian致力于实现全球农业的数字化、智能化与去中心化革新. 在这里, 每一份贡献都被铭记, 每一份价值都被尊重.
                         </p>
                     </div>
 
@@ -54,39 +54,27 @@ export const Footer: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="mt-12 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-                    <div className="flex space-x-3">
-                        {socialLinks.map(({ icon: Icon, href, label }) => (
-                            <motion.a
-                                key={label}
-                                href={href}
-                                target="_blank"
-                                aria-label={label}
-                                whileHover={{ y: -3, scale: 1.05 }}
-                                className="flex size-11 items-center justify-center rounded-2xl border border-white/15 bg-white/5 text-slate-200 transition-colors hover:bg-white/10 hover:text-white"
-                            >
-                                <Icon className="h-5 w-5" />
-                            </motion.a>
-                        ))}
+                <div className="mt-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+                    <div className="flex flex-col gap-3">
+                        <div className="flex space-x-3">
+                            {socialLinks.map(({ icon: Icon, href, label }) => (
+                                <motion.a
+                                    key={label}
+                                    href={href}
+                                    target="_blank"
+                                    aria-label={label}
+                                    whileHover={{ y: -3, scale: 1.05 }}
+                                    className="flex size-11 items-center justify-center rounded-2xl border border-white/15 bg-white/5 text-slate-200 transition-colors hover:bg-white/10 hover:text-white"
+                                >
+                                    <Icon className="h-5 w-5" />
+                                </motion.a>
+                            ))}
+                        </div>
+                        <p className="text-xs text-slate-500/80">合规披露 · 仅面向符合资质的市场参与者. 所有信息仅供参考.</p>
                     </div>
 
                     <div className="text-sm text-slate-400/90">
-                        <p>© {new Date().getFullYear()} Agri-Eco Smart Chain. 保留所有权利。</p>
-                    </div>
-                </div>
-
-                <div className="mt-6 flex flex-col gap-3 text-xs text-slate-500/80 md:flex-row md:items-center md:justify-between">
-                    <p>合规披露 · 仅面向符合资质的市场参与者。所有信息仅供参考。</p>
-                    <div className="flex flex-wrap gap-4">
-                        <a href="https://www.bluepinefoundation.com/privacy-policy" className="transition-colors hover:text-white">
-                            隐私政策
-                        </a>
-                        <a href="https://www.bluepinefoundation.com/terms-of-service" className="transition-colors hover:text-white">
-                            服务条款
-                        </a>
-                        <a href="https://www.bluepinefoundation.com/risk-disclosure" className="transition-colors hover:text-white">
-                            风险声明
-                        </a>
+                        <p>© {new Date().getFullYear()} Agri-Eco Smart Chain. 保留所有权利.</p>
                     </div>
                 </div>
             </div>

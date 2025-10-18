@@ -60,11 +60,11 @@ export const CookieConsent: React.FC = () => {
 
                                 {/* 说明文本 */}
                                 <p className="text-xs leading-relaxed text-slate-300/90 md:text-sm">
-                                    我们使用 Cookie 优化网站功能。详见
+                                    我们使用 Cookie 优化网站功能. 详见
                                     <a href="#" className="text-[#56f1ff] transition-colors hover:text-[#43f0ff]">
                                         隐私政策
                                     </a>
-                                    。
+                                    .
                                 </p>
 
                                 {/* 按钮组 */}

@@ -1,64 +1,24 @@
 import { motion } from 'framer-motion';
-import { Lock, PieChart as PieChartIcon, Rocket, Shield, Users } from 'lucide-react';
+import { PieChart as PieChartIcon } from 'lucide-react';
 import React, { useState } from 'react';
 import { tokenInfo, tokenomicsData } from '../../../data/icoData';
 import { AnimatedCounter } from '../common/AnimatedCounter';
 
 const formatMillions = (value: number) => `${(value / 1000000).toLocaleString(undefined, { maximumFractionDigits: 1 })}M`;
 
-const highlights = [
-    {
-        icon: Rocket,
-        title: '生态推进',
-        subtitle: '孵化与战略基金',
-        key: 'ecosystem',
-    },
-    {
-        icon: Users,
-        title: '社区激励',
-        subtitle: 'DAO 治理与奖励',
-        key: 'community',
-    },
-    {
-        icon: Lock,
-        title: '团队承诺',
-        subtitle: '长期锁仓释放',
-        key: 'team',
-    },
-    {
-        icon: Shield,
-        title: '安全与流动性',
-        subtitle: '风险缓冲与市场护航',
-        key: 'liquidity',
-    },
-] as const;
+// 精选 4 个卡片: 生态基金40% / 社区空投2% / 储备额10% / 合作伙伴3%
+const featuredNames = ['生态基金', '社区空投', '储备额', '合作伙伴'] as const;
 
-const highlightValue = (key: string) => {
-    switch (key) {
-        case 'ecosystem':
-            return tokenomicsData.find((item) => item.name === '生态基金');
-        case 'community':
-            return tokenomicsData.find((item) => item.name === '社区奖励');
-        case 'team':
-            return tokenomicsData.find((item) => item.name === '团队激励');
-        case 'liquidity': {
-            const liquidity = tokenomicsData.find((item) => item.name === '流动性池');
-            const tech = tokenomicsData.find((item) => item.name === '技术开发');
-            if (!liquidity || !tech) return undefined;
-            return {
-                name: '安全与流动性',
-                value: liquidity.value + tech.value,
-                percentage: liquidity.percentage + tech.percentage,
-                color: '#6b74ff',
-            };
-        }
-        default:
-            return undefined;
-    }
+// 格式化亿单位
+const formatYi = (tokens: number) => {
+    const yi = tokens / 100000000; // 1亿 = 1e8
+    const str = yi.toFixed(2);
+    return `${parseFloat(str)}亿枚`;
 };
 
 export const Tokenomics: React.FC = () => {
     const [hovered, setHovered] = useState<number | null>(null);
+    const featuredItems = featuredNames.map((n) => tokenomicsData.find((i) => i.name === n)).filter(Boolean) as typeof tokenomicsData;
 
     return (
         <section id="tokenomics" className="relative z-10 overflow-hidden py-16">
@@ -78,7 +38,7 @@ export const Tokenomics: React.FC = () => {
                     </span>
                     <h2 className="mt-6 text-3xl font-bold text-white sm:text-4xl">立体化分配结构，兼顾流动性与长期价值</h2>
                     <p className="mt-4 text-base leading-relaxed text-slate-300/85">
-                        AESC 通过多维度的分配策略，将代币价值在生态建设、社区激励、团队投入与安全保障之间实现动态平衡。
+                        AESC代币的总量为16亿枚，通过多维度的分配策略，将代币价值在生态建设、团队激励、交易所管理、社区空投、储备额、合作伙伴之间实现动态平衡。
                     </p>
                 </motion.div>
 
@@ -108,7 +68,7 @@ export const Tokenomics: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="rounded-2xl border border-white/12 bg-white/10 px-4 py-3 text-left">
-                                    <p className="text-[11px] tracking-[0.28em] text-slate-300/70 uppercase">公募额度</p>
+                                    <p className="text-[11px] tracking-[0.28em] text-slate-300/70 uppercase">私募额度</p>
                                     <p className="text-sm font-semibold text-white">
                                         {tokenomicsData.find((item) => item.name === '私募销售')?.percentage}% ·{' '}
                                         {formatMillions(tokenomicsData.find((item) => item.name === '私募销售')?.value ?? 0)}
@@ -118,45 +78,8 @@ export const Tokenomics: React.FC = () => {
                         </div>
 
                         <div className="relative flex-1">
-                            <div className="grid h-full grid-cols-1 gap-4 md:grid-cols-[0.45fr_1fr]">
-                                <div className="flex flex-col justify-between rounded-2xl border border-white/12 bg-white/[0.07] px-4 py-4 backdrop-blur-xl">
-                                    <div>
-                                        <p className="mb-3 text-[11px] tracking-[0.3em] text-slate-300/75 uppercase">分配速览</p>
-                                        <div className="space-y-2 text-sm text-slate-300/80">
-                                            <div className="flex items-center justify-between">
-                                                <span>生态基金</span>
-                                                <span className="font-semibold text-white">
-                                                    {tokenomicsData.find((item) => item.name === '生态基金')?.percentage}%
-                                                </span>
-                                            </div>
-                                            <div className="flex items-center justify-between">
-                                                <span>社区奖励</span>
-                                                <span className="font-semibold text-white">
-                                                    {tokenomicsData.find((item) => item.name === '社区奖励')?.percentage}%
-                                                </span>
-                                            </div>
-                                            <div className="flex items-center justify-between">
-                                                <span>团队激励</span>
-                                                <span className="font-semibold text-white">
-                                                    {tokenomicsData.find((item) => item.name === '团队激励')?.percentage}%
-                                                </span>
-                                            </div>
-                                            <div className="flex items-center justify-between">
-                                                <span>安全与流动性</span>
-                                                <span className="font-semibold text-white">
-                                                    {(tokenomicsData.find((item) => item.name === '流动性池')?.percentage ?? 0) +
-                                                        (tokenomicsData.find((item) => item.name === '技术开发')?.percentage ?? 0)}
-                                                    %
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="mt-4 rounded-xl border border-white/10 bg-white/[0.08] px-3 py-3 text-[12px] leading-relaxed text-slate-300/75">
-                                        锁仓、月度释放与长期储备三位一体，帮助生态在扩张与风险控制之间取得平衡。
-                                    </div>
-                                </div>
-
-                                <div className="max-h-[260px] space-y-2 overflow-y-auto pr-1">
+                            <div className="grid h-full grid-cols-1 gap-4">
+                                <div className="max-h-[290px] space-y-2 overflow-y-auto pr-1">
                                     {tokenomicsData.map((item, index) => (
                                         <motion.div
                                             key={item.name}
@@ -204,26 +127,41 @@ export const Tokenomics: React.FC = () => {
                         transition={{ duration: 0.6 }}
                         className="grid grid-cols-1 gap-3 md:grid-cols-2"
                     >
-                        {highlights.map((item) => {
-                            const data = highlightValue(item.key);
-                            if (!data) {
-                                return null;
+                        {featuredItems.map((data) => {
+                            const displayName = data.name === '生态基金' ? '生态建设基金' : data.name;
+                            const tokens = (tokenInfo.totalSupply * data.percentage) / 100;
+                            const tokensLabel = formatYi(tokens);
+
+                            let desc = '';
+                            let quote = '';
+                            if (data.name === '生态基金') {
+                                desc = '用于项目生态系统的持续建设, 包括技术迭代, 生态激励, 节点奖励, 社区活动等.';
+                                quote = '"生态建设基金是AESC长远发展的基石. 每月释放1/40, 持续40个月, 稳步推动生态繁荣与技术创新."';
+                            } else if (data.name === '社区空投') {
+                                desc = '奖励早期社区用户, 测试参与者, 活跃贡献者, 增强社区凝聚力与参与感.';
+                                quote = '"完成任务的社区用户将获得空投奖励, 分6个月线性释放, 感谢每一位陪伴AESC成长的你!"';
+                            } else if (data.name === '储备额') {
+                                desc = '作为项目风险储备金, 用于应对突发情况, 市场波动, 应急补贴等, 由社区投票决定使用.';
+                                quote = '"储备额度由社区共同决策, 透明管理, 用于应对未来不确定性与支持生态应急需求, 守护项目安全前行."';
+                            } else if (data.name === '合作伙伴') {
+                                desc = '用于激励战略合作伙伴, 技术合作方, 生态共建者, 推动项目多边合作与资源整合.';
+                                quote = '"合作伙伴代币按合作进度逐步解锁, 最高分12个月释放, 助力生态共赢与长期合作关系的建立."';
                             }
-                            const Icon = item.icon;
 
                             return (
                                 <div
-                                    key={item.title}
+                                    key={data.name}
                                     className="group relative flex flex-col gap-3 overflow-hidden rounded-2xl border border-white/12 bg-white/[0.07] px-4 py-4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_18px_48px_-32px_rgba(90,120,255,0.55)]"
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                                     <div className="relative flex items-start gap-3">
-                                        <div className="flex size-8 items-center justify-center rounded-2xl bg-gradient-to-br from-[#616bff95] to-[#43f0ff7a] text-white">
-                                            <Icon className="h-4 w-4" />
-                                        </div>
+                                        <span
+                                            className="mt-1 inline-flex size-3 rounded-full"
+                                            style={{ background: data.color, boxShadow: `0 0 10px ${data.color}80` }}
+                                        />
                                         <div>
-                                            <p className="text-[11px] tracking-[0.28em] text-slate-300/80 uppercase">{item.subtitle}</p>
-                                            <h3 className="mt-1 text-sm font-semibold text-white">{item.title}</h3>
+                                            <h3 className="mt-0.5 text-sm font-semibold text-white">{displayName}</h3>
+                                            <p className="mt-1 text-[11px] text-slate-400">{desc}</p>
                                         </div>
                                     </div>
 
@@ -231,15 +169,10 @@ export const Tokenomics: React.FC = () => {
                                         <p className="bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-lg font-bold text-transparent">
                                             {data.percentage}%
                                         </p>
-                                        <span className="text-[11px] text-slate-400">{formatMillions(data.value)}</span>
+                                        <span className="text-[11px] text-slate-400">{tokensLabel}</span>
                                     </div>
 
-                                    <p className="text-sm leading-relaxed text-slate-300/80">
-                                        {item.key === 'ecosystem' && '持续投入生态孵化、合作伙伴拓展与现实资产接入。'}
-                                        {item.key === 'community' && '通过激励、治理与节点计划深度绑定社区共识。'}
-                                        {item.key === 'team' && '锁仓与线性释放结合，确保团队与项目成长保持一致。'}
-                                        {item.key === 'liquidity' && '技术研发与流动性储备双重保障，稳定市场表现。'}
-                                    </p>
+                                    {quote && <p className="text-xs leading-relaxed text-slate-300/80">{quote}</p>}
                                 </div>
                             );
                         })}

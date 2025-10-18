@@ -57,7 +57,7 @@ export const tokenInfo = {
     symbol: 'AESC',
     totalSupply: 1600000000, // 16亿
     ieoTokens: 320000000, // 3.2亿
-    totalTarget: 48250000, // 总募集目标
+    totalTarget: 51250000, // 总募集目标(美元计算)
     ieoPercentage: 20, // 私募占总量20%,
 };
 
@@ -72,7 +72,7 @@ export const tokenomicsData: TokenomicsData[] = [
     {
         name: '生态基金',
         value: 480000000,
-        percentage: 30,
+        percentage: 40,
         color: '#38bdf8', // 天蓝色
     },
     {
@@ -82,22 +82,28 @@ export const tokenomicsData: TokenomicsData[] = [
         color: '#facc15', // 科技金
     },
     {
-        name: '社区奖励',
-        value: 320000000,
-        percentage: 20,
+        name: '交易所',
+        value: 160000000,
+        percentage: 10,
         color: '#fb7185', // 粉红
     },
     {
-        name: '技术开发',
-        value: 160000000,
-        percentage: 10,
+        name: '社区空投',
+        value: 32000000,
+        percentage: 2,
         color: '#c084fc', // 紫色
     },
     {
-        name: '流动性池',
-        value: 80000000,
-        percentage: 5,
+        name: '储备额',
+        value: 160000000,
+        percentage: 10,
         color: '#fbbf24', // 橙色
+    },
+    {
+        name: '合作伙伴',
+        value: 480000000,
+        percentage: 3,
+        color: '#8b5cf6', // 紫色
     },
 ];
 

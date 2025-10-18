@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface BlockchainBackgroundProps {
     variant?: 'fixed' | 'section';
@@ -15,6 +15,32 @@ export const BlockchainBackground: React.FC<BlockchainBackgroundProps> = ({
     overlayOpacity = 0.35,
 }) => {
     const containerPosition = variant === 'fixed' ? 'fixed inset-0' : 'absolute inset-0';
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        const onVisibility = () => {
+            const v = videoRef.current;
+            if (!v) return;
+            if (document.hidden) {
+                try {
+                    v.pause();
+                } catch {
+                    /* ignore */
+                }
+            } else {
+                try {
+                    v.play().catch(() => {
+                        /* ignore */
+                    });
+                } catch {
+                    /* ignore */
+                }
+            }
+        };
+        document.addEventListener('visibilitychange', onVisibility);
+        onVisibility();
+        return () => document.removeEventListener('visibilitychange', onVisibility);
+    }, []);
 
     return (
         <div
@@ -25,10 +51,12 @@ export const BlockchainBackground: React.FC<BlockchainBackgroundProps> = ({
             )}
         >
             <video
+                ref={videoRef}
                 autoPlay
                 loop
                 muted
                 playsInline
+                preload="metadata"
                 className={cn('absolute inset-0 h-full w-full object-cover', videoClassName)}
                 style={{
                     filter: 'brightness(0.78) contrast(1.05)',
