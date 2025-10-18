@@ -7,20 +7,29 @@ import { AnimatedCounter } from '../common/AnimatedCounter';
 
 const formatMillions = (value: number) => `${(value / 1000000).toLocaleString(undefined, { maximumFractionDigits: 1 })}M`;
 
-// 精选 4 个卡片: 生态基金40% / 社区空投2% / 储备额10% / 合作伙伴3%
-const featuredNames = ['生态基金', '社区空投', '储备额', '合作伙伴'] as const;
+// 精选 4 个卡片使用稳定鍵而非中文文案, 便於多語
+const featuredKeys = ['ecofund', 'airdrop', 'reserve', 'partners'] as const;
 
-// 格式化亿单位
-const formatYi = (tokens: number) => {
-    const yi = tokens / 100000000; // 1亿 = 1e8
-    const str = yi.toFixed(2);
-    return `${parseFloat(str)}亿枚`;
-};
+// 格式化億單位, 單位透過 i18n 配置
 
 export const Tokenomics: React.FC = () => {
     const [hovered, setHovered] = useState<number | null>(null);
     const { t } = useLaravelReactI18n();
-    const featuredItems = featuredNames.map((n) => tokenomicsData.find((i) => i.name === n)).filter(Boolean) as typeof tokenomicsData;
+    const resolveItemByKey = (key: (typeof featuredKeys)[number]) => {
+        switch (key) {
+            case 'ecofund':
+                return tokenomicsData.find((i) => i.name === '生态基金');
+            case 'airdrop':
+                return tokenomicsData.find((i) => i.name === '社区空投');
+            case 'reserve':
+                return tokenomicsData.find((i) => i.name === '储备额');
+            case 'partners':
+                return tokenomicsData.find((i) => i.name === '合作伙伴');
+            default:
+                return undefined;
+        }
+    };
+    const featuredItems = featuredKeys.map((k) => resolveItemByKey(k)).filter(Boolean) as typeof tokenomicsData;
 
     return (
         <section id="tokenomics" className="relative z-10 overflow-hidden py-16">
@@ -38,10 +47,8 @@ export const Tokenomics: React.FC = () => {
                     <span className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs tracking-[0.3em] text-slate-200/80 uppercase backdrop-blur-xl">
                         {t('tokenomics.badge')}
                     </span>
-                    <h2 className="mt-6 text-3xl font-bold text-white sm:text-4xl">立体化分配结构，兼顾流动性与长期价值</h2>
-                    <p className="mt-4 text-base leading-relaxed text-slate-300/85">
-                        AESC代币的总量为16亿枚，通过多维度的分配策略，将代币价值在生态建设、团队激励、交易所管理、社区空投、储备额、合作伙伴之间实现动态平衡。
-                    </p>
+                    <h2 className="mt-6 text-3xl font-bold text-white sm:text-4xl">{t('tokenomics.title')}</h2>
+                    <p className="mt-4 text-base leading-relaxed text-slate-300/85">{t('tokenomics.intro')}</p>
                 </motion.div>
 
                 <div className="mt-10 grid grid-cols-1 items-stretch gap-6 xl:grid-cols-2">
@@ -50,7 +57,7 @@ export const Tokenomics: React.FC = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="relative flex h-full flex-col gap-5 overflow-hidden rounded-[26px] border border-white/12 bg-white/[0.07] p-5 shadow-[0_26px_70px_-55px_rgba(60,110,255,0.55)] backdrop-blur-xl md:p-6"
+                        className="relative flex h-full max-h-[360px] flex-col gap-5 overflow-hidden rounded-[26px] border border-white/12 bg-white/[0.07] p-5 shadow-[0_26px_70px_-55px_rgba(60,110,255,0.55)] backdrop-blur-xl md:p-6"
                     >
                         <div className="absolute -top-24 -right-12 size-52 rounded-full bg-[#56f1ff]/16 blur-3xl" />
                         <div className="relative flex flex-col gap-4">
@@ -127,7 +134,7 @@ export const Tokenomics: React.FC = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="grid grid-cols-1 gap-3 md:grid-cols-2"
+                        className="grid max-h-[360px] min-h-0 grid-cols-1 gap-3 overflow-y-auto md:grid-cols-2"
                     >
                         {featuredItems.map((data) => {
                             const displayName =
@@ -140,8 +147,6 @@ export const Tokenomics: React.FC = () => {
                                         : data.name === '合作伙伴'
                                           ? t('tokenomics.cards.partners.title')
                                           : data.name;
-                            const tokens = (tokenInfo.totalSupply * data.percentage) / 100;
-                            const tokensLabel = formatYi(tokens);
 
                             let desc = '';
                             let quote = '';
@@ -171,16 +176,11 @@ export const Tokenomics: React.FC = () => {
                                             style={{ background: data.color, boxShadow: `0 0 10px ${data.color}80` }}
                                         />
                                         <div>
-                                            <h3 className="mt-0.5 text-sm font-semibold text-white">{displayName}</h3>
+                                            <h3 className="mt-0.5 text-sm font-semibold text-white">
+                                                {data.percentage}% {displayName}
+                                            </h3>
                                             <p className="mt-1 text-[11px] text-slate-400">{desc}</p>
                                         </div>
-                                    </div>
-
-                                    <div className="flex items-end justify-between">
-                                        <p className="bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-lg font-bold text-transparent">
-                                            {data.percentage}%
-                                        </p>
-                                        <span className="text-[11px] text-slate-400">{tokensLabel}</span>
                                     </div>
 
                                     {quote && <p className="text-xs leading-relaxed text-slate-300/80">{quote}</p>}

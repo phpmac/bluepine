@@ -212,7 +212,7 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                     <h3 className="mt-2 text-2xl font-bold text-white">{t('overview.metrics_title')}</h3>
                                 </div>
                                 <div className="hidden items-center gap-2 text-[11px] text-slate-300/70 md:flex">
-                                    <Sparkles className="h-4 w-4 text-[#56f1ff]" /> 实时同步
+                                    <Sparkles className="h-4 w-4 text-[#56f1ff]" /> {t('overview.live')}
                                 </div>
                             </div>
 
@@ -419,7 +419,7 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                         key={stage.id}
                                         onClick={() => scrollTo(index)}
                                         className={`size-2.5 rounded-full transition-all duration-300 ${selectedIndex === index ? 'scale-110 bg-white shadow-[0_0_0_4px_rgba(86,241,255,0.25)]' : 'bg-white/30 hover:bg-white/60'}`}
-                                        aria-label={`前往 ${stage.stage}`}
+                                        aria-label={t('overview.goto', { stage: stage.stage })}
                                     />
                                 ))}
                             </div>
@@ -428,7 +428,7 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                     onClick={scrollPrev}
                                     disabled={!canScrollPrev}
                                     className={`size-10 rounded-full border border-white/15 bg-white/5 text-white/80 transition ${canScrollPrev ? 'hover:bg-white/10 hover:text-white' : 'cursor-not-allowed opacity-40'}`}
-                                    aria-label="上一阶段"
+                                    aria-label={t('overview.prev')}
                                 >
                                     <ArrowLeft className="mx-auto h-4 w-4" />
                                 </button>
@@ -436,7 +436,7 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                     onClick={scrollNext}
                                     disabled={!canScrollNext}
                                     className={`size-10 rounded-full border border-white/15 bg-white/5 text-white/80 transition ${canScrollNext ? 'hover:bg-white/10 hover:text-white' : 'cursor-not-allowed opacity-40'}`}
-                                    aria-label="下一阶段"
+                                    aria-label={t('overview.next')}
                                 >
                                     <ArrowRight className="mx-auto h-4 w-4" />
                                 </button>

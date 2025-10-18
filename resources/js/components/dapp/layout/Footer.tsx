@@ -68,7 +68,7 @@ export const Footer: React.FC = () => {
                                 </motion.a>
                             ))}
                         </div>
-                        <p className="text-xs text-slate-500/80">合规披露 · 仅面向符合资质的市场参与者. 所有信息仅供参考.</p>
+                        <p className="text-xs text-slate-500/80">{t('footer.disclaimer')}</p>
                     </div>
 
                     <div className="text-sm text-slate-400/90">

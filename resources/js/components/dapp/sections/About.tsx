@@ -91,11 +91,16 @@ export const About: React.FC = () => {
                     <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
                         <div>
                             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs tracking-[0.32em] text-slate-200/80 uppercase">
-                                探索我们的技术架构
+                                {t('features.badge', { defaultValue: 'Explore our architecture' })}
                             </span>
-                            <h2 className="mt-6 text-3xl leading-tight font-bold text-white md:text-3xl">Agri-Eco Smart Chian三元融合, 技术赋能</h2>
+                            <h2 className="mt-6 text-3xl leading-tight font-bold text-white md:text-3xl">
+                                {t('features.header', { defaultValue: 'Agri-Eco Smart Chain tri-fusion, tech empowerment' })}
+                            </h2>
                             <p className="mt-4 text-xs leading-relaxed text-slate-300/90">
-                                平台采用 "人 - 机 - 物" 三元融合架构, 构建多层次技术体系, 实现数据采集、处理、应用全流程的可信与高效.
+                                {t('features.header_desc', {
+                                    defaultValue:
+                                        'A "human - machine - thing" tri-fusion architecture for a trustworthy and efficient full data lifecycle.',
+                                })}
                             </p>
                         </div>
 
@@ -122,8 +127,8 @@ export const About: React.FC = () => {
                 >
                     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         <div>
-                            <h3 className="text-2xl font-bold text-white">核心能力矩阵</h3>
-                            <p className="mt-2 text-sm text-slate-300/85">从执行层、互操作再到治理, 我们提供完整的基础设施能力栈.</p>
+                            <h3 className="text-2xl font-bold text-white">{t('features.title')}</h3>
+                            <p className="mt-2 text-sm text-slate-300/85">{t('features.subtitle')}</p>
                         </div>
                     </div>
 
@@ -143,8 +148,8 @@ export const About: React.FC = () => {
                                         <Icon className="h-5 w-5" />
                                     </div>
                                     <div>
-                                        <h4 className="text-base font-semibold text-white">{feature.title}</h4>
-                                        <p className="mt-2 text-sm leading-relaxed text-slate-300/80">{feature.description}</p>
+                                        <h4 className="text-base font-semibold text-white">{t(`features.${feature.key}.title`)}</h4>
+                                        <p className="mt-2 text-sm leading-relaxed text-slate-300/80">{t(`features.${feature.key}.desc`)}</p>
                                     </div>
                                 </motion.div>
                             );
