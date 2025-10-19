@@ -169,12 +169,8 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
             {
                 icon: TrendingUp,
                 label: t('overview.current_stage'),
-                value: activeStage
-                    ? t('overview.stage_label', { num: activeStage.id.toString().padStart(2, '0') })
-                    : t('overview.soon'),
-                detail: activeStage
-                    ? `${t('overview.unit_price_prefix')}${activeStage.price.toFixed(3)}`
-                    : t('overview.soon'),
+                value: activeStage ? t('overview.stage_label', { num: activeStage.id.toString().padStart(2, '0') }) : t('overview.soon'),
+                detail: activeStage ? `${t('overview.unit_price_prefix')}${activeStage.price.toFixed(3)}` : t('overview.soon'),
             },
         ],
         [activeStage, displayTargetM, t],
@@ -312,8 +308,8 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                     const statusLabel = isCompleted
                                         ? t('overview.status.completed')
                                         : isUpcoming
-                                            ? t('overview.status.upcoming')
-                                            : t('overview.status.active');
+                                          ? t('overview.status.upcoming')
+                                          : t('overview.status.active');
                                     const overlay = stageOverlays[index % stageOverlays.length];
 
                                     return (
@@ -340,17 +336,23 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                                             {t('overview.stage_label', { num: stage.id.toString().padStart(2, '0') })}
                                                         </p>
                                                         <h3 className="mb-1 text-xl font-semibold text-white">
-                                                            {stage.stageKey ? t(stage.stageKey, { num: stage.id.toString().padStart(2, '0') }) : stage.stage}
+                                                            {stage.stageKey
+                                                                ? t(stage.stageKey, { num: stage.id.toString().padStart(2, '0') })
+                                                                : stage.stage}
                                                         </h3>
-                                                        <p className="text-sm text-slate-300">{t('overview.unit_price_prefix')}{stage.price.toFixed(3)}</p>
+                                                        <p className="text-sm text-slate-300">
+                                                            {t('overview.unit_price_prefix')}
+                                                            {stage.price.toFixed(3)}
+                                                        </p>
                                                     </div>
                                                     <span
-                                                        className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium ${isCompleted
-                                                            ? 'border-[#22edc7]/30 bg-[#22edc7]/12 text-[#22edc7]'
-                                                            : isUpcoming
-                                                                ? 'border-white/15 bg-white/10 text-slate-300'
-                                                                : 'border-[#56f1ff]/35 bg-[#56f1ff]/18 text-[#56f1ff]'
-                                                            }`}
+                                                        className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium ${
+                                                            isCompleted
+                                                                ? 'border-[#22edc7]/30 bg-[#22edc7]/12 text-[#22edc7]'
+                                                                : isUpcoming
+                                                                  ? 'border-white/15 bg-white/10 text-slate-300'
+                                                                  : 'border-[#56f1ff]/35 bg-[#56f1ff]/18 text-[#56f1ff]'
+                                                        }`}
                                                     >
                                                         {statusLabel}
                                                     </span>
@@ -358,7 +360,9 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
 
                                                 <div className="relative z-10 mt-6 grid grid-cols-2 gap-4 text-sm text-slate-200/90">
                                                     <div>
-                                                        <p className="mb-2 text-xs tracking-[0.25em] text-slate-400 uppercase">{t('overview.quota')}</p>
+                                                        <p className="mb-2 text-xs tracking-[0.25em] text-slate-400 uppercase">
+                                                            {t('overview.quota')}
+                                                        </p>
                                                         <p className="text-lg font-semibold text-white">
                                                             {(stage.tokens / 1000000).toLocaleString()}M
                                                         </p>
@@ -378,7 +382,9 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                                         </p>
                                                     </div>
                                                     <div>
-                                                        <p className="mb-2 text-xs tracking-[0.25em] text-slate-400 uppercase">{t('overview.stage_progress')}</p>
+                                                        <p className="mb-2 text-xs tracking-[0.25em] text-slate-400 uppercase">
+                                                            {t('overview.stage_progress')}
+                                                        </p>
                                                         <p className="text-lg font-semibold text-white">{stage.progress}%</p>
                                                     </div>
                                                 </div>
@@ -400,12 +406,13 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                                     whileHover={!isUpcoming && !isCompleted ? { scale: 1.02 } : {}}
                                                     whileTap={!isUpcoming && !isCompleted ? { scale: 0.98 } : {}}
                                                     disabled={isUpcoming || isCompleted}
-                                                    className={`relative z-10 mt-6 w-full rounded-xl border px-4 py-3 text-sm font-semibold transition-all duration-300 ${isUpcoming
-                                                        ? 'cursor-not-allowed border-white/10 bg-white/8 text-slate-400'
-                                                        : isCompleted
-                                                            ? 'cursor-not-allowed border-[#22edc7]/40 bg-[#22edc7]/18 text-[#22edc7]'
-                                                            : 'border-transparent bg-gradient-to-r from-[#616bff] via-[#4b76ff] to-[#37e7ff] text-slate-900 shadow-[0_25px_60px_-30px_rgba(82,115,255,0.65)] hover:shadow-[0_30px_70px_-30px_rgba(67,240,255,0.65)]'
-                                                        }`}
+                                                    className={`relative z-10 mt-6 w-full rounded-xl border px-4 py-3 text-sm font-semibold transition-all duration-300 ${
+                                                        isUpcoming
+                                                            ? 'cursor-not-allowed border-white/10 bg-white/8 text-slate-400'
+                                                            : isCompleted
+                                                              ? 'cursor-not-allowed border-[#22edc7]/40 bg-[#22edc7]/18 text-[#22edc7]'
+                                                              : 'border-transparent bg-gradient-to-r from-[#616bff] via-[#4b76ff] to-[#37e7ff] text-slate-900 shadow-[0_25px_60px_-30px_rgba(82,115,255,0.65)] hover:shadow-[0_30px_70px_-30px_rgba(67,240,255,0.65)]'
+                                                    }`}
                                                 >
                                                     {isUpcoming ? t('overview.soon') : isCompleted ? t('overview.soldout') : t('overview.open')}
                                                 </motion.button>
@@ -423,7 +430,9 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                         key={stage.id}
                                         onClick={() => scrollTo(index)}
                                         className={`size-2.5 rounded-full transition-all duration-300 ${selectedIndex === index ? 'scale-110 bg-white shadow-[0_0_0_4px_rgba(86,241,255,0.25)]' : 'bg-white/30 hover:bg-white/60'}`}
-                                        aria-label={t('overview.goto', { stage: t('overview.stage_label', { num: stage.id.toString().padStart(2, '0') }) })}
+                                        aria-label={t('overview.goto', {
+                                            stage: t('overview.stage_label', { num: stage.id.toString().padStart(2, '0') }),
+                                        })}
                                     />
                                 ))}
                             </div>

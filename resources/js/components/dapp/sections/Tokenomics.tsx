@@ -88,11 +88,10 @@ export const Tokenomics: React.FC = () => {
                                 <div className="rounded-2xl border border-white/12 bg-white/10 px-4 py-3 text-left">
                                     <p className="text-[11px] tracking-[0.28em] text-slate-300/70 uppercase">{t('tokenomics.private_quota')}</p>
                                     <p className="text-sm font-semibold text-white">
-                                        {(
-                                            tokenomicsData.find(
-                                                (item) => item.nameKey === 'tokenomics.cards.private_sale.title' || item.name === '私募销售',
-                                            )?.percentage ?? 0
-                                        )}% ·{' '}
+                                        {tokenomicsData.find(
+                                            (item) => item.nameKey === 'tokenomics.cards.private_sale.title' || item.name === '私募销售',
+                                        )?.percentage ?? 0}
+                                        % ·{' '}
                                         {formatMillions(
                                             tokenomicsData.find(
                                                 (item) => item.nameKey === 'tokenomics.cards.private_sale.title' || item.name === '私募销售',
@@ -124,7 +123,9 @@ export const Tokenomics: React.FC = () => {
                                                         }}
                                                     />
                                                     <div>
-                                                        <p className="text-sm font-semibold text-white">{item.nameKey ? t(item.nameKey) : item.name}</p>
+                                                        <p className="text-sm font-semibold text-white">
+                                                            {item.nameKey ? t(item.nameKey) : item.name}
+                                                        </p>
                                                         <p className="mt-0.5 text-[11px] text-slate-400">{formatMillions(item.value)}</p>
                                                     </div>
                                                 </div>
@@ -159,14 +160,14 @@ export const Tokenomics: React.FC = () => {
                             const displayName = baseKey
                                 ? t(`${baseKey}.title`)
                                 : data.name === '生态基金'
-                                    ? t('tokenomics.cards.ecofund.title')
-                                    : data.name === '社区空投'
-                                        ? t('tokenomics.cards.airdrop.title')
-                                        : data.name === '储备额'
-                                            ? t('tokenomics.cards.reserve.title')
-                                            : data.name === '合作伙伴'
-                                                ? t('tokenomics.cards.partners.title')
-                                                : data.name;
+                                  ? t('tokenomics.cards.ecofund.title')
+                                  : data.name === '社区空投'
+                                    ? t('tokenomics.cards.airdrop.title')
+                                    : data.name === '储备额'
+                                      ? t('tokenomics.cards.reserve.title')
+                                      : data.name === '合作伙伴'
+                                        ? t('tokenomics.cards.partners.title')
+                                        : data.name;
 
                             let desc = '';
                             let quote = '';
