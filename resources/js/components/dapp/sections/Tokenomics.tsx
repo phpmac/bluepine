@@ -66,7 +66,7 @@ export const Tokenomics: React.FC = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="relative flex h-full max-h-[360px] flex-col gap-5 overflow-hidden rounded-[26px] border border-white/12 bg-white/[0.07] p-5 shadow-[0_26px_70px_-55px_rgba(60,110,255,0.55)] backdrop-blur-xl md:p-6"
+                        className="relative flex h-full max-h-[420px] flex-col gap-5 overflow-hidden rounded-[26px] border border-white/12 bg-white/[0.07] p-5 shadow-[0_26px_70px_-55px_rgba(60,110,255,0.55)] backdrop-blur-xl md:p-6"
                     >
                         <div className="absolute -top-24 -right-12 size-52 rounded-full bg-[#56f1ff]/16 blur-3xl" />
                         <div className="relative flex flex-col gap-4">
@@ -152,7 +152,7 @@ export const Tokenomics: React.FC = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="grid max-h-[360px] min-h-0 grid-cols-1 gap-3 overflow-y-auto md:grid-cols-2"
+                        className="grid max-h-[420px] min-h-0 grid-cols-1 gap-3 overflow-y-auto md:grid-cols-2"
                     >
                         {featuredItems.map((data) => {
                             // 基于 nameKey 推导卡片基础 key, 回退到中文名称匹配
