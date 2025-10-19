@@ -90,7 +90,7 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
     const overallProgress = totalTargetUsd > 0 ? (totalRaisedUsd / totalTargetUsd) * 100 : 0;
 
     const displayRaisedM = Number.isFinite(totalRaisedUsd) ? totalRaisedUsd / 1000000 : 0;
-    const displayTargetM = Number.isFinite(totalTargetUsd) ? totalTargetUsd / 1000000 : 0;
+    const displayTargetM = 51.25;
     const displayProgress = Number.isFinite(overallProgress) ? overallProgress : 0;
 
     // 基于传入的 currentStageData 决定默认阶段索引

@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
                             </div>
                             <div>
                                 <p className="text-lg font-semibold text-white">Agri-Eco Smart Chain</p>
-                                <p className="text-xs tracking-[0.3em] text-slate-300/80 uppercase">Modular Web3 Infrastructure</p>
+                                <p className="text-xs tracking-[0.3em] text-slate-300/80 uppercase">Modular Agriculture Infrastructure</p>
                             </div>
                         </div>
                         <p className="max-w-md text-xs leading-relaxed text-slate-300/90">{t('footer.description')}</p>

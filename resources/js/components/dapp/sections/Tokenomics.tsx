@@ -152,7 +152,7 @@ export const Tokenomics: React.FC = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="grid max-h-[420px] min-h-0 grid-cols-1 gap-3 overflow-y-auto md:grid-cols-2"
+                        className="grid grid-cols-1 gap-3 md:max-h-[420px] md:min-h-0 md:grid-cols-2 md:overflow-y-auto"
                     >
                         {featuredItems.map((data) => {
                             // 基于 nameKey 推导卡片基础 key, 回退到中文名称匹配

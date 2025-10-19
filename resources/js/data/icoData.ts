@@ -36,7 +36,7 @@ export const ieoStages: PrivateSaleStage[] = [
         tokens: 100000000,
         price: 0.125,
         target: 12500000,
-        progress: 80, // 第一阶段80%完成
+        progress: 0, // 第一阶段默认%0完成
         stageKey: 'overview.stage_label',
     },
     {
@@ -44,7 +44,7 @@ export const ieoStages: PrivateSaleStage[] = [
         tokens: 110000000,
         price: 0.15,
         target: 16500000,
-        progress: 30, // 第二阶段30%完成
+        progress: 0, // 第二阶段默认%0完成
         stageKey: 'overview.stage_label',
     },
     {
@@ -52,7 +52,7 @@ export const ieoStages: PrivateSaleStage[] = [
         tokens: 110000000,
         price: 0.175,
         target: 19250000,
-        progress: 0, // 第三阶段未开始
+        progress: 0, // 第三阶段默认%0完成
         stageKey: 'overview.stage_label',
     },
 ];
