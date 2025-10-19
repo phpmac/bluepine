@@ -88,7 +88,10 @@ export const About: React.FC = () => {
 
                         <div className="grid grid-cols-3 gap-3">
                             {stats.map((stat) => (
-                                <div key={stat.labelKey} className="rounded-2xl border border-white/12 bg-white/10 px-4 py-5 text-left backdrop-blur-lg">
+                                <div
+                                    key={stat.labelKey}
+                                    className="rounded-2xl border border-white/12 bg-white/10 px-4 py-5 text-left backdrop-blur-lg"
+                                >
                                     <p className="text-[11px] tracking-[0.28em] text-slate-300/75 uppercase">{t(stat.labelKey)}</p>
                                     <p className="mt-2 text-[12px] text-slate-400/80">{t(stat.noteKey)}</p>
                                 </div>
@@ -144,7 +147,9 @@ export const About: React.FC = () => {
                     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         <div>
                             <h3 className="text-2xl font-bold text-white">{t('roadmap.header', { defaultValue: 'Roadmap' })}</h3>
-                            <p className="mt-2 text-sm text-slate-300/85">{t('roadmap.header_desc', { defaultValue: 'Phased delivery for infra, real-world assets and global expansion.' })}</p>
+                            <p className="mt-2 text-sm text-slate-300/85">
+                                {t('roadmap.header_desc', { defaultValue: 'Phased delivery for infra, real-world assets and global expansion.' })}
+                            </p>
                         </div>
                     </div>
 
@@ -163,21 +168,23 @@ export const About: React.FC = () => {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.45, delay: index * 0.08 }}
-                                        className={`relative h-full rounded-2xl border px-6 py-6 backdrop-blur-lg ${isActive
-                                            ? 'border-[#56f1ff]/40 bg-gradient-to-br from-[#54e7ff26] via-[#0f1a3c] to-[#041223] shadow-[0_30px_70px_-35px_rgba(86,241,255,0.55)]'
-                                            : isUpcoming
-                                                ? 'border-[#5eead4]/12 bg-gradient-to-br from-[#5eead40d] via-white/5 to-transparent'
-                                                : 'border-[#c4b5fd]/12 bg-gradient-to-br from-[#c4b5fd0d] via-white/5 to-transparent'
-                                            }`}
+                                        className={`relative h-full rounded-2xl border px-6 py-6 backdrop-blur-lg ${
+                                            isActive
+                                                ? 'border-[#56f1ff]/40 bg-gradient-to-br from-[#54e7ff26] via-[#0f1a3c] to-[#041223] shadow-[0_30px_70px_-35px_rgba(86,241,255,0.55)]'
+                                                : isUpcoming
+                                                  ? 'border-[#5eead4]/12 bg-gradient-to-br from-[#5eead40d] via-white/5 to-transparent'
+                                                  : 'border-[#c4b5fd]/12 bg-gradient-to-br from-[#c4b5fd0d] via-white/5 to-transparent'
+                                        }`}
                                     >
                                         <div className="flex items-center justify-between">
                                             <span
-                                                className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${isActive
-                                                    ? 'bg-[#56f1ff]/20 text-[#56f1ff]'
-                                                    : isUpcoming
-                                                        ? 'bg-[#5eead4]/10 text-[#5eead4]/80'
-                                                        : 'bg-[#c4b5fd]/10 text-[#c4b5fd]/80'
-                                                    }`}
+                                                className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
+                                                    isActive
+                                                        ? 'bg-[#56f1ff]/20 text-[#56f1ff]'
+                                                        : isUpcoming
+                                                          ? 'bg-[#5eead4]/10 text-[#5eead4]/80'
+                                                          : 'bg-[#c4b5fd]/10 text-[#c4b5fd]/80'
+                                                }`}
                                             >
                                                 {phase.phase}
                                             </span>
@@ -188,8 +195,9 @@ export const About: React.FC = () => {
                                             {phase.points.map((point) => (
                                                 <li key={point} className="flex items-start gap-2">
                                                     <span
-                                                        className={`mt-1 inline-flex size-1.5 rounded-full ${isActive ? 'bg-[#56f1ff]' : isUpcoming ? 'bg-[#5eead4]/80' : 'bg-[#c4b5fd]/80'
-                                                            }`}
+                                                        className={`mt-1 inline-flex size-1.5 rounded-full ${
+                                                            isActive ? 'bg-[#56f1ff]' : isUpcoming ? 'bg-[#5eead4]/80' : 'bg-[#c4b5fd]/80'
+                                                        }`}
                                                     />
                                                     <span>{point}</span>
                                                 </li>

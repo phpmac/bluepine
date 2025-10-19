@@ -60,7 +60,6 @@ export const CookieConsent: React.FC = () => {
                                     </button>
                                 </div>
 
-
                                 {/* 按钮组 */}
                                 <div className="flex flex-col gap-2 md:gap-3">
                                     <button
