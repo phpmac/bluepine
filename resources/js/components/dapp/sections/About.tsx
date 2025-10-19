@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Cpu, Globe2, Link2, ShieldCheck, Users, Zap } from 'lucide-react';
+import { Cpu, Globe2, Link2 } from 'lucide-react';
 import React from 'react';
 
 const stats = [
-    { labelKey: 'features.stats.semantic.label', value: '240+', noteKey: 'features.stats.semantic.note' },
-    { labelKey: 'features.stats.ai_engine.label', value: '8,500+', noteKey: 'features.stats.ai_engine.note' },
-    { labelKey: 'features.stats.web3.label', value: '60+', noteKey: 'features.stats.web3.note' },
+    { labelKey: 'features.stats.semantic.label', noteKey: 'features.stats.semantic.note' },
+    { labelKey: 'features.stats.ai_engine.label', noteKey: 'features.stats.ai_engine.note' },
+    { labelKey: 'features.stats.web3.label', noteKey: 'features.stats.web3.note' },
 ];
 
 const features = [
@@ -27,24 +27,6 @@ const features = [
         icon: Globe2,
         title: '现实资产上链',
         description: '完善的合规凭证体系, 助力 RWA、供应链、碳资产落地.',
-    },
-    {
-        key: 'compliance',
-        icon: ShieldCheck,
-        title: '合规安全框架',
-        description: '身份治理与权限控制模块, 满足全球监管审计需求.',
-    },
-    {
-        key: 'liquidity',
-        icon: Zap,
-        title: '流动性引擎',
-        description: '跨链流动性与收益聚合协议, 放大资产效率.',
-    },
-    {
-        key: 'governance',
-        icon: Users,
-        title: '治理共识',
-        description: 'DAO 与节点协同治理, 推动生态持续演进.',
     },
 ];
 
@@ -108,9 +90,6 @@ export const About: React.FC = () => {
                             {stats.map((stat) => (
                                 <div key={stat.labelKey} className="rounded-2xl border border-white/12 bg-white/10 px-4 py-5 text-left backdrop-blur-lg">
                                     <p className="text-[11px] tracking-[0.28em] text-slate-300/75 uppercase">{t(stat.labelKey)}</p>
-                                    <p className="mt-2 bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-2xl font-bold text-transparent">
-                                        {stat.value}
-                                    </p>
                                     <p className="mt-2 text-[12px] text-slate-400/80">{t(stat.noteKey)}</p>
                                 </div>
                             ))}
@@ -128,7 +107,6 @@ export const About: React.FC = () => {
                     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         <div>
                             <h3 className="text-2xl font-bold text-white">{t('features.title')}</h3>
-                            <p className="mt-2 text-sm text-slate-300/85">{t('features.subtitle')}</p>
                         </div>
                     </div>
 
@@ -148,7 +126,6 @@ export const About: React.FC = () => {
                                         <Icon className="h-5 w-5" />
                                     </div>
                                     <div>
-                                        <h4 className="text-base font-semibold text-white">{t(`features.${feature.key}.title`)}</h4>
                                         <p className="mt-2 text-sm leading-relaxed text-slate-300/80">{t(`features.${feature.key}.desc`)}</p>
                                     </div>
                                 </motion.div>
