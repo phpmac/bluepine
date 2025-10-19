@@ -14,11 +14,11 @@ export function HeroSection() {
                     实时链上网络
                 </span>
                 <h1 className="text-4xl font-semibold tracking-tight text-sky-50 sm:text-5xl lg:text-[3.25rem]">
-                    构建顺滑的 IEO 与治理体验, 让资产流转安全、可控又具未来感。
+                    构建顺滑的 IEO 与治理体验, 让资产流转安全,可控又具未来感。
                 </h1>
                 <p className="max-w-2xl text-base leading-relaxed text-slate-300">
-                    Aurora 协议提供统一的跨链资金入口、实时风险引擎以及专业的发行工具。透过简洁的分析面板和友好的认购流程,
-                    你可以在几分钟内完成资产发行、监控和社区治理。
+                    Aurora 协议提供统一的跨链资金入口,实时风险引擎以及专业的发行工具。透过简洁的分析面板和友好的认购流程,
+                    你可以在几分钟内完成资产发行,监控和社区治理。
                 </p>
                 <div className="flex flex-wrap items-center gap-3 text-sm font-medium">
                     <button type="button" className="wallet-button">

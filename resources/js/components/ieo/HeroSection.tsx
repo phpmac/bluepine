@@ -5,7 +5,7 @@ export function IeoHeroSection() {
                 <span className="tag">AUR IEO · 2024</span>
                 <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">Aurora 协议 IEO 认购全流程</h1>
                 <p className="text-base leading-relaxed text-slate-300">
-                    通过 Aurora Launchpad, 你可以在同一界面完成资格审核、额度锁定与抽签确认。我们提供链上托管、风控监测与详尽的时间表, 让 IEO
+                    通过 Aurora Launchpad, 你可以在同一界面完成资格审核,额度锁定与抽签确认。我们提供链上托管,风控监测与详尽的时间表, 让 IEO
                     过程清晰可控。
                 </p>
                 <div className="flex flex-wrap items-center gap-3 text-sm font-medium">

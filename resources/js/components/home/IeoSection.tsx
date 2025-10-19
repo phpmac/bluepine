@@ -14,7 +14,7 @@ export function IeoSection() {
                     </span>
                     <h2 className="text-3xl font-semibold text-white">AUR 代币全球认购日程</h2>
                     <p className="text-sm leading-relaxed text-slate-300">
-                        通过锁定额度、积分抽签与链上托管的组合机制, Aurora Launchpad 将申购体验压缩至数分钟。无须担心流程繁琐,
+                        通过锁定额度,积分抽签与链上托管的组合机制, Aurora Launchpad 将申购体验压缩至数分钟。无须担心流程繁琐,
                         所有动作均在统一页面完成。
                     </p>
                     <div className="flex flex-wrap items-center gap-3 text-sm font-medium">

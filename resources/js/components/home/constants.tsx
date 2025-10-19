@@ -217,7 +217,7 @@ const featureList: FeatureItem[] = [
     },
     {
         title: '跨链流动性聚合',
-        description: '统一聚合主流公链与侧链流动性池,在单一界面完成交换、抵押与流动性管理。',
+        description: '统一聚合主流公链与侧链流动性池,在单一界面完成交换,抵押与流动性管理。',
         icon: 'orbitSwap',
     },
     {

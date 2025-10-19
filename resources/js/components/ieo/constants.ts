@@ -60,7 +60,7 @@ export const requirements: RequirementItem[] = [
     },
     {
         title: '账户净资产 ≥ 500 USDT',
-        detail: '资产可为 USDT、USDC 或 AURP, 平台会在锁定额度前进行余额快照。',
+        detail: '资产可为 USDT,USDC 或 AURP, 平台会在锁定额度前进行余额快照。',
     },
     {
         title: '通过交易风险测评',

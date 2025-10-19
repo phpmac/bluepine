@@ -47,13 +47,6 @@ export const Header: React.FC = () => {
         setIsMobileMenuOpen(false);
     };
 
-    const handleWhitelistClick = async () => {
-        if (!isConnected) {
-            open();
-        } else {
-            window.location.href = '#whitelist';
-        }
-    };
 
     const handleWalletClick = () => {
         open();
@@ -71,11 +64,10 @@ export const Header: React.FC = () => {
         <motion.header
             initial={{ y: -80 }}
             animate={{ y: 0 }}
-            className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
-                isScrolled
-                    ? 'border-b border-white/10 bg-[#050a1a]/90 shadow-[0_20px_50px_-30px_rgba(76,107,255,0.65)] backdrop-blur-xl'
-                    : 'border-b border-transparent bg-transparent'
-            }`}
+            className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${isScrolled
+                ? 'border-b border-white/10 bg-[#050a1a]/90 shadow-[0_20px_50px_-30px_rgba(76,107,255,0.65)] backdrop-blur-xl'
+                : 'border-b border-transparent bg-transparent'
+                }`}
         >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20 items-center justify-between">
@@ -139,10 +131,6 @@ export const Header: React.FC = () => {
                             ))}
                             <div className="space-y-3 border-t border-white/10 pt-4">
                                 <LanguageSwitcher />
-                                <Button variant="primary" className="w-full gap-2 text-sm" onClick={handleWhitelistClick}>
-                                    <Wallet className="h-4 w-4" />
-                                    <span>{t('buttons.join_whitelist')}</span>
-                                </Button>
                                 <Button variant={isConnected ? 'secondary' : 'primary'} className="w-full gap-2 text-sm" onClick={handleWalletClick}>
                                     <Wallet className="h-4 w-4" />
                                     <span>{isConnected ? displayAddress : t('buttons.connect_wallet')}</span>

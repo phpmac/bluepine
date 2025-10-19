@@ -8,7 +8,7 @@ export function FeaturesSection() {
             <div className="space-y-4">
                 <h2 className="text-2xl font-semibold text-white">核心功能矩阵</h2>
                 <p className="text-sm leading-relaxed text-slate-300">
-                    我们将风控、认购与治理工具整合在同一终端, 通过模块化组合构建适合你团队的工作流。
+                    我们将风控,认购与治理工具整合在同一终端, 通过模块化组合构建适合你团队的工作流。
                 </p>
                 <div className="feature-grid">
                     {featureList.map((feature) => (
