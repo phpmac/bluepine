@@ -111,9 +111,7 @@ export const Hero: React.FC<{ currentStageData: StageData | null }> = ({ current
                                 <p className="mb-4 text-sm tracking-[0.3em] text-slate-200/80 uppercase">{t('hero.token_sale')}</p>
                                 <div className="flex flex-wrap items-center justify-between gap-4">
                                     <div>
-                                        <h3 className="mb-1 text-2xl font-bold text-white">
-                                            {chainStageIndex ? t('hero.stage_fmt', { num: chainStageIndex }) : activeStage.stage}
-                                        </h3>
+                                        <h3 className="mb-1 text-2xl font-bold text-white">{t('hero.stage_fmt', { num: chainStageIndex ?? 0 })}</h3>
                                         <p className="text-sm text-slate-300">
                                             {t('hero.current_price_prefix')}&nbsp;
                                             <span className="font-semibold text-[#56f1ff]">

@@ -336,9 +336,7 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                                             {t('overview.stage_label', { num: stage.id.toString().padStart(2, '0') })}
                                                         </p>
                                                         <h3 className="mb-1 text-xl font-semibold text-white">
-                                                            {stage.stageKey
-                                                                ? t(stage.stageKey, { num: stage.id.toString().padStart(2, '0') })
-                                                                : stage.stage}
+                                                            {stage.stageKey ? t(stage.stageKey, { num: stage.id.toString().padStart(2, '0') }) : '-'}
                                                         </h3>
                                                         <p className="text-sm text-slate-300">
                                                             {t('overview.unit_price_prefix')}

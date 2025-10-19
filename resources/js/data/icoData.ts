@@ -2,7 +2,6 @@
 
 export interface PrivateSaleStage {
     id: number;
-    stage: string;
     tokens: number;
     price: number;
     target: number;
@@ -34,7 +33,6 @@ export interface VestingMilestone {
 export const ieoStages: PrivateSaleStage[] = [
     {
         id: 1,
-        stage: '第一阶段',
         tokens: 100000000,
         price: 0.125,
         target: 12500000,
@@ -43,7 +41,6 @@ export const ieoStages: PrivateSaleStage[] = [
     },
     {
         id: 2,
-        stage: '第二阶段',
         tokens: 110000000,
         price: 0.15,
         target: 16500000,
@@ -52,7 +49,6 @@ export const ieoStages: PrivateSaleStage[] = [
     },
     {
         id: 3,
-        stage: '第三阶段',
         tokens: 110000000,
         price: 0.175,
         target: 19250000,

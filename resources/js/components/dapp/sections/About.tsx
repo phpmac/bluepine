@@ -86,13 +86,13 @@ export const About: React.FC = () => {
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-3 gap-3">
+                        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
                             {stats.map((stat) => (
                                 <div
                                     key={stat.labelKey}
                                     className="rounded-2xl border border-white/12 bg-white/10 px-4 py-5 text-left backdrop-blur-lg"
                                 >
-                                    <p className="text-[11px] tracking-[0.28em] text-slate-300/75 uppercase">{t(stat.labelKey)}</p>
+                                    <p className="text-xs tracking-[0.28em] text-slate-300/75 uppercase">{t(stat.labelKey)}</p>
                                     <p className="mt-2 text-[12px] text-slate-400/80">{t(stat.noteKey)}</p>
                                 </div>
                             ))}
