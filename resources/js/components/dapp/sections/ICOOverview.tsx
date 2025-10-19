@@ -1,180 +1,169 @@
 import ieoAbi from '@/lib/abi';
 import { config as address } from '@/lib/address';
-import useEmblaCarousel from 'embla-carousel-react';
+import { erc20Abi } from '@/lib/erc20Abi';
+import { StageData } from '@/types';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Sparkles, Target, TrendingUp } from 'lucide-react';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { formatEther } from 'viem';
-import { usePublicClient, useReadContract } from 'wagmi';
-import { ieoStages } from '../../../data/icoData';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import { Layers, ShoppingCart, Sparkles, Target } from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { formatUnits, getAddress, isAddress, parseUnits } from 'viem';
+import { useAccount, useReadContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 import { AnimatedCounter } from '../common/AnimatedCounter';
 import { ProgressBar } from '../common/ProgressBar';
 
-import { StageData } from '@/types';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
-
-const stageOverlays = [
-    'from-[#56f1ff1f] via-[#13264230] to-transparent',
-    'from-[#22edc71f] via-[#15353640] to-transparent',
-    'from-[#6b7dff1f] via-[#1b1f4140] to-transparent',
-];
-
-export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null }> = ({ currentStageData }) => {
+export const PrivateSaleOverview: React.FC<{
+    decimals: number; // aesc代币精度
+    stageCount: number; // 阶段数量
+    allStageInfo: StageData[]; // 所有阶段信息
+    ieoStartTime: number; // 募资开始时间
+    ieoEndTime: number; // 募资结束时间
+    currentStage: StageData; // 当前阶段数据
+    pendingAmount: [bigint, bigint]; // 可领取数量
+    currentStagePrice: number; // 当前阶段价格
+    currentStageProgress: number; // 当前阶段完成进度
+    refetchCurrentStage: () => void; // 刷新当前阶段数据
+    refetchPendingAmount: () => void; // 刷新可领取数量
+    isEnded: boolean; // 是否结束
+}> = ({ decimals, currentStage, pendingAmount, currentStagePrice, currentStageProgress, refetchCurrentStage, refetchPendingAmount, isEnded }) => {
     const { t } = useLaravelReactI18n();
-    const publicClient = usePublicClient();
-    const { data: chainStageCount } = useReadContract({
-        address: address.aescIeo as `0x${string}`,
-        abi: ieoAbi,
-        functionName: 'getStageCount',
+
+    const [aescAmount, setAescAmount] = useState(''); // AESC认购数量
+    const [referrerAddress, setReferrerAddress] = useState(''); // 邀请人地址
+
+    // 计算目标募集金额(USD)
+    const targetSize = useMemo(() => {
+        const capTokens = Number(formatUnits(currentStage.cap, decimals));
+        return capTokens * currentStagePrice;
+    }, [currentStage, currentStagePrice, decimals]);
+
+    // 格式化为M单位
+    const targetSizeFormatted = useMemo(() => {
+        return (targetSize / 1000000).toFixed(2);
+    }, [targetSize]);
+
+    // 已募集金额(USD)
+    const raisedSize = useMemo(() => {
+        const soldTokens = Number(formatUnits(currentStage.sold, decimals));
+        return soldTokens * currentStagePrice;
+    }, [currentStage, currentStagePrice, decimals]);
+
+    // 计算需要支付的USDT金额
+    const estimatedUsdt = useMemo(() => {
+        return Number.parseFloat(aescAmount) * currentStagePrice;
+    }, [aescAmount, currentStagePrice]);
+
+    const { address: userAddress, isConnected } = useAccount();
+
+    // 验证邀请人地址是否有效
+    const isValidReferrerAddress = useMemo(() => {
+        if (!referrerAddress) return false;
+        if (!isAddress(referrerAddress)) return false;
+        // 检查邀请人地址是否为用户自己的地址(大小写不敏感)
+        if (userAddress && getAddress(referrerAddress) === getAddress(userAddress)) return false;
+        return true;
+    }, [referrerAddress, userAddress]);
+
+    // 获取邀请人地址错误类型
+    const referrerAddressError = useMemo(() => {
+        if (!referrerAddress) return 'empty';
+        if (!isAddress(referrerAddress)) return 'invalid';
+        if (userAddress && getAddress(referrerAddress) === getAddress(userAddress)) return 'self';
+        return null;
+    }, [referrerAddress, userAddress]);
+
+    // 验证AESC数量是否有效
+    const isValidAescAmount = useMemo(() => {
+        const amount = Number.parseFloat(aescAmount);
+        return aescAmount && !Number.isNaN(amount) && amount > 0;
+    }, [aescAmount]);
+
+    // USDT授权额度
+    const { data: usdtAllowance, refetch: refetchAllowance } = useReadContract({
+        address: address.usdt as `0x${string}`,
+        abi: erc20Abi,
+        functionName: 'allowance',
+        args: userAddress ? [userAddress, address.aescIeo as `0x${string}`] : undefined,
+        query: { enabled: !!userAddress },
     });
 
-    const [chainStages, setChainStages] = useState<Array<{ cap: bigint; sold: bigint; priceNumerator: bigint; priceDenominator: bigint }>>([]);
+    // 合约交互
+    const { writeContract: writeApprove, data: approveHash, isPending: isApproving } = useWriteContract();
+    const { writeContract: writeBuy, data: buyHash, isPending: isBuying } = useWriteContract();
+    const { writeContract: writeClaim, data: claimHash, isPending: isClaiming } = useWriteContract();
 
-    // 仅对接合约, 不请求后端
+    // 交易确认状态
+    const { isLoading: isApproveConfirming, isSuccess: isApproveSuccess } = useWaitForTransactionReceipt({ hash: approveHash });
+    const { isLoading: isBuyConfirming, isSuccess: isBuySuccess } = useWaitForTransactionReceipt({ hash: buyHash });
+    const { isLoading: isClaimConfirming, isSuccess: isClaimSuccess } = useWaitForTransactionReceipt({ hash: claimHash });
 
+    // 监听授权成功后自动执行购买
     useEffect(() => {
-        if (!publicClient || !chainStageCount) return;
-        (async () => {
-            const count = Number(chainStageCount);
-            if (!count || count < 1) return;
-            const contracts = Array.from({ length: count }, (_, i) => ({
+        if (isApproveSuccess && isValidAescAmount && isValidReferrerAddress) {
+            const tokenAmount = parseUnits(aescAmount, decimals);
+
+            writeBuy({
                 address: address.aescIeo as `0x${string}`,
                 abi: ieoAbi,
-                functionName: 'getStageInfo',
-                args: [BigInt(i)] as const,
-            }));
-            const res = await publicClient.multicall({ contracts });
-            const list: Array<{ cap: bigint; sold: bigint; priceNumerator: bigint; priceDenominator: bigint }> = [];
-            res.forEach((r, i) => {
-                if (r.status === 'success') {
-                    const [cap, sold, priceNumerator, priceDenominator] = r.result as unknown as readonly [bigint, bigint, bigint, bigint];
-                    list[i] = { cap, sold, priceNumerator, priceDenominator };
-                }
-            });
-            setChainStages(list);
-        })().catch(console.error);
-    }, [publicClient, chainStageCount]);
-
-    const stages = useMemo(() => {
-        if (chainStages.length) {
-            return ieoStages.map((s, i) => {
-                const c = chainStages[i];
-                if (!c) return s;
-                const progress = c.cap > 0n ? Number((c.sold * 10000n) / c.cap) / 100 : 0;
-                const tokens = Number.parseFloat(String(formatEther(c.cap)));
-                const denom = Number(c.priceDenominator);
-                const rawPrice = denom > 0 ? Number(c.priceNumerator) / denom : Number.NaN;
-                const price = Number.isFinite(rawPrice) && rawPrice >= 0 ? rawPrice : s.price;
-                const tentativeTarget = tokens * price;
-                const targetUsd =
-                    Number.isFinite(tentativeTarget) && tentativeTarget >= 0 ? tentativeTarget : Number.isFinite(s.target) ? s.target : 0;
-                return {
-                    ...s,
-                    tokens,
-                    price,
-                    // 用合约cap与价格计算阶段目标(USD)
-                    target: targetUsd,
-                    progress: Math.max(0, Math.min(100, Number(progress.toFixed(2)))),
-                };
+                functionName: 'buy',
+                args: [tokenAmount, referrerAddress as `0x${string}`],
             });
         }
-        return ieoStages;
-    }, [chainStages]);
+    }, [isApproveSuccess, isValidAescAmount, isValidReferrerAddress, aescAmount, decimals, referrerAddress, writeBuy]);
 
-    // 以合约阶段信息计算总募集目标与已募集(USD)
-    const totalTargetUsd = stages.reduce((acc, stage) => acc + (Number.isFinite(stage.target) ? stage.target : 0), 0);
-    const totalRaisedUsd = stages.reduce(
-        (acc, stage) => acc + ((Number.isFinite(stage.target) ? stage.target : 0) * (Number.isFinite(stage.progress) ? stage.progress : 0)) / 100,
-        0,
-    );
-    const overallProgress = totalTargetUsd > 0 ? (totalRaisedUsd / totalTargetUsd) * 100 : 0;
-
-    const displayRaisedM = Number.isFinite(totalRaisedUsd) ? totalRaisedUsd / 1000000 : 0;
-    const displayTargetM = 51.25;
-    const displayProgress = Number.isFinite(overallProgress) ? overallProgress : 0;
-
-    // 基于传入的 currentStageData 决定默认阶段索引
-    const chainStageIndex = currentStageData ? Number(currentStageData.index) : null;
-    const computedDefault = stages.find((stage) => stage.progress > 0 && stage.progress < 100) ?? null;
-    const computedDefaultIndex = computedDefault ? stages.findIndex((s) => s.id === computedDefault.id) : 0;
-    const preferredIndex =
-        chainStageIndex !== null && chainStageIndex !== undefined && chainStageIndex >= 0 && chainStageIndex < stages.length ? chainStageIndex : -1;
-
-    const [selectedIndex, setSelectedIndex] = useState(preferredIndex >= 0 ? preferredIndex : computedDefaultIndex);
-
+    // 监听购买成功后刷新数据
     useEffect(() => {
-        if (preferredIndex >= 0) {
-            setSelectedIndex(preferredIndex);
+        if (isBuySuccess) {
+            setAescAmount(''); // 清空输入框
+            refetchAllowance(); // 刷新授权额度
+            refetchPendingAmount(); // 刷新可领取数量
+            refetchCurrentStage(); // 刷新当前阶段数据
         }
-    }, [preferredIndex]);
+    }, [isBuySuccess, refetchAllowance, refetchPendingAmount, refetchCurrentStage]);
 
-    const activeStage = stages[selectedIndex] ?? null;
-    const [canScrollPrev, setCanScrollPrev] = useState(false);
-    const [canScrollNext, setCanScrollNext] = useState(false);
-    const [isHovered, setIsHovered] = useState(false);
-    const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start', startIndex: selectedIndex, loop: true });
-    const [isPageVisible, setIsPageVisible] = useState(true);
-
+    // 监听领取成功后刷新数据
     useEffect(() => {
-        const handleVisibility = () => setIsPageVisible(!document.hidden);
-        document.addEventListener('visibilitychange', handleVisibility);
-        handleVisibility();
-        return () => document.removeEventListener('visibilitychange', handleVisibility);
-    }, []);
+        if (isClaimSuccess) {
+            refetchPendingAmount(); // 刷新可领取数量
+        }
+    }, [isClaimSuccess, refetchPendingAmount]);
 
-    const updateScrollStates = useCallback(() => {
-        if (!emblaApi) return;
-        setCanScrollPrev(emblaApi.canScrollPrev());
-        setCanScrollNext(emblaApi.canScrollNext());
-    }, [emblaApi]);
+    // 处理认购
+    const handleBuy = async () => {
+        if (!isConnected || !isValidAescAmount || !isValidReferrerAddress) return;
 
-    const handleSelect = useCallback(() => {
-        if (!emblaApi) return;
-        setSelectedIndex(emblaApi.selectedScrollSnap());
-        updateScrollStates();
-    }, [emblaApi, updateScrollStates]);
+        const tokenAmount = parseUnits(aescAmount, decimals);
+        const usdtRequired = parseUnits(estimatedUsdt.toString(), 18);
 
-    useEffect(() => {
-        if (!emblaApi) return;
-        handleSelect();
-        emblaApi.on('select', handleSelect);
-        emblaApi.on('reInit', handleSelect);
-        return () => {
-            emblaApi.off('select', handleSelect);
-            emblaApi.off('reInit', handleSelect);
-        };
-    }, [emblaApi, handleSelect]);
+        // 检查授权额度,不足则先授权
+        if (!usdtAllowance || usdtAllowance < usdtRequired) {
+            writeApprove({
+                address: address.usdt as `0x${string}`,
+                abi: erc20Abi,
+                functionName: 'approve',
+                args: [address.aescIeo as `0x${string}`, usdtRequired * 10n], // 授权10倍额度
+            });
+            return; // 授权成功后会自动触发购买
+        }
 
-    useEffect(() => {
-        if (!emblaApi || isHovered || !isPageVisible) return;
-        const autoplayId = window.setInterval(() => {
-            if (!emblaApi || !isPageVisible) return;
-            emblaApi.scrollNext();
-        }, 6000);
-        return () => window.clearInterval(autoplayId);
-    }, [emblaApi, isHovered, isPageVisible]);
+        // 授权额度充足,直接购买
+        writeBuy({
+            address: address.aescIeo as `0x${string}`,
+            abi: ieoAbi,
+            functionName: 'buy',
+            args: [tokenAmount, referrerAddress as `0x${string}`],
+        });
+    };
 
-    const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-    const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
-    const scrollTo = useCallback((index: number) => emblaApi?.scrollTo(index), [emblaApi]);
+    // 处理领取
+    const handleClaim = async () => {
+        if (!isConnected || !isEnded) return;
 
-    const metrics = useMemo(
-        () => [
-            {
-                icon: Target,
-                label: t('overview.target'),
-                value: `$${displayTargetM.toFixed(2)}M`,
-                detail: t('overview.sale_scale'),
-            },
-            {
-                icon: TrendingUp,
-                label: t('overview.current_stage'),
-                value: activeStage ? t('overview.stage_label', { num: activeStage.id.toString().padStart(2, '0') }) : t('overview.soon'),
-                detail: activeStage ? `${t('overview.unit_price_prefix')}${activeStage.price.toFixed(3)}` : t('overview.soon'),
-            },
-        ],
-        [activeStage, displayTargetM, t],
-    );
+        writeClaim({
+            address: address.aescIeo as `0x${string}`,
+            abi: ieoAbi,
+            functionName: 'claim',
+        });
+    };
 
     return (
         <section id="private-sale-overview" className="relative z-10 overflow-hidden py-24">
@@ -217,26 +206,38 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                             </div>
 
                             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                                {metrics.map((item) => {
-                                    const Icon = item.icon;
-                                    return (
-                                        <div
-                                            key={item.label}
-                                            className="rounded-2xl border border-white/10 bg-white/[0.08] px-4 py-5 shadow-[0_25px_50px_-35px_rgba(70,120,255,0.55)] backdrop-blur-lg"
-                                        >
-                                            <div className="flex items-start gap-3">
-                                                <div className="flex size-9 items-center justify-center rounded-2xl bg-gradient-to-br from-[#5f66ff] via-[#4b76ff] to-[#2cd6ff] text-white shadow-[0_18px_30px_-20px_rgba(88,126,255,0.8)]">
-                                                    <Icon className="h-4 w-4" />
-                                                </div>
-                                                <div>
-                                                    <p className="mb-1 text-[11px] tracking-[0.28em] text-slate-300/80 uppercase">{item.label}</p>
-                                                    <p className="text-lg leading-tight font-semibold text-white">{item.value}</p>
-                                                    <p className="mt-1 text-[11px] text-slate-400">{item.detail}</p>
-                                                </div>
-                                            </div>
+                                <div className="rounded-2xl border border-white/10 bg-white/[0.08] px-4 py-5 shadow-[0_25px_50px_-35px_rgba(70,120,255,0.55)] backdrop-blur-lg">
+                                    <div className="flex items-start gap-3">
+                                        <div className="flex size-9 items-center justify-center rounded-2xl bg-gradient-to-br from-[#5f66ff] via-[#4b76ff] to-[#2cd6ff] text-white shadow-[0_18px_30px_-20px_rgba(88,126,255,0.8)]">
+                                            <Target className="h-4 w-4" />
                                         </div>
-                                    );
-                                })}
+                                        <div>
+                                            <p className="mb-1 text-[11px] tracking-[0.28em] text-slate-300/80 uppercase">
+                                                {t('overview.target_raise_label')}
+                                            </p>
+                                            <p className="text-lg leading-tight font-semibold text-white">${targetSizeFormatted}M</p>
+                                            <p className="mt-1 text-[11px] text-slate-400">{t('overview.private_sale_scale')}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="rounded-2xl border border-white/10 bg-white/[0.08] px-4 py-5 shadow-[0_25px_50px_-35px_rgba(70,120,255,0.55)] backdrop-blur-lg">
+                                    <div className="flex items-start gap-3">
+                                        <div className="flex size-9 items-center justify-center rounded-2xl bg-gradient-to-br from-[#5f66ff] via-[#4b76ff] to-[#2cd6ff] text-white shadow-[0_18px_30px_-20px_rgba(88,126,255,0.8)]">
+                                            <Layers className="h-4 w-4" />
+                                        </div>
+                                        <div>
+                                            <p className="mb-1 text-[11px] tracking-[0.28em] text-slate-300/80 uppercase">
+                                                {t('overview.current_stage_label')}
+                                            </p>
+                                            <p className="text-lg leading-tight font-semibold text-white">
+                                                {t('overview.stage_number', { num: Number(currentStage.index) + 1 })}
+                                            </p>
+                                            <p className="mt-1 text-[11px] text-slate-400">
+                                                {t('overview.unit_price')} ${currentStagePrice}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="flex flex-1 flex-col justify-end rounded-2xl border border-white/10 bg-gradient-to-br from-[#616bff1f] via-[#0e1531] to-[#06101f] p-6 shadow-[0_25px_60px_-45px_rgba(60,110,255,0.6)]">
@@ -246,39 +247,29 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                                         <h3 className="text-xl font-bold text-white">{t('overview.completion')}</h3>
                                     </div>
                                     <div className="flex items-end gap-6">
-                                        <div className="text-right">
+                                        <div className="text-righ">
                                             <AnimatedCounter
-                                                end={displayRaisedM}
+                                                end={raisedSize / 1000000}
                                                 decimals={2}
                                                 prefix="$"
                                                 suffix="M"
                                                 className="bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-2xl font-black text-transparent"
                                             />
-                                            <p className="mt-1 text-[11px] text-slate-400">{t('overview.raised')}</p>
-                                        </div>
-                                        <div className="text-right">
-                                            <AnimatedCounter
-                                                end={displayTargetM}
-                                                decimals={1}
-                                                prefix="$"
-                                                suffix="M"
-                                                className="text-lg font-semibold text-white"
-                                            />
-                                            <p className="mt-1 text-[11px] text-slate-400">{t('overview.target')}</p>
+                                            <p className="mt-1 text-left text-[11px] text-slate-400 md:text-right">{t('overview.raised')}</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="mt-6">
                                     <ProgressBar
-                                        progress={parseFloat(displayProgress.toFixed(1))}
+                                        progress={currentStageProgress}
                                         color="from-[#6f89ff] via-[#4fe3ff] to-[#20e3b2]"
                                         height="h-2.5"
                                         showPercentage={false}
                                     />
                                     <div className="mt-3 flex items-center justify-between text-[11px] text-slate-400">
                                         <span>{t('overview.early_benefit')}</span>
-                                        <span>{displayProgress.toFixed(1)}%</span>
+                                        <span>{currentStageProgress.toFixed(2)}%</span>
                                     </div>
                                 </div>
                             </div>
@@ -292,165 +283,205 @@ export const PrivateSaleOverview: React.FC<{ currentStageData?: StageData | null
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="flex min-h-[520px] flex-col"
                     >
-                        <div
-                            ref={emblaRef}
-                            onMouseEnter={() => setIsHovered(true)}
-                            onMouseLeave={() => setIsHovered(false)}
-                            className="relative flex-1 overflow-hidden rounded-[32px] bg-gradient-to-br from-[#0e182f] via-[#071122] to-[#040b18] shadow-[0_30px_90px_-45px_rgba(60,110,255,0.68)]"
-                        >
+                        <div className="relative flex-1 overflow-hidden rounded-[32px] border border-white/12 bg-gradient-to-br from-[#0e182f] via-[#071122] to-[#040b18] p-8 shadow-[0_30px_90px_-45px_rgba(60,110,255,0.68)]">
                             <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
-                            <div className="flex h-full touch-pan-y select-none">
-                                {stages.map((stage, index) => {
-                                    const raised = (stage.target * stage.progress) / 100;
-                                    const isSelected = index === selectedIndex;
-                                    const isCompleted = stage.progress === 100;
-                                    const isUpcoming = stage.progress === 0;
-                                    const statusLabel = isCompleted
-                                        ? t('overview.status.completed')
-                                        : isUpcoming
-                                          ? t('overview.status.upcoming')
-                                          : t('overview.status.active');
-                                    const overlay = stageOverlays[index % stageOverlays.length];
+                            <div className="absolute -right-20 -bottom-28 size-72 rounded-full bg-[#56f1ff]/10 blur-3xl" />
+                            <div className="absolute -top-24 left-12 size-56 rounded-full bg-[#22edc7]/8 blur-3xl" />
 
-                                    return (
-                                        <motion.div
-                                            key={stage.id}
-                                            className="h-full flex-[0_0_100%] px-1 sm:px-2"
-                                            initial={{ opacity: 0.75, scale: 0.95 }}
-                                            animate={{ opacity: isSelected ? 1 : 0.75, scale: isSelected ? 1 : 0.97, y: isSelected ? 0 : 10 }}
-                                            transition={{ duration: 0.55, ease: 'easeOut' }}
-                                        >
-                                            <div className="relative h-full overflow-hidden rounded-[28px] border border-white/12 bg-white/[0.06] p-6 shadow-[0_30px_80px_-55px_rgba(50,100,190,0.65)] backdrop-blur-xl sm:p-8">
-                                                {isSelected && (
-                                                    <motion.div
-                                                        className={`pointer-events-none absolute inset-0 rounded-[28px] bg-gradient-to-br ${overlay}`}
-                                                        initial={{ opacity: 0 }}
-                                                        animate={{ opacity: 1 }}
-                                                        transition={{ duration: 0.6 }}
-                                                    />
-                                                )}
+                            <div className="relative z-10 flex flex-col gap-5">
+                                <div className="flex items-center gap-2.5">
+                                    <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#616bff] via-[#4b76ff] to-[#37e7ff]">
+                                        <ShoppingCart className="h-4 w-4 text-white" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-lg font-bold text-white">{t('overview.token_purchase')}</h3>
+                                        <p className="text-[11px] text-slate-400">{t('overview.participate_sale')}</p>
+                                    </div>
+                                </div>
 
-                                                <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                                                    <div>
-                                                        <p className="mb-1 text-xs tracking-[0.3em] text-slate-300/70 uppercase">
-                                                            {t('overview.stage_label', { num: stage.id.toString().padStart(2, '0') })}
-                                                        </p>
-                                                        <h3 className="mb-1 text-xl font-semibold text-white">
-                                                            {stage.stageKey ? t(stage.stageKey, { num: stage.id.toString().padStart(2, '0') }) : '-'}
-                                                        </h3>
-                                                        <p className="text-sm text-slate-300">
-                                                            {t('overview.unit_price_prefix')}
-                                                            {stage.price.toFixed(3)}
-                                                        </p>
-                                                    </div>
-                                                    <span
-                                                        className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium ${
-                                                            isCompleted
-                                                                ? 'border-[#22edc7]/30 bg-[#22edc7]/12 text-[#22edc7]'
-                                                                : isUpcoming
-                                                                  ? 'border-white/15 bg-white/10 text-slate-300'
-                                                                  : 'border-[#56f1ff]/35 bg-[#56f1ff]/18 text-[#56f1ff]'
-                                                        }`}
-                                                    >
-                                                        {statusLabel}
-                                                    </span>
-                                                </div>
+                                {/* AESC输入和邀请人地址 */}
+                                <div className="grid grid-cols-1 gap-3 md:grid-cols-10">
+                                    {/* AESC输入 */}
+                                    <div className="relative rounded-xl border border-white/10 bg-white/5 p-3 md:col-span-3">
+                                        <label className="mb-1.5 block text-[11px] tracking-[0.2em] text-slate-400 uppercase">
+                                            {t('overview.purchase_amount_label')}
+                                        </label>
+                                        <div className="flex items-center gap-2">
+                                            <input
+                                                type="number"
+                                                value={aescAmount}
+                                                step="1"
+                                                min="1"
+                                                onChange={(e) => setAescAmount(e.target.value)}
+                                                placeholder={t('overview.enter_amount')}
+                                                className="w-full min-w-0 bg-transparent text-lg font-semibold text-white outline-none placeholder:text-slate-600"
+                                            />
+                                        </div>
+                                    </div>
 
-                                                <div className="relative z-10 mt-6 grid grid-cols-2 gap-4 text-sm text-slate-200/90">
-                                                    <div>
-                                                        <p className="mb-2 text-xs tracking-[0.25em] text-slate-400 uppercase">
-                                                            {t('overview.quota')}
-                                                        </p>
-                                                        <p className="text-lg font-semibold text-white">
-                                                            {(stage.tokens / 1000000).toLocaleString()}M
-                                                        </p>
-                                                    </div>
-                                                    <div>
-                                                        <p className="mb-2 text-xs tracking-[0.25em] text-slate-400 uppercase">
-                                                            {t('overview.target_raise')}
-                                                        </p>
-                                                        <p className="text-lg font-semibold text-white">${(stage.target / 1000000).toFixed(1)}M</p>
-                                                    </div>
-                                                    <div>
-                                                        <p className="mb-2 text-xs tracking-[0.25em] text-slate-400 uppercase">
-                                                            {t('overview.raised')}
-                                                        </p>
-                                                        <p className="bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-lg font-semibold text-transparent">
-                                                            ${(raised / 1000000).toFixed(2)}M
-                                                        </p>
-                                                    </div>
-                                                    <div>
-                                                        <p className="mb-2 text-xs tracking-[0.25em] text-slate-400 uppercase">
-                                                            {t('overview.stage_progress')}
-                                                        </p>
-                                                        <p className="text-lg font-semibold text-white">{stage.progress}%</p>
-                                                    </div>
-                                                </div>
+                                    {/* 邀请人地址 */}
+                                    <div className="rounded-xl border border-white/10 bg-white/5 p-3 md:col-span-7">
+                                        <label className="mb-1.5 block text-[11px] tracking-[0.2em] text-slate-400 uppercase">
+                                            {t('overview.referrer_address_label')}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={referrerAddress}
+                                            onChange={(e) => setReferrerAddress(e.target.value)}
+                                            placeholder={t('overview.enter_wallet_address')}
+                                            className="w-full bg-transparent text-sm text-white outline-none placeholder:text-slate-600"
+                                        />
+                                    </div>
+                                </div>
 
-                                                <div className="relative z-10 mt-6">
-                                                    <ProgressBar
-                                                        progress={stage.progress}
-                                                        color={
-                                                            isUpcoming
-                                                                ? 'from-[#6f89ff] via-[#4fe3ff] to-[#20e3b2]'
-                                                                : 'from-[#56f1ff] via-[#22edc7] to-[#18f39a]'
-                                                        }
-                                                        height="h-2"
-                                                        showPercentage={false}
-                                                    />
-                                                </div>
+                                {/* 需支付提示 */}
+                                {isValidAescAmount && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="flex items-center justify-between rounded-lg border border-[#56f1ff]/30 bg-[#56f1ff]/10 px-2.5 py-1.5"
+                                    >
+                                        <div>
+                                            <p className="text-[10px] tracking-wider text-slate-400 uppercase">{t('overview.payment_required')}</p>
+                                            <p className="text-base font-bold text-[#56f1ff]">{estimatedUsdt.toFixed(4)} USDT</p>
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="text-[10px] text-slate-500">{t('overview.unit_price')}</p>
+                                            <p className="text-xs font-medium text-slate-300">${currentStagePrice.toFixed(3)}</p>
+                                        </div>
+                                    </motion.div>
+                                )}
 
-                                                <motion.button
-                                                    whileHover={!isUpcoming && !isCompleted ? { scale: 1.02 } : {}}
-                                                    whileTap={!isUpcoming && !isCompleted ? { scale: 0.98 } : {}}
-                                                    disabled={isUpcoming || isCompleted}
-                                                    className={`relative z-10 mt-6 w-full rounded-xl border px-4 py-3 text-sm font-semibold transition-all duration-300 ${
-                                                        isUpcoming
-                                                            ? 'cursor-not-allowed border-white/10 bg-white/8 text-slate-400'
-                                                            : isCompleted
-                                                              ? 'cursor-not-allowed border-[#22edc7]/40 bg-[#22edc7]/18 text-[#22edc7]'
-                                                              : 'border-transparent bg-gradient-to-r from-[#616bff] via-[#4b76ff] to-[#37e7ff] text-slate-900 shadow-[0_25px_60px_-30px_rgba(82,115,255,0.65)] hover:shadow-[0_30px_70px_-30px_rgba(67,240,255,0.65)]'
-                                                    }`}
-                                                >
-                                                    {isUpcoming ? t('overview.soon') : isCompleted ? t('overview.soldout') : t('overview.open')}
-                                                </motion.button>
-                                            </div>
-                                        </motion.div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-
-                        <div className="mt-6 flex items-center justify-between gap-4">
-                            <div className="flex items-center gap-2">
-                                {stages.map((stage, index) => (
-                                    <button
-                                        key={stage.id}
-                                        onClick={() => scrollTo(index)}
-                                        className={`size-2.5 rounded-full transition-all duration-300 ${selectedIndex === index ? 'scale-110 bg-white shadow-[0_0_0_4px_rgba(86,241,255,0.25)]' : 'bg-white/30 hover:bg-white/60'}`}
-                                        aria-label={t('overview.goto', {
-                                            stage: t('overview.stage_label', { num: stage.id.toString().padStart(2, '0') }),
-                                        })}
-                                    />
-                                ))}
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <button
-                                    onClick={scrollPrev}
-                                    disabled={!canScrollPrev}
-                                    className={`size-10 rounded-full border border-white/15 bg-white/5 text-white/80 transition ${canScrollPrev ? 'hover:bg-white/10 hover:text-white' : 'cursor-not-allowed opacity-40'}`}
-                                    aria-label={t('overview.prev')}
+                                {/* 认购按钮 */}
+                                <motion.button
+                                    whileHover={isConnected && isValidAescAmount && isValidReferrerAddress ? { scale: 1.02 } : {}}
+                                    whileTap={isConnected && isValidAescAmount && isValidReferrerAddress ? { scale: 0.98 } : {}}
+                                    onClick={handleBuy}
+                                    disabled={
+                                        !isConnected ||
+                                        !isValidAescAmount ||
+                                        !isValidReferrerAddress ||
+                                        isApproving ||
+                                        isApproveConfirming ||
+                                        isBuying ||
+                                        isBuyConfirming
+                                    }
+                                    className={`w-full rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300 ${
+                                        !isConnected || !isValidAescAmount || !isValidReferrerAddress
+                                            ? 'cursor-not-allowed border border-white/10 bg-white/8 text-slate-400'
+                                            : 'bg-gradient-to-r from-[#616bff] via-[#4b76ff] to-[#37e7ff] text-white shadow-[0_25px_60px_-30px_rgba(82,115,255,0.65)] hover:shadow-[0_30px_70px_-30px_rgba(67,240,255,0.65)]'
+                                    }`}
                                 >
-                                    <ArrowLeft className="mx-auto h-4 w-4" />
-                                </button>
-                                <button
-                                    onClick={scrollNext}
-                                    disabled={!canScrollNext}
-                                    className={`size-10 rounded-full border border-white/15 bg-white/5 text-white/80 transition ${canScrollNext ? 'hover:bg-white/10 hover:text-white' : 'cursor-not-allowed opacity-40'}`}
-                                    aria-label={t('overview.next')}
-                                >
-                                    <ArrowRight className="mx-auto h-4 w-4" />
-                                </button>
+                                    {!isConnected
+                                        ? t('overview.connect_wallet_first')
+                                        : !isValidAescAmount
+                                          ? t('overview.enter_valid_amount')
+                                          : !isValidReferrerAddress
+                                            ? referrerAddressError === 'empty'
+                                                ? t('overview.enter_referrer_address')
+                                                : referrerAddressError === 'invalid'
+                                                  ? t('overview.referrer_address_invalid')
+                                                  : referrerAddressError === 'self'
+                                                    ? t('overview.referrer_cannot_be_self')
+                                                    : t('overview.enter_referrer_address')
+                                            : isApproving || isApproveConfirming
+                                              ? t('overview.approving')
+                                              : isBuying || isBuyConfirming
+                                                ? t('overview.purchasing')
+                                                : t('overview.purchase_now')}
+                                </motion.button>
+
+                                {/* 可领取信息 */}
+                                <div className="rounded-xl border border-[#22edc7]/20 bg-[#22edc7]/5 p-3">
+                                    <div className="mb-2.5 flex items-center justify-between">
+                                        <span className="text-[11px] tracking-[0.2em] text-slate-400 uppercase">
+                                            {t('overview.claimable_amount')}
+                                        </span>
+                                        <span className="text-base font-bold text-[#22edc7]">{formatUnits(pendingAmount[0], decimals)} AESC</span>
+                                    </div>
+                                    <div className="mb-2.5 flex items-center justify-between">
+                                        <span className="text-[11px] tracking-[0.2em] text-slate-400 uppercase">
+                                            {t('overview.referral_reward_amount')}
+                                        </span>
+                                        <span className="text-base font-bold text-[#22edc7]">{formatUnits(pendingAmount[1], decimals)} AESC</span>
+                                    </div>
+                                    <motion.button
+                                        whileHover={
+                                            isConnected &&
+                                            isEnded &&
+                                            (pendingAmount[0] > 0 || pendingAmount[1] > 0) &&
+                                            !isClaiming &&
+                                            !isClaimConfirming
+                                                ? { scale: 1.02 }
+                                                : {}
+                                        }
+                                        whileTap={
+                                            isConnected &&
+                                            isEnded &&
+                                            (pendingAmount[0] > 0 || pendingAmount[1] > 0) &&
+                                            !isClaiming &&
+                                            !isClaimConfirming
+                                                ? { scale: 0.98 }
+                                                : {}
+                                        }
+                                        onClick={handleClaim}
+                                        disabled={
+                                            !isConnected ||
+                                            !isEnded ||
+                                            (pendingAmount[0] <= 0 && pendingAmount[1] <= 0) ||
+                                            isClaiming ||
+                                            isClaimConfirming
+                                        }
+                                        className={`w-full rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-300 ${
+                                            !isConnected ||
+                                            !isEnded ||
+                                            (pendingAmount[0] <= 0 && pendingAmount[1] <= 0) ||
+                                            isClaiming ||
+                                            isClaimConfirming
+                                                ? 'cursor-not-allowed border-white/10 bg-white/8 text-slate-400'
+                                                : 'border-[#22edc7]/40 bg-[#22edc7]/15 text-[#22edc7] hover:bg-[#22edc7]/25'
+                                        }`}
+                                    >
+                                        {isClaiming || isClaimConfirming
+                                            ? t('overview.claiming')
+                                            : !isEnded
+                                              ? t('overview.sale_not_ended')
+                                              : pendingAmount[0] > 0 || pendingAmount[1] > 0
+                                                ? t('overview.claim_tokens')
+                                                : t('overview.no_claimable')}
+                                    </motion.button>
+
+                                    {/* 领取提示信息 */}
+                                    <div className="mt-2.5 text-center">
+                                        {!isEnded ? (
+                                            <p className="flex items-center justify-center gap-1 text-[10px] text-gray-400/80">
+                                                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                    />
+                                                </svg>
+                                                {t('overview.sale_in_progress_tip')}
+                                            </p>
+                                        ) : pendingAmount[0] > 0 || pendingAmount[1] > 0 ? (
+                                            <p className="flex items-center justify-center gap-1 text-[10px] text-[#22edc7]/80">
+                                                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                    />
+                                                </svg>
+                                                {t('overview.sale_ended_can_claim')}
+                                            </p>
+                                        ) : (
+                                            <p className="text-[10px] text-slate-500">{t('overview.no_claimable_tokens')}</p>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </motion.div>

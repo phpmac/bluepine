@@ -7,6 +7,12 @@ export default parseAbi([
     'function getStageInfo(uint256 _index) external view returns (uint256, uint256, uint256, uint256)',
     // 获得当前阶段信息
     'function getCurrentStage() external view returns (uint256 index, uint256 cap, uint256 sold, uint256 available, uint256 priceNumerator, uint256 priceDenominator)',
+    // 获取所有阶段信息
+    'function getAllStageInfo() external view returns ((uint256 cap, uint256 sold, uint256 priceNumerator, uint256 priceDenominator, address paymentReceiver)[] stageList)',
+    // 募资开始时间
+    'function ieoStartTime() external view returns (uint256)',
+    // 募资结束时间
+    'function ieoEndTime() external view returns (uint256)',
     // 用户购买
     'function buy(uint256 _tokenAmount, address _referrer) external',
     // 用户提取

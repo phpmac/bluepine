@@ -17,7 +17,8 @@ export const metadata = {
 };
 
 // for custom networks visit -> https://docs.reown.com/appkit/react/core/custom-networks
-export const networks = [bsc, bscTestnet] as [AppKitNetwork, ...AppKitNetwork[]];
+const activeNetworks: AppKitNetwork[] = import.meta.env.VITE_APP_ENV === 'local' ? [bscTestnet] : [bsc];
+export const networks = activeNetworks as [AppKitNetwork, ...AppKitNetwork[]];
 
 //Set up the Wagmi Adapter (Config)
 export const wagmiAdapter = new WagmiAdapter({

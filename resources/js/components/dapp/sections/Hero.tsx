@@ -1,34 +1,31 @@
-import { StageData } from '@/types';
+import { type StageData } from '@/types';
 import { motion } from 'framer-motion';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { ArrowRight } from 'lucide-react';
 import React from 'react';
-import { formatEther } from 'viem';
-import { ieoStages } from '../../../data/icoData';
+import { formatUnits } from 'viem';
 import { links } from '../../../data/links';
 import { Button } from '../common/Button';
 import { ProgressBar } from '../common/ProgressBar';
 
-export const Hero: React.FC<{ currentStageData: StageData | null }> = ({ currentStageData }) => {
+export const Hero: React.FC<{
+    decimals: number; // aesc代币精度
+    stageCount: number; // 阶段数量
+    allStageInfo: StageData[]; // 所有阶段信息
+    ieoStartTime: number; // 募资开始时间
+    ieoEndTime: number; // 募资结束时间
+    currentStage: StageData; // 当前阶段数据
+    currentStagePrice: number; // 当前阶段价格
+    currentStageProgress: number; // 当前阶段完成进度
+    isEnded: boolean; // 是否结束
+}> = ({ decimals, currentStage, currentStagePrice, currentStageProgress }) => {
     const { t } = useLaravelReactI18n();
+
     const scrollToPrivateSale = () => {
         const element = document.getElementById('private-sale-overview');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
-    };
-
-    const activeStage = ieoStages.find((stage) => stage.progress > 0 && stage.progress < 100) ?? ieoStages[0];
-    const stageRaised = (activeStage.target * activeStage.progress) / 100;
-
-    // 基于链上数据的阶段信息与进度(有则用链上,无则回退本地预设)
-    const chainStageIndex = currentStageData ? Number(currentStageData.index) + 1 : null;
-    const chainPrice = currentStageData ? Number(currentStageData.priceNumerator) / Number(currentStageData.priceDenominator) : null;
-    const chainProgress =
-        currentStageData && currentStageData.cap > 0n ? Number((currentStageData.sold * 10000n) / currentStageData.cap) / 100 : null;
-    const toMillions = (amount: bigint): string => {
-        const tokens = Number(formatEther(amount)); // 18位精度 -> 代币数量
-        return (tokens / 1_000_000).toFixed(2);
     };
 
     return (
@@ -111,17 +108,17 @@ export const Hero: React.FC<{ currentStageData: StageData | null }> = ({ current
                                 <p className="mb-4 text-sm tracking-[0.3em] text-slate-200/80 uppercase">{t('hero.token_sale')}</p>
                                 <div className="flex flex-wrap items-center justify-between gap-4">
                                     <div>
-                                        <h3 className="mb-1 text-2xl font-bold text-white">{t('hero.stage_fmt', { num: chainStageIndex ?? 1 })}</h3>
+                                        <h3 className="mb-1 text-2xl font-bold text-white">
+                                            {t('hero.stage_fmt', { num: Number(currentStage.index) + 1 })}
+                                        </h3>
                                         <p className="text-sm text-slate-300">
                                             {t('hero.current_price_prefix')}&nbsp;
-                                            <span className="font-semibold text-[#56f1ff]">
-                                                ${chainPrice !== null ? chainPrice.toFixed(3) : activeStage.price.toFixed(3)}
-                                            </span>
+                                            <span className="font-semibold text-[#56f1ff]">${currentStagePrice}</span>
                                         </p>
                                     </div>
                                     <div className="text-right">
                                         <p className="bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-3xl font-black text-transparent">
-                                            {chainProgress !== null ? chainProgress : activeStage.progress}%
+                                            {currentStageProgress.toFixed(2)}%
                                         </p>
                                         <p className="text-xs text-slate-400">{t('hero.stage_progress')}</p>
                                     </div>
@@ -130,14 +127,10 @@ export const Hero: React.FC<{ currentStageData: StageData | null }> = ({ current
                                 <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4">
                                     <div className="mb-3 flex justify-between text-xs text-slate-300">
                                         <span>{t('hero.sold_label')}</span>
-                                        <span>
-                                            {currentStageData
-                                                ? `${toMillions(currentStageData.sold)}M\u00A0/\u00A0${toMillions(currentStageData.cap)}M`
-                                                : `${(stageRaised / 1000000).toFixed(2)}M\u00A0/\u00A0${(activeStage.target / 1000000).toFixed(2)}M`}
-                                        </span>
+                                        <span>{formatUnits(currentStage.sold, decimals)}</span>
                                     </div>
                                     <ProgressBar
-                                        progress={chainProgress !== null ? chainProgress : activeStage.progress}
+                                        progress={currentStageProgress}
                                         color="from-[#6f89ff] via-[#4fe3ff] to-[#20e3b2]"
                                         height="h-2.5"
                                         showPercentage={false}

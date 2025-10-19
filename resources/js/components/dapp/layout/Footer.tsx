@@ -1,12 +1,12 @@
 import { links } from '@/data/links';
 import { motion } from 'framer-motion';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Github, Mail, MessageCircle, Twitter } from 'lucide-react';
+import { Github, Mail, Send, Twitter } from 'lucide-react';
 import React from 'react';
 
 const socialLinks = [
     { icon: Twitter, href: links.twitter, label: 'Twitter' },
-    { icon: MessageCircle, href: links.telegram, label: 'Telegram' },
+    { icon: Send, href: links.telegram, label: 'Telegram' },
     { icon: Github, href: links.github, label: 'GitHub' },
     { icon: Mail, href: links.email, label: 'Email' },
 ];

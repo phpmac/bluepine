@@ -9,7 +9,7 @@ export const links = {
     // telegram链接
     telegram: 'https://t.me/bluepinefoundation',
     // twitter链接
-    twitter: 'https://x.com/bluepinefoundation',
+    twitter: 'https://x.com/bluepinetech',
     // discord链接
     discord: 'https://discord.gg/YY7JG6kr',
     // medium链接
