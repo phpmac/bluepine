@@ -20,7 +20,7 @@ declare global {
     const route: typeof routeFn;
 }
 
-const appName = import.meta.env.VITE_APP_NAME || 'Agri-Eco Smart Chain';
+const appName = import.meta.env.VITE_APP_NAME || 'AGRI-ECO SMART CHAIN';
 
 // 创建 QueryClient 实例
 const queryClient = new QueryClient();

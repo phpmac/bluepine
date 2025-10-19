@@ -76,7 +76,7 @@ export const About: React.FC = () => {
                                 {t('features.badge', { defaultValue: 'Explore our architecture' })}
                             </span>
                             <h2 className="mt-6 text-3xl leading-tight font-bold text-white md:text-3xl">
-                                {t('features.header', { defaultValue: 'Agri-Eco Smart Chain tri-fusion, tech empowerment' })}
+                                {t('features.header', { defaultValue: 'AGRI-ECO SMART CHAIN tri-fusion, tech empowerment' })}
                             </h2>
                             <p className="mt-4 text-xs leading-relaxed text-slate-300/90">
                                 {t('features.header_desc', {

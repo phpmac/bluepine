@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
                                 <img src="/logo.svg" className="size-10" />
                             </div>
                             <div>
-                                <p className="text-lg font-semibold text-white">Agri-Eco Smart Chain</p>
+                                <p className="text-lg font-semibold text-white">AGRI-ECO SMART CHAIN</p>
                                 <p className="text-xs tracking-[0.3em] text-slate-300/80 uppercase">Modular Agriculture Infrastructure</p>
                             </div>
                         </div>
@@ -73,7 +73,7 @@ export const Footer: React.FC = () => {
 
                     <div className="text-sm text-slate-400/90">
                         <p>
-                            © {new Date().getFullYear()} Agri-Eco Smart Chain. {t('footer.copyright')}
+                            © {new Date().getFullYear()} AGRI-ECO SMART CHAIN. {t('footer.copyright')}
                         </p>
                     </div>
                 </div>

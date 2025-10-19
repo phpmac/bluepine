@@ -77,18 +77,18 @@ export const Header: React.FC = () => {
                             <img src="/logo.svg" className="size-10" />
                         </div>
                         <div>
-                            <p className="text-lg leading-tight font-bold text-white">Agri-Eco Smart Chain</p>
+                            <p className="text-lg leading-tight font-bold text-white">AGRI-ECO SMART CHAIN</p>
                             <p className="text-xs tracking-wider text-slate-400">{t('tagline')}</p>
                         </div>
                     </button>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden items-center space-x-6 lg:flex xl:space-x-8">
+                    <nav className="hidden items-center space-x-6 px-8 lg:flex xl:space-x-8">
                         {navItems.map((item) => (
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
-                                className="group relative text-sm font-semibold tracking-[0.18em] text-slate-200/80 uppercase transition-colors duration-300 hover:text-white"
+                                className="group relative cursor-pointer text-xs font-semibold tracking-[0.18em] text-slate-200/80 uppercase transition-colors duration-300 hover:text-white"
                             >
                                 <span>{item.label}</span>
                                 <span className="absolute inset-x-0 -bottom-3 h-px bg-gradient-to-r from-transparent via-[#5b7fff] to-transparent opacity-0 group-hover:opacity-100" />
