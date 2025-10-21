@@ -19,7 +19,7 @@ export const links = {
     // email链接
     email: 'mailto:info@bluepinefoundation.com',
     // 审计链接
-    audit: 'https://www.bluepinefoundation.com/security-audit',
+    audit: 'https://github.com/bluepinefoundation/token/blob/main/REP-AESC__final-20251020T011921Z.pdf',
     // TODO 需要放英文的
     // 品牌素材链接
     brandAssets: 'https://www.bluepinefoundation.com/brand-assets',
