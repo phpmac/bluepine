@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import { useAppKit, useAppKitAccount } from '@reown/appkit/react';
 import { motion } from 'framer-motion';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
@@ -72,7 +73,7 @@ export const Header: React.FC = () => {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20 items-center justify-between">
                     {/* Logo */}
-                    <button onClick={() => scrollToSection('hero')} className="flex items-center space-x-3 text-left">
+                    <Link href="/" className="flex items-center space-x-3 text-left transition-opacity hover:opacity-80">
                         <div className="relative">
                             <img src="/logo.svg" className="size-10" />
                         </div>
@@ -80,7 +81,7 @@ export const Header: React.FC = () => {
                             <p className="text-lg leading-tight font-bold text-white">AGRI-ECO SMART CHAIN</p>
                             <p className="text-xs tracking-wider text-slate-400">{t('tagline')}</p>
                         </div>
-                    </button>
+                    </Link>
 
                     {/* Desktop Navigation */}
                     <nav className="hidden items-center space-x-6 px-8 lg:flex xl:space-x-8">
