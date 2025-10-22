@@ -1,14 +1,34 @@
 import { links } from '@/data/links';
 import { motion } from 'framer-motion';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Github, Mail, Send, Twitter } from 'lucide-react';
 import React from 'react';
 
 const socialLinks = [
-    { icon: Twitter, href: links.twitter, label: 'Twitter' },
-    { icon: Send, href: links.telegram, label: 'Telegram' },
-    { icon: Github, href: links.github, label: 'GitHub' },
-    { icon: Mail, href: links.email, label: 'Email' },
+    {
+        icon: <img src="/images/x.svg" alt="Twitter" className="p-1" />,
+        href: links.twitter,
+        label: 'Twitter',
+    },
+    {
+        icon: <img src="/images/telegram.svg" alt="Telegram" className="p-1" />,
+        href: links.telegram,
+        label: 'Telegram',
+    },
+    {
+        icon: <img src="/images/github.svg" alt="GitHub" className="p-1" />,
+        href: links.github,
+        label: 'GitHub',
+    },
+    {
+        icon: <img src="/images/mail.svg" alt="Email" className="p-1" />,
+        href: links.email,
+        label: 'Email',
+    },
+    {
+        icon: <img src="/images/certik.png" alt="Security Audit" className="object-contain p-1" />,
+        href: links.audit,
+        label: 'Security Audit',
+    },
 ];
 
 export const Footer: React.FC = () => {
@@ -55,16 +75,16 @@ export const Footer: React.FC = () => {
                 <div className="mt-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
                     <div className="flex flex-col gap-3">
                         <div className="flex space-x-3">
-                            {socialLinks.map(({ icon: Icon, href, label }) => (
+                            {socialLinks.map(({ icon, href, label }) => (
                                 <motion.a
                                     key={label}
                                     href={href}
                                     target="_blank"
                                     aria-label={label}
                                     whileHover={{ y: -3, scale: 1.05 }}
-                                    className="flex size-11 items-center justify-center rounded-2xl border border-white/15 bg-white/5 text-slate-200 transition-colors hover:bg-white/10 hover:text-white"
+                                    className="flex size-11 items-center justify-center rounded-2xl border border-white/30 bg-white/35 transition-all hover:border-white/50 hover:bg-white/45"
                                 >
-                                    <Icon className="h-5 w-5" />
+                                    {icon}
                                 </motion.a>
                             ))}
                         </div>
