@@ -12,7 +12,6 @@ import { config as address } from '@/lib/address';
 import { erc20Abi } from '@/lib/erc20Abi';
 import { StageData } from '@/types';
 import { Head } from '@inertiajs/react';
-import dayjs from 'dayjs';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { useEffect, useState } from 'react';
 import { useAccount, useReadContract } from 'wagmi';
@@ -136,7 +135,6 @@ export default function Welcome() {
 
     useEffect(() => {
         if (currentStageData) {
-            console.debug(`当前阶段数据`, currentStageData);
             if (Array.isArray(currentStageData) && currentStageData.length === 6) {
                 setCurrentStageDataState({
                     index: currentStageData[0] as bigint,
@@ -157,14 +155,6 @@ export default function Welcome() {
             setPendingAmountState(pendingAmountData as [bigint, bigint]);
         }
 
-        if (getAllStageInfo) {
-            console.debug(`所有阶段信息`, getAllStageInfo);
-        }
-
-        if (currentStageError) {
-            console.error('currentStageError', currentStageError);
-        }
-
         if (currentStageData) {
             setCurrentStageDataState({
                 index: currentStageData[0],
@@ -174,11 +164,6 @@ export default function Welcome() {
                 priceNumerator: currentStageData[4],
                 priceDenominator: currentStageData[5],
             });
-        }
-
-        if (ieoStartTime && ieoEndTime) {
-            console.debug('私募开始时间:', dayjs.unix(Number(ieoStartTime)).format('YYYY-MM-DD HH:mm:ss [UTC]'));
-            console.debug('私募结束时间:', dayjs.unix(Number(ieoEndTime)).format('YYYY-MM-DD HH:mm:ss [UTC]'));
         }
     }, [currentStageData, getStageCount, getAllStageInfo, currentStageError, ieoStartTime, ieoEndTime, aescDecimalsData, pendingAmountData]);
 
