@@ -90,7 +90,11 @@ export default function ConsolePage() {
                             {/* IEO 合约工具区 */}
                             <div className="mt-8 grid grid-cols-1 gap-4">
                                 <BuyCard decimals={16} currentStagePrice={currentStagePrice} onSuccess={() => setAescRefresh(Date.now())} />
-                                <ClaimCard contract={address.buy as `0x${string}`} decimals={16} remainingClaimableAmount={remainingClaimableAmountState} />
+                                <ClaimCard
+                                    contract={address.buy as `0x${string}`}
+                                    decimals={16}
+                                    remainingClaimableAmount={remainingClaimableAmountState}
+                                />
                                 <BuyReadPanel contract={address.buy as `0x${string}`} />
                                 <BuyAdminPanel contract={address.buy as `0x${string}`} />
                             </div>

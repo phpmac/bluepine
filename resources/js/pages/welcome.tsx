@@ -134,7 +134,14 @@ export default function Welcome() {
     }, [ieoEndTime]);
 
     // 用户投资数据
-    const [userInvestmentDataState, setUserInvestmentDataState] = useState<[bigint, bigint, bigint, bigint, bigint, bigint]>([0n, 0n, 0n, 0n, 0n, 0n]);
+    const [userInvestmentDataState, setUserInvestmentDataState] = useState<[bigint, bigint, bigint, bigint, bigint, bigint]>([
+        0n,
+        0n,
+        0n,
+        0n,
+        0n,
+        0n,
+    ]);
     // 剩余可领取数量
     const [remainingClaimableAmountState, setRemainingClaimableAmountState] = useState<bigint>(0n);
 
@@ -151,7 +158,6 @@ export default function Welcome() {
             setRemainingClaimableAmountState(userInvestmentData[0] - userInvestmentData[1]);
         }
     }, [userInvestmentData]);
-
 
     useEffect(() => {
         if (currentStageData) {
