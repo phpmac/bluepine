@@ -10,7 +10,7 @@ import ieoAbi from '@/lib/abi';
 import { config as address } from '@/lib/address';
 import { Head } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
-import { useReadContract } from 'wagmi';
+import { useAccount, useReadContract } from 'wagmi';
 
 export default function ConsolePage() {
     // 状态: 控制两个资产的刷新节奏
@@ -33,6 +33,25 @@ export default function ConsolePage() {
             setCurrentStagePrice(priceNumerator / priceDenominator);
         }
     }, [currentStageData]);
+
+    // 用户投资数据
+    const { address: userAddress, isConnected } = useAccount();
+    // 剩余可领取数量
+    const [remainingClaimableAmountState, setRemainingClaimableAmountState] = useState<bigint>(0n);
+
+    const { data: userInvestmentData } = useReadContract({
+        address: address.buy as `0x${string}`,
+        abi: ieoAbi,
+        functionName: 'investors',
+        args: userAddress ? [userAddress] : undefined,
+        query: { enabled: !!userAddress && isConnected },
+    });
+
+    useEffect(() => {
+        if (userInvestmentData) {
+            setRemainingClaimableAmountState(userInvestmentData[0] - userInvestmentData[1]);
+        }
+    }, [userInvestmentData]);
 
     return (
         <>
@@ -71,7 +90,7 @@ export default function ConsolePage() {
                             {/* IEO 合约工具区 */}
                             <div className="mt-8 grid grid-cols-1 gap-4">
                                 <BuyCard decimals={16} currentStagePrice={currentStagePrice} onSuccess={() => setAescRefresh(Date.now())} />
-                                <ClaimCard contract={address.buy as `0x${string}`} decimals={16} />
+                                <ClaimCard contract={address.buy as `0x${string}`} decimals={16} remainingClaimableAmount={remainingClaimableAmountState} />
                                 <BuyReadPanel contract={address.buy as `0x${string}`} />
                                 <BuyAdminPanel contract={address.buy as `0x${string}`} />
                             </div>

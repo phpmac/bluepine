@@ -10,11 +10,13 @@ type ClaimCardProps = {
     contract: `0x${string}`;
     /** 代币 decimals */
     decimals?: number;
+    /** 剩余可领取数量 */
+    remainingClaimableAmount?: bigint;
     /** 成功领取回调 */
     onSuccess?: () => void;
 };
 
-export const ClaimCard: React.FC<ClaimCardProps> = ({ contract, decimals = 16, onSuccess }) => {
+export const ClaimCard: React.FC<ClaimCardProps> = ({ contract, decimals = 16, remainingClaimableAmount, onSuccess }) => {
     const { address, isConnected } = useAccount();
     // 查询待领取额度
     const {
@@ -40,9 +42,9 @@ export const ClaimCard: React.FC<ClaimCardProps> = ({ contract, decimals = 16, o
 
     const totalAmount = investorAmount + referralAmount;
 
-    const formattedInvestor = formatUnits(investorAmount, decimals);
     const formattedReferral = formatUnits(referralAmount, decimals);
     const formattedTotal = formatUnits(totalAmount, decimals);
+    const formattedRemaining = remainingClaimableAmount ? formatUnits(remainingClaimableAmount, decimals) : '0';
 
     const { data: hash, writeContract, isPending } = useWriteContract();
     const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash });
@@ -83,8 +85,8 @@ export const ClaimCard: React.FC<ClaimCardProps> = ({ contract, decimals = 16, o
             </div>
             <div className="mt-4 grid grid-cols-1 gap-2 text-xs text-slate-400 md:grid-cols-2">
                 <div>
-                    每月可领取数量
-                    <span className="ml-2 text-sm text-white">{formattedInvestor}</span>
+                    剩余可领取数量
+                    <span className="ml-2 text-sm text-white">{formattedRemaining}</span>
                 </div>
                 <div>
                     已获得推荐奖励数量

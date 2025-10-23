@@ -133,6 +133,26 @@ export default function Welcome() {
         }
     }, [ieoEndTime]);
 
+    // 用户投资数据
+    const [userInvestmentDataState, setUserInvestmentDataState] = useState<[bigint, bigint, bigint, bigint, bigint, bigint]>([0n, 0n, 0n, 0n, 0n, 0n]);
+    // 剩余可领取数量
+    const [remainingClaimableAmountState, setRemainingClaimableAmountState] = useState<bigint>(0n);
+
+    const { data: userInvestmentData } = useReadContract({
+        address: address.buy as `0x${string}`,
+        abi: ieoAbi,
+        functionName: 'investors',
+        args: userAddress ? [userAddress] : undefined,
+        query: { enabled: !!userAddress && isConnected },
+    });
+    useEffect(() => {
+        if (userInvestmentData) {
+            setUserInvestmentDataState(userInvestmentData as [bigint, bigint, bigint, bigint, bigint, bigint]);
+            setRemainingClaimableAmountState(userInvestmentData[0] - userInvestmentData[1]);
+        }
+    }, [userInvestmentData]);
+
+
     useEffect(() => {
         if (currentStageData) {
             if (Array.isArray(currentStageData) && currentStageData.length === 6) {
@@ -200,6 +220,8 @@ export default function Welcome() {
                                     currentStagePrice={currentStagePriceState}
                                     currentStageProgress={currentStageProgressState}
                                     isEnded={isEndedState}
+                                    userInvestmentData={userInvestmentDataState}
+                                    remainingClaimableAmount={remainingClaimableAmountState}
                                 />
 
                                 {/* 私募概览 */}
@@ -216,6 +238,8 @@ export default function Welcome() {
                                     refetchCurrentStage={refetchCurrentStage}
                                     refetchPendingAmount={refetchPendingAmount}
                                     isEnded={isEndedState}
+                                    userInvestmentData={userInvestmentDataState}
+                                    remainingClaimableAmount={remainingClaimableAmountState}
                                 />
                             </>
                         )}

@@ -19,6 +19,8 @@ export default parseAbi([
     'function claim() external',
     // 查看可提取数量
     'function getUserClaimableAmount(address _account) external view returns (uint256, uint256)',
+    // 查看投资数据
+    'function investors(address _account) external view returns (uint256, uint256, uint256, uint256, uint256, uint256)',
     // 是否结束
     'function isEnded() external view returns (bool)',
     // 管理员设置系统开关

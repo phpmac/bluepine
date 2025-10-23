@@ -18,6 +18,8 @@ export const Hero: React.FC<{
     currentStagePrice: number; // 当前阶段价格
     currentStageProgress: number; // 当前阶段完成进度
     isEnded: boolean; // 是否结束
+    userInvestmentData: [bigint, bigint, bigint, bigint, bigint, bigint]; // 用户投资数据
+    remainingClaimableAmount: bigint; // 剩余可领取数量
 }> = ({ decimals, currentStage, currentStagePrice, currentStageProgress }) => {
     const { t } = useLaravelReactI18n();
 

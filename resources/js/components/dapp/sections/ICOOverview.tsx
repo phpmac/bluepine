@@ -24,6 +24,8 @@ export const PrivateSaleOverview: React.FC<{
     refetchCurrentStage: () => void; // 刷新当前阶段数据
     refetchPendingAmount: () => void; // 刷新可领取数量
     isEnded: boolean; // 是否结束
+    userInvestmentData: [bigint, bigint, bigint, bigint, bigint, bigint]; // 用户投资数据
+    remainingClaimableAmount: bigint; // 剩余可领取数量
 }> = ({
     decimals,
     currentStage,
@@ -33,6 +35,7 @@ export const PrivateSaleOverview: React.FC<{
     refetchCurrentStage,
     refetchPendingAmount,
     isEnded,
+    remainingClaimableAmount,
 }) => {
     const { t } = useLaravelReactI18n();
 
@@ -423,6 +426,14 @@ export const PrivateSaleOverview: React.FC<{
                                         </span>
                                         <span className="text-base font-bold text-[#22edc7]">
                                             {formatUnits(getUserClaimableAmount[0], decimals)} AESC
+                                        </span>
+                                    </div>
+                                    <div className="mb-2.5 flex items-center justify-between">
+                                        <span className="text-[11px] tracking-[0.2em] text-slate-400 uppercase">
+                                            {t('overview.claimable_amount_label')}
+                                        </span>
+                                        <span className="text-base font-bold text-[#22edc7]">
+                                            {formatUnits(remainingClaimableAmount, decimals)} AESC
                                         </span>
                                     </div>
                                     <div className="mb-2.5 flex items-center justify-between">

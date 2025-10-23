@@ -185,6 +185,7 @@
     "overview.purchasing": "认购中...",
     "overview.purchase_now": "立即认购",
     "overview.claimable_amount": "每月可领取数量",
+    "overview.claimable_amount_label": "剩余可领取数量",
     "overview.referral_reward_amount": "已获得推荐奖励数量",
     "overview.claiming": "领取中...",
     "overview.sale_not_ended": "私募未结束",
