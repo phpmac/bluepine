@@ -1,7 +1,9 @@
 import { Button } from '@/components/dapp/common/Button';
 import { Card } from '@/components/dapp/common/Card';
+import { SuccessModal } from '@/components/dapp/common/SuccessModal';
 import ieoAbi from '@/lib/abi';
-import React, { useEffect, useMemo, useRef } from 'react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { formatUnits } from 'viem';
 import { useAccount, useReadContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 
@@ -17,6 +19,7 @@ type ClaimCardProps = {
 };
 
 export const ClaimCard: React.FC<ClaimCardProps> = ({ contract, decimals = 16, remainingClaimableAmount, onSuccess }) => {
+    const { t } = useLaravelReactI18n();
     const { address, isConnected } = useAccount();
     // 查询待领取额度
     const {
@@ -51,9 +54,11 @@ export const ClaimCard: React.FC<ClaimCardProps> = ({ contract, decimals = 16, r
     const handledHashRef = useRef<string | null>(null);
 
     // hash 去重, 避免重复触发 onSuccess
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
     useEffect(() => {
         if (isSuccess && hash && handledHashRef.current !== hash) {
             handledHashRef.current = hash;
+            setShowSuccessModal(true);
             onSuccess?.();
             refetch();
         }
@@ -94,6 +99,15 @@ export const ClaimCard: React.FC<ClaimCardProps> = ({ contract, decimals = 16, r
                 </div>
             </div>
             <div className="mt-3 text-xs text-slate-500">* 认购立即获得认购数量的10%,剩下的币在12个月内线性解锁.</div>
+
+            {/* 领取成功弹窗 */}
+            <SuccessModal
+                isOpen={showSuccessModal}
+                txHash={hash || ''}
+                title={t('modal.claim_success_title')}
+                description={t('modal.claim_success_desc')}
+                onClose={() => setShowSuccessModal(false)}
+            />
         </Card>
     );
 };

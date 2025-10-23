@@ -191,5 +191,12 @@
     "overview.no_claimable": "No Claimable",
     "overview.sale_in_progress_tip": "Private sale in progress, claim after it ends",
     "overview.sale_ended_can_claim": "Private sale ended, you can claim tokens",
-    "overview.no_claimable_tokens": "No claimable tokens"
+    "overview.no_claimable_tokens": "No claimable tokens",
+    "modal.tx_hash": "Transaction Hash",
+    "modal.close": "Close",
+    "modal.view_explorer": "View on Explorer",
+    "modal.purchase_success_title": "Purchase Successful!",
+    "modal.purchase_success_desc": "Your purchase transaction has been successfully submitted to the blockchain",
+    "modal.claim_success_title": "Claim Successful!",
+    "modal.claim_success_desc": "Your token claim transaction has been successfully submitted to the blockchain"
 }

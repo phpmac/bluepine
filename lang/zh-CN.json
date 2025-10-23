@@ -193,5 +193,12 @@
     "overview.no_claimable": "暂无可领取",
     "overview.sale_in_progress_tip": "私募进行中,结束后才可领取代币",
     "overview.sale_ended_can_claim": "私募已结束,可以领取代币",
-    "overview.no_claimable_tokens": "暂无可领取的代币"
+    "overview.no_claimable_tokens": "暂无可领取的代币",
+    "modal.tx_hash": "交易哈希",
+    "modal.close": "关闭",
+    "modal.view_explorer": "查看区块链浏览器",
+    "modal.purchase_success_title": "认购成功!",
+    "modal.purchase_success_desc": "您的认购交易已成功提交到区块链,点击查看区块链浏览器记录",
+    "modal.claim_success_title": "领取成功!",
+    "modal.claim_success_desc": "您的代币领取交易已成功提交到区块链,点击查看区块链浏览器记录"
 }

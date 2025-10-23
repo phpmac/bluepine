@@ -1,9 +1,11 @@
 import { Button } from '@/components/dapp/common/Button';
 import { Card } from '@/components/dapp/common/Card';
+import { SuccessModal } from '@/components/dapp/common/SuccessModal';
 import ieoAbi from '@/lib/abi';
 import { config as address } from '@/lib/address';
 import { erc20Abi } from '@/lib/erc20Abi';
 import { motion } from 'framer-motion';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { getAddress, isAddress, parseUnits } from 'viem';
 import { useAccount, useReadContract, useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
@@ -18,6 +20,7 @@ type BuyCardProps = {
 };
 
 export const BuyCard: React.FC<BuyCardProps> = ({ decimals, currentStagePrice, onSuccess }) => {
+    const { t } = useLaravelReactI18n();
     const { address: userAddress, isConnected } = useAccount();
     const [aescAmount, setAescAmount] = useState('');
     const [referrerAddress, setReferrerAddress] = useState('');
@@ -117,11 +120,13 @@ export const BuyCard: React.FC<BuyCardProps> = ({ decimals, currentStagePrice, o
     }, [isApproveSuccess, simulateData, writeBuy]);
 
     // 购买成功后刷新
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
     useEffect(() => {
         if (isBuySuccess && buyHash && handledBuyHashRef.current !== buyHash) {
             handledBuyHashRef.current = buyHash;
             setAescAmount('');
             refetchAllowance();
+            setShowSuccessModal(true);
             onSuccess?.();
         }
     }, [isBuySuccess, buyHash, refetchAllowance, onSuccess]);
@@ -239,7 +244,14 @@ export const BuyCard: React.FC<BuyCardProps> = ({ decimals, currentStagePrice, o
                 </motion.div>
             )}
 
-            {isBuySuccess && <div className="mt-3 text-xs text-emerald-400">认购成功</div>}
+            {/* 认购成功弹窗 */}
+            <SuccessModal
+                isOpen={showSuccessModal}
+                txHash={buyHash || ''}
+                title={t('modal.purchase_success_title')}
+                description={t('modal.purchase_success_desc')}
+                onClose={() => setShowSuccessModal(false)}
+            />
         </Card>
     );
 };

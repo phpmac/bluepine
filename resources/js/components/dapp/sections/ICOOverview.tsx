@@ -10,6 +10,7 @@ import { formatUnits, getAddress, isAddress, parseUnits } from 'viem';
 import { useAccount, useReadContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 import { AnimatedCounter } from '../common/AnimatedCounter';
 import { ProgressBar } from '../common/ProgressBar';
+import { SuccessModal } from '../common/SuccessModal';
 
 export const PrivateSaleOverview: React.FC<{
     decimals: number; // aesc代币精度
@@ -137,6 +138,10 @@ export const PrivateSaleOverview: React.FC<{
         }
     }, [isApproveSuccess, isValidAescAmount, isValidReferrerAddress, aescAmount, decimals, referrerAddress, writeBuy]);
 
+    // 弹窗状态管理
+    const [showBuySuccessModal, setShowBuySuccessModal] = useState(false);
+    const [showClaimSuccessModal, setShowClaimSuccessModal] = useState(false);
+
     // 监听购买成功后刷新数据
     useEffect(() => {
         if (isBuySuccess) {
@@ -144,6 +149,7 @@ export const PrivateSaleOverview: React.FC<{
             refetchAllowance(); // 刷新授权额度
             refetchPendingAmount(); // 刷新可领取数量
             refetchCurrentStage(); // 刷新当前阶段数据
+            setShowBuySuccessModal(true); // 显示成功弹窗
         }
     }, [isBuySuccess, refetchAllowance, refetchPendingAmount, refetchCurrentStage]);
 
@@ -151,6 +157,7 @@ export const PrivateSaleOverview: React.FC<{
     useEffect(() => {
         if (isClaimSuccess) {
             refetchPendingAmount(); // 刷新可领取数量
+            setShowClaimSuccessModal(true); // 显示成功弹窗
         }
     }, [isClaimSuccess, refetchPendingAmount]);
 
@@ -526,6 +533,26 @@ export const PrivateSaleOverview: React.FC<{
                     </motion.div>
                 </div>
             </div>
+
+            {/* 认购成功弹窗 */}
+            <SuccessModal
+                isOpen={showBuySuccessModal}
+                txHash={buyHash || ''}
+                title={t('modal.purchase_success_title')}
+                description={t('modal.purchase_success_desc')}
+                isTestnet={true}
+                onClose={() => setShowBuySuccessModal(false)}
+            />
+
+            {/* 领取成功弹窗 */}
+            <SuccessModal
+                isOpen={showClaimSuccessModal}
+                txHash={claimHash || ''}
+                title={t('modal.claim_success_title')}
+                description={t('modal.claim_success_desc')}
+                isTestnet={true}
+                onClose={() => setShowClaimSuccessModal(false)}
+            />
         </section>
     );
 };
