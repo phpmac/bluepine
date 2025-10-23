@@ -24,7 +24,7 @@ export const ClaimCard: React.FC<ClaimCardProps> = ({ contract, decimals = 16, o
     } = useReadContract({
         address: contract,
         abi: buyAbi,
-        functionName: 'pendingAmount',
+        functionName: 'getUserClaimableAmount',
         args: address ? [address] : undefined,
         query: { enabled: !!address && isConnected },
     });
@@ -63,7 +63,7 @@ export const ClaimCard: React.FC<ClaimCardProps> = ({ contract, decimals = 16, o
         <Card className="p-5" hover={true}>
             <div className="flex items-center justify-between">
                 <div>
-                    <div className="text-xs text-slate-400">可领取总量</div>
+                    <div className="text-xs text-slate-400">每月可领取总量</div>
                     <div className="mt-1 text-2xl font-semibold text-white">{isFetching ? '加载中...' : formattedTotal}</div>
                 </div>
                 <Button
@@ -83,15 +83,15 @@ export const ClaimCard: React.FC<ClaimCardProps> = ({ contract, decimals = 16, o
             </div>
             <div className="mt-4 grid grid-cols-1 gap-2 text-xs text-slate-400 md:grid-cols-2">
                 <div>
-                    投资者可领取
+                    每月可领取数量
                     <span className="ml-2 text-sm text-white">{formattedInvestor}</span>
                 </div>
                 <div>
-                    推荐奖励可领取
+                    已获得推荐奖励数量
                     <span className="ml-2 text-sm text-white">{formattedReferral}</span>
                 </div>
             </div>
-            <div className="mt-3 text-xs text-slate-500">* 需在募资结束后方可领取。含投资者一次性释放与推荐奖励。</div>
+            <div className="mt-3 text-xs text-slate-500">* 认购立即获得认购数量的10%,剩下的币在12个月内线性解锁.</div>
         </Card>
     );
 };

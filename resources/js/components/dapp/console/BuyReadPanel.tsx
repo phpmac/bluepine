@@ -21,7 +21,7 @@ export const BuyReadPanel: React.FC<BuyReadPanelProps> = ({ contract }) => {
     const { data: pending } = useReadContract({
         address: contract,
         abi: buyAbi,
-        functionName: 'pendingAmount',
+        functionName: 'getUserClaimableAmount',
         args: address ? [address] : undefined,
         query: { enabled: !!address && isConnected },
     });

@@ -6,7 +6,7 @@ export const buyAbi = parseAbi([
     'function getStageCount() external view returns (uint256)',
     'function getStageInfo(uint256 _index) external view returns (uint256, uint256, uint256, uint256)',
     'function getCurrentStage() external view returns (uint256 index, uint256 cap, uint256 sold, uint256 available, uint256 priceNumerator, uint256 priceDenominator)',
-    'function pendingAmount(address _account) external view returns (uint256, uint256)',
+    'function getUserClaimableAmount(address _account) external view returns (uint256, uint256)',
     'function isEnded() external view returns (bool)',
     'function ieoStartTime() external view returns (uint256)',
     'function ieoEndTime() external view returns (uint256)',

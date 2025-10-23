@@ -53,11 +53,12 @@ export const Header: React.FC = () => {
     };
 
     const navItems = [
-        { id: 'hero', label: t('nav.hero') },
-        { id: 'private-sale-overview', label: t('nav.private_sale_overview') },
-        { id: 'tokenomics', label: t('nav.tokenomics') },
-        { id: 'vesting', label: t('nav.vesting') },
-        { id: 'about', label: t('nav.about') },
+        { id: 'hero', label: t('nav.hero'), type: 'scroll' as const },
+        { id: 'private-sale-overview', label: t('nav.private_sale_overview'), type: 'scroll' as const },
+        { id: 'tokenomics', label: t('nav.tokenomics'), type: 'scroll' as const },
+        { id: 'vesting', label: t('nav.vesting'), type: 'scroll' as const },
+        { id: 'about', label: t('nav.about'), type: 'scroll' as const },
+        ...(import.meta.env.VITE_APP_ENV === 'local' ? [{ id: 'console', label: '测试控制台', type: 'link' as const, href: '/console' }] : []),
     ];
 
     return (
@@ -85,16 +86,27 @@ export const Header: React.FC = () => {
 
                     {/* Desktop Navigation */}
                     <nav className="hidden items-center space-x-6 px-8 lg:flex xl:space-x-8">
-                        {navItems.map((item) => (
-                            <button
-                                key={item.id}
-                                onClick={() => scrollToSection(item.id)}
-                                className="group relative cursor-pointer text-xs font-semibold tracking-[0.18em] text-slate-200/80 uppercase transition-colors duration-300 hover:text-white"
-                            >
-                                <span>{item.label}</span>
-                                <span className="absolute inset-x-0 -bottom-3 h-px bg-gradient-to-r from-transparent via-[#5b7fff] to-transparent opacity-0 group-hover:opacity-100" />
-                            </button>
-                        ))}
+                        {navItems.map((item) =>
+                            item.type === 'link' ? (
+                                <Link
+                                    key={item.id}
+                                    href={item.href!}
+                                    className="group relative cursor-pointer text-xs font-semibold tracking-[0.18em] text-slate-200/80 uppercase transition-colors duration-300 hover:text-white"
+                                >
+                                    <span>{item.label}</span>
+                                    <span className="absolute inset-x-0 -bottom-3 h-px bg-gradient-to-r from-transparent via-[#5b7fff] to-transparent opacity-0 group-hover:opacity-100" />
+                                </Link>
+                            ) : (
+                                <button
+                                    key={item.id}
+                                    onClick={() => scrollToSection(item.id)}
+                                    className="group relative cursor-pointer text-xs font-semibold tracking-[0.18em] text-slate-200/80 uppercase transition-colors duration-300 hover:text-white"
+                                >
+                                    <span>{item.label}</span>
+                                    <span className="absolute inset-x-0 -bottom-3 h-px bg-gradient-to-r from-transparent via-[#5b7fff] to-transparent opacity-0 group-hover:opacity-100" />
+                                </button>
+                            ),
+                        )}
                     </nav>
 
                     {/* Desktop Buttons */}
@@ -121,15 +133,26 @@ export const Header: React.FC = () => {
                         className="mb-5 rounded-2xl border border-white/10 bg-[#050a1a]/95 shadow-[0_25px_70px_-30px_rgba(90,120,255,0.55)] backdrop-blur-2xl lg:hidden"
                     >
                         <div className="space-y-3 px-5 py-6">
-                            {navItems.map((item) => (
-                                <button
-                                    key={item.id}
-                                    onClick={() => scrollToSection(item.id)}
-                                    className="w-full rounded-xl px-4 py-3 text-left text-sm font-semibold tracking-[0.18em] text-slate-200/80 uppercase transition-all duration-200 hover:bg-white/5 hover:text-white"
-                                >
-                                    {item.label}
-                                </button>
-                            ))}
+                            {navItems.map((item) =>
+                                item.type === 'link' ? (
+                                    <Link
+                                        key={item.id}
+                                        href={item.href!}
+                                        className="block w-full rounded-xl px-4 py-3 text-left text-sm font-semibold tracking-[0.18em] text-slate-200/80 uppercase transition-all duration-200 hover:bg-white/5 hover:text-white"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                ) : (
+                                    <button
+                                        key={item.id}
+                                        onClick={() => scrollToSection(item.id)}
+                                        className="w-full rounded-xl px-4 py-3 text-left text-sm font-semibold tracking-[0.18em] text-slate-200/80 uppercase transition-all duration-200 hover:bg-white/5 hover:text-white"
+                                    >
+                                        {item.label}
+                                    </button>
+                                ),
+                            )}
                             <div className="space-y-3 border-t border-white/10 pt-4">
                                 <LanguageSwitcher />
                                 <Button variant={isConnected ? 'secondary' : 'primary'} className="w-full gap-2 text-sm" onClick={handleWalletClick}>

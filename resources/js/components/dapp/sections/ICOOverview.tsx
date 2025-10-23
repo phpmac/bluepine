@@ -18,17 +18,41 @@ export const PrivateSaleOverview: React.FC<{
     ieoStartTime: number; // 募资开始时间
     ieoEndTime: number; // 募资结束时间
     currentStage: StageData; // 当前阶段数据
-    pendingAmount: [bigint, bigint]; // 可领取数量
+    getUserClaimableAmount: [bigint, bigint]; // 可领取数量
     currentStagePrice: number; // 当前阶段价格
     currentStageProgress: number; // 当前阶段完成进度
     refetchCurrentStage: () => void; // 刷新当前阶段数据
     refetchPendingAmount: () => void; // 刷新可领取数量
     isEnded: boolean; // 是否结束
-}> = ({ decimals, currentStage, pendingAmount, currentStagePrice, currentStageProgress, refetchCurrentStage, refetchPendingAmount, isEnded }) => {
+}> = ({
+    decimals,
+    currentStage,
+    getUserClaimableAmount,
+    currentStagePrice,
+    currentStageProgress,
+    refetchCurrentStage,
+    refetchPendingAmount,
+    isEnded,
+}) => {
     const { t } = useLaravelReactI18n();
 
     const [aescAmount, setAescAmount] = useState(''); // AESC认购数量
     const [referrerAddress, setReferrerAddress] = useState(''); // 邀请人地址
+
+    // 从localStorage读取推荐人地址
+    useEffect(() => {
+        const savedReferrer = localStorage.getItem('ieo_referrer_address');
+        if (savedReferrer) {
+            setReferrerAddress(savedReferrer);
+        }
+    }, []);
+
+    // 保存推荐人地址到localStorage
+    useEffect(() => {
+        if (referrerAddress) {
+            localStorage.setItem('ieo_referrer_address', referrerAddress);
+        }
+    }, [referrerAddress]);
 
     // 计算目标募集金额(USD)
     const targetSize = useMemo(() => {
@@ -397,19 +421,23 @@ export const PrivateSaleOverview: React.FC<{
                                         <span className="text-[11px] tracking-[0.2em] text-slate-400 uppercase">
                                             {t('overview.claimable_amount')}
                                         </span>
-                                        <span className="text-base font-bold text-[#22edc7]">{formatUnits(pendingAmount[0], decimals)} AESC</span>
+                                        <span className="text-base font-bold text-[#22edc7]">
+                                            {formatUnits(getUserClaimableAmount[0], decimals)} AESC
+                                        </span>
                                     </div>
                                     <div className="mb-2.5 flex items-center justify-between">
                                         <span className="text-[11px] tracking-[0.2em] text-slate-400 uppercase">
                                             {t('overview.referral_reward_amount')}
                                         </span>
-                                        <span className="text-base font-bold text-[#22edc7]">{formatUnits(pendingAmount[1], decimals)} AESC</span>
+                                        <span className="text-base font-bold text-[#22edc7]">
+                                            {formatUnits(getUserClaimableAmount[1], decimals)} AESC
+                                        </span>
                                     </div>
                                     <motion.button
                                         whileHover={
                                             isConnected &&
                                             isEnded &&
-                                            (pendingAmount[0] > 0 || pendingAmount[1] > 0) &&
+                                            (getUserClaimableAmount[0] > 0 || getUserClaimableAmount[1] > 0) &&
                                             !isClaiming &&
                                             !isClaimConfirming
                                                 ? { scale: 1.02 }
@@ -418,7 +446,7 @@ export const PrivateSaleOverview: React.FC<{
                                         whileTap={
                                             isConnected &&
                                             isEnded &&
-                                            (pendingAmount[0] > 0 || pendingAmount[1] > 0) &&
+                                            (getUserClaimableAmount[0] > 0 || getUserClaimableAmount[1] > 0) &&
                                             !isClaiming &&
                                             !isClaimConfirming
                                                 ? { scale: 0.98 }
@@ -428,14 +456,14 @@ export const PrivateSaleOverview: React.FC<{
                                         disabled={
                                             !isConnected ||
                                             !isEnded ||
-                                            (pendingAmount[0] <= 0 && pendingAmount[1] <= 0) ||
+                                            (getUserClaimableAmount[0] <= 0 && getUserClaimableAmount[1] <= 0) ||
                                             isClaiming ||
                                             isClaimConfirming
                                         }
                                         className={`w-full rounded-lg border px-4 py-2 text-sm font-semibold transition-all duration-300 ${
                                             !isConnected ||
                                             !isEnded ||
-                                            (pendingAmount[0] <= 0 && pendingAmount[1] <= 0) ||
+                                            (getUserClaimableAmount[0] <= 0 && getUserClaimableAmount[1] <= 0) ||
                                             isClaiming ||
                                             isClaimConfirming
                                                 ? 'cursor-not-allowed border-white/10 bg-white/8 text-slate-400'
@@ -446,7 +474,7 @@ export const PrivateSaleOverview: React.FC<{
                                             ? t('overview.claiming')
                                             : !isEnded
                                               ? t('overview.sale_not_ended')
-                                              : pendingAmount[0] > 0 || pendingAmount[1] > 0
+                                              : getUserClaimableAmount[0] > 0 || getUserClaimableAmount[1] > 0
                                                 ? t('overview.claim_tokens')
                                                 : t('overview.no_claimable')}
                                     </motion.button>
@@ -465,7 +493,7 @@ export const PrivateSaleOverview: React.FC<{
                                                 </svg>
                                                 {t('overview.sale_in_progress_tip')}
                                             </p>
-                                        ) : pendingAmount[0] > 0 || pendingAmount[1] > 0 ? (
+                                        ) : getUserClaimableAmount[0] > 0 || getUserClaimableAmount[1] > 0 ? (
                                             <p className="flex items-center justify-center gap-1 text-[10px] text-[#22edc7]/80">
                                                 <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path

@@ -43,11 +43,11 @@ export default function Welcome() {
 
     // 可领取数量
     const { address: userAddress, isConnected } = useAccount();
-    const [pendingAmountState, setPendingAmountState] = useState<[bigint, bigint]>([0n, 0n]);
-    const { data: pendingAmountData, refetch: refetchPendingAmount } = useReadContract({
+    const [getUserClaimableAmountState, setPendingAmountState] = useState<[bigint, bigint]>([0n, 0n]);
+    const { data: getUserClaimableAmountData, refetch: refetchPendingAmount } = useReadContract({
         address: address.buy as `0x${string}`,
         abi: ieoAbi,
-        functionName: 'pendingAmount',
+        functionName: 'getUserClaimableAmount',
         args: userAddress ? [userAddress] : undefined,
         query: { enabled: !!userAddress && isConnected },
     });
@@ -151,8 +151,8 @@ export default function Welcome() {
             setAescDecimalsState(aescDecimalsData);
         }
 
-        if (pendingAmountData) {
-            setPendingAmountState(pendingAmountData as [bigint, bigint]);
+        if (getUserClaimableAmountData) {
+            setPendingAmountState(getUserClaimableAmountData as [bigint, bigint]);
         }
 
         if (currentStageData) {
@@ -165,7 +165,7 @@ export default function Welcome() {
                 priceDenominator: currentStageData[5],
             });
         }
-    }, [currentStageData, getStageCount, getAllStageInfo, currentStageError, ieoStartTime, ieoEndTime, aescDecimalsData, pendingAmountData]);
+    }, [currentStageData, getStageCount, getAllStageInfo, currentStageError, ieoStartTime, ieoEndTime, aescDecimalsData, getUserClaimableAmountData]);
 
     return (
         <>
@@ -210,7 +210,7 @@ export default function Welcome() {
                                     ieoStartTime={ieoStartTimeState}
                                     ieoEndTime={ieoEndTimeState}
                                     currentStage={currentStageDataState}
-                                    pendingAmount={pendingAmountState}
+                                    getUserClaimableAmount={getUserClaimableAmountState}
                                     currentStagePrice={currentStagePriceState}
                                     currentStageProgress={currentStageProgressState}
                                     refetchCurrentStage={refetchCurrentStage}
