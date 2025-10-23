@@ -1,0 +1,42 @@
+# docker-compose up -d --build
+services:
+  # php:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+
+  #   env_file:
+  #     - .env
+
+  #   volumes:
+  #     - ./storage:/app/storage
+  #     - ./bootstrap:/app/bootstrap
+  #     - ./config:/app/config
+  #     - ./public:/app/public
+  #     - ./resources:/app/resources
+  #     - ./routes:/app/routes
+  #     - ./app:/app/app
+  #   ports:
+  #     - 80:80
+  #     - 8080:8080
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: laravel
+      POSTGRES_PASSWORD: laravel
+      POSTGRES_DB: laravel
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
+  # adminer:
+  #   image: adminer
+  #   ports:
+  #     - 8080:8080
