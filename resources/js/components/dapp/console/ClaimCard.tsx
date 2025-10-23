@@ -1,6 +1,6 @@
 import { Button } from '@/components/dapp/common/Button';
 import { Card } from '@/components/dapp/common/Card';
-import { buyAbi } from '@/lib/abiBuy';
+import ieoAbi from '@/lib/abi';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { formatUnits } from 'viem';
 import { useAccount, useReadContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
@@ -23,7 +23,7 @@ export const ClaimCard: React.FC<ClaimCardProps> = ({ contract, decimals = 16, o
         isFetching,
     } = useReadContract({
         address: contract,
-        abi: buyAbi,
+        abi: ieoAbi,
         functionName: 'getUserClaimableAmount',
         args: address ? [address] : undefined,
         query: { enabled: !!address && isConnected },
@@ -73,7 +73,7 @@ export const ClaimCard: React.FC<ClaimCardProps> = ({ contract, decimals = 16, o
                     onClick={() =>
                         writeContract({
                             address: contract,
-                            abi: buyAbi,
+                            abi: ieoAbi,
                             functionName: 'claim',
                         })
                     }

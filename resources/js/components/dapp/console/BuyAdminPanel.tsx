@@ -1,6 +1,7 @@
 import { Button } from '@/components/dapp/common/Button';
 import { Card } from '@/components/dapp/common/Card';
-import { buyAbi } from '@/lib/abiBuy';
+import ieoAbi from '@/lib/abi';
+import dayjs from 'dayjs';
 import React, { useMemo, useState } from 'react';
 import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 
@@ -11,8 +12,8 @@ type BuyAdminPanelProps = {
 
 export const BuyAdminPanel: React.FC<BuyAdminPanelProps> = ({ contract }) => {
     const [enable, setEnable] = useState(true);
-    const [start, setStart] = useState('0');
-    const [end, setEnd] = useState('0');
+    const [start, setStart] = useState(dayjs().unix().toString());
+    const [end, setEnd] = useState(dayjs().unix().toString());
 
     // setEnable 和 setIeoTime 分别使用独立的 write
     const { data: hash1, writeContract: writeEnable, isPending: p1 } = useWriteContract();
@@ -32,7 +33,7 @@ export const BuyAdminPanel: React.FC<BuyAdminPanelProps> = ({ contract }) => {
                     variant="secondary"
                     size="sm"
                     disabled={p1 || c1}
-                    onClick={() => writeEnable({ address: contract, abi: buyAbi, functionName: 'setEnable', args: [enable] })}
+                    onClick={() => writeEnable({ address: contract, abi: ieoAbi, functionName: 'setEnable', args: [enable] })}
                 >
                     {p1 || c1 ? '设置中...' : `setEnable(${enable ? 'true' : 'false'})`}
                 </Button>
@@ -58,7 +59,7 @@ export const BuyAdminPanel: React.FC<BuyAdminPanelProps> = ({ contract }) => {
                     variant="secondary"
                     size="sm"
                     disabled={p2 || c2}
-                    onClick={() => writeTime({ address: contract, abi: buyAbi, functionName: 'setIeoTime', args: [startBn, endBn] })}
+                    onClick={() => writeTime({ address: contract, abi: ieoAbi, functionName: 'setIeoTime', args: [startBn, endBn] })}
                 >
                     {p2 || c2 ? '设置中...' : 'setIeoTime'}
                 </Button>

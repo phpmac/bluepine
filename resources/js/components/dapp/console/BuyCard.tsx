@@ -6,7 +6,7 @@ import { erc20Abi } from '@/lib/erc20Abi';
 import { motion } from 'framer-motion';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { getAddress, isAddress, parseUnits } from 'viem';
-import { useAccount, useReadContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
+import { useAccount, useReadContract, useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 
 type BuyCardProps = {
     /** AESC 代币精度 */
@@ -74,6 +74,32 @@ export const BuyCard: React.FC<BuyCardProps> = ({ decimals, currentStagePrice, o
         query: { enabled: !!userAddress },
     });
 
+    // 计算购买参数
+    const buyArgs = useMemo(() => {
+        if (!isValidAescAmount || !isValidReferrerAddress) return undefined;
+        try {
+            const tokenAmount = parseUnits(aescAmount, decimals);
+            return [tokenAmount, referrerAddress as `0x${string}`] as const;
+        } catch {
+            return undefined;
+        }
+    }, [isValidAescAmount, isValidReferrerAddress, aescAmount, decimals, referrerAddress]);
+
+    // 模拟购买交易
+    const {
+        data: simulateData,
+        error: simulateError,
+        isLoading: isSimulating,
+    } = useSimulateContract({
+        address: address.buy as `0x${string}`,
+        abi: ieoAbi,
+        functionName: 'buy',
+        args: buyArgs,
+        query: {
+            enabled: !!buyArgs && !!userAddress && isConnected,
+        },
+    });
+
     // 合约交互
     const { writeContract: writeApprove, data: approveHash, isPending: isApproving } = useWriteContract();
     const { writeContract: writeBuy, data: buyHash, isPending: isBuying } = useWriteContract();
@@ -85,16 +111,10 @@ export const BuyCard: React.FC<BuyCardProps> = ({ decimals, currentStagePrice, o
 
     // 授权成功后自动购买
     useEffect(() => {
-        if (isApproveSuccess && isValidAescAmount && isValidReferrerAddress) {
-            const tokenAmount = parseUnits(aescAmount, decimals);
-            writeBuy({
-                address: address.buy as `0x${string}`,
-                abi: ieoAbi,
-                functionName: 'buy',
-                args: [tokenAmount, referrerAddress as `0x${string}`],
-            });
+        if (isApproveSuccess && simulateData?.request) {
+            writeBuy(simulateData.request);
         }
-    }, [isApproveSuccess, isValidAescAmount, isValidReferrerAddress, aescAmount, decimals, referrerAddress, writeBuy]);
+    }, [isApproveSuccess, simulateData, writeBuy]);
 
     // 购买成功后刷新
     useEffect(() => {
@@ -108,9 +128,8 @@ export const BuyCard: React.FC<BuyCardProps> = ({ decimals, currentStagePrice, o
 
     // 处理认购
     const handleBuy = async () => {
-        if (!isConnected || !isValidAescAmount || !isValidReferrerAddress) return;
+        if (!isConnected || !isValidAescAmount || !isValidReferrerAddress || !buyArgs) return;
 
-        const tokenAmount = parseUnits(aescAmount, decimals);
         const usdtRequired = parseUnits(estimatedUsdt.toFixed(18), 18);
 
         // 检查授权额度
@@ -124,13 +143,10 @@ export const BuyCard: React.FC<BuyCardProps> = ({ decimals, currentStagePrice, o
             return;
         }
 
-        // 直接购买
-        writeBuy({
-            address: address.buy as `0x${string}`,
-            abi: ieoAbi,
-            functionName: 'buy',
-            args: [tokenAmount, referrerAddress as `0x${string}`],
-        });
+        // 使用模拟数据执行购买
+        if (simulateData?.request) {
+            writeBuy(simulateData.request);
+        }
     };
 
     const isProcessing = isApproving || isApproveConfirming || isBuying || isBuyConfirming;
@@ -186,7 +202,7 @@ export const BuyCard: React.FC<BuyCardProps> = ({ decimals, currentStagePrice, o
                 variant="primary"
                 size="sm"
                 className="w-full"
-                disabled={!isConnected || !isValidAescAmount || !isValidReferrerAddress || isProcessing}
+                disabled={!isConnected || !isValidAescAmount || !isValidReferrerAddress || isProcessing || isSimulating || !!simulateError}
                 onClick={handleBuy}
             >
                 {!isConnected
@@ -201,12 +217,27 @@ export const BuyCard: React.FC<BuyCardProps> = ({ decimals, currentStagePrice, o
                               : referrerAddressError === 'self'
                                 ? '推荐人地址不能为自己'
                                 : '请输入推荐人地址'
-                        : isApproving || isApproveConfirming
-                          ? '授权中...'
-                          : isBuying || isBuyConfirming
-                            ? '认购中...'
-                            : '立即认购'}
+                        : isSimulating
+                          ? '检查交易中...'
+                          : simulateError
+                            ? '交易预检失败'
+                            : isApproving || isApproveConfirming
+                              ? '授权中...'
+                              : isBuying || isBuyConfirming
+                                ? '认购中...'
+                                : '立即认购'}
             </Button>
+
+            {/* 模拟错误提示 */}
+            {simulateError && (
+                <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-3 rounded-lg border border-rose-400/30 bg-rose-400/10 px-3 py-2"
+                >
+                    <p className="text-xs text-rose-400">交易预检失败: {simulateError.message || '请检查参数或账户余额'}</p>
+                </motion.div>
+            )}
 
             {isBuySuccess && <div className="mt-3 text-xs text-emerald-400">认购成功</div>}
         </Card>
