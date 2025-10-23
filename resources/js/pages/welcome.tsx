@@ -28,7 +28,7 @@ export default function Welcome() {
         error: currentStageError,
         refetch: refetchCurrentStage,
     } = useReadContract({
-        address: address.aescIeo as `0x${string}`,
+        address: address.buy as `0x${string}`,
         abi: ieoAbi,
         functionName: 'getCurrentStage',
     });
@@ -45,7 +45,7 @@ export default function Welcome() {
     const { address: userAddress, isConnected } = useAccount();
     const [pendingAmountState, setPendingAmountState] = useState<[bigint, bigint]>([0n, 0n]);
     const { data: pendingAmountData, refetch: refetchPendingAmount } = useReadContract({
-        address: address.aescIeo as `0x${string}`,
+        address: address.buy as `0x${string}`,
         abi: ieoAbi,
         functionName: 'pendingAmount',
         args: userAddress ? [userAddress] : undefined,
@@ -55,7 +55,7 @@ export default function Welcome() {
     // 是否结束,结束才能领取代币
     const [isEndedState, setIsEndedState] = useState<boolean>(false);
     const { data: isEndedData } = useReadContract({
-        address: address.aescIeo as `0x${string}`,
+        address: address.buy as `0x${string}`,
         abi: ieoAbi,
         functionName: 'isEnded',
     });
@@ -84,7 +84,7 @@ export default function Welcome() {
     // 获得阶段数量
     const [stageCountState, setStageCountState] = useState<number>(0);
     const { data: getStageCount } = useReadContract({
-        address: address.aescIeo as `0x${string}`,
+        address: address.buy as `0x${string}`,
         abi: ieoAbi,
         functionName: 'getStageCount',
     });
@@ -97,7 +97,7 @@ export default function Welcome() {
     // 获得所有阶段信息
     const [allStageInfoState, setAllStageInfoState] = useState<StageData[]>([]);
     const { data: getAllStageInfo } = useReadContract({
-        address: address.aescIeo as `0x${string}`,
+        address: address.buy as `0x${string}`,
         abi: ieoAbi,
         functionName: 'getAllStageInfo',
     });
@@ -110,7 +110,7 @@ export default function Welcome() {
     // 募资开始时间
     const [ieoStartTimeState, setIeoStartTimeState] = useState<number>(0);
     const { data: ieoStartTime } = useReadContract({
-        address: address.aescIeo as `0x${string}`,
+        address: address.buy as `0x${string}`,
         abi: ieoAbi,
         functionName: 'ieoStartTime',
     });
@@ -123,7 +123,7 @@ export default function Welcome() {
     // 募资结束时间
     const [ieoEndTimeState, setIeoEndTimeState] = useState<number>(0);
     const { data: ieoEndTime } = useReadContract({
-        address: address.aescIeo as `0x${string}`,
+        address: address.buy as `0x${string}`,
         abi: ieoAbi,
         functionName: 'ieoEndTime',
     });

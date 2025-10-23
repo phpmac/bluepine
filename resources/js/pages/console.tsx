@@ -50,9 +50,9 @@ export default function ConsolePage() {
 
                             {/* IEO 合约工具区 */}
                             <div className="mt-8 grid grid-cols-1 gap-4">
-                                <ClaimCard contract={address.aescIeo as `0x${string}`} decimals={16} />
-                                <BuyReadPanel contract={address.aescIeo as `0x${string}`} />
-                                <BuyAdminPanel contract={address.aescIeo as `0x${string}`} />
+                                <ClaimCard contract={address.buy as `0x${string}`} decimals={16} />
+                                <BuyReadPanel contract={address.buy as `0x${string}`} />
+                                <BuyAdminPanel contract={address.buy as `0x${string}`} />
                             </div>
                         </section>
                     </main>

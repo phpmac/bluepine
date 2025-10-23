@@ -82,7 +82,7 @@ export const PrivateSaleOverview: React.FC<{
         address: address.usdt as `0x${string}`,
         abi: erc20Abi,
         functionName: 'allowance',
-        args: userAddress ? [userAddress, address.aescIeo as `0x${string}`] : undefined,
+        args: userAddress ? [userAddress, address.buy as `0x${string}`] : undefined,
         query: { enabled: !!userAddress },
     });
 
@@ -102,7 +102,7 @@ export const PrivateSaleOverview: React.FC<{
             const tokenAmount = parseUnits(aescAmount, decimals);
 
             writeBuy({
-                address: address.aescIeo as `0x${string}`,
+                address: address.buy as `0x${string}`,
                 abi: ieoAbi,
                 functionName: 'buy',
                 args: [tokenAmount, referrerAddress as `0x${string}`],
@@ -140,14 +140,14 @@ export const PrivateSaleOverview: React.FC<{
                 address: address.usdt as `0x${string}`,
                 abi: erc20Abi,
                 functionName: 'approve',
-                args: [address.aescIeo as `0x${string}`, usdtRequired * 10n], // 授权10倍额度
+                args: [address.buy as `0x${string}`, usdtRequired * 10n], // 授权10倍额度
             });
             return; // 授权成功后会自动触发购买
         }
 
         // 授权额度充足,直接购买
         writeBuy({
-            address: address.aescIeo as `0x${string}`,
+            address: address.buy as `0x${string}`,
             abi: ieoAbi,
             functionName: 'buy',
             args: [tokenAmount, referrerAddress as `0x${string}`],
@@ -159,7 +159,7 @@ export const PrivateSaleOverview: React.FC<{
         if (!isConnected || !isEnded) return;
 
         writeClaim({
-            address: address.aescIeo as `0x${string}`,
+            address: address.buy as `0x${string}`,
             abi: ieoAbi,
             functionName: 'claim',
         });
