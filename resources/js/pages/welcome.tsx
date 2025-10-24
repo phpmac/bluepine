@@ -22,7 +22,14 @@ export default function Welcome() {
     // TODO 需要判断认购阶段是否已结束
 
     // 当前阶段销售数量
-    const [currentStageDataState, setCurrentStageDataState] = useState<StageData | null>(null);
+    const [currentStageDataState, setCurrentStageDataState] = useState<StageData>({
+        index: 0n,
+        cap: 0n,
+        sold: 0n,
+        available: 0n,
+        priceNumerator: 0n,
+        priceDenominator: 1n,
+    });
     const {
         data: currentStageData,
         error: currentStageError,
@@ -187,38 +194,34 @@ export default function Welcome() {
                     <main className="relative">
                         <div className="pointer-events-none absolute inset-x-0 top-[100vh] bottom-0 z-0 bg-gradient-to-b from-[#050a1a]/95 via-[#040b1a]/96 to-[#030815]/98" />
 
-                        {currentStageDataState && (
-                            <>
-                                {/* Hero 区域 */}
-                                <Hero
-                                    decimals={aescDecimalsState}
-                                    stageCount={stageCountState}
-                                    allStageInfo={allStageInfoState}
-                                    ieoStartTime={ieoStartTimeState}
-                                    ieoEndTime={ieoEndTimeState}
-                                    currentStage={currentStageDataState}
-                                    currentStagePrice={currentStagePriceState}
-                                    currentStageProgress={currentStageProgressState}
-                                    isEnded={isEndedState}
-                                />
+                        {/* Hero 区域 */}
+                        <Hero
+                            decimals={aescDecimalsState}
+                            stageCount={stageCountState}
+                            allStageInfo={allStageInfoState}
+                            ieoStartTime={ieoStartTimeState}
+                            ieoEndTime={ieoEndTimeState}
+                            currentStage={currentStageDataState}
+                            currentStagePrice={currentStagePriceState}
+                            currentStageProgress={currentStageProgressState}
+                            isEnded={isEndedState}
+                        />
 
-                                {/* 私募概览 */}
-                                <PrivateSaleOverview
-                                    decimals={aescDecimalsState}
-                                    stageCount={stageCountState}
-                                    allStageInfo={allStageInfoState}
-                                    ieoStartTime={ieoStartTimeState}
-                                    ieoEndTime={ieoEndTimeState}
-                                    currentStage={currentStageDataState}
-                                    getUserClaimableAmount={getUserClaimableAmountState}
-                                    currentStagePrice={currentStagePriceState}
-                                    currentStageProgress={currentStageProgressState}
-                                    refetchCurrentStage={refetchCurrentStage}
-                                    refetchPendingAmount={refetchPendingAmount}
-                                    isEnded={isEndedState}
-                                />
-                            </>
-                        )}
+                        {/* 私募概览 */}
+                        <PrivateSaleOverview
+                            decimals={aescDecimalsState}
+                            stageCount={stageCountState}
+                            allStageInfo={allStageInfoState}
+                            ieoStartTime={ieoStartTimeState}
+                            ieoEndTime={ieoEndTimeState}
+                            currentStage={currentStageDataState}
+                            getUserClaimableAmount={getUserClaimableAmountState}
+                            currentStagePrice={currentStagePriceState}
+                            currentStageProgress={currentStageProgressState}
+                            refetchCurrentStage={refetchCurrentStage}
+                            refetchPendingAmount={refetchPendingAmount}
+                            isEnded={isEndedState}
+                        />
 
                         {/* 代币经济学 */}
                         <Tokenomics />
