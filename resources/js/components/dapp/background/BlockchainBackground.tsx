@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface BlockchainBackgroundProps {
     variant?: 'fixed' | 'section';
@@ -16,6 +16,7 @@ export const BlockchainBackground: React.FC<BlockchainBackgroundProps> = ({
 }) => {
     const containerPosition = variant === 'fixed' ? 'fixed inset-0' : 'absolute inset-0';
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
     useEffect(() => {
         const onVisibility = () => {
@@ -50,17 +51,29 @@ export const BlockchainBackground: React.FC<BlockchainBackgroundProps> = ({
                 className,
             )}
         >
+            {/* 备用背景渐变,视频加载前显示 */}
+            <div
+                className="absolute inset-0 bg-gradient-to-b from-[#050613] via-[#0a1733] to-[#030814]"
+                style={{
+                    opacity: isVideoLoaded ? 0 : 1,
+                    transition: 'opacity 0.6s ease-in-out',
+                }}
+            />
+
             <video
                 ref={videoRef}
                 autoPlay
                 loop
                 muted
                 playsInline
-                preload="metadata"
+                preload="auto"
+                onLoadedData={() => setIsVideoLoaded(true)}
+                onCanPlay={() => setIsVideoLoaded(true)}
                 className={cn('absolute inset-0 h-full w-full object-cover', videoClassName)}
                 style={{
                     filter: 'brightness(0.78) contrast(1.05)',
-                    opacity: 0.95,
+                    opacity: isVideoLoaded ? 0.95 : 0,
+                    transition: 'opacity 0.6s ease-in-out',
                 }}
             >
                 <source src="/bg.mp4" type="video/mp4" />
