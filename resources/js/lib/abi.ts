@@ -1,7 +1,9 @@
 import { parseAbi } from 'viem';
 
 export default parseAbi([
-    // 获取阶段数量
+    // 获取系统开关
+    'function enable() external view returns (bool)',
+    // 获取阶段数量,默认为3个
     'function getStageCount() external view returns (uint256)',
     // 获取阶段信息
     'function getStageInfo(uint256 _index) external view returns (uint256, uint256, uint256, uint256)',
@@ -27,4 +29,12 @@ export default parseAbi([
     'function setEnable(bool _enable) external',
     // 管理员设置IEO时间
     'function setIeoTime(uint256 _ieoStartTime, uint256 _ieoEndTime) external',
+    // 管理员批量添加直推10%奖励地址
+    'function batchAddDirectReferralWhiteList(address[] _addresses) external',
+    // 管理员批量移除直推10%奖励地址
+    'function batchRemoveDirectReferralWhiteList(address[] _addresses) external',
+    // 查询地址是否享受10%直推奖励
+    'function directReferralWhiteList(address _address) external view returns (bool)',
+    // 管理员更改每期收款地址,默认为3个
+    'function setStagePaymentReceiver(address[] _paymentReceivers) external',
 ]);

@@ -6,18 +6,22 @@ import { parseUnits } from 'viem';
 import { useAccount, useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 
 type FreeMintCardProps = {
-    /** 卡片标题 */
     title: string;
-    /** SimpleToken 合约地址 */
     tokenAddress: `0x${string}`;
-    /** 默认显示的铸造数量 */
     defaultAmount?: string;
-    /** 代币 decimals */
     decimals: number;
-    /** 铸造成功后的回调 */
     onSuccess?: () => void;
 };
 
+/**
+ * 免费铸造卡片
+ * @param title 卡片标题
+ * @param tokenAddress SimpleToken合约地址
+ * @param defaultAmount 默认显示的铸造数量
+ * @param decimals 代币decimals
+ * @param onSuccess 铸造成功后的回调
+ * @returns 免费铸造卡片组件
+ */
 export const FreeMintCard: React.FC<FreeMintCardProps> = ({ title, tokenAddress, defaultAmount = '1000', decimals, onSuccess }) => {
     const { isConnected } = useAccount();
     const [amount, setAmount] = useState(defaultAmount);
@@ -49,7 +53,7 @@ export const FreeMintCard: React.FC<FreeMintCardProps> = ({ title, tokenAddress,
     }, [hash, isSuccess, onSuccess]);
 
     return (
-        <Card className="p-4" hover={true}>
+        <Card className="p-4" hover={false}>
             <div className="text-xs text-slate-400">{title}</div>
             <div className="mt-2 flex items-center gap-2">
                 <input

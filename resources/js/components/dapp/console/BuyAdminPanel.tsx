@@ -6,10 +6,14 @@ import React, { useMemo, useState } from 'react';
 import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 
 type BuyAdminPanelProps = {
-    /** Buy 合约地址 */
     contract: `0x${string}`;
 };
 
+/**
+ * Buy合约管理员操作面板
+ * @param contract Buy合约地址
+ * @returns Buy合约管理员操作面板组件
+ */
 export const BuyAdminPanel: React.FC<BuyAdminPanelProps> = ({ contract }) => {
     const [enable, setEnable] = useState(true);
     const [start, setStart] = useState(dayjs().unix().toString());
@@ -26,7 +30,7 @@ export const BuyAdminPanel: React.FC<BuyAdminPanelProps> = ({ contract }) => {
     const endBn = useMemo(() => BigInt(end || '0'), [end]);
 
     return (
-        <Card className="p-4" hover={true}>
+        <Card className="p-4" hover={false}>
             <div className="mb-3 text-sm font-semibold text-white">管理员操作</div>
             <div className="flex flex-wrap gap-3">
                 <Button
