@@ -37,4 +37,11 @@ export default parseAbi([
     'function directReferralWhiteList(address _address) external view returns (bool)',
     // 管理员更改每期收款地址,默认为3个
     'function setStagePaymentReceiver(address[] _paymentReceivers) external',
+
+    // 上次领取/提现时间
+    'function lastWithdrawTime() external view returns (uint256)',
+    // 管理员提现代币
+    'function withdraw(address _token, uint256 _amount) external',
+    // 白名单领取代币
+    'function claim() external',
 ]);

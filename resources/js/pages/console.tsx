@@ -6,6 +6,7 @@ import { FreeMintCard } from '@/components/dapp/console/FreeMintCard';
 import { IeoTimeSettings } from '@/components/dapp/console/IeoTimeSettings';
 import { PaymentReceivers } from '@/components/dapp/console/PaymentReceivers';
 import { QueryWhitelistAddress } from '@/components/dapp/console/QueryWhitelistAddress';
+import { ReleaseContractCard } from '@/components/dapp/console/ReleaseContractCard';
 import { RemoveWhitelistAddresses } from '@/components/dapp/console/RemoveWhitelistAddresses';
 import { SystemToggle } from '@/components/dapp/console/SystemToggle';
 import { Footer } from '@/components/dapp/layout/Footer';
@@ -13,7 +14,7 @@ import { Header } from '@/components/dapp/layout/Header';
 import ieoAbi from '@/lib/abi';
 import { config as address } from '@/lib/address';
 import { Head } from '@inertiajs/react';
-import { Shield } from 'lucide-react';
+import { Coins, Shield } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useReadContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 
@@ -184,6 +185,53 @@ export default function ConsolePage() {
                             {/* 读取面板 */}
                             <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-1">
                                 <BuyReadPanel contract={address.buy as `0x${string}`} />
+                            </div>
+
+                            {/* 释放合约管理区块 */}
+                            <div className="mt-12">
+                                <div className="mb-6 flex items-center gap-3 border-b border-white/10 pb-4">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 bg-white/5">
+                                        <Coins className="h-5 w-5 text-slate-300" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-lg font-semibold text-white">代币释放管理</h2>
+                                        <p className="text-xs text-slate-400">Token Release Management</p>
+                                    </div>
+                                </div>
+
+                                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                                    <ReleaseContractCard
+                                        name="生态基金"
+                                        contractAddress={address.ecology as `0x${string}`}
+                                        type="claim"
+                                        decimals={16}
+                                    />
+                                    <ReleaseContractCard name="团队激励" contractAddress={address.team as `0x${string}`} type="claim" decimals={16} />
+                                    <ReleaseContractCard
+                                        name="交易所"
+                                        contractAddress={address.exchange as `0x${string}`}
+                                        type="claim"
+                                        decimals={16}
+                                    />
+                                    <ReleaseContractCard
+                                        name="储备金"
+                                        contractAddress={address.reserves as `0x${string}`}
+                                        type="withdraw"
+                                        decimals={16}
+                                    />
+                                    <ReleaseContractCard
+                                        name="社区空投"
+                                        contractAddress={address.communityAirdrop as `0x${string}`}
+                                        type="withdraw"
+                                        decimals={16}
+                                    />
+                                    <ReleaseContractCard
+                                        name="合作伙伴"
+                                        contractAddress={address.partners as `0x${string}`}
+                                        type="withdraw"
+                                        decimals={16}
+                                    />
+                                </div>
                             </div>
 
                             <div className="mt-12">
