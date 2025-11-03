@@ -1,3 +1,4 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Mail, MapPin } from 'lucide-react';
 
 interface FooterProps {
@@ -5,6 +6,8 @@ interface FooterProps {
 }
 
 export function Footer({ transparent = true }: FooterProps) {
+    const { t } = useLaravelReactI18n();
+
     return (
         <footer className={`relative border-t border-white/10 ${transparent ? 'bg-slate-950/30 backdrop-blur-md' : 'bg-slate-950'}`}>
             <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -22,7 +25,7 @@ export function Footer({ transparent = true }: FooterProps) {
                             <div className="flex items-start">
                                 <Mail className="mt-0.5 mr-3 h-4 w-4 shrink-0 text-emerald-400" />
                                 <div>
-                                    <div className="mb-1 font-medium text-white">官方邮箱</div>
+                                    <div className="mb-1 font-medium text-white">{t('footer.email.label')}</div>
                                     <a href="mailto:contact@bluepinefoundation.com" className="transition-colors hover:text-white">
                                         contact@bluepinefoundation.com
                                     </a>
@@ -31,8 +34,8 @@ export function Footer({ transparent = true }: FooterProps) {
                             <div className="flex items-start">
                                 <MapPin className="mt-0.5 mr-3 h-4 w-4 shrink-0 text-emerald-400" />
                                 <div>
-                                    <div className="mb-1 font-medium text-white">全球办公室</div>
-                                    <span>新加坡 · 硅谷 · 吉隆坡</span>
+                                    <div className="mb-1 font-medium text-white">{t('footer.office.label')}</div>
+                                    <span>{t('footer.office.locations')}</span>
                                 </div>
                             </div>
                         </div>
@@ -40,16 +43,16 @@ export function Footer({ transparent = true }: FooterProps) {
 
                     {/* 快速链接 */}
                     <div className="md:text-right">
-                        <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">快速链接</h3>
+                        <h3 className="mb-4 text-sm font-semibold tracking-wider text-white uppercase">{t('footer.quicklinks.title')}</h3>
                         <ul className="space-y-3 text-sm text-slate-400">
                             <li>
                                 <a href="#" className="transition-colors hover:text-white">
-                                    网站地图
+                                    {t('footer.quicklinks.sitemap')}
                                 </a>
                             </li>
                             <li>
                                 <a href="/privacy" className="transition-colors hover:text-white">
-                                    隐私政策
+                                    {t('footer.quicklinks.privacy')}
                                 </a>
                             </li>
                         </ul>
@@ -58,7 +61,7 @@ export function Footer({ transparent = true }: FooterProps) {
 
                 {/* 版权信息 */}
                 <div className="mt-12 border-t border-white/10 pt-8 text-center">
-                    <p className="text-sm text-slate-400">© 2025 BLUEPINE TECH FOUNDATION. All rights reserved.</p>
+                    <p className="text-sm text-slate-400">{t('footer.copyright')}</p>
                 </div>
             </div>
         </footer>

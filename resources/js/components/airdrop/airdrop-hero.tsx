@@ -1,4 +1,5 @@
 import { Head } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Clock, Gift, Layers, Zap } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -8,6 +9,7 @@ import { useEffect, useState } from 'react';
  * 包含完整的动画特效: 五彩纸屑雨, 礼盒打开, 图标飞出, 波浪纹理等
  */
 export function AirdropHero() {
+    const { t } = useLaravelReactI18n();
     const [timeLeft, setTimeLeft] = useState({
         days: 30,
         hours: 0,
@@ -41,7 +43,7 @@ export function AirdropHero() {
 
     return (
         <>
-            <Head title="AESC 空投活动" />
+            <Head title={t('page.title.airdrop')} />
             <section
                 className="relative flex min-h-screen items-center overflow-hidden px-4 sm:px-6 lg:px-8"
                 style={{ background: 'radial-gradient(ellipse at center, #047857 0%, #065f46 30%, #064e3b 60%, #022c22 100%)' }}
@@ -216,39 +218,37 @@ export function AirdropHero() {
                     <div className="text-center">
                         <div className="mb-6 inline-flex items-center rounded border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-200">
                             <Gift className="mr-2 h-4 w-4" />
-                            AESC AIRDROP EVENT
+                            {t('airdrop.hero.badge')}
                         </div>
-                        <h1 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">AESC 生态启动空投</h1>
-                        <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed text-slate-300">
-                            抢先领取未来农业生态权益, 与我们一起播种, 共同收获!
-                        </p>
+                        <h1 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">{t('airdrop.hero.title')}</h1>
+                        <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed text-slate-300">{t('airdrop.hero.description')}</p>
 
                         {/* 核心数据高亮 */}
                         <div className="mx-auto mb-10 max-w-4xl">
                             <div className="grid gap-6 md:grid-cols-2">
                                 {/* 空投总额 */}
                                 <div className="rounded-lg border-2 border-emerald-500/30 bg-emerald-500/10 p-8 backdrop-blur-sm">
-                                    <div className="mb-2 text-sm font-semibold text-emerald-300">空投总额</div>
+                                    <div className="mb-2 text-sm font-semibold text-emerald-300">{t('airdrop.hero.total')}</div>
                                     <div className="text-4xl font-bold text-emerald-100">32,000,000 AESC</div>
-                                    <div className="mt-2 text-sm text-slate-300">占总量2%</div>
+                                    <div className="mt-2 text-sm text-slate-300">{t('airdrop.hero.percent')}</div>
                                 </div>
 
                                 {/* 倒计时 */}
                                 <div className="rounded-lg border-2 border-teal-500/30 bg-teal-500/10 p-8 backdrop-blur-sm">
                                     <div className="mb-3 flex items-center justify-center text-sm font-semibold text-teal-300">
                                         <Clock className="mr-2 h-4 w-4" />
-                                        活动剩余时间
+                                        {t('airdrop.hero.countdown')}
                                     </div>
                                     <div className="grid grid-cols-4 gap-2">
                                         {[
-                                            { label: '天', value: timeLeft.days },
-                                            { label: '时', value: timeLeft.hours },
-                                            { label: '分', value: timeLeft.minutes },
-                                            { label: '秒', value: timeLeft.seconds },
+                                            { labelKey: 'airdrop.hero.days', value: timeLeft.days },
+                                            { labelKey: 'airdrop.hero.hours', value: timeLeft.hours },
+                                            { labelKey: 'airdrop.hero.minutes', value: timeLeft.minutes },
+                                            { labelKey: 'airdrop.hero.seconds', value: timeLeft.seconds },
                                         ].map((item, index) => (
                                             <div key={index} className="text-center">
                                                 <div className="mb-1 text-2xl font-bold text-white">{String(item.value).padStart(2, '0')}</div>
-                                                <div className="text-xs text-slate-400">{item.label}</div>
+                                                <div className="text-xs text-slate-400">{t(item.labelKey)}</div>
                                             </div>
                                         ))}
                                     </div>
@@ -262,7 +262,7 @@ export function AirdropHero() {
                             className="inline-flex cursor-pointer items-center rounded bg-gradient-to-r from-emerald-500 to-teal-600 px-10 py-5 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                         >
                             <Zap className="mr-2 h-6 w-6" />
-                            立即参与空投
+                            {t('airdrop.hero.button')}
                         </a>
                     </div>
                 </div>

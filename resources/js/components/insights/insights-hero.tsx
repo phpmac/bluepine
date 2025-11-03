@@ -1,4 +1,8 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+
 export function InsightsHero() {
+    const { t } = useLaravelReactI18n();
+
     return (
         <section className="relative flex min-h-screen items-center overflow-hidden px-4 sm:px-6 lg:px-8">
             {/* 背景图片 */}
@@ -23,12 +27,10 @@ export function InsightsHero() {
             <div className="relative z-10 mx-auto w-full max-w-7xl py-20">
                 <div className="max-w-4xl">
                     <div className="mb-6 inline-flex items-center rounded border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-200 uppercase">
-                        INSIGHTS
+                        {t('insights.hero.badge')}
                     </div>
-                    <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">资源洞察</h1>
-                    <p className="text-lg leading-relaxed text-slate-300 md:text-xl">
-                        深入行业前沿, 解读技术趋势. 在这里, 我们分享关于农业数字化转型的深度思考, 前沿分析与实证案例.
-                    </p>
+                    <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">{t('insights.hero.title')}</h1>
+                    <p className="text-lg leading-relaxed text-slate-300 md:text-xl">{t('insights.hero.description')}</p>
                 </div>
             </div>
         </section>

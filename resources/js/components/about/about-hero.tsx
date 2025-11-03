@@ -1,4 +1,8 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+
 export function AboutHero() {
+    const { t } = useLaravelReactI18n();
+
     return (
         <section className="relative flex min-h-screen items-center overflow-hidden px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
             {/* 背景图片 */}
@@ -14,10 +18,8 @@ export function AboutHero() {
             </div>
 
             <div className="relative z-10 mx-auto max-w-4xl text-center">
-                <h1 className="mb-8 text-6xl leading-tight font-bold tracking-tight text-white md:text-7xl">关于我们</h1>
-                <p className="text-2xl leading-relaxed text-slate-300">
-                    我们致力于将最前沿的科技深度融入最古老的行业, 构建一个更高效, 透明, 可持续的全球农业未来.
-                </p>
+                <h1 className="mb-8 text-6xl leading-tight font-bold tracking-tight text-white md:text-7xl">{t('about.hero.title')}</h1>
+                <p className="text-2xl leading-relaxed text-slate-300">{t('about.hero.description')}</p>
             </div>
         </section>
     );

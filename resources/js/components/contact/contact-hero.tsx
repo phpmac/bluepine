@@ -1,29 +1,32 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Handshake, HelpCircle, Mail, Radio, Rocket } from 'lucide-react';
 
 export function ContactHero() {
+    const { t } = useLaravelReactI18n();
+
     const contactChannels = [
         {
             icon: Rocket,
-            title: '项目投递',
-            team: '投资团队',
+            titleKey: 'contact.hero.channel1.title',
+            teamKey: 'contact.hero.channel1.team',
             email: 'info@bluepinefoundation.com',
         },
         {
             icon: Handshake,
-            title: '生态合作',
-            team: '生态合作团队',
+            titleKey: 'contact.hero.channel2.title',
+            teamKey: 'contact.hero.channel2.team',
             email: 'info@bluepinefoundation.com',
         },
         {
             icon: Radio,
-            title: '媒体问询',
-            team: '市场传播团队',
+            titleKey: 'contact.hero.channel3.title',
+            teamKey: 'contact.hero.channel3.team',
             email: 'info@bluepinefoundation.com',
         },
         {
             icon: HelpCircle,
-            title: '一般问询',
-            team: '行政支持团队',
+            titleKey: 'contact.hero.channel4.title',
+            teamKey: 'contact.hero.channel4.team',
             email: 'info@bluepinefoundation.com',
         },
     ];
@@ -47,29 +50,25 @@ export function ContactHero() {
                     {/* 左侧内容 */}
                     <div>
                         <div className="mb-6 inline-flex items-center rounded border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-200 uppercase">
-                            CONTACT US
+                            {t('contact.hero.badge')}
                         </div>
-                        <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl lg:text-7xl">联系我们</h1>
-                        <p className="mb-6 text-lg leading-relaxed text-slate-300 md:text-xl">
-                            开启对话, 共创未来. 我们期待聆听您的声音, 无论是项目提案, 合作意向还是技术探讨.
-                        </p>
+                        <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
+                            {t('contact.hero.title')}
+                        </h1>
+                        <p className="mb-6 text-lg leading-relaxed text-slate-300 md:text-xl">{t('contact.hero.description')}</p>
 
                         {/* 核心价值主张 */}
                         <div className="rounded-lg border-l-4 border-emerald-500 bg-white/5 p-5 backdrop-blur-sm md:p-6">
-                            <h2 className="mb-3 text-xl font-bold text-white">高效连接, 专业响应</h2>
-                            <p className="text-sm leading-relaxed text-slate-300 md:text-base">
-                                在BLUEPINE, 我们重视每一次真诚的联络. 我们的专业团队会对您的咨询进行精准分类, 并确保在{' '}
-                                <span className="font-bold text-emerald-300">2个工作日</span> 内给予初次回复. 让我们携手,
-                                将您的构想变为推动农业变革的现实.
-                            </p>
+                            <h2 className="mb-3 text-xl font-bold text-white">{t('contact.hero.valueTitle')}</h2>
+                            <p className="text-sm leading-relaxed text-slate-300 md:text-base">{t('contact.hero.valueDescription')}</p>
                         </div>
                     </div>
 
                     {/* 右侧快速联系卡片 */}
                     <div className="space-y-4">
                         <div className="mb-4 text-center lg:text-left">
-                            <h3 className="text-xl font-bold text-white">快速联系通道</h3>
-                            <p className="mt-2 text-sm text-slate-400">选择最适合您的联系方式</p>
+                            <h3 className="text-xl font-bold text-white">{t('contact.hero.quickContact')}</h3>
+                            <p className="mt-2 text-sm text-slate-400">{t('contact.hero.quickContactSub')}</p>
                         </div>
                         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                             {contactChannels.map((channel, index) => (
@@ -82,8 +81,8 @@ export function ContactHero() {
                                             <channel.icon className="h-5 w-5 text-white" />
                                         </div>
                                         <div className="min-w-0 flex-1">
-                                            <h4 className="mb-0.5 text-sm font-bold text-white">{channel.title}</h4>
-                                            <p className="mb-2 text-xs text-emerald-300">{channel.team}</p>
+                                            <h4 className="mb-0.5 text-sm font-bold text-white">{t(channel.titleKey)}</h4>
+                                            <p className="mb-2 text-xs text-emerald-300">{t(channel.teamKey)}</p>
                                             <div className="flex items-start text-sm text-slate-400">
                                                 <Mail className="mt-0.5 mr-1.5 h-3.5 w-3.5 shrink-0" />
                                                 <span className="text-xs break-all">{channel.email}</span>

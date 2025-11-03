@@ -1,3 +1,4 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { CheckCircle2, Clock, Zap } from 'lucide-react';
 
 /**
@@ -6,19 +7,21 @@ import { CheckCircle2, Clock, Zap } from 'lucide-react';
  * 展示活动的关键时间点
  */
 export function AirdropTimeline() {
+    const { t } = useLaravelReactI18n();
+
     const timeline = [
-        { date: '2025年1月1日', event: '活动开始', status: 'completed' },
-        { date: '2025年1月1日 - 1月31日', event: '任务执行期', status: 'active' },
-        { date: '2025年2月1日 - 2月7日', event: '积分统计与资格审核', status: 'upcoming' },
-        { date: '2025年2月15日', event: '空投快照与分配', status: 'upcoming' },
-        { date: '2025年3月15日', event: '代币开始线性释放', status: 'upcoming' },
+        { dateKey: 'airdrop.timeline.date1', eventKey: 'airdrop.timeline.event1', status: 'completed' },
+        { dateKey: 'airdrop.timeline.date2', eventKey: 'airdrop.timeline.event2', status: 'active' },
+        { dateKey: 'airdrop.timeline.date3', eventKey: 'airdrop.timeline.event3', status: 'upcoming' },
+        { dateKey: 'airdrop.timeline.date4', eventKey: 'airdrop.timeline.event4', status: 'upcoming' },
+        { dateKey: 'airdrop.timeline.date5', eventKey: 'airdrop.timeline.event5', status: 'upcoming' },
     ];
 
     return (
         <section className="px-4 py-32 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl">
                 <div className="mb-12 text-center">
-                    <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-4xl">活动关键时间点</h2>
+                    <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-4xl">{t('airdrop.timeline.title')}</h2>
                 </div>
 
                 <div className="relative">
@@ -56,8 +59,8 @@ export function AirdropTimeline() {
                                               : 'border-white/10 bg-white/5'
                                     }`}
                                 >
-                                    <div className="mb-2 text-xs text-slate-400">{item.date}</div>
-                                    <div className="text-sm font-semibold text-white">{item.event}</div>
+                                    <div className="mb-2 text-xs text-slate-400">{t(item.dateKey)}</div>
+                                    <div className="text-sm font-semibold text-white">{t(item.eventKey)}</div>
                                 </div>
                             </div>
                         ))}

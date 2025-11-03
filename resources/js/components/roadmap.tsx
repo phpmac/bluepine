@@ -1,7 +1,9 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Check, Circle } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 export function Roadmap() {
+    const { t } = useLaravelReactI18n();
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -25,27 +27,27 @@ export function Roadmap() {
     const stages = [
         {
             id: 1,
-            title: '建设期',
+            titleKey: 'roadmap.stage1.title',
             status: 'completed',
-            description: '团队组建与技术架构完成',
+            descriptionKey: 'roadmap.stage1.description',
         },
         {
             id: 2,
-            title: '试点期',
+            titleKey: 'roadmap.stage2.title',
             status: 'current',
-            description: '部署平台, 500+户农户内测',
+            descriptionKey: 'roadmap.stage2.description',
         },
         {
             id: 3,
-            title: '扩张期',
+            titleKey: 'roadmap.stage3.title',
             status: 'upcoming',
-            description: 'DeFi / GameFi / RWA / RDA 上线, 多国覆盖',
+            descriptionKey: 'roadmap.stage3.description',
         },
         {
             id: 4,
-            title: '公链研发期',
+            titleKey: 'roadmap.stage4.title',
             status: 'upcoming',
-            description: 'Agri-Eco Smart Chain 测试网上线',
+            descriptionKey: 'roadmap.stage4.description',
         },
     ];
 
@@ -53,8 +55,8 @@ export function Roadmap() {
         <section ref={sectionRef} className="relative overflow-hidden py-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mb-20 text-center">
-                    <h2 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">我们的发展征程</h2>
-                    <p className="text-xl text-slate-400">规划与进展</p>
+                    <h2 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">{t('roadmap.title')}</h2>
+                    <p className="text-xl text-slate-400">{t('roadmap.subtitle')}</p>
                 </div>
 
                 <div className="relative">
@@ -124,15 +126,19 @@ export function Roadmap() {
                                     }`}
                                 >
                                     <div className="mb-3 flex items-center justify-between gap-2">
-                                        <h3 className="text-xl font-bold whitespace-nowrap text-white">{stage.title}</h3>
+                                        <h3 className="text-xl font-bold whitespace-nowrap text-white">{t(stage.titleKey)}</h3>
                                         {stage.status === 'completed' && (
-                                            <span className="text-xs font-medium whitespace-nowrap text-green-400">已完成</span>
+                                            <span className="text-xs font-medium whitespace-nowrap text-green-400">
+                                                {t('roadmap.status.completed')}
+                                            </span>
                                         )}
                                         {stage.status === 'current' && (
-                                            <span className="animate-pulse text-xs font-medium whitespace-nowrap text-emerald-400">进行中</span>
+                                            <span className="animate-pulse text-xs font-medium whitespace-nowrap text-emerald-400">
+                                                {t('roadmap.status.inProgress')}
+                                            </span>
                                         )}
                                     </div>
-                                    <p className="text-xs leading-relaxed text-slate-400">{stage.description}</p>
+                                    <p className="text-xs leading-relaxed text-slate-400">{t(stage.descriptionKey)}</p>
                                 </div>
                             </div>
                         ))}

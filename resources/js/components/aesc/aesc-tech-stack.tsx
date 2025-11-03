@@ -1,4 +1,5 @@
 import { Card } from '@/components/ui/card';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Brain, Layers, Network, Radio, Shield } from 'lucide-react';
 
 interface AescTechStackProps {
@@ -10,12 +11,39 @@ interface AescTechStackProps {
  * 展示从底层到应用层的完整技术体系
  */
 export function AescTechStack({ variant = 'default' }: AescTechStackProps) {
+    const { t } = useLaravelReactI18n();
+
     const techLayers = [
-        { name: '安全层', description: '区块链 + 加密技术', color: 'from-indigo-600 to-purple-700', icon: Shield },
-        { name: '应用层', description: 'DeFi / GameFi / RWA / RDA', color: 'from-blue-600 to-indigo-700', icon: Layers },
-        { name: '智能层', description: 'AI 算法 + 预测模型', color: 'from-emerald-600 to-teal-700', icon: Brain },
-        { name: '网络层', description: '分布式数据传输', color: 'from-teal-500 to-cyan-600', icon: Network },
-        { name: '感知层', description: 'IoT 设备 + 传感器', color: 'from-cyan-500 to-emerald-600', icon: Radio },
+        {
+            nameKey: 'aesc.techStack.layer1.name',
+            descriptionKey: 'aesc.techStack.layer1.description',
+            color: 'from-indigo-600 to-purple-700',
+            icon: Shield,
+        },
+        {
+            nameKey: 'aesc.techStack.layer2.name',
+            descriptionKey: 'aesc.techStack.layer2.description',
+            color: 'from-blue-600 to-indigo-700',
+            icon: Layers,
+        },
+        {
+            nameKey: 'aesc.techStack.layer3.name',
+            descriptionKey: 'aesc.techStack.layer3.description',
+            color: 'from-emerald-600 to-teal-700',
+            icon: Brain,
+        },
+        {
+            nameKey: 'aesc.techStack.layer4.name',
+            descriptionKey: 'aesc.techStack.layer4.description',
+            color: 'from-teal-500 to-cyan-600',
+            icon: Network,
+        },
+        {
+            nameKey: 'aesc.techStack.layer5.name',
+            descriptionKey: 'aesc.techStack.layer5.description',
+            color: 'from-cyan-500 to-emerald-600',
+            icon: Radio,
+        },
     ];
 
     const isCompact = variant === 'compact';
@@ -23,7 +51,7 @@ export function AescTechStack({ variant = 'default' }: AescTechStackProps) {
     return (
         <Card className="!rounded-lg border border-emerald-500/20 bg-white/5 p-6 backdrop-blur-sm">
             <h4 className={`mb-6 text-center font-bold text-white ${isCompact ? 'text-lg' : 'text-xl'}`}>
-                {isCompact ? 'AESC 平台技术全栈' : 'AESC 技术栈'}
+                {isCompact ? t('aesc.techStack.titleCompact') : t('aesc.techStack.titleDefault')}
             </h4>
             <div className={isCompact ? 'space-y-2' : 'space-y-3'}>
                 {techLayers.map((layer, index) => (
@@ -50,8 +78,8 @@ export function AescTechStack({ variant = 'default' }: AescTechStackProps) {
 
                             {/* 文字内容 */}
                             <div className="flex-1">
-                                <div className={`mb-0.5 font-bold text-white ${isCompact ? 'text-sm' : 'text-sm'}`}>{layer.name}</div>
-                                <div className={`text-white/90 ${isCompact ? 'text-xs' : 'text-xs'}`}>{layer.description}</div>
+                                <div className={`mb-0.5 font-bold text-white ${isCompact ? 'text-sm' : 'text-sm'}`}>{t(layer.nameKey)}</div>
+                                <div className={`text-white/90 ${isCompact ? 'text-xs' : 'text-xs'}`}>{t(layer.descriptionKey)}</div>
                             </div>
 
                             {!isCompact && (
@@ -64,7 +92,7 @@ export function AescTechStack({ variant = 'default' }: AescTechStackProps) {
                     </div>
                 ))}
             </div>
-            <div className={`mt-4 text-center text-emerald-300 ${isCompact ? 'text-xs' : 'text-xs'}`}>从底层到应用的完整技术体系</div>
+            <div className={`mt-4 text-center text-emerald-300 ${isCompact ? 'text-xs' : 'text-xs'}`}>{t('aesc.techStack.subtitle')}</div>
         </Card>
     );
 }

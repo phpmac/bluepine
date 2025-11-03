@@ -1,4 +1,8 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+
 export function PortfolioHero() {
+    const { t } = useLaravelReactI18n();
+
     return (
         <section className="relative flex min-h-screen items-center overflow-hidden px-4 sm:px-6 lg:px-8">
             {/* 马赛克风格背景效果 */}
@@ -31,12 +35,10 @@ export function PortfolioHero() {
             <div className="relative z-10 mx-auto w-full max-w-7xl py-20">
                 <div className="max-w-4xl">
                     <div className="mb-6 inline-flex items-center rounded border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-200 uppercase">
-                        PORTFOLIO
+                        {t('portfolio.hero.badge')}
                     </div>
-                    <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">投资组合</h1>
-                    <p className="text-lg leading-relaxed text-slate-300 md:text-xl">
-                        我们投资并赋能下一代农业科技的领军者. 探索这些正在重新定义从种植到交易各个环节的创新力量.
-                    </p>
+                    <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">{t('portfolio.hero.title')}</h1>
+                    <p className="text-lg leading-relaxed text-slate-300 md:text-xl">{t('portfolio.hero.description')}</p>
                 </div>
             </div>
         </section>

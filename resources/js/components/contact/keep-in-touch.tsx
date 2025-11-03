@@ -1,6 +1,9 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { FileText, Globe, MessageCircle, Send } from 'lucide-react';
 
 export function KeepInTouch() {
+    const { t } = useLaravelReactI18n();
+
     const socialLinks = [
         { name: 'Twitter', icon: MessageCircle, link: '#' },
         { name: 'Telegram', icon: Send, link: '#' },
@@ -11,10 +14,8 @@ export function KeepInTouch() {
     return (
         <section className="px-4 py-32 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl text-center">
-                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">保持关注</h2>
-                <p className="mx-auto mb-10 max-w-2xl text-base text-slate-300">
-                    想要实时了解 BLUEPINE TECH FOUNDATION 与AESC生态的最新进展? 请关注我们的官方社群媒体.
-                </p>
+                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">{t('contact.keepInTouch.title')}</h2>
+                <p className="mx-auto mb-10 max-w-2xl text-base text-slate-300">{t('contact.keepInTouch.description')}</p>
 
                 <div className="flex flex-wrap justify-center gap-4">
                     {socialLinks.map((social, index) => (

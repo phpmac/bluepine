@@ -1,7 +1,9 @@
 import { Card } from '@/components/ui/card';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { useEffect, useRef, useState } from 'react';
 
 export function Features() {
+    const { t } = useLaravelReactI18n();
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -25,27 +27,27 @@ export function Features() {
     const features = [
         {
             icon: 'leaf-circuit',
-            title: '智慧农业',
-            subtitle: '精准化与可持续',
-            description: '通过 IoT, AI 模型与数据驱动决策, 提升农业资源效率与产出韧性, 应对全球粮食安全挑战.',
+            titleKey: 'features.feature1.title',
+            subtitleKey: 'features.feature1.subtitle',
+            descriptionKey: 'features.feature1.description',
             color: 'from-emerald-500 to-teal-500',
             bgColor: 'bg-emerald-500/10',
             borderColor: 'border-emerald-500/20',
         },
         {
             icon: 'wheat-chain',
-            title: '区块链信任',
-            subtitle: '资产化与透明化',
-            description: '利用区块链实现数据可信存证, 供应链全程溯源, 并将农田, 作物等实物资产转化为可流通的 RWA.',
+            titleKey: 'features.feature2.title',
+            subtitleKey: 'features.feature2.subtitle',
+            descriptionKey: 'features.feature2.description',
             color: 'from-teal-500 to-cyan-500',
             bgColor: 'bg-teal-500/10',
             borderColor: 'border-teal-500/20',
         },
         {
             icon: 'brain-plant',
-            title: '人工智能',
-            subtitle: '预测化与智能化',
-            description: '部署先进的 AI 引擎, 进行病虫害预警, 产量预测与个性化农事推送, 释放农业数据的深层价值.',
+            titleKey: 'features.feature3.title',
+            subtitleKey: 'features.feature3.subtitle',
+            descriptionKey: 'features.feature3.description',
             color: 'from-cyan-500 to-blue-500',
             bgColor: 'bg-cyan-500/10',
             borderColor: 'border-cyan-500/20',
@@ -57,11 +59,13 @@ export function Features() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mb-16 text-center">
                     <h2 className="mb-6 text-4xl font-bold lg:text-5xl">
-                        <span className="text-white">投资于农业的</span>
+                        <span className="text-white">{t('features.title.line1')}</span>
                         <br />
-                        <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">数字新纪元</span>
+                        <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+                            {t('features.title.line2')}
+                        </span>
                     </h2>
-                    <p className="mx-auto max-w-2xl text-xl text-slate-300">我们专注的领域</p>
+                    <p className="mx-auto max-w-2xl text-xl text-slate-300">{t('features.subtitle')}</p>
                 </div>
 
                 <div className="grid gap-8 md:grid-cols-3">
@@ -129,9 +133,9 @@ export function Features() {
                                     </svg>
                                 )}
                             </div>
-                            <h3 className="mb-2 text-2xl font-bold text-white transition-colors duration-500">{feature.title}</h3>
-                            <p className="mb-3 text-base font-medium text-emerald-200 transition-colors duration-500">{feature.subtitle}</p>
-                            <p className="text-sm leading-relaxed text-slate-300 transition-colors duration-500">{feature.description}</p>
+                            <h3 className="mb-2 text-2xl font-bold text-white transition-colors duration-500">{t(feature.titleKey)}</h3>
+                            <p className="mb-3 text-base font-medium text-emerald-200 transition-colors duration-500">{t(feature.subtitleKey)}</p>
+                            <p className="text-sm leading-relaxed text-slate-300 transition-colors duration-500">{t(feature.descriptionKey)}</p>
                         </Card>
                     ))}
                 </div>

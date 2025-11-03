@@ -1,8 +1,10 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 export function Hero() {
+    const { t } = useLaravelReactI18n();
     const [mounted, setMounted] = useState(false);
     const canvasRef = useRef<HTMLDivElement>(null);
 
@@ -128,10 +130,10 @@ export function Hero() {
                                 }`}
                             >
                                 <span className="block bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text leading-tight text-balance text-transparent">
-                                    播种信任
+                                    {t('hero.title1')}
                                 </span>
                                 <span className="block bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-clip-text leading-tight text-balance text-transparent">
-                                    收获未来
+                                    {t('hero.title2')}
                                 </span>
                             </h1>
 
@@ -148,7 +150,7 @@ export function Hero() {
                                 mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                             }`}
                         >
-                            我们是全球领先的 "农业 + 区块链 + AI" 生态构建者与战略投资者
+                            {t('hero.description')}
                         </p>
 
                         <div
@@ -160,14 +162,14 @@ export function Hero() {
                                 href="/aesc"
                                 className="group inline-flex items-center border-2 border-emerald-400 px-8 py-4 text-lg font-medium text-emerald-400 backdrop-blur-sm transition-all hover:border-emerald-300 hover:text-emerald-300 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
                             >
-                                探索 AESC 生态
+                                {t('hero.button1')}
                                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                             </a>
                             <a
                                 href="/strategy"
                                 className="inline-flex items-center border-2 border-teal-400/70 px-8 py-4 text-lg font-medium text-teal-400/90 backdrop-blur-sm transition-all hover:border-teal-300 hover:text-teal-300 hover:shadow-[0_0_20px_rgba(20,184,166,0.2)]"
                             >
-                                我们的投资策略
+                                {t('hero.button2')}
                             </a>
                         </div>
                     </div>

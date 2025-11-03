@@ -9,11 +9,14 @@ import {
 } from '@/components/insights';
 import { MainLayout } from '@/layouts';
 import { Head } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 export default function Insights() {
+    const { t } = useLaravelReactI18n();
+
     return (
         <>
-            <Head title="资源洞察" />
+            <Head title={t('page.title.insights')} />
             <MainLayout currentPage="insights">
                 <InsightsHero />
                 <ValueProposition />

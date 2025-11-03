@@ -1,3 +1,4 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Award, Sparkles, Trophy } from 'lucide-react';
 
 /**
@@ -6,21 +7,23 @@ import { Award, Sparkles, Trophy } from 'lucide-react';
  * 展示为什么值得参与空投
  */
 export function AirdropValueProps() {
+    const { t } = useLaravelReactI18n();
+
     const valueProps = [
         {
             icon: Sparkles,
-            title: '早期生态权益',
-            description: '免费获得AESC代币, 成为 Agri-Eco Smart Chain 的早期成员, 共享生态发展红利',
+            titleKey: 'airdrop.valueProps.prop1.title',
+            descriptionKey: 'airdrop.valueProps.prop1.description',
         },
         {
             icon: Trophy,
-            title: '深度体验先机',
-            description: '空投参与者将优先获得主网上线后的新产品内测资格',
+            titleKey: 'airdrop.valueProps.prop2.title',
+            descriptionKey: 'airdrop.valueProps.prop2.description',
         },
         {
             icon: Award,
-            title: '知识与社会认可',
-            description: '完成知识任务, 证明您是农业科技领域的先行者, 并获得社区"早期建设者"身份标识',
+            titleKey: 'airdrop.valueProps.prop3.title',
+            descriptionKey: 'airdrop.valueProps.prop3.description',
         },
     ];
 
@@ -28,7 +31,7 @@ export function AirdropValueProps() {
         <section className="px-4 py-32 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl">
                 <div className="mb-12 text-center">
-                    <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-4xl">为什么值得参与此次空投?</h2>
+                    <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-4xl">{t('airdrop.valueProps.title')}</h2>
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-3">
@@ -40,8 +43,8 @@ export function AirdropValueProps() {
                             <div className="mb-4 flex h-14 w-14 items-center justify-center rounded bg-white/10">
                                 <prop.icon className="h-7 w-7 text-emerald-300" />
                             </div>
-                            <h3 className="mb-3 text-xl font-bold text-white">{prop.title}</h3>
-                            <p className="text-sm text-slate-300">{prop.description}</p>
+                            <h3 className="mb-3 text-xl font-bold text-white">{t(prop.titleKey)}</h3>
+                            <p className="text-sm text-slate-300">{t(prop.descriptionKey)}</p>
                         </div>
                     ))}
                 </div>

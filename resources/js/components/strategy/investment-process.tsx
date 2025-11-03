@@ -1,41 +1,45 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+
 export function InvestmentProcess() {
+    const { t } = useLaravelReactI18n();
+
     const investmentProcess = [
         {
             step: '01',
-            title: '初步接触',
-            description: '通过官网表格提交项目摘要',
+            titleKey: 'strategy.process.step1.title',
+            descriptionKey: 'strategy.process.step1.description',
         },
         {
             step: '02',
-            title: '初步筛选',
-            description: '团队内部评审,在2周内给予初步反馈',
+            titleKey: 'strategy.process.step2.title',
+            descriptionKey: 'strategy.process.step2.description',
         },
         {
             step: '03',
-            title: '深度尽调',
-            description: '如符合标准, 启动技术, 市场, 财务及团队的深度尽职调查',
+            titleKey: 'strategy.process.step3.title',
+            descriptionKey: 'strategy.process.step3.description',
         },
         {
             step: '04',
-            title: '投资委员会决策',
-            description: '尽调报告提交至投资委员会进行最终决策',
+            titleKey: 'strategy.process.step4.title',
+            descriptionKey: 'strategy.process.step4.description',
         },
         {
             step: '05',
-            title: '协议与交割',
-            description: '达成投资意向, 签署协议, 完成资金交割',
+            titleKey: 'strategy.process.step5.title',
+            descriptionKey: 'strategy.process.step5.description',
         },
         {
             step: '06',
-            title: '投后价值共创',
-            description: '启动全面的投后支持计划, 共同成长',
+            titleKey: 'strategy.process.step6.title',
+            descriptionKey: 'strategy.process.step6.description',
         },
     ];
 
     return (
         <div className="mb-32">
             <div className="mb-12 text-center">
-                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">从接触到合作</h2>
+                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">{t('strategy.process.title')}</h2>
             </div>
 
             <div className="relative">
@@ -50,8 +54,8 @@ export function InvestmentProcess() {
                                 <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 text-lg font-bold text-white">
                                     {step.step}
                                 </div>
-                                <h3 className="mb-1 text-base font-bold text-white">{step.title}</h3>
-                                <p className="text-xs leading-relaxed text-slate-300">{step.description}</p>
+                                <h3 className="mb-1 text-base font-bold text-white">{t(step.titleKey)}</h3>
+                                <p className="text-xs leading-relaxed text-slate-300">{t(step.descriptionKey)}</p>
                             </div>
                         </div>
                     ))}

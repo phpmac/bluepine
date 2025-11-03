@@ -1,6 +1,7 @@
 import { Footer } from '@/components/footer';
 import { Navigation } from '@/components/navigation';
 import { Head } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import {
     ArrowRight,
     BookOpen,
@@ -23,6 +24,7 @@ import {
 import React, { useState } from 'react';
 
 export default function Aesc2() {
+    const { t } = useLaravelReactI18n();
     const [activeCategory, setActiveCategory] = useState<string | null>(null);
     const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
@@ -30,113 +32,113 @@ export default function Aesc2() {
         {
             id: 'data-ai',
             icon: Brain,
-            title: '数据与AI服务',
-            description: '贡献数据,获取洞察,利用AI优化您的生产',
+            titleKey: 'aesc2.categories.category1.title',
+            descriptionKey: 'aesc2.categories.category1.description',
         },
         {
             id: 'defi-rwa',
             icon: TrendingUp,
-            title: 'DeFi 与 RWA 金融',
-            description: '质押,借贷,投保,释放您农业资产的金融潜力',
+            titleKey: 'aesc2.categories.category2.title',
+            descriptionKey: 'aesc2.categories.category2.description',
         },
         {
             id: 'knowledge',
             icon: BookOpen,
-            title: '知识与内容市场',
-            description: '学习顶尖农业知识,或将您的经验转化为收入',
+            titleKey: 'aesc2.categories.category3.title',
+            descriptionKey: 'aesc2.categories.category3.description',
         },
         {
             id: 'supply-chain',
             icon: QrCode,
-            title: '溯源与供应链',
-            description: '验证产品来源,提升品牌价值,建立消费者信任',
+            titleKey: 'aesc2.categories.category4.title',
+            descriptionKey: 'aesc2.categories.category4.description',
         },
         {
             id: 'governance',
             icon: Vote,
-            title: '治理与社区',
-            description: '参与生态决策,共同塑造AESC的未来',
+            titleKey: 'aesc2.categories.category5.title',
+            descriptionKey: 'aesc2.categories.category5.description',
         },
     ];
 
     const featuredDapps = [
         {
             logo: Database,
-            name: 'AgriData Hub',
-            description: '农业数据交易与AI服务平台',
+            nameKey: 'aesc2.dapps.dapp1.name',
+            descriptionKey: 'aesc2.dapps.dapp1.description',
             tags: ['#数据市场', '#AI'],
-            metric: '50K+ 活跃用户',
+            metricKey: 'aesc2.dapps.dapp1.metric',
         },
         {
             logo: Shield,
-            name: 'AESC Vault',
-            description: '安全质押与收益聚合器',
+            nameKey: 'aesc2.dapps.dapp2.name',
+            descriptionKey: 'aesc2.dapps.dapp2.description',
             tags: ['#DeFi', '#质押'],
-            metric: '$25M TVL',
+            metricKey: 'aesc2.dapps.dapp2.metric',
         },
         {
             logo: BookOpen,
-            name: 'AgriExpert',
-            description: '农业知识付费与培训平台',
+            nameKey: 'aesc2.dapps.dapp3.name',
+            descriptionKey: 'aesc2.dapps.dapp3.description',
             tags: ['#知识', '#内容'],
-            metric: '3000+ 专家',
+            metricKey: 'aesc2.dapps.dapp3.metric',
         },
         {
             logo: Shield,
-            name: 'FarmInsure',
-            description: '去中心化农业保险协议',
+            nameKey: 'aesc2.dapps.dapp4.name',
+            descriptionKey: 'aesc2.dapps.dapp4.description',
             tags: ['#DeFi', '#保险'],
-            metric: '$10M 保额',
+            metricKey: 'aesc2.dapps.dapp4.metric',
         },
         {
             logo: QrCode,
-            name: 'TraceChain',
-            description: '区块链农产品溯源系统',
+            nameKey: 'aesc2.dapps.dapp5.name',
+            descriptionKey: 'aesc2.dapps.dapp5.description',
             tags: ['#溯源', '#供应链'],
-            metric: '100K+ 产品',
+            metricKey: 'aesc2.dapps.dapp5.metric',
         },
         {
             logo: Network,
-            name: 'AESC DAO',
-            description: '生态治理与提案投票平台',
+            nameKey: 'aesc2.dapps.dapp6.name',
+            descriptionKey: 'aesc2.dapps.dapp6.description',
             tags: ['#治理', '#DAO'],
-            metric: '20K+ 投票者',
+            metricKey: 'aesc2.dapps.dapp6.metric',
         },
     ];
 
     const ecoStats = [
-        { label: 'AESC 总质押量', value: '150,000,000', unit: 'AESC' },
-        { label: '生态日活跃用户', value: '12,500', unit: '人' },
-        { label: 'RWA 资产总价值', value: '$45M', unit: '' },
-        { label: '累计数据贡献奖励', value: '5,000,000', unit: 'AESC' },
+        { labelKey: 'aesc2.stats.stat1.label', value: '150,000,000', unitKey: 'aesc2.stats.stat1.unit' },
+        { labelKey: 'aesc2.stats.stat2.label', value: '12,500', unitKey: 'aesc2.stats.stat2.unit' },
+        { labelKey: 'aesc2.stats.stat3.label', value: '$45M', unitKey: '' },
+        { labelKey: 'aesc2.stats.stat4.label', value: '5,000,000', unitKey: 'aesc2.stats.stat4.unit' },
     ];
 
     const testimonials = [
         {
-            name: '张伟',
-            role: '咖啡种植户 - 云南',
+            nameKey: 'aesc2.testimonials.testimonial1.name',
+            roleKey: 'aesc2.testimonials.testimonial1.role',
             icon: TrendingUp,
-            content: '通过AgriData Hub上传我的农田数据, 每月能获得稳定的AESC代币奖励. 用这些代币在AgriExpert学习了新技术, 产量提升了20%',
+            contentKey: 'aesc2.testimonials.testimonial1.content',
         },
         {
-            name: '李明博士',
-            role: '农业AI专家',
+            nameKey: 'aesc2.testimonials.testimonial2.name',
+            roleKey: 'aesc2.testimonials.testimonial2.role',
             icon: Brain,
-            content: '我在AgriExpert平台上分享农业病虫害识别模型, 已经服务了上千位农户, 同时也获得了可观的收入. AESC让知识真正产生了价值',
+            contentKey: 'aesc2.testimonials.testimonial2.content',
         },
         {
-            name: 'Maria Santos',
-            role: '有机农场主 - 菲律宾',
+            nameKey: 'aesc2.testimonials.testimonial3.name',
+            roleKey: 'aesc2.testimonials.testimonial3.role',
             icon: Layers,
-            content: '使用TraceChain为我的有机蔬菜提供溯源证明后, 产品价格提升了30%. 消费者现在可以扫码看到从种植到运输的全过程',
+            contentKey: 'aesc2.testimonials.testimonial3.content',
         },
     ];
 
     const devResources = [
-        { icon: FileText, title: '公链测试网文档', link: '#' },
-        { icon: Code, title: '智能合约开发模板', link: '#' },
-        { icon: Network, title: 'API 接口文档', link: '#' },
-        { icon: Zap, title: '开发者资助计划详情', link: '#' },
+        { icon: FileText, titleKey: 'aesc2.developer.resource1', link: '#' },
+        { icon: Code, titleKey: 'aesc2.developer.resource2', link: '#' },
+        { icon: Network, titleKey: 'aesc2.developer.resource3', link: '#' },
+        { icon: Zap, titleKey: 'aesc2.developer.resource4', link: '#' },
     ];
 
     const scrollToCategory = (categoryId: string) => {
@@ -157,7 +159,7 @@ export default function Aesc2() {
 
     return (
         <>
-            <Head title="AESC 生态入口" />
+            <Head title={t('page.title.aesc2')} />
             <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
                 <Navigation currentPage="aesc2" />
                 <main className="pt-20">
@@ -176,12 +178,12 @@ export default function Aesc2() {
                             <div className="text-center">
                                 <div className="mb-6 inline-flex items-center rounded border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-200">
                                     <Layers className="mr-2 h-4 w-4" />
-                                    AESC ECOSYSTEM PORTAL
+                                    {t('aesc2.hero.badge')}
                                 </div>
-                                <h1 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">AESC 生态入口</h1>
-                                <p className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-slate-300">
-                                    欢迎进入农业的未来.在这里,每一份贡献都被认可,每一份价值都能流通.
-                                </p>
+                                <h1 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">
+                                    {t('aesc2.hero.title')}
+                                </h1>
+                                <p className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-slate-300">{t('aesc2.hero.description')}</p>
 
                                 {/* 核心行动按钮 */}
                                 <div className="flex flex-wrap justify-center gap-4">
@@ -190,14 +192,14 @@ export default function Aesc2() {
                                         className="inline-flex cursor-pointer items-center rounded bg-gradient-to-r from-emerald-500 to-teal-600 px-8 py-4 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                                     >
                                         <Zap className="mr-2 h-5 w-5" />
-                                        启动 AESC DAPP
+                                        {t('aesc2.hero.button1')}
                                     </a>
                                     <a
                                         href="#categories"
                                         className="inline-flex cursor-pointer items-center rounded border-2 border-white/50 px-8 py-4 text-lg font-medium text-white transition-all hover:bg-white/10"
                                     >
                                         <Network className="mr-2 h-5 w-5" />
-                                        浏览生态应用
+                                        {t('aesc2.hero.button2')}
                                     </a>
                                 </div>
                             </div>
@@ -208,8 +210,8 @@ export default function Aesc2() {
                     <section id="categories" className="px-4 py-32 sm:px-6 lg:px-8">
                         <div className="mx-auto max-w-7xl">
                             <div className="mb-12 text-center">
-                                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">探索生态矩阵</h2>
-                                <p className="mx-auto max-w-2xl text-base text-slate-300">一个充满活力的去中心化应用世界,为您服务</p>
+                                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">{t('aesc2.categories.title')}</h2>
+                                <p className="mx-auto max-w-2xl text-base text-slate-300">{t('aesc2.categories.subtitle')}</p>
                             </div>
 
                             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -224,10 +226,10 @@ export default function Aesc2() {
                                         <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-white/10 transition-all group-hover:bg-emerald-500/20">
                                             <category.icon className="h-7 w-7 text-emerald-300" />
                                         </div>
-                                        <h3 className="mb-2 text-xl font-bold text-white">{category.title}</h3>
-                                        <p className="mb-3 text-sm text-slate-300">{category.description}</p>
+                                        <h3 className="mb-2 text-xl font-bold text-white">{t(category.titleKey)}</h3>
+                                        <p className="mb-3 text-sm text-slate-300">{t(category.descriptionKey)}</p>
                                         <div className="flex items-center text-emerald-300 transition-all group-hover:translate-x-2">
-                                            <span className="text-xs font-semibold">了解更多</span>
+                                            <span className="text-xs font-semibold">{t('aesc2.categories.learnMore')}</span>
                                             <ArrowRight className="ml-2 h-3 w-3" />
                                         </div>
                                     </button>
@@ -240,7 +242,7 @@ export default function Aesc2() {
                     <section id="dapps" className="px-4 py-32 sm:px-6 lg:px-8">
                         <div className="mx-auto max-w-7xl">
                             <div className="mb-12 text-center">
-                                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">热门生态应用</h2>
+                                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">{t('aesc2.dapps.title')}</h2>
                             </div>
 
                             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -253,8 +255,8 @@ export default function Aesc2() {
                                         <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-white/10">
                                             <dapp.logo className="h-6 w-6 text-emerald-300" />
                                         </div>
-                                        <h3 className="mb-2 text-base font-bold text-white">{dapp.name}</h3>
-                                        <p className="mb-3 text-xs text-slate-300">{dapp.description}</p>
+                                        <h3 className="mb-2 text-base font-bold text-white">{t(dapp.nameKey)}</h3>
+                                        <p className="mb-3 text-xs text-slate-300">{t(dapp.descriptionKey)}</p>
                                         <div className="mb-3 flex flex-wrap gap-2">
                                             {dapp.tags.map((tag, tagIndex) => (
                                                 <span
@@ -265,12 +267,12 @@ export default function Aesc2() {
                                                 </span>
                                             ))}
                                         </div>
-                                        <div className="mb-3 text-xs font-semibold text-green-400">{dapp.metric}</div>
+                                        <div className="mb-3 text-xs font-semibold text-green-400">{t(dapp.metricKey)}</div>
                                         <a
                                             href="#"
                                             className="inline-flex w-full cursor-pointer items-center justify-center rounded bg-gradient-to-r from-emerald-500 to-teal-600 px-4 py-2 text-xs font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                                         >
-                                            进入应用
+                                            {t('aesc2.dapps.enterApp')}
                                             <ArrowRight className="ml-2 h-3 w-3" />
                                         </a>
                                     </div>
@@ -283,7 +285,7 @@ export default function Aesc2() {
                     <section className="px-4 py-32 sm:px-6 lg:px-8">
                         <div className="mx-auto max-w-7xl">
                             <div className="mb-12 text-center">
-                                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">三步开启您的AESC之旅</h2>
+                                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">{t('aesc2.guide.title')}</h2>
                             </div>
 
                             <div className="grid gap-8 md:grid-cols-3">
@@ -293,13 +295,13 @@ export default function Aesc2() {
                                         <UserCheck className="h-10 w-10 text-emerald-300" />
                                     </div>
                                     <div className="mb-3 text-5xl font-bold text-emerald-500/20">01</div>
-                                    <h3 className="mb-3 text-xl font-bold text-white">创建身份</h3>
-                                    <p className="mb-4 text-sm text-slate-300">进入AESC官方DAPP,生成您的去中心化身份(DID).这是您在生态中的通用护照</p>
+                                    <h3 className="mb-3 text-xl font-bold text-white">{t('aesc2.guide.step1.title')}</h3>
+                                    <p className="mb-4 text-sm text-slate-300">{t('aesc2.guide.step1.description')}</p>
                                     <a
                                         href="#"
                                         className="inline-flex cursor-pointer items-center rounded border border-white/30 px-4 py-2 text-xs font-medium text-white transition-all hover:bg-white/10"
                                     >
-                                        DAPP链接
+                                        {t('aesc2.guide.step1.button')}
                                         <ArrowRight className="ml-2 h-3 w-3" />
                                     </a>
                                 </div>
@@ -310,13 +312,13 @@ export default function Aesc2() {
                                         <Wallet className="h-10 w-10 text-emerald-300" />
                                     </div>
                                     <div className="mb-3 text-5xl font-bold text-emerald-500/20">02</div>
-                                    <h3 className="mb-3 text-xl font-bold text-white">获取AESC</h3>
-                                    <p className="mb-4 text-sm text-slate-300">获取AESC代币,这是驱动所有生态活动的燃料.您可以通过交易所购买</p>
+                                    <h3 className="mb-3 text-xl font-bold text-white">{t('aesc2.guide.step2.title')}</h3>
+                                    <p className="mb-4 text-sm text-slate-300">{t('aesc2.guide.step2.description')}</p>
                                     <a
                                         href="#"
                                         className="inline-flex cursor-pointer items-center rounded border border-white/30 px-4 py-2 text-xs font-medium text-white transition-all hover:bg-white/10"
                                     >
-                                        查看支持交易所
+                                        {t('aesc2.guide.step2.button')}
                                         <ArrowRight className="ml-2 h-3 w-3" />
                                     </a>
                                 </div>
@@ -327,26 +329,26 @@ export default function Aesc2() {
                                         <Network className="h-10 w-10 text-emerald-300" />
                                     </div>
                                     <div className="mb-3 text-5xl font-bold text-emerald-500/20">03</div>
-                                    <h3 className="mb-3 text-xl font-bold text-white">探索与参与</h3>
-                                    <p className="mb-4 text-sm text-slate-300">连接钱包,开始探索DApp.根据您的身份,我们为您推荐最佳起点</p>
+                                    <h3 className="mb-3 text-xl font-bold text-white">{t('aesc2.guide.step3.title')}</h3>
+                                    <p className="mb-4 text-sm text-slate-300">{t('aesc2.guide.step3.description')}</p>
                                     <div className="flex flex-wrap justify-center gap-2">
                                         <a
                                             href="#"
                                             className="rounded border border-white/30 px-3 py-1.5 text-xs text-white transition-all hover:bg-white/10"
                                         >
-                                            我是农户
+                                            {t('aesc2.guide.step3.role1')}
                                         </a>
                                         <a
                                             href="#"
                                             className="rounded border border-white/30 px-3 py-1.5 text-xs text-white transition-all hover:bg-white/10"
                                         >
-                                            我是专家
+                                            {t('aesc2.guide.step3.role2')}
                                         </a>
                                         <a
                                             href="#"
                                             className="rounded border border-white/30 px-3 py-1.5 text-xs text-white transition-all hover:bg-white/10"
                                         >
-                                            我是消费者
+                                            {t('aesc2.guide.step3.role3')}
                                         </a>
                                     </div>
                                 </div>
@@ -358,15 +360,15 @@ export default function Aesc2() {
                     <section className="px-4 py-32 sm:px-6 lg:px-8">
                         <div className="mx-auto max-w-7xl">
                             <div className="mb-12 text-center">
-                                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">生态实时脉搏</h2>
+                                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">{t('aesc2.stats.title')}</h2>
                             </div>
 
                             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                                 {ecoStats.map((stat, index) => (
                                     <div key={index} className="rounded-lg border-2 border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm">
-                                        <div className="mb-2 text-xs text-slate-400">{stat.label}</div>
+                                        <div className="mb-2 text-xs text-slate-400">{t(stat.labelKey)}</div>
                                         <div className="mb-1 text-2xl font-bold text-emerald-300">{stat.value}</div>
-                                        {stat.unit && <div className="text-xs text-slate-500">{stat.unit}</div>}
+                                        {stat.unitKey && <div className="text-xs text-slate-500">{t(stat.unitKey)}</div>}
                                     </div>
                                 ))}
                             </div>
@@ -377,7 +379,7 @@ export default function Aesc2() {
                     <section className="px-4 py-32 sm:px-6 lg:px-8">
                         <div className="mx-auto max-w-7xl">
                             <div className="mb-12 text-center">
-                                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">他们正在AESC生态中创造价值</h2>
+                                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">{t('aesc2.testimonials.title')}</h2>
                             </div>
 
                             <div className="relative mx-auto max-w-4xl">
@@ -387,11 +389,11 @@ export default function Aesc2() {
                                         <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600">
                                             {React.createElement(testimonials[currentTestimonial].icon, { className: 'h-8 w-8 text-white' })}
                                         </div>
-                                        <h3 className="mb-1 text-lg font-bold text-white">{testimonials[currentTestimonial].name}</h3>
-                                        <p className="text-xs text-emerald-300">{testimonials[currentTestimonial].role}</p>
+                                        <h3 className="mb-1 text-lg font-bold text-white">{t(testimonials[currentTestimonial].nameKey)}</h3>
+                                        <p className="text-xs text-emerald-300">{t(testimonials[currentTestimonial].roleKey)}</p>
                                     </div>
                                     <p className="mb-6 text-center text-base leading-relaxed text-slate-300">
-                                        "{testimonials[currentTestimonial].content}"
+                                        "{t(testimonials[currentTestimonial].contentKey)}"
                                     </p>
 
                                     {/* 导航按钮 */}
@@ -433,11 +435,9 @@ export default function Aesc2() {
                                     </div>
                                 </div>
                                 <h2 className="mb-3 text-center text-2xl font-bold tracking-tight text-white md:text-3xl">
-                                    构建下一个引爆生态的DApp?
+                                    {t('aesc2.developer.title')}
                                 </h2>
-                                <p className="mx-auto mb-8 max-w-2xl text-center text-base text-slate-300">
-                                    我们为开发者提供了完善的基础设施,助您快速构建和部署
-                                </p>
+                                <p className="mx-auto mb-8 max-w-2xl text-center text-base text-slate-300">{t('aesc2.developer.description')}</p>
 
                                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                                     {devResources.map((resource, index) => (
@@ -449,7 +449,7 @@ export default function Aesc2() {
                                             <div className="mb-3 flex justify-center">
                                                 <resource.icon className="h-6 w-6 text-emerald-300" />
                                             </div>
-                                            <h3 className="text-xs font-semibold text-white group-hover:text-emerald-300">{resource.title}</h3>
+                                            <h3 className="text-xs font-semibold text-white group-hover:text-emerald-300">{t(resource.titleKey)}</h3>
                                         </a>
                                     ))}
                                 </div>
@@ -459,7 +459,7 @@ export default function Aesc2() {
                                         href="#"
                                         className="inline-flex cursor-pointer items-center rounded bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-3 font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                                     >
-                                        申请开发者资助
+                                        {t('aesc2.developer.button')}
                                         <ArrowRight className="ml-2 h-4 w-4" />
                                     </a>
                                 </div>

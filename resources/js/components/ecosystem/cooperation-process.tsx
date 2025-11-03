@@ -1,36 +1,40 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
+
 export function CooperationProcess() {
+    const { t } = useLaravelReactI18n();
+
     const cooperationProcess = [
         {
             step: '01',
-            title: '提交意向',
-            description: '通过下方表单告诉我们您的机构和合作想法',
+            titleKey: 'ecosystem.process.step1.title',
+            descriptionKey: 'ecosystem.process.step1.description',
         },
         {
             step: '02',
-            title: '初步评估',
-            description: '我们的生态合作团队将评估协同潜力',
+            titleKey: 'ecosystem.process.step2.title',
+            descriptionKey: 'ecosystem.process.step2.description',
         },
         {
             step: '03',
-            title: '深度对接',
-            description: '安排专项会议, 与您的团队深入探讨合作方案',
+            titleKey: 'ecosystem.process.step3.title',
+            descriptionKey: 'ecosystem.process.step3.description',
         },
         {
             step: '04',
-            title: '共建未来',
-            description: '签署协议, 正式启动合作, 共同创造价值',
+            titleKey: 'ecosystem.process.step4.title',
+            descriptionKey: 'ecosystem.process.step4.description',
         },
     ];
 
     return (
         <div className="mb-12">
-            <h3 className="mb-6 text-center text-2xl font-bold text-white">合作申请流程</h3>
+            <h3 className="mb-6 text-center text-2xl font-bold text-white">{t('ecosystem.process.title')}</h3>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {cooperationProcess.map((process, index) => (
                     <div key={index} className="rounded-lg border border-white/10 bg-white/5 p-5 text-center backdrop-blur-sm">
                         <div className="mb-3 text-3xl font-bold text-emerald-300">{process.step}</div>
-                        <h4 className="mb-2 text-base font-bold text-white">{process.title}</h4>
-                        <p className="text-sm text-slate-300">{process.description}</p>
+                        <h4 className="mb-2 text-base font-bold text-white">{t(process.titleKey)}</h4>
+                        <p className="text-sm text-slate-300">{t(process.descriptionKey)}</p>
                     </div>
                 ))}
             </div>

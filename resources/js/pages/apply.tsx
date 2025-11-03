@@ -1,5 +1,6 @@
 import { MainLayout } from '@/layouts';
 import { Head } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { CheckCircle2, FileText, Plus, Trash2, Upload } from 'lucide-react';
 import { useState } from 'react';
 
@@ -23,6 +24,7 @@ interface FundingRound {
  * 用于接收投资申请的详细表单
  */
 export default function Apply() {
+    const { t } = useLaravelReactI18n();
     const [submitted, setSubmitted] = useState(false);
     const [formData, setFormData] = useState({
         // 第一部分
@@ -155,7 +157,7 @@ export default function Apply() {
     if (submitted) {
         return (
             <MainLayout currentPage="">
-                <Head title="申请已提交" />
+                <Head title={t('page.title.apply.submitted')} />
                 <div className="px-4 pt-32 pb-32 sm:px-6 lg:px-8">
                     <div className="mx-auto max-w-3xl text-center">
                         <div className="mb-8 flex justify-center">
@@ -181,7 +183,7 @@ export default function Apply() {
 
     return (
         <MainLayout currentPage="">
-            <Head title="项目申请表" />
+            <Head title={t('page.title.apply')} />
             <div className="px-4 pt-32 pb-32 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-4xl">
                     {/* 表头说明 */}

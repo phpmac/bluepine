@@ -1,5 +1,7 @@
 import { AescFaq, AescHero, AescParticipation, AescRoadmap, AescTokenEconomy, AescTrust, AescValueProposition } from '@/components/aesc';
 import { MainLayout } from '@/layouts';
+import { Head } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 
 /**
  * AESC 生态页面
@@ -7,15 +9,20 @@ import { MainLayout } from '@/layouts';
  * 展示 AGRI-ECO SMART CHAIN 的核心信息和价值主张
  */
 export default function Aesc() {
+    const { t } = useLaravelReactI18n();
+
     return (
-        <MainLayout currentPage="aesc">
-            <AescHero />
-            <AescValueProposition />
-            <AescParticipation />
-            <AescTokenEconomy />
-            <AescRoadmap />
-            <AescTrust />
-            <AescFaq />
-        </MainLayout>
+        <>
+            <Head title={t('page.title.aesc')} />
+            <MainLayout currentPage="aesc">
+                <AescHero />
+                <AescValueProposition />
+                <AescParticipation />
+                <AescTokenEconomy />
+                <AescRoadmap />
+                <AescTrust />
+                <AescFaq />
+            </MainLayout>
+        </>
     );
 }

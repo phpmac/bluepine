@@ -1,65 +1,68 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Brain, CheckCircle2, CircuitBoard, Link2 } from 'lucide-react';
 
 export function InvestmentPillars() {
+    const { t } = useLaravelReactI18n();
+
     const investmentPillars = [
         {
             icon: CircuitBoard,
-            title: '智慧农业的数字化跃迁',
-            description: '通过物联网, 机器人和生物技术的融合, 推动农业生产方式的革命性升级',
+            titleKey: 'strategy.pillars.pillar1.title',
+            descriptionKey: 'strategy.pillars.pillar1.description',
             focusAreas: [
                 {
-                    name: '农业物联网与机器人',
-                    details: '低成本传感器, 自动驾驶农机, 无人机精准作业',
+                    nameKey: 'strategy.pillars.pillar1.area1.name',
+                    detailsKey: 'strategy.pillars.pillar1.area1.details',
                 },
                 {
-                    name: '农业大数据与分析平台',
-                    details: '农场管理软件, 产量预测模型, 碳汇计量监测',
+                    nameKey: 'strategy.pillars.pillar1.area2.name',
+                    detailsKey: 'strategy.pillars.pillar1.area2.details',
                 },
                 {
-                    name: '生物技术与数字农业结合',
-                    details: '基于基因数据的精准育种与栽培方案',
+                    nameKey: 'strategy.pillars.pillar1.area3.name',
+                    detailsKey: 'strategy.pillars.pillar1.area3.details',
                 },
             ],
         },
         {
             icon: Link2,
-            title: '区块链驱动的信任与资产化',
-            description: '利用区块链技术构建农业领域的信任基础设施, 实现实物资产数字化',
+            titleKey: 'strategy.pillars.pillar2.title',
+            descriptionKey: 'strategy.pillars.pillar2.description',
             focusAreas: [
                 {
-                    name: '农业RWA',
-                    details: '农田, 作物收益权, 农机设备等实物资产的通证化',
+                    nameKey: 'strategy.pillars.pillar2.area1.name',
+                    detailsKey: 'strategy.pillars.pillar2.area1.details',
                 },
                 {
-                    name: '供应链溯源与透明度',
-                    details: '从田间到餐桌的全链条可验证数据记录',
+                    nameKey: 'strategy.pillars.pillar2.area2.name',
+                    detailsKey: 'strategy.pillars.pillar2.area2.details',
                 },
                 {
-                    name: '农业 DeFi 与保险',
-                    details: '基于链上数据的信贷评分, 去中心化保险, 产量衍生品',
+                    nameKey: 'strategy.pillars.pillar2.area3.name',
+                    detailsKey: 'strategy.pillars.pillar2.area3.details',
                 },
                 {
-                    name: '去中心化数据市场',
-                    details: '实现农业数据安全, 合规, 有偿流转的平台',
+                    nameKey: 'strategy.pillars.pillar2.area4.name',
+                    detailsKey: 'strategy.pillars.pillar2.area4.details',
                 },
             ],
         },
         {
             icon: Brain,
-            title: '人工智能赋能的决策与自动化',
-            description: '运用人工智能和计算机视觉技术, 提升农业决策的精准度和自动化水平',
+            titleKey: 'strategy.pillars.pillar3.title',
+            descriptionKey: 'strategy.pillars.pillar3.description',
             focusAreas: [
                 {
-                    name: 'AI 预测模型',
-                    details: '病虫害早期识别与预警, 市场价格预测, 气象风险建模',
+                    nameKey: 'strategy.pillars.pillar3.area1.name',
+                    detailsKey: 'strategy.pillars.pillar3.area1.details',
                 },
                 {
-                    name: '计算机视觉应用',
-                    details: '基于卫星, 无人机及地面影像的作物长势与胁迫分析',
+                    nameKey: 'strategy.pillars.pillar3.area2.name',
+                    detailsKey: 'strategy.pillars.pillar3.area2.details',
                 },
                 {
-                    name: '智能决策支持系统',
-                    details: '为农户提供个性化的灌溉, 施肥, 播种处方',
+                    nameKey: 'strategy.pillars.pillar3.area3.name',
+                    detailsKey: 'strategy.pillars.pillar3.area3.details',
                 },
             ],
         },
@@ -68,10 +71,8 @@ export function InvestmentPillars() {
     return (
         <div className="mb-32">
             <div className="mb-12 text-center">
-                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">我们的三大投资支柱</h2>
-                <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-300">
-                    我们坚信, 这三个领域的融合是解决农业系统性问题的关键. 我们的投资紧密围绕以下交叉点展开:
-                </p>
+                <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">{t('strategy.pillars.title')}</h2>
+                <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-300">{t('strategy.pillars.description')}</p>
             </div>
 
             <div className="space-y-8">
@@ -85,8 +86,8 @@ export function InvestmentPillars() {
                                 <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600">
                                     <pillar.icon className="h-8 w-8 text-white" strokeWidth={2} />
                                 </div>
-                                <h3 className="mb-2 text-xl font-bold text-white">{pillar.title}</h3>
-                                <p className="mt-6 text-sm leading-relaxed text-slate-300">{pillar.description}</p>
+                                <h3 className="mb-2 text-xl font-bold text-white">{t(pillar.titleKey)}</h3>
+                                <p className="mt-6 text-sm leading-relaxed text-slate-300">{t(pillar.descriptionKey)}</p>
                             </div>
                             <div className="md:col-span-2">
                                 <div className="grid gap-4 md:grid-cols-2">
@@ -94,9 +95,9 @@ export function InvestmentPillars() {
                                         <div key={areaIndex} className="rounded-lg border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
                                             <h4 className="mb-2 flex items-center text-base font-bold text-white">
                                                 <CheckCircle2 className="mr-2 h-4 w-4 text-emerald-300" />
-                                                {area.name}
+                                                {t(area.nameKey)}
                                             </h4>
-                                            <p className="text-xs leading-relaxed text-slate-300">{area.details}</p>
+                                            <p className="text-xs leading-relaxed text-slate-300">{t(area.detailsKey)}</p>
                                         </div>
                                     ))}
                                 </div>

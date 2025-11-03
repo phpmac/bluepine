@@ -1,3 +1,4 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { CheckCircle2 } from 'lucide-react';
 
 /**
@@ -6,38 +7,40 @@ import { CheckCircle2 } from 'lucide-react';
  * 展示 AESC 生态的发展阶段和里程碑
  */
 export function AescRoadmap() {
+    const { t } = useLaravelReactI18n();
+
     const roadmapPhases = [
         {
-            phase: '建设期',
-            period: '1-3 个月',
-            title: '完成团队组建, 技术架构设计, 白皮书发布',
-            milestone: '与 2 个农业产区达成试点合作意向',
+            phaseKey: 'aesc.roadmap.phase1.phase',
+            periodKey: 'aesc.roadmap.phase1.period',
+            titleKey: 'aesc.roadmap.phase1.title',
+            milestoneKey: 'aesc.roadmap.phase1.milestone',
             status: 'completed',
         },
         {
-            phase: '启动期',
-            period: '4-6 个月',
-            title: '启动 AESC 空投和私募',
-            milestone: '全球活跃用户达 15 万参与空投和私募',
+            phaseKey: 'aesc.roadmap.phase2.phase',
+            periodKey: 'aesc.roadmap.phase2.period',
+            titleKey: 'aesc.roadmap.phase2.title',
+            milestoneKey: 'aesc.roadmap.phase2.milestone',
             status: 'current',
         },
         {
-            phase: '试点期',
-            period: '7-9 个月',
-            title: '部署基础平台, 接入 IoT 设备, 测试 AI 模型',
-            milestone: '500 户农户内测, AI 诊断准确率≥85%',
+            phaseKey: 'aesc.roadmap.phase3.phase',
+            periodKey: 'aesc.roadmap.phase3.period',
+            titleKey: 'aesc.roadmap.phase3.title',
+            milestoneKey: 'aesc.roadmap.phase3.milestone',
         },
         {
-            phase: '扩张期',
-            period: '10-18 个月',
-            title: 'DeFi 借贷产品 / RWA 发行',
-            milestone: '覆盖 5 个国家, RWA 资产规模达5亿美元',
+            phaseKey: 'aesc.roadmap.phase4.phase',
+            periodKey: 'aesc.roadmap.phase4.period',
+            titleKey: 'aesc.roadmap.phase4.title',
+            milestoneKey: 'aesc.roadmap.phase4.milestone',
         },
         {
-            phase: '公链研发期',
-            period: '19-24 个月',
-            title: 'Agri-Eco Smart Chain 主网上线',
-            milestone: '日交易量突破 1 亿 AESC',
+            phaseKey: 'aesc.roadmap.phase5.phase',
+            periodKey: 'aesc.roadmap.phase5.period',
+            titleKey: 'aesc.roadmap.phase5.title',
+            milestoneKey: 'aesc.roadmap.phase5.milestone',
         },
     ];
 
@@ -45,7 +48,7 @@ export function AescRoadmap() {
         <section className="px-4 py-32 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl">
                 <div className="mb-12 text-center">
-                    <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">AESC 生态发展征程</h2>
+                    <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">{t('aesc.roadmap.title')}</h2>
                 </div>
 
                 <div className="relative">
@@ -59,17 +62,17 @@ export function AescRoadmap() {
                                 <div className={index % 2 === 1 ? 'md:order-2' : ''}>
                                     <div className="rounded-lg border-2 border-white/10 bg-white/5 p-6 backdrop-blur-sm md:ml-8">
                                         <div className="mb-2 flex items-center gap-3">
-                                            <span className="text-sm font-semibold text-emerald-300">{phase.phase}</span>
+                                            <span className="text-sm font-semibold text-emerald-300">{t(phase.phaseKey)}</span>
                                             <span className="text-sm text-slate-400">·</span>
-                                            <span className="text-sm text-slate-400">{phase.period}</span>
+                                            <span className="text-sm text-slate-400">{t(phase.periodKey)}</span>
                                         </div>
-                                        <h3 className="mb-3 text-lg font-bold text-white">核心任务</h3>
-                                        <p className="mb-3 text-sm text-slate-300">{phase.title}</p>
+                                        <h3 className="mb-3 text-lg font-bold text-white">{t('aesc.roadmap.coreTask')}</h3>
+                                        <p className="mb-3 text-sm text-slate-300">{t(phase.titleKey)}</p>
                                         <h4 className="mb-2 flex items-center text-xs font-semibold text-emerald-300">
                                             <CheckCircle2 className="mr-2 h-3 w-3" />
-                                            关键里程碑
+                                            {t('aesc.roadmap.keyMilestone')}
                                         </h4>
-                                        <p className="text-sm text-slate-300">{phase.milestone}</p>
+                                        <p className="text-sm text-slate-300">{t(phase.milestoneKey)}</p>
                                     </div>
                                 </div>
 
