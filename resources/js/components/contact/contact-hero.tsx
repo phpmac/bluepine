@@ -51,16 +51,16 @@ export function ContactHero() {
                         </div>
                         <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl lg:text-7xl">联系我们</h1>
                         <p className="mb-6 text-lg leading-relaxed text-slate-300 md:text-xl">
-                            开启对话,共创未来.我们期待聆听您的声音,无论是项目提案,合作意向还是技术探讨.
+                            开启对话, 共创未来. 我们期待聆听您的声音, 无论是项目提案, 合作意向还是技术探讨.
                         </p>
 
                         {/* 核心价值主张 */}
                         <div className="rounded-lg border-l-4 border-emerald-500 bg-white/5 p-5 backdrop-blur-sm md:p-6">
-                            <h2 className="mb-3 text-xl font-bold text-white">高效连接,专业响应</h2>
+                            <h2 className="mb-3 text-xl font-bold text-white">高效连接, 专业响应</h2>
                             <p className="text-sm leading-relaxed text-slate-300 md:text-base">
-                                在BLUEPINE,我们重视每一次真诚的联络.我们的专业团队会对您的咨询进行精准分类,并确保在{' '}
-                                <span className="font-bold text-emerald-300">2个工作日</span>{' '}
-                                内给予初次回复.让我们携手,将您的构想变为推动农业变革的现实.
+                                在BLUEPINE, 我们重视每一次真诚的联络. 我们的专业团队会对您的咨询进行精准分类, 并确保在{' '}
+                                <span className="font-bold text-emerald-300">2个工作日</span> 内给予初次回复. 让我们携手,
+                                将您的构想变为推动农业变革的现实.
                             </p>
                         </div>
                     </div>

@@ -30,14 +30,14 @@ export function AescTokenEconomy() {
                                 percentage: '20%',
                                 amount: '3.2 亿枚',
                                 color: 'from-teal-600 to-cyan-700',
-                                unlock: '上线即解锁10%,剩下分12个月线性解锁',
+                                unlock: '上线即解锁10%, 剩下分12个月线性解锁',
                             },
                             {
                                 category: '团队激励',
                                 percentage: '15%',
                                 amount: '2.4 亿枚',
                                 color: 'from-cyan-600 to-blue-700',
-                                unlock: '上线解锁10%,剩余分18个月线性解锁',
+                                unlock: '上线解锁10%, 剩余分18个月线性解锁',
                             },
                             {
                                 category: '交易所',
@@ -65,7 +65,7 @@ export function AescTokenEconomy() {
                                 percentage: '2%',
                                 amount: '0.32 亿枚',
                                 color: 'from-pink-600 to-rose-700',
-                                unlock: '完成任务后,分6个月线性释放',
+                                unlock: '完成任务后, 分6个月线性释放',
                             },
                         ].map((allocation, index) => (
                             <div
@@ -92,7 +92,7 @@ export function AescTokenEconomy() {
                 {/* 代币效用 - AESC:生态的价值血液(详版) */}
                 <div>
                     <div className="mb-12 text-center">
-                        <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">AESC:生态的价值血液</h2>
+                        <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">AESC: 生态的价值血液</h2>
                         <p className="mx-auto max-w-3xl text-base text-slate-300">多维度效用设计, 驱动生态价值循环</p>
                     </div>
 

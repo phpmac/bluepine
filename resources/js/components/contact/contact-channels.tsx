@@ -6,7 +6,7 @@ export function ContactChannels() {
             icon: Rocket,
             title: '项目投递',
             team: '投资团队',
-            description: '如果您是寻求融资的创业者,请通过此渠道提交您的商业计划书',
+            description: '如果您是寻求融资的创业者, 请通过此渠道提交您的商业计划书',
             action: '提交您的项目',
             email: 'info@bluepinefoundation.com',
             link: '/contact#form',
@@ -15,7 +15,7 @@ export function ContactChannels() {
             icon: Handshake,
             title: '生态合作',
             team: '生态合作团队',
-            description: '适用于技术整合,市场推广,战略联盟等合作洽谈',
+            description: '适用于技术整合, 市场推广, 战略联盟等合作洽谈',
             action: '提交合作意向',
             email: 'info@bluepinefoundation.com',
             link: '/ecosystem',
@@ -24,14 +24,14 @@ export function ContactChannels() {
             icon: Radio,
             title: '媒体问询',
             team: '市场传播团队',
-            description: '欢迎媒体朋友,分析师及内容创作者就品牌故事,新闻动态进行联系',
+            description: '欢迎媒体朋友, 分析师及内容创作者就品牌故事, 新闻动态进行联系',
             email: 'info@bluepinefoundation.com',
         },
         {
             icon: HelpCircle,
             title: '一般问询',
             team: '行政支持团队',
-            description: '适用于其他所有问题,包括会议,活动及其他综合事务',
+            description: '适用于其他所有问题, 包括会议, 活动及其他综合事务',
             email: 'info@bluepinefoundation.com',
         },
     ];
@@ -41,7 +41,7 @@ export function ContactChannels() {
             <div className="mx-auto max-w-7xl">
                 <div className="mb-12 text-center">
                     <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">详细联系方式</h2>
-                    <p className="mx-auto max-w-2xl text-base text-slate-400">根据您的需求选择最合适的联系通道,我们的专业团队将为您提供精准服务</p>
+                    <p className="mx-auto max-w-2xl text-base text-slate-400">根据您的需求选择最合适的联系通道, 我们的专业团队将为您提供精准服务</p>
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">

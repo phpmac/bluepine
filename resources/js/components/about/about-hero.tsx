@@ -16,7 +16,7 @@ export function AboutHero() {
             <div className="relative z-10 mx-auto max-w-4xl text-center">
                 <h1 className="mb-8 text-6xl leading-tight font-bold tracking-tight text-white md:text-7xl">关于我们</h1>
                 <p className="text-2xl leading-relaxed text-slate-300">
-                    我们致力于将最前沿的科技深度融入最古老的行业,构建一个更高效,透明,可持续的全球农业未来.
+                    我们致力于将最前沿的科技深度融入最古老的行业, 构建一个更高效, 透明, 可持续的全球农业未来.
                 </p>
             </div>
         </section>

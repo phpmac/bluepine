@@ -21,7 +21,7 @@ export function PrivacyHero() {
                     </div>
                     <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">隐私政策</h1>
                     <p className="mb-5 text-lg leading-relaxed text-slate-300 md:text-xl">
-                        BLUEPINE TECH FOUNDATION (以下简称"我们") 尊重并保护您的隐私.本隐私政策说明我们如何收集,使用,存储和保护您的个人信息.
+                        BLUEPINE TECH FOUNDATION (以下简称 "我们" ) 尊重并保护您的隐私. 本隐私政策说明我们如何收集, 使用, 存储和保护您的个人信息.
                     </p>
                     <p className="text-sm text-slate-400">最后更新日期: 2025年10月30日</p>
                 </div>

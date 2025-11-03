@@ -27,7 +27,7 @@ export function InsightsHero() {
                     </div>
                     <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">资源洞察</h1>
                     <p className="text-lg leading-relaxed text-slate-300 md:text-xl">
-                        深入行业前沿,解读技术趋势.在这里,我们分享关于农业数字化转型的深度思考,前沿分析与实证案例.
+                        深入行业前沿, 解读技术趋势. 在这里, 我们分享关于农业数字化转型的深度思考, 前沿分析与实证案例.
                     </p>
                 </div>
             </div>

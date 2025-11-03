@@ -116,19 +116,19 @@ export default function Aesc2() {
             name: '张伟',
             role: '咖啡种植户 - 云南',
             icon: TrendingUp,
-            content: '通过AgriData Hub上传我的农田数据,每月能获得稳定的AESC代币奖励.用这些代币在AgriExpert学习了新技术,产量提升了20%',
+            content: '通过AgriData Hub上传我的农田数据, 每月能获得稳定的AESC代币奖励. 用这些代币在AgriExpert学习了新技术, 产量提升了20%',
         },
         {
             name: '李明博士',
             role: '农业AI专家',
             icon: Brain,
-            content: '我在AgriExpert平台上分享农业病虫害识别模型,已经服务了上千位农户,同时也获得了可观的收入.AESC让知识真正产生了价值',
+            content: '我在AgriExpert平台上分享农业病虫害识别模型, 已经服务了上千位农户, 同时也获得了可观的收入. AESC让知识真正产生了价值',
         },
         {
             name: 'Maria Santos',
             role: '有机农场主 - 菲律宾',
             icon: Layers,
-            content: '使用TraceChain为我的有机蔬菜提供溯源证明后,产品价格提升了30%.消费者现在可以扫码看到从种植到运输的全过程',
+            content: '使用TraceChain为我的有机蔬菜提供溯源证明后, 产品价格提升了30%. 消费者现在可以扫码看到从种植到运输的全过程',
         },
     ];
 

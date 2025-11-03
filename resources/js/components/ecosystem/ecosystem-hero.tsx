@@ -27,7 +27,7 @@ export function EcosystemHero() {
                     </div>
                     <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">生态合作</h1>
                     <p className="text-lg leading-relaxed text-slate-300 md:text-xl">
-                        独行快,众行远.我们致力于构建一个开放,协同,共赢的全球农业数字生态.邀请您与我们同行,共同赋能未来农业.
+                        独行快, 众行远. 我们致力于构建一个开放, 协同, 共赢的全球农业数字生态. 邀请您与我们同行, 共同赋能未来农业.
                     </p>
                 </div>
             </div>

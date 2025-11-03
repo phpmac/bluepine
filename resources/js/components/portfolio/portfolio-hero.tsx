@@ -35,7 +35,7 @@ export function PortfolioHero() {
                     </div>
                     <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">投资组合</h1>
                     <p className="text-lg leading-relaxed text-slate-300 md:text-xl">
-                        我们投资并赋能下一代农业科技的领军者.探索这些正在重新定义从种植到交易各个环节的创新力量.
+                        我们投资并赋能下一代农业科技的领军者. 探索这些正在重新定义从种植到交易各个环节的创新力量.
                     </p>
                 </div>
             </div>

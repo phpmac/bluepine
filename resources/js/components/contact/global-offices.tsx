@@ -5,12 +5,12 @@ export function GlobalOffices() {
         {
             city: '新加坡总部',
             address: '1 Marina Boulevard, #28-00, Singapore 018989',
-            focus: '全球战略,投资管理与国际合规',
+            focus: '全球战略, 投资管理与国际合规',
         },
         {
             city: '东南亚合作中心',
             address: '与合作机构共享办公空间',
-            focus: '农业试点项目落地,本地化生态拓展',
+            focus: '农业试点项目落地, 本地化生态拓展',
         },
     ];
 

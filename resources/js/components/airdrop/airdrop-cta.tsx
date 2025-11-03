@@ -16,13 +16,13 @@ export function AirdropCta() {
                         </div>
                     </div>
                     <h2 className="mb-4 text-2xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">不要错过成为AESC创始社区一员的机会!</h2>
-                    <p className="mx-auto mb-8 max-w-3xl text-lg text-slate-300 md:text-xl">立即行动,完成任务,您的早期参与将是未来收获的种子</p>
+                    <p className="mx-auto mb-8 max-w-3xl text-lg text-slate-300 md:text-xl">立即行动, 完成任务, 您的早期参与将是未来收获的种子</p>
                     <a
                         href="#participate"
                         className="inline-flex cursor-pointer items-center rounded bg-gradient-to-r from-emerald-500 to-teal-600 px-8 py-4 text-base font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700 md:px-10 md:py-5 md:text-lg"
                     >
                         <Gift className="mr-2 h-5 w-5 md:h-6 md:w-6" />
-                        立即参与空投,领取我的奖励
+                        立即参与空投, 领取我的奖励
                     </a>
                 </div>
             </div>

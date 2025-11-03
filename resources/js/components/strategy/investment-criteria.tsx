@@ -41,7 +41,7 @@ export function InvestmentCriteria() {
                         </div>
                         <div>
                             <h4 className="mb-1 text-lg font-semibold text-emerald-200">选择性B轮跟投</h4>
-                            <p className="mb-2 text-sm leading-relaxed text-slate-300">对于生态具有战略意义的杰出项目,我们会持续支持.</p>
+                            <p className="mb-2 text-sm leading-relaxed text-slate-300">对于生态具有战略意义的杰出项目, 我们会持续支持.</p>
                         </div>
                         <div className="border-t border-white/10 pt-4">
                             <h4 className="mb-1 text-lg font-semibold text-white">投资规模</h4>

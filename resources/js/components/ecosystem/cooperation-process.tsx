@@ -13,12 +13,12 @@ export function CooperationProcess() {
         {
             step: '03',
             title: '深度对接',
-            description: '安排专项会议,与您的团队深入探讨合作方案',
+            description: '安排专项会议, 与您的团队深入探讨合作方案',
         },
         {
             step: '04',
             title: '共建未来',
-            description: '签署协议,正式启动合作,共同创造价值',
+            description: '签署协议, 正式启动合作, 共同创造价值',
         },
     ];
 

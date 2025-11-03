@@ -17,14 +17,14 @@ export function StatusReminders() {
                             <Globe className="mt-1 mr-3 h-5 w-5 shrink-0 text-emerald-400" />
                             <div>
                                 <h4 className="mb-2 text-sm font-semibold text-white">全球协作</h4>
-                                <p className="text-sm text-slate-300">我们的团队分布在不同时区,请您耐心等待,我们一定会回复您.</p>
+                                <p className="text-sm text-slate-300">我们的团队分布在不同时区, 请您耐心等待, 我们一定会回复您.</p>
                             </div>
                         </div>
                         <div className="flex items-start">
                             <AlertCircle className="mt-1 mr-3 h-5 w-5 shrink-0 text-orange-400" />
                             <div>
                                 <h4 className="mb-2 text-sm font-semibold text-white">安全须知</h4>
-                                <p className="text-sm text-slate-300">我们绝不会通过非官方渠道索要您的私钥,密码或进行转账操作.请警惕诈骗.</p>
+                                <p className="text-sm text-slate-300">我们绝不会通过非官方渠道索要您的私钥, 密码或进行转账操作. 请警惕诈骗.</p>
                             </div>
                         </div>
                     </div>

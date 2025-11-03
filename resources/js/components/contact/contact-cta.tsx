@@ -10,7 +10,7 @@ export function ContactCTA() {
                 <div className="rounded-lg border-2 border-white/10 bg-gradient-to-br from-emerald-500/20 to-teal-600/20 p-6 text-center backdrop-blur-sm md:p-10">
                     <h2 className="mb-3 text-2xl font-bold tracking-tight text-white md:text-3xl">准备好与我们共同塑造未来农业了吗?</h2>
                     <p className="mx-auto mb-5 max-w-2xl text-base text-slate-300">
-                        无论您是寻求投资的创业者,还是希望建立合作的伙伴,我们都期待您的消息.
+                        无论您是寻求投资的创业者, 还是希望建立合作的伙伴, 我们都期待您的消息.
                     </p>
                     <div className="flex flex-wrap justify-center gap-3">
                         <a

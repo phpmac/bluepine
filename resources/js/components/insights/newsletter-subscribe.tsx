@@ -20,7 +20,7 @@ export function NewsletterSubscribe() {
                         </div>
                         <h2 className="mb-3 text-2xl font-bold tracking-tight text-white md:text-3xl">持续获取前沿洞察</h2>
                         <p className="mx-auto max-w-2xl text-base text-slate-300">
-                            不要错过任何更新.订阅我们的新闻通讯,最新研究报告,行业洞察与活动邀请将直接送达您的邮箱.
+                            不要错过任何更新. 订阅我们的新闻通讯, 最新研究报告, 行业洞察与活动邀请将直接送达您的邮箱.
                         </p>
                     </div>
 
@@ -41,7 +41,7 @@ export function NewsletterSubscribe() {
                                 订阅更新
                             </button>
                         </div>
-                        <p className="mt-3 text-center text-sm text-slate-400">我们尊重您的隐私,您可以随时退订.</p>
+                        <p className="mt-3 text-center text-sm text-slate-400">我们尊重您的隐私, 您可以随时退订.</p>
                     </form>
                 </div>
             </div>
