@@ -10,7 +10,7 @@ export function AirdropValueProps() {
         {
             icon: Sparkles,
             title: '早期生态权益',
-            description: '免费获得AESC代币,成为Agri-Eco Smart Chain的早期成员,共享生态发展红利',
+            description: '免费获得AESC代币,成为AGRI-ECO SMART CHAIN的早期成员,共享生态发展红利',
         },
         {
             icon: Trophy,

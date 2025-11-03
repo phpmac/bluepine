@@ -5,12 +5,12 @@ export function PostInvestment() {
         {
             icon: Network,
             title: '技术赋能与整合',
-            description: '提供AESC平台技术接入支持,共享我们的AI模型与区块链基础设施,协助进行技术架构优化',
+            description: '提供AESC平台技术接入支持, 共享我们的 AI 模型与区块链基础设施, 协助进行技术架构优化',
         },
         {
             icon: Globe,
             title: '生态资源与网络',
-            description: '对接全球农业合作社,大型农企,研究机构及潜在客户,帮助项目快速实现商业落地与市场拓展',
+            description: '对接全球农业合作社, 大型农企, 研究机构及潜在客户, 帮助项目快速实现商业落地与市场拓展',
         },
         {
             icon: Database,

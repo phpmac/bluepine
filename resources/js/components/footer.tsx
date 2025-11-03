@@ -32,7 +32,7 @@ export function Footer({ transparent = true }: FooterProps) {
                                 <MapPin className="mt-0.5 mr-3 h-4 w-4 shrink-0 text-emerald-400" />
                                 <div>
                                     <div className="mb-1 font-medium text-white">全球办公室</div>
-                                    <span>新加坡 · 硅谷 · 上海</span>
+                                    <span>新加坡 · 硅谷 · 吉隆坡</span>
                                 </div>
                             </div>
                         </div>

@@ -3,20 +3,20 @@ import { ArrowRight } from 'lucide-react';
 export function FeaturedContent() {
     const featuredContent = [
         {
-            title: 'Agri-Eco Smart Chain 项目白皮书 V1.0',
-            description: '全面解读AESC平台的技术架构,商业模式与生态愿景',
+            title: 'AGRI-ECO SMART CHAIN 项目白皮书 V1.0',
+            description: '全面解读AESC平台的技术架构, 商业模式与生态愿景',
             tag: '白皮书',
             action: '立即下载',
         },
         {
-            title: '农业数字化的范式转移: 从Web2到Web3',
+            title: '农业数字化的范式转移:  从Web2到Web3',
             description: '深度解析农业Web3革命的技术路径与商业机遇',
             tag: '深度报告',
             action: '阅读全文',
         },
         {
             title: 'RWA如何重塑农业资产格局?',
-            description: '最新行业报告,探讨真实世界资产在农业领域的应用前景',
+            description: '最新行业报告, 探讨真实世界资产在农业领域的应用前景',
             tag: '行业报告',
             action: '免费获取',
         },

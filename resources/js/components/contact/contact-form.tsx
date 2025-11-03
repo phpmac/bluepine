@@ -29,7 +29,7 @@ export function ContactForm() {
             <div className="mx-auto max-w-7xl">
                 <div className="mb-12 text-center">
                     <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">发送消息给我们</h2>
-                    <p className="mx-auto max-w-2xl text-base text-slate-400">填写下方表单,我们会尽快与您取得联系</p>
+                    <p className="mx-auto max-w-2xl text-base text-slate-400">填写下方表单, 我们会尽快与您取得联系</p>
                 </div>
 
                 <div className="mx-auto max-w-3xl rounded-lg border-2 border-white/10 bg-white/5 p-6 backdrop-blur-sm md:p-8">

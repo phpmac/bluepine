@@ -27,7 +27,7 @@ export function EcosystemParticipants() {
         {
             icon: Sprout,
             title: '农户',
-            description: '记录种植过程,获得公平收益',
+            description: '记录种植过程, 获得公平收益',
             benefits: ['透明定价', '直接销售', '品牌建设', '数据资产'],
             color: 'from-emerald-500 to-teal-500',
             bgColor: 'bg-emerald-500/10',
@@ -35,7 +35,7 @@ export function EcosystemParticipants() {
         {
             icon: Building2,
             title: '企业',
-            description: '优化供应链,降低运营成本',
+            description: '优化供应链, 降低运营成本',
             benefits: ['质量保证', '效率提升', '风险控制', '品牌信任'],
             color: 'from-teal-500 to-cyan-500',
             bgColor: 'bg-teal-500/10',
@@ -43,7 +43,7 @@ export function EcosystemParticipants() {
         {
             icon: Truck,
             title: '物流',
-            description: '实时追踪,提升服务质量',
+            description: '实时追踪, 提升服务质量',
             benefits: ['路径优化', '实时监控', '自动结算', '信用积累'],
             color: 'from-cyan-500 to-blue-500',
             bgColor: 'bg-cyan-500/10',
@@ -51,7 +51,7 @@ export function EcosystemParticipants() {
         {
             icon: ShoppingCart,
             title: '消费者',
-            description: '产品溯源,放心消费',
+            description: '产品溯源, 放心消费',
             benefits: ['来源可查', '质量保障', '价格透明', '参与治理'],
             color: 'from-blue-500 to-purple-500',
             bgColor: 'bg-blue-500/10',
@@ -65,7 +65,7 @@ export function EcosystemParticipants() {
                     <h2 className="mb-6 text-4xl font-bold lg:text-5xl">
                         <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">生态参与者</span>
                     </h2>
-                    <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-400">连接供应链各方,构建多方共赢的生态系统</p>
+                    <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-400">连接供应链各方, 构建多方共赢的生态系统</p>
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -103,7 +103,7 @@ export function EcosystemParticipants() {
                             加入我们的生态系统
                         </h3>
                         <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-slate-400">
-                            无论您是农户、企业、物流服务商还是投资者,都可以在我们的平台上找到价值
+                            无论您是农户, 企业, 物流服务商还是投资者, 都可以在我们的平台上找到价值
                         </p>
                         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                             <button className="rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 px-8 py-3 font-medium text-white transition-all duration-300 hover:from-emerald-600 hover:to-teal-600">

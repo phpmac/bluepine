@@ -51,7 +51,7 @@ export function AirdropSteps() {
         {
             step: '第三步',
             title: '代币释放细节',
-            description: '为了防止代币在收到后立即被抛售,空投代币将采用锁仓+线性释放机制',
+            description: '为了防止代币在收到后立即被抛售, 空投代币将采用锁仓 + 线性释放机制',
             releaseSchedule: [
                 {
                     period: 'TGE后第1个月',

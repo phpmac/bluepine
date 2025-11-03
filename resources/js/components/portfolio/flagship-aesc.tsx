@@ -26,7 +26,7 @@ export function FlagshipAESC() {
                                     <Layers className="h-6 w-6 text-white" />
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-bold text-white">Agri-Eco Smart Chain</h3>
+                                    <h3 className="text-2xl font-bold text-white">AGRI-ECO SMART CHAIN</h3>
                                     <p className="text-xs text-slate-400">AESC</p>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@ export function FlagshipAESC() {
                             <div className="rounded-lg border border-white/10 bg-white/5 p-2 text-center backdrop-blur-sm">
                                 <div className="mb-0.5 text-xl font-bold text-emerald-300">30-50%</div>
                                 <div className="text-xs text-slate-400">融资成本降低</div>
-                                <div className="mt-0.5 text-xs text-slate-300">RWA赋能成果</div>
+                                <div className="mt-0.5 text-xs text-slate-300">RWA 赋能成果</div>
                             </div>
                         </div>
 
@@ -91,11 +91,11 @@ export function FlagshipAESC() {
                             <h4 className="mb-4 text-center text-lg font-bold text-white">AESC 平台技术全栈</h4>
                             <div className="space-y-2">
                                 {[
-                                    { name: '安全层', description: '区块链+加密技术', color: 'from-indigo-600 to-purple-700' },
+                                    { name: '安全层', description: '区块链 + 加密技术', color: 'from-indigo-600 to-purple-700' },
                                     { name: '应用层', description: 'DeFi/GameFi/RWA/RDA', color: 'from-blue-600 to-indigo-700' },
-                                    { name: '智能层', description: 'AI算法+预测模型', color: 'from-emerald-600 to-teal-700' },
+                                    { name: '智能层', description: 'AI 算法 + 预测模型', color: 'from-emerald-600 to-teal-700' },
                                     { name: '网络层', description: '分布式数据传输', color: 'from-teal-500 to-cyan-600' },
-                                    { name: '感知层', description: 'IoT设备+传感器', color: 'from-cyan-500 to-emerald-600' },
+                                    { name: '感知层', description: 'IoT 设备 + 传感器', color: 'from-cyan-500 to-emerald-600' },
                                 ].map((layer, index) => (
                                     <div
                                         key={index}

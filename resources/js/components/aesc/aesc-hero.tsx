@@ -24,7 +24,7 @@ export function AescHero() {
                             旗舰生态项目
                         </div>
                         <h1 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-                            Agri-Eco Smart Chain
+                            AGRI-ECO SMART CHAIN
                         </h1>
                         <p className="mb-8 text-xl leading-relaxed text-slate-300 md:text-2xl">全球首个AI驱动的农业大数据服务平台</p>
                         <p className="mx-auto mb-10 max-w-3xl text-base leading-relaxed text-slate-400">

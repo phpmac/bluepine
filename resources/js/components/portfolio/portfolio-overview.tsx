@@ -8,7 +8,7 @@ export function PortfolioOverview() {
 
     const filters = {
         pillars: ['智慧农业', '区块链信任', '人工智能'],
-        tracks: ['农业IoT', '供应链溯源', 'RWA', 'RDA', 'DeFi与保险', 'AI模型', '数据市场'],
+        tracks: ['农业IoT', '供应链溯源', 'RWA', 'RDA', 'DeFi与保险', 'AI 模型', '数据市场'],
         stages: ['种子轮', 'A轮'],
     };
 

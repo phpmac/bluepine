@@ -31,11 +31,11 @@ export function FlagshipProject() {
     ];
 
     const techLayers = [
-        { name: '安全层', description: '区块链+加密技术', color: 'from-indigo-600 to-purple-700', icon: Shield },
+        { name: '安全层', description: '区块链 + 加密技术', color: 'from-indigo-600 to-purple-700', icon: Shield },
         { name: '应用层', description: 'DeFi/GameFi/RWA/RDA', color: 'from-blue-600 to-indigo-700', icon: Layers },
-        { name: '智能层', description: 'AI算法+预测模型', color: 'from-emerald-600 to-teal-700', icon: Brain },
+        { name: '智能层', description: 'AI 算法 + 预测模型', color: 'from-emerald-600 to-teal-700', icon: Brain },
         { name: '网络层', description: '分布式数据传输', color: 'from-teal-500 to-cyan-600', icon: Network },
-        { name: '感知层', description: 'IoT设备+传感器', color: 'from-cyan-500 to-emerald-600', icon: Radio },
+        { name: '感知层', description: 'IoT 设备 + 传感器', color: 'from-cyan-500 to-emerald-600', icon: Radio },
     ];
 
     return (
@@ -45,7 +45,7 @@ export function FlagshipProject() {
                     <div className="mb-8 inline-flex items-center border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-200">
                         旗舰项目
                     </div>
-                    <h2 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">Agri-Eco Smart Chain</h2>
+                    <h2 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">AGRI-ECO SMART CHAIN</h2>
                     <p className="mx-auto max-w-3xl text-xl text-slate-400">实证我们的远见与实力</p>
                 </div>
 

@@ -27,7 +27,7 @@ export function Features() {
             icon: 'leaf-circuit',
             title: '智慧农业',
             subtitle: '精准化与可持续',
-            description: '通过IoT,AI模型与数据驱动决策,提升农业资源效率与产出韧性,应对全球粮食安全挑战.',
+            description: '通过IoT, AI 模型与数据驱动决策, 提升农业资源效率与产出韧性, 应对全球粮食安全挑战.',
             color: 'from-emerald-500 to-teal-500',
             bgColor: 'bg-emerald-500/10',
             borderColor: 'border-emerald-500/20',

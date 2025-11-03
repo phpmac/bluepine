@@ -148,7 +148,7 @@ export function Hero() {
                                 mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                             }`}
                         >
-                            我们是全球领先的"农业+区块链+AI"生态构建者与战略投资者
+                            我们是全球领先的 "农业 + 区块链 + AI" 生态构建者与战略投资者
                         </p>
 
                         <div

@@ -47,6 +47,10 @@ Route::get('/privacy', function () {
     return Inertia::render('privacy');
 })->name('privacy');
 
+Route::get('/apply', function () {
+    return Inertia::render('apply');
+})->name('apply');
+
 // Route::middleware(['auth', 'verified'])->group(function () {
 //     Route::get('dashboard', function () {
 //         return Inertia::render('dashboard');

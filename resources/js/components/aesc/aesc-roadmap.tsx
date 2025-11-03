@@ -10,7 +10,7 @@ export function AescRoadmap() {
         {
             phase: '建设期',
             period: '1-3 个月',
-            title: '完成团队组建,技术架构设计,白皮书发布',
+            title: '完成团队组建, 技术架构设计, 白皮书发布',
             milestone: '与 2 个农业产区达成试点合作意向',
             status: 'completed',
         },
@@ -24,19 +24,19 @@ export function AescRoadmap() {
         {
             phase: '试点期',
             period: '7-9 个月',
-            title: '部署基础平台,接入 IoT 设备,测试 AI 模型',
-            milestone: '500 户农户内测,AI 诊断准确率≥85%',
+            title: '部署基础平台, 接入 IoT 设备, 测试 AI 模型',
+            milestone: '500 户农户内测, AI 诊断准确率≥85%',
         },
         {
             phase: '扩张期',
             period: '10-18 个月',
             title: 'DeFi借贷产品/RWA发行',
-            milestone: '覆盖 5 个国家,RWA资产规模达5亿美元',
+            milestone: '覆盖 5 个国家, RWA资产规模达5亿美元',
         },
         {
             phase: '公链研发期',
             period: '19-24 个月',
-            title: 'Agri-Eco Smart Chain 主网上线',
+            title: 'AGRI-ECO SMART CHAIN 主网上线',
             milestone: '日交易量突破 1 亿 AESC',
         },
     ];

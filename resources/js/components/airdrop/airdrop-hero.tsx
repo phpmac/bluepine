@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 /**
  * Airdrop 页面英雄区组件
  *
- * 包含完整的动画特效：五彩纸屑雨、礼盒打开、图标飞出、波浪纹理等
+ * 包含完整的动画特效: 五彩纸屑雨, 礼盒打开, 图标飞出, 波浪纹理等
  */
 export function AirdropHero() {
     const [timeLeft, setTimeLeft] = useState({
@@ -220,7 +220,7 @@ export function AirdropHero() {
                         </div>
                         <h1 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">AESC 生态启动空投</h1>
                         <p className="mx-auto mb-10 max-w-3xl text-xl leading-relaxed text-slate-300">
-                            抢先领取未来农业生态权益,与我们一起播种,共同收获!
+                            抢先领取未来农业生态权益, 与我们一起播种, 共同收获!
                         </p>
 
                         {/* 核心数据高亮 */}
