@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react';
 export function AescHero() {
     return (
         <>
-            <Head title="AESC 生态 - BLUEPINE TECH FOUNDATION" />
+            <Head title="AESC 生态" />
             <section
                 className="relative flex min-h-screen items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
                 style={{

@@ -13,7 +13,7 @@ import { Head } from '@inertiajs/react';
 export default function Insights() {
     return (
         <>
-            <Head title="资源洞察 - BLUEPINE TECH FOUNDATION" />
+            <Head title="资源洞察" />
             <MainLayout currentPage="insights">
                 <InsightsHero />
                 <ValueProposition />

@@ -5,7 +5,7 @@ import { Head } from '@inertiajs/react';
 export default function Strategy() {
     return (
         <>
-            <Head title="投资策略 - BLUEPINE TECH FOUNDATION" />
+            <Head title="投资策略" />
             <MainLayout currentPage="strategy">
                 <StrategyHero />
                 <section className="px-4 py-32 sm:px-6 lg:px-8">

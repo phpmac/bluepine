@@ -157,7 +157,7 @@ export default function Aesc2() {
 
     return (
         <>
-            <Head title="AESC 生态入口 - BLUEPINE TECH FOUNDATION" />
+            <Head title="AESC 生态入口" />
             <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
                 <Navigation currentPage="aesc2" />
                 <main className="pt-20">

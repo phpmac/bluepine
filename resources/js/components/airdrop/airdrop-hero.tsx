@@ -41,7 +41,7 @@ export function AirdropHero() {
 
     return (
         <>
-            <Head title="AESC 空投活动 - BLUEPINE TECH FOUNDATION" />
+            <Head title="AESC 空投活动" />
             <section
                 className="relative flex min-h-screen items-center overflow-hidden px-4 sm:px-6 lg:px-8"
                 style={{ background: 'radial-gradient(ellipse at center, #047857 0%, #065f46 30%, #064e3b 60%, #022c22 100%)' }}

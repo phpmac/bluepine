@@ -5,7 +5,7 @@ import { Head } from '@inertiajs/react';
 export default function Ecosystem() {
     return (
         <>
-            <Head title="生态合作 - BLUEPINE TECH FOUNDATION" />
+            <Head title="生态合作" />
             <MainLayout currentPage="ecosystem">
                 <EcosystemHero />
                 <PartnerNetwork />

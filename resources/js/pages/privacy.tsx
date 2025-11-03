@@ -5,7 +5,7 @@ import { Head } from '@inertiajs/react';
 export default function Privacy() {
     return (
         <>
-            <Head title="隐私政策 - BLUEPINE TECH FOUNDATION" />
+            <Head title="隐私政策" />
             <MainLayout currentPage="">
                 <PrivacyHero />
                 <PrivacySections />

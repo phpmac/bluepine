@@ -27,11 +27,14 @@ export function Technology() {
     useEffect(() => {
         if (!canvasRef.current) return;
 
+        // 捕获当前canvas元素用于清理函数
+        const canvas = canvasRef.current;
+
         // 创建场景
         const scene = new THREE.Scene();
 
         // 创建相机
-        const camera = new THREE.PerspectiveCamera(60, canvasRef.current.clientWidth / canvasRef.current.clientHeight, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
         camera.position.z = 8;
 
         // 创建渲染器
@@ -39,9 +42,9 @@ export function Technology() {
             antialias: true,
             alpha: true,
         });
-        renderer.setSize(canvasRef.current.clientWidth, canvasRef.current.clientHeight);
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
-        canvasRef.current.appendChild(renderer.domElement);
+        canvas.appendChild(renderer.domElement);
 
         // 创建多个立方体网格节点
         const cubes: THREE.LineSegments[] = [];
@@ -162,8 +165,8 @@ export function Technology() {
                     line.material.dispose();
                 }
             });
-            if (canvasRef.current && renderer.domElement.parentNode === canvasRef.current) {
-                canvasRef.current.removeChild(renderer.domElement);
+            if (canvas && renderer.domElement.parentNode === canvas) {
+                canvas.removeChild(renderer.domElement);
             }
         };
     }, []);

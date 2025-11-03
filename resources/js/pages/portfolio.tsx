@@ -5,7 +5,7 @@ import { Head } from '@inertiajs/react';
 export default function Portfolio() {
     return (
         <>
-            <Head title="投资组合 - BLUEPINE TECH FOUNDATION" />
+            <Head title="投资组合" />
             <MainLayout currentPage="portfolio">
                 <PortfolioHero />
                 <FlagshipAESC />

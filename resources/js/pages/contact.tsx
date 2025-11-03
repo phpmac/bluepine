@@ -5,7 +5,7 @@ import { Head } from '@inertiajs/react';
 export default function Contact() {
     return (
         <>
-            <Head title="联系我们 - BLUEPINE TECH FOUNDATION" />
+            <Head title="联系我们" />
             <MainLayout currentPage="contact">
                 <ContactHero />
                 <ContactChannels />
