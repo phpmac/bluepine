@@ -54,7 +54,7 @@ export function Roadmap() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mb-20 text-center">
                     <h2 className="mb-6 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">我们的发展征程</h2>
-                    <p className="text-xl text-slate-400">展示清晰的规划与进展</p>
+                    <p className="text-xl text-slate-400">规划与进展</p>
                 </div>
 
                 <div className="relative">

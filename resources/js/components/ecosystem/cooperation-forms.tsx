@@ -5,9 +5,9 @@ export function CooperationForms() {
         {
             icon: Code,
             title: '技术整合与共同开发',
-            target: '技术公司,开发者团队,研究实验室',
+            target: '技术公司, 开发者团队, 研究实验室',
             content: [
-                '基于AGRI-ECO SMART CHAIN公链或平台API进行DApp开发',
+                '基于AGRI-ECO SMART CHAIN公链或平台 API 进行DApp开发',
                 '参与核心模块 (如碳汇计量, AI 模型) 的共建',
                 '成为AGRI-ECO SMART CHAIN公链的验证节点',
             ],
@@ -21,8 +21,8 @@ export function CooperationForms() {
         {
             icon: TrendingUp,
             title: '资本协作与生态投资',
-            target: '风险投资基金,家族办公室,企业战投部',
-            content: ['共同投资优质的农业科技项目', '共享项目源与尽职调查信息', '联合发起专注于农业Web3的专项基金'],
+            target: '风险投资基金, 家族办公室, 企业战投部',
+            content: ['共同投资优质的农业科技项目', '共享项目源与尽职调查信息', '联合发起专注于农业 Web3 的专项基金'],
         },
     ];
 

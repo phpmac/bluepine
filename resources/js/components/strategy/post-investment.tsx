@@ -20,7 +20,7 @@ export function PostInvestment() {
         {
             icon: Shield,
             title: '全球合规与战略',
-            description: '提供在全球主要市场 (尤其是RWA与加密货币监管前沿地区) 的合规咨询与战略导航',
+            description: '提供在全球主要市场 (尤其是 RWA 与加密货币监管前沿地区) 的合规咨询与战略导航',
         },
     ];
 
