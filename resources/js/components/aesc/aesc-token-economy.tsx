@@ -101,13 +101,13 @@ export function AescTokenEconomy() {
                             {
                                 icon: Coins,
                                 title: '支付与消费',
-                                description: '支付数据服务,知识付费,DeFi手续费',
+                                description: '支付数据服务, 知识付费, DeFi 手续费',
                                 color: 'from-emerald-500 to-teal-600',
                             },
                             {
                                 icon: Award,
                                 title: '激励与奖励',
-                                description: '奖励数据贡献者,内容创作者,社区推广者',
+                                description: '奖励数据贡献者, 内容创作者, 社区推广者',
                                 color: 'from-teal-600 to-cyan-700',
                             },
                             {
@@ -119,13 +119,13 @@ export function AescTokenEconomy() {
                             {
                                 icon: Link2,
                                 title: '资产锚定',
-                                description: '作为农业RWA资产的计价和交易单位',
+                                description: '作为农业 RWA 资产的计价和交易单位',
                                 color: 'from-blue-600 to-indigo-700',
                             },
                             {
                                 icon: TrendingUp,
                                 title: '通缩销毁',
-                                description: '平台收入的部分用于回购销毁,驱动价值上升',
+                                description: '平台收入的部分用于回购销毁, 驱动价值上升',
                                 color: 'from-indigo-600 to-purple-700',
                             },
                         ].map((utility, index) => (

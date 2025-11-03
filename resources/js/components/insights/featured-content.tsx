@@ -10,12 +10,12 @@ export function FeaturedContent() {
         },
         {
             title: '农业数字化的范式转移:  从Web2到Web3',
-            description: '深度解析农业Web3革命的技术路径与商业机遇',
+            description: '深度解析农业 Web3 革命的技术路径与商业机遇',
             tag: '深度报告',
             action: '阅读全文',
         },
         {
-            title: 'RWA如何重塑农业资产格局?',
+            title: 'RWA 如何重塑农业资产格局?',
             description: '最新行业报告, 探讨真实世界资产在农业领域的应用前景',
             tag: '行业报告',
             action: '免费获取',

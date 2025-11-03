@@ -30,8 +30,8 @@ export function AescRoadmap() {
         {
             phase: '扩张期',
             period: '10-18 个月',
-            title: 'DeFi借贷产品/RWA发行',
-            milestone: '覆盖 5 个国家, RWA资产规模达5亿美元',
+            title: 'DeFi 借贷产品/RWA 发行',
+            milestone: '覆盖 5 个国家, RWA 资产规模达5亿美元',
         },
         {
             phase: '公链研发期',

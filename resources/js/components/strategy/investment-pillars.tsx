@@ -35,12 +35,12 @@ export function InvestmentPillars() {
                     details: '从田间到餐桌的全链条可验证数据记录',
                 },
                 {
-                    name: '农业DeFi与保险',
-                    details: '基于链上数据的信贷评分,去中心化保险,产量衍生品',
+                    name: '农业 DeFi 与保险',
+                    details: '基于链上数据的信贷评分, 去中心化保险, 产量衍生品',
                 },
                 {
                     name: '去中心化数据市场',
-                    details: '实现农业数据安全,合规,有偿流转的平台',
+                    details: '实现农业数据安全, 合规, 有偿流转的平台',
                 },
             ],
         },

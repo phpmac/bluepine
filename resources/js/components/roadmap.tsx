@@ -33,13 +33,13 @@ export function Roadmap() {
             id: 2,
             title: '试点期',
             status: 'current',
-            description: '部署平台,500+户农户内测',
+            description: '部署平台, 500+户农户内测',
         },
         {
             id: 3,
             title: '扩张期',
             status: 'upcoming',
-            description: 'DeFi/GameFi/RWA/RDA上线,多国覆盖',
+            description: 'DeFi/GameFi/RWA/RDA 上线, 多国覆盖',
         },
         {
             id: 4,
@@ -132,7 +132,7 @@ export function Roadmap() {
                                             <span className="animate-pulse text-xs font-medium whitespace-nowrap text-emerald-400">进行中</span>
                                         )}
                                     </div>
-                                    <p className="text-sm leading-relaxed text-slate-400">{stage.description}</p>
+                                    <p className="text-xs leading-relaxed text-slate-400">{stage.description}</p>
                                 </div>
                             </div>
                         ))}
