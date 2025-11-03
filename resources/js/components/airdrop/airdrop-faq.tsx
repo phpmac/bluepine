@@ -24,7 +24,7 @@ export function AirdropFaq() {
         },
         {
             question: '如何查看我的积分和排名?',
-            answer: '在空投平台 (Galxe / QuestN) 上连接钱包后, 您可以实时查看自己的积分和排名',
+            answer: '在空投平台 (Galxe) 上连接钱包后, 您可以实时查看自己的积分和排名',
         },
         {
             question: '空投代币可以转让或交易吗?',

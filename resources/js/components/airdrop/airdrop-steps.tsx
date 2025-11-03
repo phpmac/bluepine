@@ -10,22 +10,27 @@ export function AirdropSteps() {
         {
             step: '第一步',
             title: '空投活动设计与任务列表',
-            description: '活动将在专业的空投平台 (如 Galxe, QuestN, Zealy) 上发布, 以便于自动化任务验证和积分追踪',
+            description: '活动将在专业的空投平台 (如 Galxe) 上发布, 以便于自动化任务验证和积分追踪',
             tasks: [
                 {
-                    category: '基础社交任务',
-                    points: '10-20分',
-                    items: ['关注 BLUEPINE 官方 Twitter', '关注 AESC 官方 Telegram 群', '转发官方指定推文'],
+                    category: '基础任务',
+                    points: '25分',
+                    items: [
+                        '关注项目的官方 Twitter 账号',
+                        '加入项目的官方 Telegram 群组',
+                        '加入项目的官方 Discord 服务器',
+                        '订阅项目的官方 YouTube 频道',
+                    ],
                 },
                 {
-                    category: '深度互动任务',
-                    points: '30-50分',
-                    items: ['邀请好友加入 (每成功邀请1人得10分) ', '在Twitter发布原创内容并@官方账号', '参与社区AMA活动'],
+                    category: '社交传播活动',
+                    points: '50分/次',
+                    items: ['转发指定的官方 Twitter 推文并 @3位好友', '在 Discord 的指定频道做自我介绍'],
                 },
                 {
-                    category: '知识学习任务',
-                    points: '20-40分',
-                    items: ['阅读 AESC 白皮书并完成测验', '观看生态介绍视频', '完成农业科技知识问答'],
+                    category: '内容创作',
+                    points: '100-200分',
+                    items: ['发布一条关于项目的原创推文 / X帖 (不少于100字, 需配图) ', '创作一个关于项目的短视频 (TikTok / YouTube Shorts) '],
                 },
             ],
         },
@@ -54,7 +59,7 @@ export function AirdropSteps() {
             description: '为了防止代币在收到后立即被抛售, 空投代币将采用锁仓 + 线性释放机制',
             releaseSchedule: [
                 {
-                    period: 'TGE 后第1个月',
+                    period: '上线交易所 后第1个月',
                     release: '0枚释放 (初始锁仓) ',
                 },
                 {
@@ -153,8 +158,8 @@ export function AirdropSteps() {
                                         ))}
                                         <div className="rounded border border-emerald-500/30 bg-emerald-500/10 p-4">
                                             <p className="text-sm text-slate-300">
-                                                <strong className="text-emerald-300">示例: </strong> 用户A获得6000枚空投代币 → TGE 后第1个月: 0枚释放
-                                                → 从第2个月开始, 连续6个月, 每月释放1000枚代币
+                                                <strong className="text-emerald-300">示例: </strong> 用户A获得6000枚空投代币 → 上线交易所 后第1个月:
+                                                0枚释放 → 从第2个月开始, 连续6个月, 每月释放1000枚代币
                                             </p>
                                         </div>
                                     </div>
