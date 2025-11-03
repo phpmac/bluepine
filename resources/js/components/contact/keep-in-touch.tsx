@@ -13,7 +13,7 @@ export function KeepInTouch() {
             <div className="mx-auto max-w-7xl text-center">
                 <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">保持关注</h2>
                 <p className="mx-auto mb-10 max-w-2xl text-base text-slate-300">
-                    想要实时了解BLUEPINE与AESC生态的最新进展? 请关注我们的官方社群媒体.
+                    想要实时了解 BLUEPINE TECH FOUNDATION 与AESC生态的最新进展? 请关注我们的官方社群媒体.
                 </p>
 
                 <div className="flex flex-wrap justify-center gap-4">

@@ -7,9 +7,9 @@ export function CooperationForms() {
             title: '技术整合与共同开发',
             target: '技术公司, 开发者团队, 研究实验室',
             content: [
-                '基于AGRI-ECO SMART CHAIN公链或平台 API 进行DApp开发',
+                '基于 Agri-Eco Smart Chain 公链或平台 API 进行DApp开发',
                 '参与核心模块 (如碳汇计量, AI 模型) 的共建',
-                '成为AGRI-ECO SMART CHAIN公链的验证节点',
+                '成为 Agri-Eco Smart Chain 公链的验证节点',
             ],
         },
         {

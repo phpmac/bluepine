@@ -36,7 +36,7 @@ export function AescRoadmap() {
         {
             phase: '公链研发期',
             period: '19-24 个月',
-            title: 'AGRI-ECO SMART CHAIN 主网上线',
+            title: 'Agri-Eco Smart Chain 主网上线',
             milestone: '日交易量突破 1 亿 AESC',
         },
     ];

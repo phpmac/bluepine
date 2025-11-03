@@ -45,7 +45,7 @@ export function Roadmap() {
             id: 4,
             title: '公链研发期',
             status: 'upcoming',
-            description: 'AGRI-ECO SMART CHAIN 测试网上线',
+            description: 'Agri-Eco Smart Chain 测试网上线',
         },
     ];
 

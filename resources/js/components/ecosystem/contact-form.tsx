@@ -1,3 +1,4 @@
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Send } from 'lucide-react';
 import { useState } from 'react';
 
@@ -80,19 +81,28 @@ export function ContactForm() {
                     <label className="mb-2 block text-sm font-medium text-slate-300">
                         合作兴趣类别 <span className="text-red-400">*</span>
                     </label>
-                    <select
-                        required
-                        value={formData.category}
-                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                        className="w-full rounded border border-white/10 bg-white/5 px-4 py-2.5 text-white backdrop-blur-sm focus:border-emerald-500 focus:outline-none"
-                    >
-                        <option value="">请选择合作类别</option>
-                        <option value="research">研究合作</option>
-                        <option value="business">商业与市场合作</option>
-                        <option value="tech">技术与开发合作</option>
-                        <option value="capital">资本合作</option>
-                        <option value="other">其他</option>
-                    </select>
+                    <Select value={formData.category} onValueChange={(value) => setFormData({ ...formData, category: value })} required>
+                        <SelectTrigger className="w-full rounded border border-white/10 bg-white/5 px-4 py-2.5 text-white backdrop-blur-sm focus:border-emerald-500 focus:outline-none">
+                            <SelectValue placeholder="请选择合作类别" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded border border-white/10 bg-slate-900 text-white">
+                            <SelectItem value="research" className="cursor-pointer hover:bg-white/10">
+                                研究合作
+                            </SelectItem>
+                            <SelectItem value="business" className="cursor-pointer hover:bg-white/10">
+                                商业与市场合作
+                            </SelectItem>
+                            <SelectItem value="tech" className="cursor-pointer hover:bg-white/10">
+                                技术与开发合作
+                            </SelectItem>
+                            <SelectItem value="capital" className="cursor-pointer hover:bg-white/10">
+                                资本合作
+                            </SelectItem>
+                            <SelectItem value="other" className="cursor-pointer hover:bg-white/10">
+                                其他
+                            </SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
 
                 <div>
