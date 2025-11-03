@@ -1,3 +1,4 @@
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Globe, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -6,8 +7,8 @@ interface NavigationProps {
 }
 
 export function Navigation({ currentPage = 'home' }: NavigationProps) {
+    const { currentLocale, setLocale, t } = useLaravelReactI18n();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [language, setLanguage] = useState('zh');
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
@@ -19,14 +20,20 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const handleLanguageChange = () => {
+        const newLocale = currentLocale() === 'zh_CN' ? 'en' : 'zh_CN';
+        setLocale(newLocale);
+        localStorage.setItem('appLanguage', newLocale);
+    };
+
     const navItems = [
-        { id: 'home', label: '首页', href: '/' },
-        { id: 'about', label: '关于我们', href: '/about' },
-        { id: 'strategy', label: '投资策略', href: '/strategy' },
-        { id: 'portfolio', label: '投资组合', href: '/portfolio' },
-        { id: 'ecosystem', label: '生态合作', href: '/ecosystem' },
-        { id: 'insights', label: '资源洞察', href: '/insights' },
-        { id: 'contact', label: '联系我们', href: '/contact' },
+        { id: 'home', labelKey: 'nav.home', href: '/' },
+        { id: 'about', labelKey: 'nav.about', href: '/about' },
+        { id: 'strategy', labelKey: 'nav.strategy', href: '/strategy' },
+        { id: 'portfolio', labelKey: 'nav.portfolio', href: '/portfolio' },
+        { id: 'ecosystem', labelKey: 'nav.ecosystem', href: '/ecosystem' },
+        { id: 'insights', labelKey: 'nav.insights', href: '/insights' },
+        { id: 'contact', labelKey: 'nav.contact', href: '/contact' },
     ];
 
     return (
@@ -59,7 +66,7 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
                                         <span className="absolute inset-x-4 -bottom-2.5 h-[1px] animate-pulse bg-emerald-300/50" />
                                         {/* 文字渐变 */}
                                         <span className="relative z-10 bg-gradient-to-r from-emerald-200 via-teal-100 to-cyan-200 bg-clip-text font-semibold tracking-wide text-transparent">
-                                            {item.label}
+                                            {t(item.labelKey)}
                                         </span>
                                     </>
                                 ) : (
@@ -68,7 +75,7 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
                                         <span className="absolute inset-x-0 -bottom-3 h-0.5 scale-x-0 bg-slate-400 transition-transform duration-500 group-hover:scale-x-100" />
                                         {/* 普通文字 */}
                                         <span className="relative z-10 text-slate-200/80 transition-all duration-500 group-hover:translate-y-[-1px] group-hover:tracking-wide group-hover:text-white">
-                                            {item.label}
+                                            {t(item.labelKey)}
                                         </span>
                                     </>
                                 )}
@@ -81,20 +88,20 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
                             href="/aesc"
                             className="cursor-pointer bg-gradient-to-r from-emerald-500 to-teal-600 px-5 py-2 text-sm font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                         >
-                            AESC 生态
+                            {t('nav.aesc')}
                         </a>
                         <a
                             href="/airdrop"
                             className="cursor-pointer bg-gradient-to-r from-teal-600 to-cyan-700 px-5 py-2 text-sm font-medium text-white transition-all hover:from-teal-700 hover:to-cyan-800"
                         >
-                            AESC 空投
+                            {t('nav.airdrop')}
                         </a>
                         <button
-                            onClick={() => setLanguage(language === 'zh' ? 'en' : 'zh')}
+                            onClick={handleLanguageChange}
                             className="flex cursor-pointer items-center px-3 py-2 text-sm font-medium text-slate-200/80 transition-all hover:bg-white/5 hover:text-white"
                         >
                             <Globe className="mr-1 h-4 w-4" />
-                            {language === 'zh' ? 'EN' : '中文'}
+                            {currentLocale() === 'zh_CN' ? 'EN' : '中文'}
                         </button>
                     </div>
 
@@ -124,14 +131,14 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
                                         <span className="absolute top-1/2 left-0 h-10 w-1 -translate-y-1/2 rounded-r-lg bg-gradient-to-b from-emerald-400 via-teal-400 to-cyan-400 shadow-[0_0_12px_rgba(16,185,129,0.6)]" />
                                         {/* 文字渐变 */}
                                         <span className="relative ml-4 bg-gradient-to-r from-emerald-200 via-teal-100 to-cyan-200 bg-clip-text font-semibold text-transparent">
-                                            {item.label}
+                                            {t(item.labelKey)}
                                         </span>
                                     </>
                                 ) : (
                                     <>
                                         {/* 普通文字 */}
                                         <span className="relative text-slate-200/80 transition-all duration-500 group-hover:ml-2 group-hover:text-white">
-                                            {item.label}
+                                            {t(item.labelKey)}
                                         </span>
                                     </>
                                 )}
@@ -142,15 +149,22 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
                             onClick={() => setMobileMenuOpen(false)}
                             className="block w-full bg-gradient-to-r from-emerald-500 to-teal-600 px-4 py-3 text-left font-medium text-white transition-colors hover:from-emerald-600 hover:to-teal-700"
                         >
-                            AESC 生态
+                            {t('nav.aesc')}
                         </a>
                         <a
                             href="/airdrop"
                             onClick={() => setMobileMenuOpen(false)}
                             className="block w-full bg-gradient-to-r from-teal-600 to-cyan-700 px-4 py-3 text-left font-medium text-white transition-colors hover:from-teal-700 hover:to-cyan-800"
                         >
-                            AESC 空投
+                            {t('nav.airdrop')}
                         </a>
+                        <button
+                            onClick={handleLanguageChange}
+                            className="flex w-full items-center px-4 py-3 text-left text-base font-medium text-slate-200/80 transition-all hover:bg-white/5 hover:text-white"
+                        >
+                            <Globe className="mr-2 h-5 w-5" />
+                            {currentLocale() === 'zh_CN' ? 'English' : '中文'}
+                        </button>
                     </div>
                 </div>
             )}
