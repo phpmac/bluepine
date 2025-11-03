@@ -17,7 +17,7 @@ export function PortfolioOverview() {
             <div className="mx-auto max-w-7xl">
                 <div className="mb-8 text-center">
                     <h2 className="mb-3 text-3xl font-bold tracking-tight text-white">我们的投资版图</h2>
-                    <p className="mx-auto max-w-3xl text-base text-slate-300">我们构建了一个多层次,协同发展的项目矩阵,共同推动农业数字生态的繁荣</p>
+                    <p className="mx-auto max-w-3xl text-base text-slate-300">我们构建了一个多层次, 协同发展的项目矩阵, 共同推动农业数字生态的繁荣</p>
                 </div>
 
                 {/* 筛选栏 */}

@@ -32,19 +32,19 @@ export function AescValueProposition() {
             icon: TrendingUp,
             title: '真实世界价值',
             data: '试点区产量提升 15%',
-            description: '我们的技术已在田间验证,创造可衡量的经济收益',
+            description: '我们的技术已在田间验证, 创造可衡量的经济收益',
         },
         {
             icon: Network,
             title: '尖端技术融合',
             data: '数据查询效率提升 45%',
-            description: '语义区块链与联邦学习的独创架构,确保高效与隐私',
+            description: '语义区块链与联邦学习的独创架构, 确保高效与隐私',
         },
         {
             icon: Globe,
             title: '庞大生态潜力',
             data: '已连接超 5万英亩农田',
-            description: '早期加入,共享全球农业数字化转型的巨大红利',
+            description: '早期加入, 共享全球农业数字化转型的巨大红利',
         },
     ];
 
