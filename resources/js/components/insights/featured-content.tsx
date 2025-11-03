@@ -4,7 +4,7 @@ export function FeaturedContent() {
     const featuredContent = [
         {
             title: 'AGRI-ECO SMART CHAIN 项目白皮书 V1.0',
-            description: '全面解读AESC平台的技术架构, 商业模式与生态愿景',
+            description: '全面解读 AESC 平台的技术架构, 商业模式与生态愿景',
             tag: '白皮书',
             action: '立即下载',
         },

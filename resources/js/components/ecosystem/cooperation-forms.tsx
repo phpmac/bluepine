@@ -15,8 +15,8 @@ export function CooperationForms() {
         {
             icon: MapPin,
             title: '市场拓展与试点落地',
-            target: '大型农企,农业合作社,地方政府,农资经销商',
-            content: ['在您的产区或客户网络中部署并推广AESC解决方案', '共同申请政府数字农业项目', '成为区域设备服务与运营中心'],
+            target: '大型农企, 农业合作社, 地方政府, 农资经销商',
+            content: ['在您的产区或客户网络中部署并推广 AESC 解决方案', '共同申请政府数字农业项目', '成为区域设备服务与运营中心'],
         },
         {
             icon: TrendingUp,

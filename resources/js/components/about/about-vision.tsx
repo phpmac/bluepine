@@ -10,7 +10,8 @@ export function AboutVision() {
                 </div>
                 <h2 className="mb-4 text-2xl font-bold text-white">我们的愿景</h2>
                 <p className="text-base leading-relaxed text-slate-300">
-                    成为一个自我演进的,去中心化的全球农业数字生态基石.我们坚信,技术的终极使命是赋能万物,我们致力于让每一块土地,每一份农业数据,每一位参与者的价值都能在信任的土壤中被精准计量与公平分配.
+                    成为一个自我演进的, 去中心化的全球农业数字生态基石. 我们坚信, 技术的终极使命是赋能万物, 我们致力于让每一块土地, 每一份农业数据,
+                    每一位参与者的价值都能在信任的土壤中被精准计量与公平分配.
                 </p>
             </div>
 

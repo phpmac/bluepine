@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card';
+import { AescTechStack } from '@/components/aesc';
 import { Download, ExternalLink, Layers } from 'lucide-react';
 
 export function FlagshipAESC() {
@@ -30,14 +30,14 @@ export function FlagshipAESC() {
                                     <p className="text-xs text-slate-400">AESC</p>
                                 </div>
                             </div>
-                            <p className="text-base leading-relaxed text-slate-300">构建未来农业的数字基石——全球AI农业大数据服务平台</p>
+                            <p className="text-base leading-relaxed text-slate-300">构建未来农业的数字基石——全球 AI 农业大数据服务平台</p>
                         </div>
 
                         {/* 核心成就 */}
                         <div className="mb-4 grid grid-cols-3 gap-2">
                             <div className="rounded-lg border border-white/10 bg-white/5 p-2 text-center backdrop-blur-sm">
                                 <div className="mb-0.5 text-xl font-bold text-emerald-300">92%</div>
-                                <div className="text-xs text-slate-400">AI准确率</div>
+                                <div className="text-xs text-slate-400">AI 准确率</div>
                                 <div className="mt-0.5 text-xs text-slate-300">病虫害预警</div>
                             </div>
                             <div className="rounded-lg border border-white/10 bg-white/5 p-2 text-center backdrop-blur-sm">
@@ -57,7 +57,9 @@ export function FlagshipAESC() {
                             <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-xs text-emerald-200">
                                 #区块链基础设施
                             </span>
-                            <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-xs text-emerald-200">#AI平台</span>
+                            <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-xs text-emerald-200">
+                                #AI 平台
+                            </span>
                             <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-xs text-emerald-200">#RWA</span>
                             <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-xs text-emerald-200">#RDA</span>
                             <span className="rounded border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-xs text-emerald-200">
@@ -87,27 +89,7 @@ export function FlagshipAESC() {
 
                     {/* 右侧 - 技术栈信息图 */}
                     <div>
-                        <Card className="!rounded-lg border border-emerald-500/20 bg-white/5 p-4 backdrop-blur-sm">
-                            <h4 className="mb-4 text-center text-lg font-bold text-white">AESC 平台技术全栈</h4>
-                            <div className="space-y-2">
-                                {[
-                                    { name: '安全层', description: '区块链 + 加密技术', color: 'from-indigo-600 to-purple-700' },
-                                    { name: '应用层', description: 'DeFi / GameFi / RWA / RDA', color: 'from-blue-600 to-indigo-700' },
-                                    { name: '智能层', description: 'AI 算法 + 预测模型', color: 'from-emerald-600 to-teal-700' },
-                                    { name: '网络层', description: '分布式数据传输', color: 'from-teal-500 to-cyan-600' },
-                                    { name: '感知层', description: 'IoT 设备 + 传感器', color: 'from-cyan-500 to-emerald-600' },
-                                ].map((layer, index) => (
-                                    <div
-                                        key={index}
-                                        className={`rounded-lg bg-gradient-to-r ${layer.color} p-3 transition-all duration-300 hover:scale-[1.02]`}
-                                    >
-                                        <div className="text-sm font-bold text-white">{layer.name}</div>
-                                        <div className="text-xs text-white/90">{layer.description}</div>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="mt-3 text-center text-xs text-emerald-300">从底层到应用的完整技术体系</div>
-                        </Card>
+                        <AescTechStack variant="compact" />
                     </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@ export function AirdropSteps() {
                 {
                     category: '基础社交任务',
                     points: '10-20分',
-                    items: ['关注BLUEPINE官方Twitter', '关注AESC官方Telegram群', '转发官方指定推文'],
+                    items: ['关注 BLUEPINE 官方 Twitter', '关注 AESC 官方 Telegram 群', '转发官方指定推文'],
                 },
                 {
                     category: '深度互动任务',
@@ -25,14 +25,14 @@ export function AirdropSteps() {
                 {
                     category: '知识学习任务',
                     points: '20-40分',
-                    items: ['阅读AESC白皮书并完成测验', '观看生态介绍视频', '完成农业科技知识问答'],
+                    items: ['阅读 AESC 白皮书并完成测验', '观看生态介绍视频', '完成农业科技知识问答'],
                 },
             ],
         },
         {
             step: '第二步',
             title: '积分排名与空投资格分配',
-            description: '活动结束后,只有总积分超过100分的参与者才具备空投资格',
+            description: '活动结束后, 只有总积分超过100分的参与者才具备空投资格',
             details: [
                 {
                     label: '活动周期',
@@ -44,7 +44,7 @@ export function AirdropSteps() {
                 },
                 {
                     label: '分配机制',
-                    value: '1积分=1个代币,多劳多得',
+                    value: '1积分=1个代币, 多劳多得',
                 },
             ],
         },
@@ -54,7 +54,7 @@ export function AirdropSteps() {
             description: '为了防止代币在收到后立即被抛售, 空投代币将采用锁仓 + 线性释放机制',
             releaseSchedule: [
                 {
-                    period: 'TGE后第1个月',
+                    period: 'TGE 后第1个月',
                     release: '0枚释放 (初始锁仓) ',
                 },
                 {
@@ -71,17 +71,17 @@ export function AirdropSteps() {
                 {
                     icon: ShieldAlert,
                     title: '钱包筛查',
-                    description: '自动筛查参与地址,排除交易所冷钱包,巨鲸钱包和女巫攻击嫌疑地址',
+                    description: '自动筛查参与地址, 排除交易所冷钱包, 巨鲸钱包和女巫攻击嫌疑地址',
                 },
                 {
                     icon: CheckCircle2,
                     title: '任务验证',
-                    description: '利用空投平台API,确保任务真实完成且在整个活动期间保持有效',
+                    description: '利用空投平台 API, 确保任务真实完成且在整个活动期间保持有效',
                 },
                 {
                     icon: Users,
                     title: '人工审核',
-                    description: '对于内容创作类等高积分任务,由团队进行人工审核,确保内容质量',
+                    description: '对于内容创作类等高积分任务, 由团队进行人工审核, 确保内容质量',
                 },
             ],
         },
@@ -153,8 +153,8 @@ export function AirdropSteps() {
                                         ))}
                                         <div className="rounded border border-emerald-500/30 bg-emerald-500/10 p-4">
                                             <p className="text-sm text-slate-300">
-                                                <strong className="text-emerald-300">示例:</strong> 用户A获得6000枚空投代币 → TGE后第1个月: 0枚释放 →
-                                                从第2个月开始,连续6个月,每月释放1000枚代币
+                                                <strong className="text-emerald-300">示例: </strong> 用户A获得6000枚空投代币 → TGE 后第1个月: 0枚释放
+                                                → 从第2个月开始, 连续6个月, 每月释放1000枚代币
                                             </p>
                                         </div>
                                     </div>

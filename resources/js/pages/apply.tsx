@@ -465,7 +465,7 @@ export default function Apply() {
                                 </div>
 
                                 <div>
-                                    <label className="mb-2 block text-sm font-medium text-slate-300">与AESC生态的协同潜力</label>
+                                    <label className="mb-2 block text-sm font-medium text-slate-300">与 AESC 生态的协同潜力</label>
                                     <textarea
                                         rows={4}
                                         value={formData.aescSynergy}

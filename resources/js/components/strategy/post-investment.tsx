@@ -5,7 +5,7 @@ export function PostInvestment() {
         {
             icon: Network,
             title: '技术赋能与整合',
-            description: '提供AESC平台技术接入支持, 共享我们的 AI 模型与区块链基础设施, 协助进行技术架构优化',
+            description: '提供 AESC 平台技术接入支持, 共享我们的 AI 模型与区块链基础设施, 协助进行技术架构优化',
         },
         {
             icon: Globe,
@@ -28,7 +28,7 @@ export function PostInvestment() {
         <div className="mb-32">
             <div className="mb-12 text-center">
                 <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">超越资本: 我们的价值共创承诺</h2>
-                <p className="mx-auto max-w-3xl text-lg text-slate-300">我们为被投项目提供全方位的战略支持,共同加速成长</p>
+                <p className="mx-auto max-w-3xl text-lg text-slate-300">我们为被投项目提供全方位的战略支持, 共同加速成长</p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">

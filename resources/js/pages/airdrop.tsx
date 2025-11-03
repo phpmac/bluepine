@@ -4,7 +4,7 @@ import { MainLayout } from '@/layouts';
 /**
  * AESC 空投活动页面
  *
- * 展示空投活动的详细信息,包括价值主张、参与步骤、时间轴和常见问题
+ * 展示空投活动的详细信息, 包括价值主张, 参与步骤, 时间轴和常见问题
  */
 export default function Airdrop() {
     return (

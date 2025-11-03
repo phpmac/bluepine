@@ -5,15 +5,15 @@ export function InvestmentPillars() {
         {
             icon: CircuitBoard,
             title: '智慧农业的数字化跃迁',
-            description: '通过物联网,机器人和生物技术的融合,推动农业生产方式的革命性升级',
+            description: '通过物联网, 机器人和生物技术的融合, 推动农业生产方式的革命性升级',
             focusAreas: [
                 {
                     name: '农业物联网与机器人',
-                    details: '低成本传感器,自动驾驶农机,无人机精准作业',
+                    details: '低成本传感器, 自动驾驶农机, 无人机精准作业',
                 },
                 {
                     name: '农业大数据与分析平台',
-                    details: '农场管理软件,产量预测模型,碳汇计量监测',
+                    details: '农场管理软件, 产量预测模型, 碳汇计量监测',
                 },
                 {
                     name: '生物技术与数字农业结合',
@@ -24,11 +24,11 @@ export function InvestmentPillars() {
         {
             icon: Link2,
             title: '区块链驱动的信任与资产化',
-            description: '利用区块链技术构建农业领域的信任基础设施,实现实物资产数字化',
+            description: '利用区块链技术构建农业领域的信任基础设施, 实现实物资产数字化',
             focusAreas: [
                 {
                     name: '农业RWA',
-                    details: '农田,作物收益权,农机设备等实物资产的通证化',
+                    details: '农田, 作物收益权, 农机设备等实物资产的通证化',
                 },
                 {
                     name: '供应链溯源与透明度',
@@ -47,19 +47,19 @@ export function InvestmentPillars() {
         {
             icon: Brain,
             title: '人工智能赋能的决策与自动化',
-            description: '运用人工智能和计算机视觉技术,提升农业决策的精准度和自动化水平',
+            description: '运用人工智能和计算机视觉技术, 提升农业决策的精准度和自动化水平',
             focusAreas: [
                 {
-                    name: 'AI预测模型',
-                    details: '病虫害早期识别与预警,市场价格预测,气象风险建模',
+                    name: 'AI 预测模型',
+                    details: '病虫害早期识别与预警, 市场价格预测, 气象风险建模',
                 },
                 {
                     name: '计算机视觉应用',
-                    details: '基于卫星,无人机及地面影像的作物长势与胁迫分析',
+                    details: '基于卫星, 无人机及地面影像的作物长势与胁迫分析',
                 },
                 {
                     name: '智能决策支持系统',
-                    details: '为农户提供个性化的灌溉,施肥,播种处方',
+                    details: '为农户提供个性化的灌溉, 施肥, 播种处方',
                 },
             ],
         },
@@ -70,7 +70,7 @@ export function InvestmentPillars() {
             <div className="mb-12 text-center">
                 <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">我们的三大投资支柱</h2>
                 <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-300">
-                    我们坚信,这三个领域的融合是解决农业系统性问题的关键.我们的投资紧密围绕以下交叉点展开:
+                    我们坚信, 这三个领域的融合是解决农业系统性问题的关键. 我们的投资紧密围绕以下交叉点展开:
                 </p>
             </div>
 
