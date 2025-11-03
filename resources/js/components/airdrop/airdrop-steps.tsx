@@ -10,7 +10,7 @@ export function AirdropSteps() {
         {
             step: '第一步',
             title: '空投活动设计与任务列表',
-            description: '活动将在专业的空投平台 (如Galxe,QuestN,Zealy) 上发布,以便于自动化任务验证和积分追踪',
+            description: '活动将在专业的空投平台 (如Galxe, QuestN, Zealy) 上发布, 以便于自动化任务验证和积分追踪',
             tasks: [
                 {
                     category: '基础社交任务',

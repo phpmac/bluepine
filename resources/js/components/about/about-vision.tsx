@@ -21,7 +21,8 @@ export function AboutVision() {
                 </div>
                 <h2 className="mb-4 text-2xl font-bold text-white">我们的使命</h2>
                 <p className="text-base leading-relaxed text-slate-300">
-                    通过战略投资,技术孵化与生态建设,系统性推动区块链,人工智能与Web3技术在农业领域的创新与应用.我们寻找并赋能那些敢于颠覆的创业者,共同破解农业数据孤岛,资产流动性不足与服务体系割裂的核心困境.
+                    通过战略投资, 技术孵化与生态建设, 系统性推动区块链, 人工智能与 Web3 技术在农业领域的创新与应用.
+                    我们寻找并赋能那些敢于颠覆的创业者, 共同破解农业数据孤岛, 资产流动性不足与服务体系割裂的核心困境.
                 </p>
             </div>
         </div>

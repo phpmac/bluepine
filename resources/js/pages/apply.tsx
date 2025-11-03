@@ -83,7 +83,7 @@ export default function Apply() {
         '农场管理软件',
         '精准农业',
         '农产品供应链与溯源',
-        '农业RWA (实物资产通证化) ',
+        '农业 RWA (实物资产通证化) ',
         '农业 DeFi 与保险',
         '农业 AI 模型与SaaS服务',
         '农业数据服务与市场',
@@ -92,7 +92,7 @@ export default function Apply() {
         '其他',
     ];
 
-    const stageOptions = ['概念/原型', '私人测试/试点', '公开测试/MVP已上线', '已产生收入', '规模化增长'];
+    const stageOptions = ['概念 / 原型', '私人测试 / 试点', '公开测试 / MVP 已上线', '已产生收入', '规模化增长'];
 
     const sourceOptions = ['合作伙伴推荐', '行业会议', '媒体报道', '社交媒体', '搜索引擎', '其他'];
 
@@ -284,7 +284,7 @@ export default function Apply() {
 
                                 <div>
                                     <label className="mb-2 block text-sm font-medium text-slate-300">
-                                        具体赛道/标签 <span className="text-red-400">*</span> (可多选)
+                                        具体赛道 / 标签 <span className="text-red-400">*</span> (可多选)
                                     </label>
                                     <div className="space-y-2">
                                         {tracksOptions.map((option) => (
@@ -432,7 +432,7 @@ export default function Apply() {
                                         value={formData.painPoint}
                                         onChange={(e) => setFormData({ ...formData, painPoint: e.target.value })}
                                         className="w-full rounded border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm focus:border-emerald-500 focus:outline-none"
-                                        placeholder="请清晰描述您旨在解决的具体问题, 以及目标用户/客户当前的困境"
+                                        placeholder="请清晰描述您旨在解决的具体问题, 以及目标用户 / 客户当前的困境"
                                     />
                                 </div>
 
@@ -446,13 +446,13 @@ export default function Apply() {
                                         value={formData.solution}
                                         onChange={(e) => setFormData({ ...formData, solution: e.target.value })}
                                         className="w-full rounded border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-slate-500 backdrop-blur-sm focus:border-emerald-500 focus:outline-none"
-                                        placeholder="请详细介绍您的产品/服务, 工作原理及其独特之处"
+                                        placeholder="请详细介绍您的产品 / 服务, 工作原理及其独特之处"
                                     />
                                 </div>
 
                                 <div>
                                     <label className="mb-2 block text-sm font-medium text-slate-300">
-                                        技术栈与技术优势/创新点 <span className="text-red-400">*</span>
+                                        技术栈与技术优势 / 创新点 <span className="text-red-400">*</span>
                                     </label>
                                     <textarea
                                         required
@@ -646,7 +646,7 @@ export default function Apply() {
                             <div className="space-y-4 md:space-y-6">
                                 <div>
                                     <label className="mb-2 block text-sm font-medium text-slate-300">
-                                        商业计划书/项目白皮书 <span className="text-red-400">*</span>
+                                        商业计划书 / 项目白皮书 <span className="text-red-400">*</span>
                                     </label>
                                     <div className="flex items-center gap-4">
                                         <label className="flex cursor-pointer items-center rounded border border-white/10 bg-white/5 px-4 py-3 text-slate-300 transition-all hover:border-emerald-500">

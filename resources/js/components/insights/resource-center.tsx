@@ -10,7 +10,7 @@ export function ResourceCenter() {
             url: '#',
         },
         {
-            name: '农业RWA发展报告 2025',
+            name: '农业 RWA 发展报告 2025',
             category: '行业报告',
             format: 'PDF',
             size: '12.3 MB',

@@ -39,7 +39,7 @@ export function Roadmap() {
             id: 3,
             title: '扩张期',
             status: 'upcoming',
-            description: 'DeFi/GameFi/RWA/RDA 上线, 多国覆盖',
+            description: 'DeFi / GameFi / RWA / RDA 上线, 多国覆盖',
         },
         {
             id: 4,

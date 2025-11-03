@@ -15,7 +15,7 @@ export function PostInvestment() {
         {
             icon: Database,
             title: '代币经济与金融模型设计',
-            description: '为需要设计通证经济模型的项目提供顶级专家顾问,并协助对接交易所,做市商等金融资源',
+            description: '为需要设计通证经济模型的项目提供顶级专家顾问, 并协助对接交易所, 做市商等金融资源',
         },
         {
             icon: Shield,
