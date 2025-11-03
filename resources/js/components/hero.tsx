@@ -1,5 +1,4 @@
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
@@ -119,15 +118,6 @@ export function Hero() {
                 <div className="mx-auto max-w-5xl text-center">
                     {/* 文字内容 */}
                     <div>
-                        <div
-                            className={`mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-2 transition-all duration-1000 ${
-                                mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-                            }`}
-                        >
-                            <Sparkles className="h-4 w-4 text-emerald-400" />
-                            <span className="text-sm font-medium text-emerald-400">区块链赋能农业供应链</span>
-                        </div>
-
                         <div className="relative">
                             <h1
                                 className={`mb-6 text-5xl font-bold transition-all delay-100 duration-1000 sm:text-6xl lg:text-7xl ${
@@ -135,10 +125,10 @@ export function Hero() {
                                 }`}
                             >
                                 <span className="block bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text leading-tight text-balance text-transparent">
-                                    构建透明可信的
+                                    播种信任
                                 </span>
                                 <span className="block bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-clip-text leading-tight text-balance text-transparent">
-                                    农业供应链生态
+                                    收获未来
                                 </span>
                             </h1>
 
@@ -155,7 +145,7 @@ export function Hero() {
                                 mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                             }`}
                         >
-                            利用区块链技术实现农产品从田间到餐桌的全程追溯,打造去中心化的农业供应链网络,为农民、企业和消费者创造更大价值
+                            我们是全球领先的"农业+区块链+AI"生态构建者与战略投资者
                         </p>
 
                         <div
@@ -163,20 +153,19 @@ export function Hero() {
                                 mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                             }`}
                         >
-                            <Button
-                                size="lg"
-                                className="group bg-gradient-to-r from-emerald-500 to-teal-500 px-8 py-6 text-lg text-white hover:from-emerald-600 hover:to-teal-600"
+                            <a
+                                href="/aesc"
+                                className="group inline-flex items-center border-2 border-emerald-400 px-8 py-4 text-lg font-medium text-emerald-400 backdrop-blur-sm transition-all hover:border-emerald-300 hover:text-emerald-300 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
                             >
-                                探索生态系统
+                                探索 AESC 生态
                                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                            </Button>
-                            <Button
-                                size="lg"
-                                variant="outline"
-                                className="border-emerald-500/30 bg-transparent px-8 py-6 text-lg text-emerald-400 hover:bg-emerald-500/10"
+                            </a>
+                            <a
+                                href="/strategy"
+                                className="inline-flex items-center border-2 border-teal-400/70 px-8 py-4 text-lg font-medium text-teal-400/90 backdrop-blur-sm transition-all hover:border-teal-300 hover:text-teal-300 hover:shadow-[0_0_20px_rgba(20,184,166,0.2)]"
                             >
-                                查看白皮书
-                            </Button>
+                                我们的投资策略
+                            </a>
                         </div>
                     </div>
                 </div>

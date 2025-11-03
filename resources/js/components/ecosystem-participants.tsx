@@ -2,7 +2,7 @@ import { Card } from '@/components/ui/card';
 import { Building2, ShoppingCart, Sprout, Truck } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-export function Ecosystem() {
+export function EcosystemParticipants() {
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -72,7 +72,7 @@ export function Ecosystem() {
                     {participants.map((participant, index) => (
                         <Card
                             key={index}
-                            className={`group border border-slate-800 bg-slate-900/50 p-6 backdrop-blur-sm transition-all duration-500 hover:border-emerald-500/30 ${
+                            className={`group rounded-lg border border-slate-800 bg-slate-900/50 p-6 backdrop-blur-sm transition-all duration-500 hover:border-emerald-500/30 ${
                                 isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
                             }`}
                             style={{ transitionDelay: `${index * 100}ms` }}

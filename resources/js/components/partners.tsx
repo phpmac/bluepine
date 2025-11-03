@@ -87,7 +87,7 @@ export function Partners() {
                     {partners.map((partner, index) => (
                         <div
                             key={index}
-                            className={`group relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/50 p-6 backdrop-blur-sm transition-all duration-500 hover:border-slate-700 ${
+                            className={`group relative overflow-hidden rounded-lg border border-slate-800 bg-slate-900/50 p-6 backdrop-blur-sm transition-all duration-500 hover:border-slate-700 ${
                                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                             }`}
                             style={{ transitionDelay: `${index * 50}ms` }}
