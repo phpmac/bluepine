@@ -206,7 +206,7 @@ export function Technology() {
                     <h2 className="mb-6 text-4xl font-bold lg:text-5xl">
                         <span className="bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">技术架构</span>
                     </h2>
-                    <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-400">四层架构设计,构建稳定可靠的区块链农业供应链平台</p>
+                    <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-400">四层架构设计, 构建稳定可靠的区块链农业供应链平台</p>
                 </div>
 
                 <div className="mx-auto max-w-4xl space-y-6">

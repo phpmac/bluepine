@@ -16,7 +16,7 @@ export function StrategyHero() {
             <div className="relative z-10 mx-auto w-full max-w-4xl py-20 text-center">
                 <h1 className="mb-8 text-6xl leading-tight font-bold tracking-tight text-white md:text-7xl">投资策略</h1>
                 <p className="text-2xl leading-relaxed text-slate-300">
-                    我们专注于农业,区块链与人工智能的交叉领域,投资于那些能够重塑价值链,创造真实世界影响力的技术驱动型公司.
+                    我们专注于农业, 区块链与人工智能的交叉领域, 投资于那些能够重塑价值链, 创造真实世界影响力的技术驱动型公司.
                 </p>
             </div>
         </section>

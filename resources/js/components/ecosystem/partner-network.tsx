@@ -26,7 +26,7 @@ export function PartnerNetwork() {
             directions: [
                 'IoT 设备制造商:  共同定制开发低成本, 高可靠性的农业传感设备',
                 '云服务商: 优化底层算力与存储基础设施',
-                '数据提供商: 整合气象,遥感,市场行情等多元数据',
+                '数据提供商: 整合气象, 遥感, 市场行情等多元数据',
             ],
         },
         {
@@ -44,9 +44,9 @@ export function PartnerNetwork() {
         <section className="px-4 py-32 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl">
                 <div className="mb-12 text-center">
-                    <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">携手全球伙伴,构建完整价值链</h2>
+                    <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">携手全球伙伴, 构建完整价值链</h2>
                     <p className="mx-auto max-w-3xl text-base text-slate-300">
-                        我们与来自不同领域的领军者紧密合作,共同解决复杂挑战,释放生态系统的全部潜力
+                        我们与来自不同领域的领军者紧密合作, 共同解决复杂挑战, 释放生态系统的全部潜力
                     </p>
                 </div>
 

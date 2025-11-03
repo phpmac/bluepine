@@ -13,7 +13,7 @@ export function InvestmentProcess() {
         {
             step: '03',
             title: '深度尽调',
-            description: '如符合标准,启动技术,市场,财务及团队的深度尽职调查',
+            description: '如符合标准, 启动技术, 市场, 财务及团队的深度尽职调查',
         },
         {
             step: '04',
@@ -23,12 +23,12 @@ export function InvestmentProcess() {
         {
             step: '05',
             title: '协议与交割',
-            description: '达成投资意向,签署协议,完成资金交割',
+            description: '达成投资意向, 签署协议, 完成资金交割',
         },
         {
             step: '06',
             title: '投后价值共创',
-            description: '启动全面的投后支持计划,共同成长',
+            description: '启动全面的投后支持计划, 共同成长',
         },
     ];
 

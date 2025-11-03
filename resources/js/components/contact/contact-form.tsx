@@ -132,7 +132,7 @@ export function ContactForm() {
                                 </label>
                                 {formData.file && <span className="text-sm text-slate-400">{formData.file.name}</span>}
                             </div>
-                            <p className="mt-2 text-xs text-slate-500">支持 PDF, DOC, DOCX, PPT, PPTX 格式,最大 10MB</p>
+                            <p className="mt-2 text-xs text-slate-500">支持 PDF, DOC, DOCX, PPT, PPTX 格式, 最大 10MB</p>
                         </div>
 
                         <div className="text-center">
