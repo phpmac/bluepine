@@ -1,4 +1,4 @@
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Lock } from 'lucide-react';
 import { useState } from 'react';
 
 /**
@@ -11,28 +11,24 @@ export function AescFaq() {
 
     const faqs = [
         {
-            question: 'AESC 代币的总供应量是多少?',
-            answer: 'AESC 代币总供应量为 16 亿枚, 采用固定供应模式, 不会增发. 其中 40% 用于生态建设, 20% 私募, 15% 团队激励, 10% 交易所, 10% 储备, 3% 合作伙伴, 2% 社区空投.',
+            question: '如何参与AESC私募?',
+            answer: '请确保您拥有兼容的BSC钱包, 访问我们的官方私募平台, 并按照指引完成支付.',
         },
         {
-            question: '如何参与 AESC 的私募?',
-            answer: '您可以通过官方网站注册参与私募. 私募将分阶段进行, 每个阶段的价格和份额有限. 请关注官方公告获取最新信息.',
+            question: '代币的解锁机制是怎样的?',
+            answer: '请参考白皮书第8.2章节, 不同分配部分有详细的解锁时间表.',
         },
         {
-            question: 'AESC 代币什么时候上交易所?',
-            answer: '我们计划在主网上线后的 3-6 个月内登陆主流 CEX 和 DEX. 具体时间将根据生态发展进度和市场条件确定.',
+            question: '我可以使用哪些货币购买AESC?',
+            answer: '我们接受USDT (BEP-20), 具体请以私募平台公告为准.',
         },
         {
-            question: '持有 AESC 代币有什么好处?',
-            answer: 'AESC 代币持有者可以享受平台服务折扣, 参与生态治理投票, 质押获得收益分成, 优先参与新产品测试, 以及未来空投等多重权益.',
+            question: 'AESC代币有什么价值支撑?',
+            answer: 'AESC代币价值来源于生态内的真实使用需求, 包括数据服务支付, 质押收益分享, 治理权益等.',
         },
         {
-            question: 'AESC 如何保证数据安全和隐私?',
-            answer: '我们采用联邦学习技术, 确保数据 "可用不可见". 同时使用零知识证明和加密技术保护用户隐私, 所有数据传输和存储均符合GDPR和各国数据保护法规.',
-        },
-        {
-            question: '项目的技术优势在哪里?',
-            answer: 'AESC 独创的语义区块链架构, 能够高效处理复杂的农业数据查询. 结合 AI 预测模型和 IoT 设备, 实现了从数据采集到价值变现的完整闭环.',
+            question: '如何确保项目的安全性?',
+            answer: 'AESC智能合约已通过CertiK全面审计, 团队身份公开透明, 项目进展定期公示.',
         },
     ];
 
@@ -68,13 +64,18 @@ export function AescFaq() {
                     ))}
                 </div>
 
-                <div className="mt-10 text-center">
-                    <p className="mb-4 text-sm text-slate-400">还有其他问题?</p>
+                {/* CTA 部分 */}
+                <div className="mt-20 rounded-lg border-2 border-white/10 bg-gradient-to-br from-emerald-500/20 to-teal-600/20 p-12 text-center backdrop-blur-sm md:p-16">
+                    <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-5xl">成为农业数字革命的奠基者</h2>
+                    <p className="mx-auto mb-8 max-w-3xl text-xl text-slate-300">
+                        现在加入, 您不仅是投资一个代币, 更是投资一个更具效率, 公平和可持续性的农业未来
+                    </p>
                     <a
-                        href="/contact"
-                        className="inline-flex cursor-pointer items-center border-2 border-emerald-500/50 bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-emerald-400 hover:bg-white/20"
+                        href="https://fd.bluepinefoundation.com/"
+                        className="inline-flex cursor-pointer items-center rounded bg-gradient-to-r from-emerald-500 to-teal-600 px-10 py-5 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                     >
-                        联系我们
+                        <Lock className="mr-2 h-6 w-6" />
+                        立即参与 AESC 私募, 共创未来
                     </a>
                 </div>
             </div>
