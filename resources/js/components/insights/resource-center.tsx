@@ -2,29 +2,31 @@ import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Download } from 'lucide-react';
 
 export function ResourceCenter() {
-    const { t } = useLaravelReactI18n();
+    const { t, currentLocale } = useLaravelReactI18n();
+    const isEnglish = currentLocale() === 'en';
+    const fileDir = isEnglish ? '/files/en/' : '/files/cn/';
 
     const downloadResources = [
         {
             nameKey: 'insights.resource.item1.name',
             categoryKey: 'insights.resource.item1.category',
             format: 'ZIP',
-            size: '2.5 MB',
-            url: '#',
+            size: '1.0 MB',
+            url: 'https://fd.bluepinefoundation.com/aesc_assets.zip',
         },
         {
             nameKey: 'insights.resource.item2.name',
             categoryKey: 'insights.resource.item2.category',
             format: 'PDF',
-            size: '8.5 MB',
-            url: '#',
+            size: '1.18 MB',
+            url: 'https://github.com/bluepinefoundation/token/blob/main/AESC%20Whitepaper.pdf',
         },
         {
             nameKey: 'insights.resource.item3.name',
             categoryKey: 'insights.resource.item3.category',
-            format: 'PDF',
-            size: '3.2 MB',
-            url: '#',
+            format: 'DOCX',
+            size: '16.2 KB',
+            url: fileDir + t('insights.resource.item3.file'),
         },
     ];
 
