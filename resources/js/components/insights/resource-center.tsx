@@ -10,9 +10,9 @@ export function ResourceCenter() {
         {
             nameKey: 'insights.resource.item1.name',
             categoryKey: 'insights.resource.item1.category',
-            format: 'ZIP',
+            format: 'PDF',
             size: '1.0 MB',
-            url: 'https://fd.bluepinefoundation.com/aesc_assets.zip',
+            url: isEnglish ? '/files/Bluepine VIS.pdf' : '/files/AESC VI(中文版).pdf',
         },
         {
             nameKey: 'insights.resource.item2.name',
