@@ -13,6 +13,7 @@ export function FeaturedContent() {
             tagKey: 'insights.featured.item1.tag',
             actionKey: 'insights.featured.item1.action',
             fileKey: null,
+            url: 'https://github.com/bluepinefoundation/token/blob/main/AESC%20Whitepaper.pdf',
         },
         {
             titleKey: 'insights.featured.item2.title',
@@ -20,6 +21,7 @@ export function FeaturedContent() {
             tagKey: 'insights.featured.item2.tag',
             actionKey: 'insights.featured.item2.action',
             fileKey: 'insights.featured.item2.file',
+            url: null,
         },
         {
             titleKey: 'insights.featured.item3.title',
@@ -27,6 +29,7 @@ export function FeaturedContent() {
             tagKey: 'insights.featured.item3.tag',
             actionKey: 'insights.featured.item3.action',
             fileKey: 'insights.featured.item3.file',
+            url: null,
         },
     ];
 
@@ -47,7 +50,17 @@ export function FeaturedContent() {
                             </div>
                             <h3 className="mb-3 text-xl font-bold text-white">{t(content.titleKey)}</h3>
                             <p className="mb-5 text-sm leading-relaxed text-slate-300">{t(content.descriptionKey)}</p>
-                            {content.fileKey ? (
+                            {content.url ? (
+                                <a
+                                    href={content.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex cursor-pointer items-center text-sm font-medium text-emerald-300 transition-colors hover:text-emerald-200"
+                                >
+                                    <Download className="mr-2 h-4 w-4" />
+                                    {t(content.actionKey)}
+                                </a>
+                            ) : content.fileKey ? (
                                 <a
                                     href={fileDir + t(content.fileKey)}
                                     download
