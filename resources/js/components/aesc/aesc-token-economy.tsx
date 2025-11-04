@@ -77,7 +77,7 @@ export function AescTokenEconomy() {
                             >
                                 <div className="mb-3 flex items-center justify-between">
                                     <div
-                                        className={`inline-flex items-center rounded bg-gradient-to-r ${allocation.color} px-3 py-1.5 text-sm font-bold text-white`}
+                                        className={`inline-flex items-center rounded bg-linear-to-r ${allocation.color} px-3 py-1.5 text-sm font-bold text-white`}
                                     >
                                         {allocation.percentage}
                                     </div>
@@ -137,7 +137,7 @@ export function AescTokenEconomy() {
                                 className="group rounded-lg border-2 border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:scale-105 hover:border-emerald-500/50"
                             >
                                 <div
-                                    className={`mb-4 flex h-14 w-14 items-center justify-center bg-gradient-to-br ${utility.color}`}
+                                    className={`mb-4 flex h-14 w-14 items-center justify-center bg-linear-to-br ${utility.color}`}
                                     style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' }}
                                 >
                                     <utility.icon className="h-7 w-7 text-white" />

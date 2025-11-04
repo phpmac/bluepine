@@ -8,7 +8,6 @@ export function NewsletterSubscribe() {
 
     const handleSubscribe = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Subscribed:', email);
         // 这里添加订阅逻辑
     };
 

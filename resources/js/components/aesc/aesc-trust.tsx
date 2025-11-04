@@ -43,11 +43,7 @@ export function AescTrust() {
                             </a>
                             <a href="#" className="flex items-center text-sm text-emerald-300 transition-colors hover:text-emerald-200">
                                 <ArrowRight className="mr-2 h-3 w-3" />
-                                {t('aesc.trust.docs.technical')}
-                            </a>
-                            <a href="#" className="flex items-center text-sm text-emerald-300 transition-colors hover:text-emerald-200">
-                                <ArrowRight className="mr-2 h-3 w-3" />
-                                {t('aesc.trust.docs.roadmap')}
+                                {t('aesc.trust.docs.brandAssets')}
                             </a>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ export function AescHero() {
                 }}
             >
                 {/* 遮罩层 */}
-                <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/70 to-slate-950/80"></div>
+                <div className="absolute inset-0 bg-linear-to-b from-slate-950/80 via-slate-900/70 to-slate-950/80"></div>
 
                 {/* 内容 */}
                 <div className="relative z-10 container mx-auto px-4 pt-20 text-center sm:px-6 lg:px-8">
@@ -34,7 +34,7 @@ export function AescHero() {
                         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                             <a
                                 href="/airdrop"
-                                className="group inline-flex cursor-pointer items-center bg-gradient-to-r from-emerald-500 to-teal-600 px-8 py-4 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
+                                className="group inline-flex cursor-pointer items-center bg-linear-to-r from-emerald-500 to-teal-600 px-8 py-4 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                             >
                                 {t('aesc.hero.button1')}
                                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />

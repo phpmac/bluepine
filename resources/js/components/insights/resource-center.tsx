@@ -8,22 +8,22 @@ export function ResourceCenter() {
         {
             nameKey: 'insights.resource.item1.name',
             categoryKey: 'insights.resource.item1.category',
-            format: 'PDF',
-            size: '8.5 MB',
+            format: 'ZIP',
+            size: '2.5 MB',
             url: '#',
         },
         {
             nameKey: 'insights.resource.item2.name',
             categoryKey: 'insights.resource.item2.category',
             format: 'PDF',
-            size: '12.3 MB',
+            size: '8.5 MB',
             url: '#',
         },
         {
             nameKey: 'insights.resource.item3.name',
             categoryKey: 'insights.resource.item3.category',
             format: 'PDF',
-            size: '6.8 MB',
+            size: '3.2 MB',
             url: '#',
         },
     ];

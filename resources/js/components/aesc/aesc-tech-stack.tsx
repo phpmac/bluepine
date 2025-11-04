@@ -49,7 +49,7 @@ export function AescTechStack({ variant = 'default' }: AescTechStackProps) {
     const isCompact = variant === 'compact';
 
     return (
-        <Card className="!rounded-lg border border-emerald-500/20 bg-white/5 p-6 backdrop-blur-sm">
+        <Card className="rounded-lg! border border-emerald-500/20 bg-white/5 p-6 backdrop-blur-sm">
             <h4 className={`mb-6 text-center font-bold text-white ${isCompact ? 'text-lg' : 'text-xl'}`}>
                 {isCompact ? t('aesc.techStack.titleCompact') : t('aesc.techStack.titleDefault')}
             </h4>
@@ -57,7 +57,7 @@ export function AescTechStack({ variant = 'default' }: AescTechStackProps) {
                 {techLayers.map((layer, index) => (
                     <div
                         key={index}
-                        className={`group relative overflow-hidden rounded-lg bg-gradient-to-r ${layer.color} transition-all duration-300 hover:scale-[1.02] ${isCompact ? 'p-3' : 'p-4 hover:shadow-lg'}`}
+                        className={`group relative overflow-hidden rounded-lg bg-linear-to-r ${layer.color} transition-all duration-300 hover:scale-[1.02] ${isCompact ? 'p-3' : 'p-4 hover:shadow-lg'}`}
                     >
                         {!isCompact && (
                             <>

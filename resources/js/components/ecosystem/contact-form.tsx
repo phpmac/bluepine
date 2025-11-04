@@ -16,7 +16,6 @@ export function ContactForm() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
         // 这里添加表单提交逻辑
     };
 
@@ -88,19 +87,19 @@ export function ContactForm() {
                             <SelectValue placeholder={t('ecosystem.contactForm.categoryPlaceholder')} />
                         </SelectTrigger>
                         <SelectContent className="rounded border border-white/10 bg-slate-900 text-white">
-                            <SelectItem value="research" className="cursor-pointer hover:bg-white/10">
+                            <SelectItem value="research" className="cursor-pointer text-white hover:bg-emerald-900/30">
                                 {t('ecosystem.contactForm.categoryResearch')}
                             </SelectItem>
-                            <SelectItem value="business" className="cursor-pointer hover:bg-white/10">
+                            <SelectItem value="business" className="cursor-pointer text-white hover:bg-emerald-900/30">
                                 {t('ecosystem.contactForm.categoryBusiness')}
                             </SelectItem>
-                            <SelectItem value="tech" className="cursor-pointer hover:bg-white/10">
+                            <SelectItem value="tech" className="cursor-pointer text-white hover:bg-emerald-900/30">
                                 {t('ecosystem.contactForm.categoryTech')}
                             </SelectItem>
-                            <SelectItem value="capital" className="cursor-pointer hover:bg-white/10">
+                            <SelectItem value="capital" className="cursor-pointer text-white hover:bg-emerald-900/30">
                                 {t('ecosystem.contactForm.categoryCapital')}
                             </SelectItem>
-                            <SelectItem value="other" className="cursor-pointer hover:bg-white/10">
+                            <SelectItem value="other" className="cursor-pointer text-white hover:bg-emerald-900/30">
                                 {t('ecosystem.contactForm.categoryOther')}
                             </SelectItem>
                         </SelectContent>
@@ -124,7 +123,7 @@ export function ContactForm() {
                 <div className="text-center">
                     <button
                         type="submit"
-                        className="inline-flex cursor-pointer items-center bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-3 font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
+                        className="inline-flex cursor-pointer items-center bg-linear-to-r from-emerald-500 to-teal-600 px-6 py-3 font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                     >
                         <Send className="mr-2 h-5 w-5" />
                         {t('ecosystem.contactForm.submit')}

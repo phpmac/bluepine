@@ -1,4 +1,13 @@
-import { AescFaq, AescHero, AescParticipation, AescRoadmap, AescTokenEconomy, AescTrust, AescValueProposition } from '@/components/aesc';
+import {
+    AescFaq,
+    AescHero,
+    AescParticipation,
+    AescRoadmap,
+    AescTokenEconomy,
+    AescTokenInfo,
+    AescTrust,
+    AescValueProposition,
+} from '@/components/aesc';
 import { MainLayout } from '@/layouts';
 import { Head } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
@@ -18,6 +27,10 @@ export default function Aesc() {
                 <AescHero />
                 <AescValueProposition />
                 <AescParticipation />
+
+                {/* 代币信息概览 */}
+                <AescTokenInfo />
+
                 <AescTokenEconomy />
                 <AescRoadmap />
                 <AescTrust />

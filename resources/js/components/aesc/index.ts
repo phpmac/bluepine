@@ -4,5 +4,6 @@ export { AescParticipation } from './aesc-participation';
 export { AescRoadmap } from './aesc-roadmap';
 export { AescTechStack } from './aesc-tech-stack';
 export { AescTokenEconomy } from './aesc-token-economy';
+export { AescTokenInfo } from './aesc-token-info';
 export { AescTrust } from './aesc-trust';
 export { AescValueProposition } from './aesc-value-proposition';
