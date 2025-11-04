@@ -24,7 +24,7 @@ export function ResourceCenter() {
         {
             nameKey: 'insights.resource.item3.name',
             categoryKey: 'insights.resource.item3.category',
-            format: 'DOCX',
+            format: 'PDF',
             size: '16.2 KB',
             url: fileDir + t('insights.resource.item3.file'),
         },
