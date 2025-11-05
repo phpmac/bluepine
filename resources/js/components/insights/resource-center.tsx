@@ -12,7 +12,7 @@ export function ResourceCenter() {
             categoryKey: 'insights.resource.item1.category',
             format: 'PDF',
             size: '1.0 MB',
-            url: isEnglish ? '/files/Bluepine VIS.pdf' : '/files/AESC VI(中文版).pdf',
+            url: isEnglish ? '/files/Bluepine VI.pdf' : '/files/基金会品牌资产.pdf',
         },
         {
             nameKey: 'insights.resource.item2.name',

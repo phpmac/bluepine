@@ -30,8 +30,8 @@ export function PrivacyHero() {
                     <div className="space-y-4">
                         <p className="text-lg leading-relaxed text-slate-300 md:text-xl">
                             {isEnglish
-                                ? 'BLUEPINE TECH FOUNDATION ("we," "us," or "our") operates the https://bluepinefoundation.com website and the "Agri-Eco Smart Chain" ecosystem (collectively referred to as the "Service").'
-                                : 'BLUEPINE TECH FOUNDATION ( "我们" , "我方" 或 "我们的" ) 运营着 https://bluepinefoundation.com 网站以及 Agri-Eco Smart Chain 生态系统 (统称为 "服务" ) .'}
+                                ? 'BLUEPINE TECH FOUNDATION ("we," "us," or "our") operates the https://www.bluepinefoundation.com website and the "Agri-Eco Smart Chain" ecosystem (collectively referred to as the "Service").'
+                                : 'BLUEPINE TECH FOUNDATION ( "我们" , "我方" 或 "我们的" ) 运营着 https://www.bluepinefoundation.com 网站以及 Agri-Eco Smart Chain 生态系统 (统称为 "服务" ) .'}
                         </p>
                         <p className="text-lg leading-relaxed text-slate-300 md:text-xl">
                             {isEnglish
