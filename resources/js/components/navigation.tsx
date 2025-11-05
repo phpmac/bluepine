@@ -45,15 +45,19 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
                     : 'border-b border-white/0 bg-transparent'
             }`}
         >
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
                 <div className="flex h-20 items-center">
-                    <Link href="/" className="group flex items-center gap-3">
+                    <Link href="/" className="group flex shrink-0 items-center gap-3">
                         <img src="/logo.svg" alt="BluePine Logo" className="h-9 transition-transform group-hover:scale-105" />
                     </Link>
 
-                    <div className="ml-12 hidden items-center space-x-1 md:flex">
+                    <div className="ml-8 hidden items-center space-x-0.5 lg:flex xl:ml-12 xl:space-x-1">
                         {navItems.map((item) => (
-                            <a key={item.id} href={item.href} className="group relative px-4 py-2 text-sm font-medium transition-all duration-500">
+                            <a
+                                key={item.id}
+                                href={item.href}
+                                className="group relative px-2.5 py-2 text-sm font-medium whitespace-nowrap transition-all duration-500 xl:px-3"
+                            >
                                 {/* 选中状态 */}
                                 {currentPage === item.id ? (
                                     <>
@@ -80,29 +84,29 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
                         ))}
                     </div>
 
-                    <div className="ml-auto hidden items-center space-x-3 md:flex">
+                    <div className="ml-auto hidden shrink-0 items-center space-x-2 lg:flex xl:space-x-3">
                         <a
                             href="/aesc"
-                            className="cursor-pointer bg-linear-to-r from-emerald-500 to-teal-600 px-5 py-2 text-sm font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
+                            className="cursor-pointer bg-linear-to-r from-emerald-500 to-teal-600 px-3 py-2 text-sm font-medium whitespace-nowrap text-white transition-all hover:from-emerald-600 hover:to-teal-700 xl:px-4"
                         >
                             {t('nav.aesc')}
                         </a>
                         <a
                             href="/airdrop"
-                            className="cursor-pointer bg-linear-to-r from-teal-600 to-cyan-700 px-5 py-2 text-sm font-medium text-white transition-all hover:from-teal-700 hover:to-cyan-800"
+                            className="cursor-pointer bg-linear-to-r from-teal-600 to-cyan-700 px-3 py-2 text-sm font-medium whitespace-nowrap text-white transition-all hover:from-teal-700 hover:to-cyan-800 xl:px-4"
                         >
                             {t('nav.airdrop')}
                         </a>
                         <button
                             onClick={handleLanguageChange}
-                            className="flex cursor-pointer items-center px-3 py-2 text-sm font-medium text-slate-200/80 transition-all hover:bg-white/5 hover:text-white"
+                            className="flex cursor-pointer items-center px-2.5 py-2 text-sm font-medium whitespace-nowrap text-slate-200/80 transition-all hover:bg-white/5 hover:text-white xl:px-3"
                         >
                             <Globe className="mr-1 h-4 w-4" />
                             {currentLocale() === 'zh_CN' ? 'EN' : '中文'}
                         </button>
                     </div>
 
-                    <button className="ml-auto cursor-pointer p-2 md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                    <button className="ml-auto cursor-pointer p-2 lg:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
                         {mobileMenuOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
                     </button>
                 </div>
@@ -110,7 +114,7 @@ export function Navigation({ currentPage = 'home' }: NavigationProps) {
 
             {mobileMenuOpen && (
                 <div
-                    className={`border-t border-white/10 transition-all duration-500 md:hidden ${
+                    className={`border-t border-white/10 transition-all duration-500 lg:hidden ${
                         isScrolled ? 'bg-slate-950/95 backdrop-blur-2xl' : 'bg-slate-950/80 backdrop-blur-xl'
                     }`}
                 >
