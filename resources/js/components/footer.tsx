@@ -15,11 +15,7 @@ export function Footer({ transparent = true }: FooterProps) {
                     {/* Logo和联系信息 */}
                     <div>
                         <div className="mb-6 flex items-center gap-3">
-                            <img src="/logo.svg" alt="BluePine Logo" className="h-9 w-9" />
-                            <div className="flex flex-col">
-                                <div className="text-xl leading-tight font-bold tracking-tight text-white">BLUEPINE</div>
-                                <div className="text-xs font-normal text-slate-300">Tech Foundation</div>
-                            </div>
+                            <img src="/logo.svg" alt="BluePine Logo" className="h-9" />
                         </div>
                         <div className="space-y-4 text-sm text-slate-400">
                             <div className="flex items-start">

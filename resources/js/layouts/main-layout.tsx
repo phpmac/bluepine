@@ -34,7 +34,7 @@ interface MainLayoutProps {
  */
 export function MainLayout({ children, currentPage = 'home', transparentFooter = true }: MainLayoutProps) {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+        <div className="min-h-screen bg-linear-to-b from-slate-950 via-slate-900 to-slate-950">
             <Navigation currentPage={currentPage} />
             <main>{children}</main>
             <Footer transparent={transparentFooter} />
