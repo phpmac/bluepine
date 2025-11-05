@@ -1,4 +1,4 @@
-import { whitepaperUrl } from '@/config/links';
+import { getWhitepaperUrl } from '@/config/links';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { ArrowRight, Download } from 'lucide-react';
 
@@ -14,7 +14,7 @@ export function FeaturedContent() {
             tagKey: 'insights.featured.item1.tag',
             actionKey: 'insights.featured.item1.action',
             fileKey: null,
-            url: whitepaperUrl,
+            url: getWhitepaperUrl(isEnglish),
         },
         {
             titleKey: 'insights.featured.item2.title',

@@ -1,4 +1,4 @@
-import { whitepaperUrl } from '@/config/links';
+import { getBrandAssetsUrl, getWhitepaperUrl } from '@/config/links';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Download } from 'lucide-react';
 
@@ -13,14 +13,14 @@ export function ResourceCenter() {
             categoryKey: 'insights.resource.item1.category',
             format: 'PDF',
             size: '1.0 MB',
-            url: isEnglish ? '/files/Bluepine VI.pdf' : '/files/基金会品牌资产.pdf',
+            url: getBrandAssetsUrl(isEnglish),
         },
         {
             nameKey: 'insights.resource.item2.name',
             categoryKey: 'insights.resource.item2.category',
             format: 'PDF',
             size: '1.18 MB',
-            url: whitepaperUrl,
+            url: getWhitepaperUrl(isEnglish),
         },
         {
             nameKey: 'insights.resource.item3.name',

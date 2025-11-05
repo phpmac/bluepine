@@ -1,10 +1,11 @@
 import { AescTechStack } from '@/components/aesc';
-import { whitepaperUrl } from '@/config/links';
+import { getWhitepaperUrl } from '@/config/links';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Download, ExternalLink, Layers } from 'lucide-react';
 
 export function FlagshipAESC() {
-    const { t } = useLaravelReactI18n();
+    const { t, currentLocale } = useLaravelReactI18n();
+    const isEnglish = currentLocale() === 'en';
 
     return (
         <section className="relative overflow-hidden bg-linear-to-br from-emerald-500/20 to-teal-600/20 px-4 py-32 sm:px-6 lg:px-8">
@@ -85,7 +86,7 @@ export function FlagshipAESC() {
                                 {t('portfolio.flagship.button1')}
                             </a>
                             <a
-                                href={whitepaperUrl}
+                                href={getWhitepaperUrl(isEnglish)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex cursor-pointer items-center border-2 border-white/50 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-white/10"

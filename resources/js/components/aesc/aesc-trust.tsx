@@ -1,4 +1,4 @@
-import { whitepaperUrl } from '@/config/links';
+import { auditReportUrl, getBrandAssetsUrl, getWhitepaperUrl } from '@/config/links';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { ArrowRight, Database, FileText, Lock, ShieldCheck } from 'lucide-react';
 
@@ -8,7 +8,8 @@ import { ArrowRight, Database, FileText, Lock, ShieldCheck } from 'lucide-react'
  * 展示平台的安全性和透明度
  */
 export function AescTrust() {
-    const { t } = useLaravelReactI18n();
+    const { t, currentLocale } = useLaravelReactI18n();
+    const isEnglish = currentLocale() === 'en';
 
     return (
         <section className="px-4 py-32 sm:px-6 lg:px-8">
@@ -25,7 +26,12 @@ export function AescTrust() {
                         </div>
                         <h3 className="mb-3 text-xl font-bold text-white">{t('aesc.trust.audit.title')}</h3>
                         <p className="mb-4 text-sm text-slate-300">{t('aesc.trust.audit.description')}</p>
-                        <a href="#" className="inline-flex items-center text-sm text-emerald-300 transition-colors hover:text-emerald-200">
+                        <a
+                            href={auditReportUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center text-sm text-emerald-300 transition-colors hover:text-emerald-200"
+                        >
                             {t('aesc.trust.audit.link')}
                             <ArrowRight className="ml-2 h-4 w-4" />
                         </a>
@@ -39,7 +45,7 @@ export function AescTrust() {
                         <h3 className="mb-3 text-xl font-bold text-white">{t('aesc.trust.docs.title')}</h3>
                         <div className="space-y-2">
                             <a
-                                href={whitepaperUrl}
+                                href={getWhitepaperUrl(isEnglish)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center text-sm text-emerald-300 transition-colors hover:text-emerald-200"
@@ -47,7 +53,11 @@ export function AescTrust() {
                                 <ArrowRight className="mr-2 h-3 w-3" />
                                 {t('aesc.trust.docs.whitepaper')}
                             </a>
-                            <a href="#" className="flex items-center text-sm text-emerald-300 transition-colors hover:text-emerald-200">
+                            <a
+                                href={getBrandAssetsUrl(isEnglish)}
+                                download
+                                className="flex items-center text-sm text-emerald-300 transition-colors hover:text-emerald-200"
+                            >
                                 <ArrowRight className="mr-2 h-3 w-3" />
                                 {t('aesc.trust.docs.brandAssets')}
                             </a>
