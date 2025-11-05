@@ -1,4 +1,5 @@
 import { AescTechStack } from '@/components/aesc';
+import { whitepaperUrl } from '@/config/links';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Download } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
@@ -63,9 +64,10 @@ export function FlagshipProject() {
                         </div>
 
                         <a
-                            href="#"
-                            download
-                            className="group inline-flex cursor-pointer items-center bg-gradient-to-r from-emerald-500 to-teal-600 px-8 py-4 font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
+                            href={whitepaperUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group inline-flex cursor-pointer items-center bg-linear-to-r from-emerald-500 to-teal-600 px-8 py-4 font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                         >
                             <Download className="mr-2 h-5 w-5" />
                             {t('flagship.download')}

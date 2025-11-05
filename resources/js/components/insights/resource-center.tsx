@@ -1,3 +1,4 @@
+import { whitepaperUrl } from '@/config/links';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Download } from 'lucide-react';
 
@@ -19,7 +20,7 @@ export function ResourceCenter() {
             categoryKey: 'insights.resource.item2.category',
             format: 'PDF',
             size: '1.18 MB',
-            url: 'https://github.com/bluepinefoundation/token/blob/main/AESC%20Whitepaper.pdf',
+            url: whitepaperUrl,
         },
         {
             nameKey: 'insights.resource.item3.name',

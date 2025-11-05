@@ -1,3 +1,4 @@
+import { whitepaperUrl } from '@/config/links';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { ArrowRight, Download } from 'lucide-react';
 
@@ -13,7 +14,7 @@ export function FeaturedContent() {
             tagKey: 'insights.featured.item1.tag',
             actionKey: 'insights.featured.item1.action',
             fileKey: null,
-            url: 'https://github.com/bluepinefoundation/token/blob/main/AESC%20Whitepaper.pdf',
+            url: whitepaperUrl,
         },
         {
             titleKey: 'insights.featured.item2.title',

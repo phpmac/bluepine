@@ -1,3 +1,4 @@
+import { whitepaperUrl } from '@/config/links';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { ArrowRight, Database, FileText, Lock, ShieldCheck } from 'lucide-react';
 
@@ -37,7 +38,12 @@ export function AescTrust() {
                         </div>
                         <h3 className="mb-3 text-xl font-bold text-white">{t('aesc.trust.docs.title')}</h3>
                         <div className="space-y-2">
-                            <a href="#" className="flex items-center text-sm text-emerald-300 transition-colors hover:text-emerald-200">
+                            <a
+                                href={whitepaperUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center text-sm text-emerald-300 transition-colors hover:text-emerald-200"
+                            >
                                 <ArrowRight className="mr-2 h-3 w-3" />
                                 {t('aesc.trust.docs.whitepaper')}
                             </a>

@@ -1,7 +1,9 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Send } from 'lucide-react';
+import { CheckCircle2, Send } from 'lucide-react';
 import { useState } from 'react';
+
+import request from '@/lib/request';
 
 export function ContactForm() {
     const { t } = useLaravelReactI18n();
@@ -13,10 +15,31 @@ export function ContactForm() {
         category: '',
         description: '',
     });
+    const [isLoading, setIsLoading] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // 这里添加表单提交逻辑
+
+        setIsLoading(true);
+
+        try {
+            await request.post('/ecosystem-contact', formData);
+            setFormData({
+                company: '',
+                name: '',
+                position: '',
+                email: '',
+                category: '',
+                description: '',
+            });
+            setShowSuccess(true);
+            setTimeout(() => setShowSuccess(false), 5000);
+        } catch {
+            // 错误由请求拦截器统一处理
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -120,13 +143,21 @@ export function ContactForm() {
                     />
                 </div>
 
+                {showSuccess && (
+                    <div className="flex items-center justify-center gap-2 rounded-lg bg-emerald-500/20 px-4 py-3 text-emerald-400">
+                        <CheckCircle2 className="h-5 w-5" />
+                        <span className="text-sm font-medium">{t('ecosystem.contactForm.success')}</span>
+                    </div>
+                )}
+
                 <div className="text-center">
                     <button
                         type="submit"
-                        className="inline-flex cursor-pointer items-center bg-linear-to-r from-emerald-500 to-teal-600 px-6 py-3 font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
+                        disabled={isLoading}
+                        className="inline-flex cursor-pointer items-center bg-linear-to-r from-emerald-500 to-teal-600 px-6 py-3 font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                         <Send className="mr-2 h-5 w-5" />
-                        {t('ecosystem.contactForm.submit')}
+                        {isLoading ? t('ecosystem.contactForm.submitting') : t('ecosystem.contactForm.submit')}
                     </button>
                 </div>
             </form>

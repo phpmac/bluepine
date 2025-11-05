@@ -1,4 +1,5 @@
 import { AescTechStack } from '@/components/aesc';
+import { whitepaperUrl } from '@/config/links';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Download, ExternalLink, Layers } from 'lucide-react';
 
@@ -6,7 +7,7 @@ export function FlagshipAESC() {
     const { t } = useLaravelReactI18n();
 
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-emerald-500/20 to-teal-600/20 px-4 py-32 sm:px-6 lg:px-8">
+        <section className="relative overflow-hidden bg-linear-to-br from-emerald-500/20 to-teal-600/20 px-4 py-32 sm:px-6 lg:px-8">
             <div className="absolute inset-0 bg-slate-950/80"></div>
 
             {/* 背景光晕 */}
@@ -25,7 +26,7 @@ export function FlagshipAESC() {
                         {/* Logo区域 */}
                         <div className="mb-4">
                             <div className="mb-3 flex items-center gap-3">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-linear-to-br from-emerald-500 to-teal-600">
                                     <Layers className="h-6 w-6 text-white" />
                                 </div>
                                 <div>
@@ -78,14 +79,15 @@ export function FlagshipAESC() {
                         <div className="flex flex-wrap gap-2">
                             <a
                                 href="/aesc"
-                                className="flex cursor-pointer items-center bg-gradient-to-r from-emerald-500 to-teal-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
+                                className="flex cursor-pointer items-center bg-linear-to-r from-emerald-500 to-teal-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                             >
                                 <ExternalLink className="mr-2 h-4 w-4" />
                                 {t('portfolio.flagship.button1')}
                             </a>
                             <a
-                                href="#"
-                                download
+                                href={whitepaperUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="flex cursor-pointer items-center border-2 border-white/50 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-white/10"
                             >
                                 <Download className="mr-2 h-4 w-4" />

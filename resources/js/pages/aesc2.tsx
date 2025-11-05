@@ -160,7 +160,7 @@ export default function Aesc2() {
     return (
         <>
             <Head title={t('page.title.aesc2')} />
-            <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+            <div className="min-h-screen bg-linear-to-b from-slate-950 via-slate-900 to-slate-950">
                 <Navigation currentPage="aesc2" />
                 <main className="pt-20">
                     {/* 第一屏 - 页首横幅 */}
@@ -188,8 +188,9 @@ export default function Aesc2() {
                                 {/* 核心行动按钮 */}
                                 <div className="flex flex-wrap justify-center gap-4">
                                     <a
-                                        href="#dapps"
-                                        className="inline-flex cursor-pointer items-center rounded bg-gradient-to-r from-emerald-500 to-teal-600 px-8 py-4 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
+                                        href="https://fd.bluepinefoundation.com/"
+                                        target="_blank"
+                                        className="inline-flex cursor-pointer items-center rounded bg-linear-to-r from-emerald-500 to-teal-600 px-8 py-4 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                                     >
                                         <Zap className="mr-2 h-5 w-5" />
                                         {t('aesc2.hero.button1')}
@@ -270,7 +271,7 @@ export default function Aesc2() {
                                         <div className="mb-3 text-xs font-semibold text-green-400">{t(dapp.metricKey)}</div>
                                         <a
                                             href="#"
-                                            className="inline-flex w-full cursor-pointer items-center justify-center rounded bg-gradient-to-r from-emerald-500 to-teal-600 px-4 py-2 text-xs font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
+                                            className="inline-flex w-full cursor-pointer items-center justify-center rounded bg-linear-to-r from-emerald-500 to-teal-600 px-4 py-2 text-xs font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                                         >
                                             {t('aesc2.dapps.enterApp')}
                                             <ArrowRight className="ml-2 h-3 w-3" />
@@ -386,7 +387,7 @@ export default function Aesc2() {
                                 {/* 证言卡片 */}
                                 <div className="rounded-lg border-2 border-white/10 bg-white/5 p-8 backdrop-blur-sm md:p-12">
                                     <div className="mb-6 text-center">
-                                        <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600">
+                                        <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-emerald-500 to-teal-600">
                                             {React.createElement(testimonials[currentTestimonial].icon, { className: 'h-8 w-8 text-white' })}
                                         </div>
                                         <h3 className="mb-1 text-lg font-bold text-white">{t(testimonials[currentTestimonial].nameKey)}</h3>
@@ -428,7 +429,7 @@ export default function Aesc2() {
                     {/* 第七部分 - 开发者专区 */}
                     <section className="px-4 py-32 sm:px-6 lg:px-8">
                         <div className="mx-auto max-w-7xl">
-                            <div className="rounded-lg border-2 border-white/10 bg-gradient-to-br from-emerald-500/20 to-teal-600/20 p-8 backdrop-blur-sm md:p-12">
+                            <div className="rounded-lg border-2 border-white/10 bg-linear-to-br from-emerald-500/20 to-teal-600/20 p-8 backdrop-blur-sm md:p-12">
                                 <div className="mb-4 flex justify-center">
                                     <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-white/10">
                                         <Code className="h-8 w-8 text-emerald-300" />
@@ -457,7 +458,7 @@ export default function Aesc2() {
                                 <div className="mt-8 text-center">
                                     <a
                                         href="#"
-                                        className="inline-flex cursor-pointer items-center rounded bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-3 font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
+                                        className="inline-flex cursor-pointer items-center rounded bg-linear-to-r from-emerald-500 to-teal-600 px-6 py-3 font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                                     >
                                         {t('aesc2.developer.button')}
                                         <ArrowRight className="ml-2 h-4 w-4" />

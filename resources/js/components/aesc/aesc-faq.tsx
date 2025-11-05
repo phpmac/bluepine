@@ -67,12 +67,12 @@ export function AescFaq() {
                 </div>
 
                 {/* CTA 部分 */}
-                <div className="mt-20 rounded-lg border-2 border-white/10 bg-gradient-to-br from-emerald-500/20 to-teal-600/20 p-12 text-center backdrop-blur-sm md:p-16">
+                <div className="mt-20 rounded-lg border-2 border-white/10 bg-linear-to-br from-emerald-500/20 to-teal-600/20 p-12 text-center backdrop-blur-sm md:p-16">
                     <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-5xl">{t('aesc.faq.cta.title')}</h2>
                     <p className="mx-auto mb-8 max-w-3xl text-xl text-slate-300">{t('aesc.faq.cta.description')}</p>
                     <a
                         href="https://fd.bluepinefoundation.com/"
-                        className="inline-flex cursor-pointer items-center rounded bg-gradient-to-r from-emerald-500 to-teal-600 px-10 py-5 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
+                        className="inline-flex cursor-pointer items-center rounded bg-linear-to-r from-emerald-500 to-teal-600 px-10 py-5 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                     >
                         <Lock className="mr-2 h-6 w-6" />
                         {t('aesc.faq.cta.button')}

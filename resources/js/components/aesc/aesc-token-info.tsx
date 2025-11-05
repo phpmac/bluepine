@@ -60,7 +60,9 @@ export function AescTokenInfo() {
                         </div>
                         <div>
                             <a
-                                href="#participate"
+                                href="https://fd.bluepinefoundation.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="group inline-flex cursor-pointer items-center bg-linear-to-r from-emerald-500 to-teal-600 px-8 py-4 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                             >
                                 {t('aesc.tokenInfo.button')}

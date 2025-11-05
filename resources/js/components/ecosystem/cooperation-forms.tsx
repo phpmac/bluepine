@@ -38,7 +38,7 @@ export function CooperationForms() {
                             key={index}
                             className="rounded-lg border-2 border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-emerald-500/50"
                         >
-                            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600">
+                            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-linear-to-br from-emerald-500 to-teal-600">
                                 <form.icon className="h-6 w-6 text-white" />
                             </div>
                             <h3 className="mb-3 text-xl font-bold text-white">{t(form.titleKey)}</h3>

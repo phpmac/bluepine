@@ -1,7 +1,9 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { Send, Upload } from 'lucide-react';
+import { CheckCircle2, Send, Upload } from 'lucide-react';
 import { useState } from 'react';
+
+import request from '@/lib/request';
 
 export function ContactForm() {
     const { t } = useLaravelReactI18n();
@@ -14,10 +16,43 @@ export function ContactForm() {
         message: '',
         file: null as File | null,
     });
+    const [isLoading, setIsLoading] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // 这里添加表单提交逻辑
+
+        setIsLoading(true);
+
+        try {
+            const submitData = new FormData();
+            submitData.append('name', formData.name);
+            submitData.append('email', formData.email);
+            submitData.append('company', formData.company);
+            submitData.append('category', formData.category);
+            submitData.append('subject', formData.subject);
+            submitData.append('message', formData.message);
+            if (formData.file) {
+                submitData.append('file', formData.file);
+            }
+
+            await request.post('/contact', submitData);
+            setFormData({
+                name: '',
+                email: '',
+                company: '',
+                category: '',
+                subject: '',
+                message: '',
+                file: null,
+            });
+            setShowSuccess(true);
+            setTimeout(() => setShowSuccess(false), 5000);
+        } catch {
+            // 错误由请求拦截器统一处理
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,13 +181,21 @@ export function ContactForm() {
                             <p className="mt-2 text-xs text-slate-500">{t('contact.form.fileHint')}</p>
                         </div>
 
+                        {showSuccess && (
+                            <div className="flex items-center justify-center gap-2 rounded-lg bg-emerald-500/20 px-4 py-3 text-emerald-400">
+                                <CheckCircle2 className="h-5 w-5" />
+                                <span className="text-sm font-medium">{t('contact.form.success')}</span>
+                            </div>
+                        )}
+
                         <div className="text-center">
                             <button
                                 type="submit"
-                                className="inline-flex cursor-pointer items-center bg-linear-to-r from-emerald-500 to-teal-600 px-6 py-3 font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
+                                disabled={isLoading}
+                                className="inline-flex cursor-pointer items-center bg-linear-to-r from-emerald-500 to-teal-600 px-6 py-3 font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700 disabled:cursor-not-allowed disabled:opacity-50"
                             >
                                 <Send className="mr-2 h-5 w-5" />
-                                {t('contact.form.submit')}
+                                {isLoading ? t('contact.form.submitting') : t('contact.form.submit')}
                             </button>
                         </div>
                     </form>
