@@ -1,14 +1,17 @@
+import { socialLinks } from '@/config/links';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
-import { FileText, Globe, MessageCircle, Send } from 'lucide-react';
+import { Facebook, MessagesSquare, Send, Twitter, Youtube } from 'lucide-react';
 
 export function KeepInTouch() {
-    const { t } = useLaravelReactI18n();
+    const { t, currentLocale } = useLaravelReactI18n();
+    const isEnglish = currentLocale() === 'en';
 
-    const socialLinks = [
-        { name: 'Twitter', icon: MessageCircle, link: '#' },
-        { name: 'Telegram', icon: Send, link: '#' },
-        { name: 'Medium', icon: FileText, link: '#' },
-        { name: 'GitHub', icon: Globe, link: '#' },
+    const socials = [
+        { name: 'Twitter (X)', icon: Twitter, link: socialLinks.twitter },
+        { name: 'Telegram', icon: Send, link: isEnglish ? socialLinks.telegramChannel : socialLinks.telegramChannelChinese },
+        { name: 'Discord', icon: MessagesSquare, link: socialLinks.discord },
+        { name: 'Facebook', icon: Facebook, link: socialLinks.facebook },
+        { name: 'YouTube', icon: Youtube, link: socialLinks.youtube },
     ];
 
     return (
@@ -18,7 +21,7 @@ export function KeepInTouch() {
                 <p className="mx-auto mb-10 max-w-2xl text-base text-slate-300">{t('contact.keepInTouch.description')}</p>
 
                 <div className="flex flex-wrap justify-center gap-4">
-                    {socialLinks.map((social, index) => (
+                    {socials.map((social, index) => (
                         <a
                             key={index}
                             href={social.link}

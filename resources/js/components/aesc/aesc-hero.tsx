@@ -1,3 +1,4 @@
+import { getWhitepaperUrl } from '@/config/links';
 import { Head } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { ArrowRight } from 'lucide-react';
@@ -6,7 +7,8 @@ import { ArrowRight } from 'lucide-react';
  * AESC 页面英雄区组件
  */
 export function AescHero() {
-    const { t } = useLaravelReactI18n();
+    const { t, currentLocale } = useLaravelReactI18n();
+    const isEnglish = currentLocale() === 'en';
 
     return (
         <>
@@ -41,7 +43,9 @@ export function AescHero() {
                                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                             </a>
                             <a
-                                href="#participate"
+                                href={getWhitepaperUrl(isEnglish)}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="inline-flex cursor-pointer items-center border-2 border-emerald-500/50 bg-white/10 px-8 py-4 text-lg font-medium text-white backdrop-blur-sm transition-all hover:border-emerald-400 hover:bg-white/20"
                             >
                                 {t('aesc.hero.button2')}

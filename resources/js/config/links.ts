@@ -12,3 +12,13 @@ export const auditReportUrl = 'https://github.com/bluepinefoundation/token/blob/
 export const getBrandAssetsUrl = (isEnglish: boolean) => {
     return isEnglish ? '/files/Bluepine VI.pdf' : '/files/基金会品牌资产.pdf';
 };
+
+// 社交媒体链接
+export const socialLinks = {
+    discord: 'https://discord.gg/ahpG46xn',
+    twitter: 'https://x.com/bluepinetech?t=7a4UuMEEfnQCrYtzNQCjBg&s=09',
+    facebook: 'https://www.facebook.com/share/16ycnUmjwN/',
+    telegramChannel: 'https://t.me/AgriEcoSmartChain',
+    telegramChannelChinese: 'https://t.me/AgriEcoSmartChain_ChineseVersion',
+    youtube: 'https://www.youtube.com/@BluepineTechnologyFoundation',
+};
