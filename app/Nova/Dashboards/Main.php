@@ -5,7 +5,6 @@ namespace App\Nova\Dashboards;
 use App\Nova\Metrics\NewContacts;
 use App\Nova\Metrics\NewEcosystemContacts;
 use App\Nova\Metrics\NewSubscribers;
-use App\Nova\Metrics\TotalSubscribers;
 use Laravel\Nova\Dashboards\Main as Dashboard;
 
 class Main extends Dashboard
@@ -26,10 +25,9 @@ class Main extends Dashboard
     public function cards(): array
     {
         return [
-            (new TotalSubscribers)->width('1/2'),
-            (new NewSubscribers)->width('1/2'),
-            (new NewContacts)->width('1/2'),
-            (new NewEcosystemContacts)->width('1/2'),
+            (new NewSubscribers),
+            (new NewContacts),
+            (new NewEcosystemContacts),
         ];
     }
 }
