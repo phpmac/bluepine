@@ -28,8 +28,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::fortify()
             ->features([
                 Features::updatePasswords(),
-                // Features::emailVerification(),
-                // Features::twoFactorAuthentication(['confirm' => true, 'confirmPassword' => true]),
+                Features::emailVerification(),
+                Features::twoFactorAuthentication(['confirm' => true, 'confirmPassword' => true]),
             ])
             ->register();
     }
@@ -55,7 +55,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         Gate::define('viewNova', function (User $user) {
             return in_array($user->email, [
-                config('services.admin_email'),
+                'a@vc.sb',
             ]);
         });
     }
@@ -80,15 +80,5 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools(): array
     {
         return [];
-    }
-
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        parent::register();
-
-        //
     }
 }

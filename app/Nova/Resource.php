@@ -5,7 +5,6 @@ namespace App\Nova;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource as NovaResource;
-use Laravel\Scout\Builder as ScoutBuilder;
 
 abstract class Resource extends NovaResource
 {
@@ -20,7 +19,7 @@ abstract class Resource extends NovaResource
     /**
      * Build a Scout search query for the given resource.
      */
-    public static function scoutQuery(NovaRequest $request, ScoutBuilder $query): ScoutBuilder
+    public static function scoutQuery(NovaRequest $request, $query)
     {
         return $query;
     }
@@ -41,5 +40,45 @@ abstract class Resource extends NovaResource
     public static function relatableQuery(NovaRequest $request, Builder $query): Builder
     {
         return parent::relatableQuery($request, $query);
+    }
+
+    /**
+     * 禁止批量删除
+     *
+     * @return array<int, \Laravel\Nova\Actions\Action>
+     */
+    public function actions(NovaRequest $request): array
+    {
+        return [];
+    }
+
+    /**
+     * 获取可用的筛选器
+     *
+     * @return array<int, \Laravel\Nova\Filters\Filter>
+     */
+    public function filters(NovaRequest $request): array
+    {
+        return [];
+    }
+
+    /**
+     * 获取可用的透镜
+     *
+     * @return array<int, \Laravel\Nova\Lenses\Lens>
+     */
+    public function lenses(NovaRequest $request): array
+    {
+        return [];
+    }
+
+    /**
+     * 获取可用的卡片
+     *
+     * @return array<int, \Laravel\Nova\Card>
+     */
+    public function cards(NovaRequest $request): array
+    {
+        return [];
     }
 }

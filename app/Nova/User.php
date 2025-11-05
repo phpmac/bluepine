@@ -2,7 +2,6 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
 use Laravel\Nova\Auth\PasswordValidationRules;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
@@ -22,20 +21,50 @@ class User extends Resource
     public static $model = \App\Models\User::class;
 
     /**
-     * The single value that should be used to represent the resource when being displayed.
+     * 资源名称
      *
      * @var string
      */
     public static $title = 'name';
 
     /**
-     * The columns that should be searched.
+     * 导航分组
+     *
+     * @var string
+     */
+    public static $group = '系统管理';
+
+    /**
+     * 导航图标
+     */
+    public static string $icon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>';
+
+    /**
+     * 可搜索字段
      *
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'id',
+        'name',
+        'email',
     ];
+
+    /**
+     * 资源显示名称
+     */
+    public static function label(): string
+    {
+        return '用户';
+    }
+
+    /**
+     * 单个资源显示名称
+     */
+    public static function singularLabel(): string
+    {
+        return '用户';
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -64,45 +93,5 @@ class User extends Resource
                 ->creationRules($this->passwordRules())
                 ->updateRules($this->optionalPasswordRules()),
         ];
-    }
-
-    /**
-     * Get the cards available for the request.
-     *
-     * @return array<int, \Laravel\Nova\Card>
-     */
-    public function cards(NovaRequest $request): array
-    {
-        return [];
-    }
-
-    /**
-     * Get the filters available for the resource.
-     *
-     * @return array<int, \Laravel\Nova\Filters\Filter>
-     */
-    public function filters(NovaRequest $request): array
-    {
-        return [];
-    }
-
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @return array<int, \Laravel\Nova\Lenses\Lens>
-     */
-    public function lenses(NovaRequest $request): array
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @return array<int, \Laravel\Nova\Actions\Action>
-     */
-    public function actions(NovaRequest $request): array
-    {
-        return [];
     }
 }
