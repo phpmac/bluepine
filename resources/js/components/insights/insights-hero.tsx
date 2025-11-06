@@ -7,8 +7,8 @@ export function InsightsHero() {
         <section className="relative flex min-h-screen items-center overflow-hidden px-4 sm:px-6 lg:px-8">
             {/* 背景图片 */}
             <div className="absolute inset-0">
-                <img src="/images/insights_bg.webp" alt="Insights Background" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/75 to-slate-950/90"></div>
+                <img src="/images/insights_bg.avif" alt="Insights Background" className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-linear-to-b from-slate-950/85 via-slate-950/75 to-slate-950/90"></div>
             </div>
 
             {/* 背景装饰 */}

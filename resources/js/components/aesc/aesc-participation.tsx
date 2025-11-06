@@ -28,6 +28,7 @@ export function AescParticipation() {
             titleKey: 'aesc.participation.step3.title',
             subtitleKey: 'aesc.participation.step3.subtitle',
             contentKey: 'aesc.participation.step3.content',
+            comingSoon: true,
         },
     ];
 
@@ -46,7 +47,7 @@ export function AescParticipation() {
                             className="group relative rounded-lg border-2 border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-emerald-500/50 md:p-8"
                         >
                             {/* 步骤编号 */}
-                            <div className="absolute -top-4 -left-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 text-xl font-bold text-white shadow-lg">
+                            <div className="absolute -top-4 -left-4 flex h-12 w-12 items-center justify-center rounded-lg bg-linear-to-br from-emerald-500 to-teal-600 text-xl font-bold text-white shadow-lg">
                                 {item.step}
                             </div>
 

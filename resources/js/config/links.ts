@@ -15,7 +15,7 @@ export const getBrandAssetsUrl = (isEnglish: boolean) => {
 
 // 社交媒体链接
 export const socialLinks = {
-    discord: 'https://discord.gg/ahpG46xn',
+    discord: 'https://discord.gg/UmXgwEGM',
     twitter: 'https://x.com/bluepinetech?t=7a4UuMEEfnQCrYtzNQCjBg&s=09',
     facebook: 'https://www.facebook.com/share/16ycnUmjwN/',
     telegramChannel: 'https://t.me/AgriEcoSmartChain',

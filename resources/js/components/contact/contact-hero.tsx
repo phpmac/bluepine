@@ -9,25 +9,25 @@ export function ContactHero() {
             icon: Rocket,
             titleKey: 'contact.hero.channel1.title',
             teamKey: 'contact.hero.channel1.team',
-            email: 'info@bluepinefoundation.com',
+            email: 'project@bluepinefoundation.com',
         },
         {
             icon: Handshake,
             titleKey: 'contact.hero.channel2.title',
             teamKey: 'contact.hero.channel2.team',
-            email: 'info@bluepinefoundation.com',
+            email: 'ecosystem@bluepinefoundation.com',
         },
         {
             icon: Radio,
             titleKey: 'contact.hero.channel3.title',
             teamKey: 'contact.hero.channel3.team',
-            email: 'info@bluepinefoundation.com',
+            email: ' social@bluepinefoundation.com',
         },
         {
             icon: HelpCircle,
             titleKey: 'contact.hero.channel4.title',
             teamKey: 'contact.hero.channel4.team',
-            email: 'info@bluepinefoundation.com',
+            email: ' general@bluepinefoundation.com',
         },
     ];
 
@@ -36,7 +36,7 @@ export function ContactHero() {
             {/* 背景图片 */}
             <div className="absolute inset-0">
                 <img src="/images/contact_bg.webp" alt="Contact Background" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950/95"></div>
+                <div className="absolute inset-0 bg-linear-to-b from-slate-950/40 via-slate-950/80 to-slate-950/95"></div>
             </div>
 
             {/* 背景光晕效果 */}
@@ -77,7 +77,7 @@ export function ContactHero() {
                                     className="group rounded-lg border-2 border-white/10 bg-white/5 p-4 backdrop-blur-sm transition-all hover:border-emerald-500/50 hover:bg-white/10"
                                 >
                                     <div className="flex items-start gap-3">
-                                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600">
+                                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-emerald-500 to-teal-600">
                                             <channel.icon className="h-5 w-5 text-white" />
                                         </div>
                                         <div className="min-w-0 flex-1">

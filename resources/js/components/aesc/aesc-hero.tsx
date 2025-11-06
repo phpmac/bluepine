@@ -35,7 +35,9 @@ export function AescHero() {
                         <p className="mx-auto mb-10 max-w-3xl text-base leading-relaxed text-slate-400">{t('aesc.hero.description')}</p>
                         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                             <a
-                                href="https://fd.bluepinefoundation.com/"
+                                // TODO 后续改为 https://fd.bluepinefoundation.com/
+                                // href="https://fd.bluepinefoundation.com/"
+                                href="javascript:void(0)"
                                 target="_blank"
                                 className="group inline-flex cursor-pointer items-center bg-linear-to-r from-emerald-500 to-teal-600 px-8 py-4 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                             >

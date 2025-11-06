@@ -71,7 +71,9 @@ export function AescFaq() {
                     <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-5xl">{t('aesc.faq.cta.title')}</h2>
                     <p className="mx-auto mb-8 max-w-3xl text-xl text-slate-300">{t('aesc.faq.cta.description')}</p>
                     <a
-                        href="https://fd.bluepinefoundation.com/"
+                        // TODO 后续改为 https://fd.bluepinefoundation.com/
+                        // href="https://fd.bluepinefoundation.com/"
+                        href="javascript:void(0)"
                         className="inline-flex cursor-pointer items-center rounded bg-linear-to-r from-emerald-500 to-teal-600 px-10 py-5 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                     >
                         <Lock className="mr-2 h-6 w-6" />

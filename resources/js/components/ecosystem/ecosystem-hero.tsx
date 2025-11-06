@@ -7,8 +7,8 @@ export function EcosystemHero() {
         <section className="relative flex min-h-screen items-center overflow-hidden px-4 sm:px-6 lg:px-8">
             {/* 背景图片 */}
             <div className="absolute inset-0">
-                <img src="/images/eco_bg.webp" alt="Ecosystem Background" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/75 to-slate-950/90"></div>
+                <img src="/images/eco_bg.jpg" alt="Ecosystem Background" className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-linear-to-b from-slate-950/85 via-slate-950/75 to-slate-950/90"></div>
             </div>
 
             {/* 背景装饰 */}
