@@ -11,13 +11,6 @@ export function EcosystemHero() {
                 <div className="absolute inset-0 bg-linear-to-b from-slate-950/85 via-slate-950/75 to-slate-950/90"></div>
             </div>
 
-            {/* 背景装饰 */}
-            <div className="absolute top-20 right-20 h-80 w-80 opacity-10">
-                <svg viewBox="0 0 300 300" className="h-full w-full">
-                    <polygon points="150,20 280,80 250,220 50,220 20,80" fill="currentColor" className="text-emerald-400" />
-                </svg>
-            </div>
-
             {/* 背景光晕效果 */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-1/4 left-1/4 h-[500px] w-[500px] rounded-full bg-emerald-500/8 blur-3xl"></div>
@@ -26,6 +19,9 @@ export function EcosystemHero() {
 
             <div className="relative z-10 mx-auto w-full max-w-7xl py-20">
                 <div className="max-w-4xl">
+                    <div className="mb-6 inline-flex items-center rounded border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-200 uppercase">
+                        {t('ecosystem.hero.badge')}
+                    </div>
                     <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">{t('ecosystem.hero.title')}</h1>
                     <p className="text-lg leading-relaxed text-slate-300 md:text-xl">{t('ecosystem.hero.description')}</p>
                 </div>

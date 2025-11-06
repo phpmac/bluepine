@@ -1,3 +1,4 @@
+import { contactEmails } from '@/config/emails';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { CheckCircle2, Handshake, HelpCircle, Mail, Radio, Rocket } from 'lucide-react';
 
@@ -11,7 +12,7 @@ export function ContactChannels() {
             teamKey: 'contact.channels.channel1.team',
             descriptionKey: 'contact.channels.channel1.description',
             actionKey: 'contact.channels.channel1.action',
-            email: 'info@bluepinefoundation.com',
+            email: contactEmails.project,
             link: '/contact#form',
         },
         {
@@ -20,7 +21,7 @@ export function ContactChannels() {
             teamKey: 'contact.channels.channel2.team',
             descriptionKey: 'contact.channels.channel2.description',
             actionKey: 'contact.channels.channel2.action',
-            email: 'info@bluepinefoundation.com',
+            email: contactEmails.ecosystem,
             link: '/ecosystem',
         },
         {
@@ -28,14 +29,14 @@ export function ContactChannels() {
             titleKey: 'contact.channels.channel3.title',
             teamKey: 'contact.channels.channel3.team',
             descriptionKey: 'contact.channels.channel3.description',
-            email: 'info@bluepinefoundation.com',
+            email: contactEmails.social,
         },
         {
             icon: HelpCircle,
             titleKey: 'contact.channels.channel4.title',
             teamKey: 'contact.channels.channel4.team',
             descriptionKey: 'contact.channels.channel4.description',
-            email: 'info@bluepinefoundation.com',
+            email: contactEmails.general,
         },
     ];
 
