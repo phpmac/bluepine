@@ -18,22 +18,19 @@ export function ContactHero() {
             </div>
 
             <div className="relative z-10 mx-auto w-full max-w-7xl">
-                <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-                    {/* 左侧内容 */}
-                    <div>
-                        <div className="mb-6 inline-flex items-center rounded border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-200 uppercase">
-                            {t('contact.hero.badge')}
-                        </div>
-                        <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-                            {t('contact.hero.title')}
-                        </h1>
-                        <p className="mb-6 text-lg leading-relaxed text-slate-300 md:text-xl">{t('contact.hero.description')}</p>
+                <div className="mx-auto max-w-4xl text-center">
+                    <div className="mb-6 inline-flex items-center rounded border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-200 uppercase">
+                        {t('contact.hero.badge')}
+                    </div>
+                    <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
+                        {t('contact.hero.title')}
+                    </h1>
+                    <p className="mb-6 text-lg leading-relaxed text-slate-300 md:text-xl">{t('contact.hero.description')}</p>
 
-                        {/* 核心价值主张 */}
-                        <div className="rounded-lg border-l-4 border-emerald-500 bg-white/5 p-5 backdrop-blur-sm md:p-6">
-                            <h2 className="mb-3 text-xl font-bold text-white">{t('contact.hero.valueTitle')}</h2>
-                            <p className="text-sm leading-relaxed text-slate-300 md:text-base">{t('contact.hero.valueDescription')}</p>
-                        </div>
+                    {/* 核心价值主张 */}
+                    <div className="rounded-lg border-l-4 border-emerald-500 bg-white/5 p-5 text-left backdrop-blur-sm md:p-6">
+                        <h2 className="mb-3 text-xl font-bold text-white">{t('contact.hero.valueTitle')}</h2>
+                        <p className="text-sm leading-relaxed text-slate-300 md:text-base">{t('contact.hero.valueDescription')}</p>
                     </div>
                 </div>
             </div>
