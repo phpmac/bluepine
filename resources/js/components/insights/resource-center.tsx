@@ -38,7 +38,8 @@ export function ResourceCenter() {
                     <h2 className="mb-4 text-3xl font-bold tracking-tight text-white">{t('insights.resource.title')}</h2>
                 </div>
 
-                <div className="overflow-hidden rounded-lg border-2 border-white/10 bg-white/5 backdrop-blur-sm">
+                {/* 桌面端表格布局 */}
+                <div className="hidden overflow-hidden rounded-lg border-2 border-white/10 bg-white/5 backdrop-blur-sm md:block">
                     <table className="w-full">
                         <thead>
                             <tr className="border-b border-white/10 bg-white/5">
@@ -70,6 +71,34 @@ export function ResourceCenter() {
                             ))}
                         </tbody>
                     </table>
+                </div>
+
+                {/* 移动端卡片布局 */}
+                <div className="space-y-4 md:hidden">
+                    {downloadResources.map((resource, index) => (
+                        <div key={index} className="rounded-lg border-2 border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                            <div className="mb-3">
+                                <h3 className="mb-1 text-base font-semibold text-white">{t(resource.nameKey)}</h3>
+                                <p className="text-sm text-slate-300">{t(resource.categoryKey)}</p>
+                            </div>
+                            <div className="mb-3 flex items-center gap-4 text-sm text-slate-300">
+                                <span>
+                                    {t('insights.resource.table.format')}: {resource.format}
+                                </span>
+                                <span>
+                                    {t('insights.resource.table.size')}: {resource.size}
+                                </span>
+                            </div>
+                            <a
+                                href={resource.url}
+                                download
+                                className="flex cursor-pointer items-center justify-center rounded-md bg-emerald-500/10 px-4 py-2.5 text-sm font-medium text-emerald-300 transition-colors hover:bg-emerald-500/20 hover:text-emerald-200"
+                            >
+                                <Download className="mr-2 h-4 w-4" />
+                                {t('insights.resource.download')}
+                            </a>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>

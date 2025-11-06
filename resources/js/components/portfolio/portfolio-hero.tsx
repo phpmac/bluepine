@@ -34,9 +34,6 @@ export function PortfolioHero() {
 
             <div className="relative z-10 mx-auto w-full max-w-7xl py-20">
                 <div className="max-w-4xl">
-                    <div className="mb-6 inline-flex items-center rounded border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-200 uppercase">
-                        {t('portfolio.hero.badge')}
-                    </div>
                     <h1 className="mb-4 text-5xl leading-tight font-bold tracking-tight text-white md:text-6xl">{t('portfolio.hero.title')}</h1>
                     <p className="text-lg leading-relaxed text-slate-300 md:text-xl">{t('portfolio.hero.description')}</p>
                 </div>
