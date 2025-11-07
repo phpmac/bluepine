@@ -239,7 +239,7 @@ export default function Aesc2() {
                         </div>
                     </section>
 
-                    {/* 第三部分 - 热门DApp推荐 */}
+                    {/* 第三部分 - 热门dApp推荐 */}
                     <section id="dapps" className="px-4 py-32 sm:px-6 lg:px-8">
                         <div className="mx-auto max-w-7xl">
                             <div className="mb-12 text-center">

@@ -26,7 +26,7 @@ export function AirdropTimeline() {
 
                 <div className="relative">
                     {/* 时间轴线 */}
-                    <div className="absolute top-8 right-0 left-0 hidden h-0.5 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 md:block"></div>
+                    <div className="absolute top-8 right-0 left-0 hidden h-0.5 bg-linear-to-r from-emerald-500 via-teal-500 to-cyan-500 md:block"></div>
 
                     <div className="grid gap-6 md:grid-cols-5 md:gap-8">
                         {timeline.map((item, index) => (

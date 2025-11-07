@@ -43,6 +43,10 @@ export function KnowledgeBase() {
                     key: 'insights.knowledge.category2.item3',
                     fileKey: 'insights.knowledge.category2.item3.file',
                 },
+                {
+                    key: 'insights.knowledge.category2.item4',
+                    fileKey: 'insights.knowledge.category2.item4.file',
+                },
             ],
         },
     ];

@@ -1,4 +1,4 @@
-import { AirdropCta, AirdropFaq, AirdropHero, AirdropSteps, AirdropTimeline, AirdropValueProps } from '@/components/airdrop';
+import { AirdropCta, AirdropFaq, AirdropHero, AirdropSteps, AirdropValueProps } from '@/components/airdrop';
 import { MainLayout } from '@/layouts';
 import { Head } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
@@ -18,7 +18,8 @@ export default function Airdrop() {
                 <AirdropHero />
                 <AirdropValueProps />
                 <AirdropSteps />
-                <AirdropTimeline />
+                {/* TODO 暂时关闭 时间轴 */}
+                {/* <AirdropTimeline /> */}
                 <AirdropFaq />
                 <AirdropCta />
             </MainLayout>
