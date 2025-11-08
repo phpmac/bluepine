@@ -174,7 +174,7 @@
     "overview.enter_amount": "AESC",
     "overview.referrer_address_label": "Referrer Address",
     "overview.enter_wallet_address": "Enter wallet address",
-    "overview.payment_required": "Payment Required",
+    "overview.payment_required": "Estimated Payment",
     "overview.connect_wallet_first": "Please connect wallet first",
     "overview.enter_valid_amount": "Please enter valid amount",
     "overview.enter_referrer_address": "Please enter referrer address",
@@ -198,5 +198,6 @@
     "modal.purchase_success_title": "Purchase Successful!",
     "modal.purchase_success_desc": "Your purchase transaction has been successfully submitted to the blockchain",
     "modal.claim_success_title": "Claim Successful!",
-    "modal.claim_success_desc": "Your token claim transaction has been successfully submitted to the blockchain"
+    "modal.claim_success_desc": "Your token claim transaction has been successfully submitted to the blockchain",
+    "overview.participation_reminder": "Friendly reminder: Don't miss out on your rewards - Secure your spot now!"
 }

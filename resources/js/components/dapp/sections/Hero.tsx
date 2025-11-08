@@ -24,9 +24,9 @@ export const Hero: React.FC<{
     const { t } = useLaravelReactI18n();
 
     const scrollToPrivateSale = () => {
-        const element = document.getElementById('private-sale-overview');
+        const element = document.getElementById('token-purchase-form');
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     };
 

@@ -175,7 +175,7 @@
     "overview.enter_amount": "输入数量",
     "overview.referrer_address_label": "邀请人地址",
     "overview.enter_wallet_address": "输入钱包地址",
-    "overview.payment_required": "需支付",
+    "overview.payment_required": "预计支付",
     "overview.connect_wallet_first": "请先连接钱包",
     "overview.enter_valid_amount": "请输入有效数量",
     "overview.enter_referrer_address": "请输入邀请人地址",
@@ -200,5 +200,6 @@
     "modal.purchase_success_title": "认购成功!",
     "modal.purchase_success_desc": "您的认购交易已成功提交到区块链,点击查看区块链浏览器记录",
     "modal.claim_success_title": "领取成功!",
-    "modal.claim_success_desc": "您的代币领取交易已成功提交到区块链,点击查看区块链浏览器记录"
+    "modal.claim_success_desc": "您的代币领取交易已成功提交到区块链,点击查看区块链浏览器记录",
+    "overview.participation_reminder": "温馨提示: 为避免奖励流失, 请立刻参与认购!"
 }

@@ -322,7 +322,7 @@ export const PrivateSaleOverview: React.FC<{
                             <div className="absolute -right-20 -bottom-28 size-72 rounded-full bg-[#56f1ff]/10 blur-3xl" />
                             <div className="absolute -top-24 left-12 size-56 rounded-full bg-[#22edc7]/8 blur-3xl" />
 
-                            <div className="relative z-10 flex flex-col gap-5">
+                            <div id="token-purchase-form" className="relative z-10 flex flex-col gap-5">
                                 <div className="flex items-center gap-2.5">
                                     <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#616bff] via-[#4b76ff] to-[#37e7ff]">
                                         <ShoppingCart className="h-4 w-4 text-white" />
@@ -331,6 +331,11 @@ export const PrivateSaleOverview: React.FC<{
                                         <h3 className="text-lg font-bold text-white">{t('overview.token_purchase')}</h3>
                                         <p className="text-[11px] text-slate-400">{t('overview.participate_sale')}</p>
                                     </div>
+                                </div>
+
+                                {/* 认购提示 */}
+                                <div className="rounded-lg border border-[#37e7ff]/30 bg-[#37e7ff]/10 p-3 backdrop-blur-sm">
+                                    <p className="text-center text-sm text-[#56f1ff]">{t('overview.participation_reminder')}</p>
                                 </div>
 
                                 {/* AESC输入和邀请人地址 */}
