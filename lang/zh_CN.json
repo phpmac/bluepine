@@ -183,7 +183,7 @@
     "about.story.title": "我们的起源",
     "about.story.paragraph1": "BLUEPINE TECH FOUNDATION 的创立源于一个深刻的洞察: 在数字浪潮席卷全球的今天, 作为文明基石的农业, 其数字化转型却依然步履蹒跚. 我们看到了田野中无处不在的 \"数据孤岛\", 看到了小农面对技术与资本门槛时的无奈, 也看到了供应链中因不透明而流失的价值.",
     "about.story.paragraph2": "但我们更看到了机遇. 我们看到区块链能为农业带来前所未有的信任, AI 能释放沉睡数据的潜力, Web3 能构建一个价值共享的全新范式.",
-    "about.story.paragraph3": "因此, BLUEPINE TECH FOUNDATION 应运而生. 我们不仅是一家基金, 更是一群坚信技术能够重塑现实的实践者. 从打造旗舰项目 Agri-Eco Smart Chain 开始, 我们正一步步将这一蓝图变为现实, 连接智慧与田野的丰收.",
+    "about.story.paragraph3": "因此, BLUEPINE TECH FOUNDATION 应运而生. 我们不仅是一家基金会, 更是一群坚信技术能够重塑现实的实践者. 从打造旗舰项目 Agri-Eco Smart Chain 开始, 我们正一步步将这一蓝图变为现实, 连接智慧与田野的丰收.",
     "about.advantages.title": "我们的独特优势",
     "about.advantages.advantage1.title": "深度产业结合",
     "about.advantages.advantage1.description": "我们不止于财务投资, 更通过自有旗舰项目 AESC 深入产业一线, 提供最贴合场景的技术赋能与落地支持.",
@@ -228,7 +228,7 @@
     "strategy.pillars.pillar3.area3.details": "为农户提供个性化的灌溉, 施肥, 播种处方",
     "strategy.criteria.title": "投资阶段与标准",
     "strategy.criteria.stages.title": "我们投资的阶段",
-    "strategy.criteria.stages.stage1.title": "种子轮 & A轮",
+    "strategy.criteria.stages.stage1.title": "种子轮 & A 轮",
     "strategy.criteria.stages.stage1.description": "我们主要投资于处于早期和成长期的创新企业.",
     "strategy.criteria.stages.stage2.title": "选择性 B 轮跟投",
     "strategy.criteria.stages.stage2.description": "对于生态具有战略意义的杰出项目, 我们会持续支持.",
@@ -312,7 +312,7 @@
     "portfolio.overview.filter.track7": "数据市场",
     "portfolio.overview.filter.stages": "项目阶段",
     "portfolio.overview.filter.stage1": "种子轮",
-    "portfolio.overview.filter.stage2": "A轮",
+    "portfolio.overview.filter.stage2": "A 轮",
     "portfolio.overview.currentFilter": "当前筛选:",
     "portfolio.overview.comingSoon.title": "我们的投资组合项目正在整理中",
     "portfolio.overview.comingSoon.subtitle": "敬请期待更多精彩内容",
@@ -619,7 +619,7 @@
     "aesc.trust.docs.whitepaper": "白皮书",
     "aesc.trust.docs.brandAssets": "品牌资产包",
     "aesc.trust.privacy.title": "数据隐私保护",
-    "aesc.trust.privacy.description": "采用联邦学习与零知识证明技术, 确保用户数据在链上可用但不可见, 符合GDPR和各国数据保护法规",
+    "aesc.trust.privacy.description": "采用联邦学习与零知识证明技术, 确保用户数据在链上可用但不可见, 符合 GDPR 和各国数据保护法规",
     "aesc.trust.governance.title": "透明治理",
     "aesc.trust.governance.description": "所有重大决策均通过社区投票, 链上记录不可篡改, 代币释放与使用实时可查",
     "aesc2.hero.badge": "AESC ECOSYSTEM PORTAL",
@@ -839,5 +839,6 @@
     "apply.section8.confirmAccurate": "我确认以上所提供的信息均真实, 准确",
     "apply.section8.confirmPrivacy": "我理解并同意 BLUEPINE TECH FOUNDATION 将根据其 \"隐私政策\" 处理我所提交的信息, 用于投资评估之目的",
     "apply.section8.submit": "提交申请",
-    "apply.required": "*"
+    "apply.required": "*",
+    "airdrop.coming_soon": "即将开启"
 }

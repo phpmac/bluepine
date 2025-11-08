@@ -183,7 +183,7 @@
     "about.story.title": "Our Origin",
     "about.story.paragraph1": "BLUEPINE TECH FOUNDATION was born from a profound insight: while digital transformation sweeps across the globe, agriculture – the bedrock of civilization – still lags significantly behind in its digital journey. We witnessed the pervasive 'data silos' in the fields, the helplessness of smallholder farmers facing technological and capital barriers, and the value lost due to opacity in supply chains.",
     "about.story.paragraph2": "But we saw even greater opportunity. We recognized blockchain's potential to bring unprecedented trust to agriculture, AI's power to unlock the potential of dormant data, and Web3's capacity to create a new paradigm of shared value.",
-    "about.story.paragraph3": "Thus, BLUEPINE TECH FOUNDATION came into being. We are not merely a fund, but a collective of practitioners who believe technology can reshape reality. Starting with our flagship project, the Agri-Eco Smart Chain, we are progressively turning this blueprint into reality – connecting wisdom with harvests from the field.",
+    "about.story.paragraph3": "Thus, BLUEPINE TECH FOUNDATION came into being. We are not merely a foundation, but a collective of practitioners who believe technology can reshape reality. Starting with our flagship project, the Agri-Eco Smart Chain, we are progressively turning this blueprint into reality – connecting wisdom with harvests from the field.",
     "about.advantages.title": "Our Unique Advantages",
     "about.advantages.advantage1.title": "Deep Industry Integration",
     "about.advantages.advantage1.description": "We go beyond financial investment, actively operating our flagship AESC project to deliver highly contextualized technology enablement and implementation support directly within the agricultural sector.",
@@ -847,5 +847,6 @@
     "apply.section8.confirmAccurate": "I confirm that all information provided above is true and accurate ",
     "apply.section8.confirmPrivacy": "I understand and agree that BLUEPINE TECH FOUNDATION will process the submitted information in accordance with its Privacy Policy for investment evaluation purposes ",
     "apply.section8.submit": "Submit Application",
-    "apply.required": "*"
+    "apply.required": "*",
+    "airdrop.coming_soon": "Coming soon"
 }

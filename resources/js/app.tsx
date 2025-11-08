@@ -64,10 +64,10 @@ createInertiaApp({
         const root = createRoot(el);
 
         const stored = typeof window !== 'undefined' ? localStorage.getItem('appLanguage') : null;
-        const initialLocale = stored || 'zh_CN';
+        const initialLocale = stored || 'en';
 
         root.render(
-            <LaravelReactI18nProvider locale={initialLocale} fallbackLocale={'zh_CN'} files={import.meta.glob('/lang/*.json', { eager: true })}>
+            <LaravelReactI18nProvider locale={initialLocale} fallbackLocale={'en'} files={import.meta.glob('/lang/*.json', { eager: true })}>
                 {/* <WagmiProvider config={wagmiAdapter.wagmiConfig}> */}
                 {/* <QueryClientProvider client={queryClient}> */}
                 <App {...props} />

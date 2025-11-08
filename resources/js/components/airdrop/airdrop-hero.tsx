@@ -258,7 +258,7 @@ export function AirdropHero() {
                                 <div className="flex items-center justify-center rounded-lg border-2 border-teal-500/30 bg-teal-500/10 p-8 backdrop-blur-sm">
                                     <div className="flex items-center justify-center text-2xl font-bold text-teal-300">
                                         <Clock className="mr-2 h-5 w-5" />
-                                        即将开启
+                                        {t('airdrop.coming_soon')}
                                     </div>
                                 </div>
                             </div>
