@@ -17,9 +17,7 @@ class UserSeeder extends Seeder
             'name' => '系统号',
             'email' => 'a@a.a',
             'password' => Hash::make('a@a.a'),
-            'invite_code' => '888888',
             'is_admin' => true,
-            'level_id' => 1,
         ]);
     }
 }

@@ -15,8 +15,10 @@
         "laravel/nova": "^5.0",
         "laravel/sanctum": "^4.0",
         "laravel/telescope": "^5.7",
+        "guanguans/laravel-exception-notify": "^5.2",
         "laravel/tinker": "^2.10.1",
-        "tightenco/ziggy": "^2.4"
+        "tightenco/ziggy": "^2.4",
+        "web3p/web3.php": "^0.1.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

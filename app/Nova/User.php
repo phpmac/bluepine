@@ -4,11 +4,15 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Auth\PasswordValidationRules;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Panel;
 
 class User extends Resource
 {
@@ -34,8 +38,17 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'name',
+        'address',
     ];
+
+    /**
+     * 资源显示名称
+     */
+    public static function label(): string
+    {
+        return '用户列表';
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -47,22 +60,87 @@ class User extends Resource
         return [
             ID::make()->sortable(),
 
-            Gravatar::make()->maxWidth(50),
+            // Gravatar::make()->maxWidth(50),
 
-            Text::make('Name')
+            Panel::make('上级关系', [
+                BelongsTo::make('上级用户', 'parent', User::class)
+                    ->nullable()
+                    ->searchable()
+                    ->readonly(),
+
+                Text::make('所有上级ID', 'parent_ids')
+                    ->onlyOnDetail()
+                    ->readonly(),
+            ]),
+
+            Text::make('用户名', 'name')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'max:255')
+                ->filterable(),
 
-            Text::make('Email')
+            // Text::make('邮箱', 'email')
+            //     ->sortable()
+            //     ->rules('nullable', 'email', 'max:254')
+            //     ->creationRules('unique:users,email')
+            //     ->updateRules('unique:users,email,{{resourceId}}'),
+
+            Text::make('钱包地址', 'address')
                 ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
+                ->rules('required', 'string', 'max:255')
+                ->creationRules('unique:users,address')
+                ->readonly()
+                ->copyable()
+                ->updateRules('unique:users,address,{{resourceId}}')
+                ->filterable(),
 
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules($this->passwordRules())
-                ->updateRules($this->optionalPasswordRules()),
+            // Password::make('密码', 'password')
+            //     ->onlyOnForms()
+            //     ->creationRules($this->passwordRules())
+            //     ->updateRules($this->optionalPasswordRules()),
+
+            Number::make('AESC余额', 'aesc')
+                ->sortable()
+                ->step(0.01)
+                ->readonly()
+                ->filterable()
+                ->readonly(),
+
+            Panel::make('业绩统计', [
+                Number::make('个人业绩', 'self_performance')
+                    ->sortable()
+                    ->step(0.01)
+                    ->readonly()
+                    ->filterable(),
+
+                Number::make('直推人数', 'direct_count')
+                    ->sortable()
+                    ->readonly()
+                    ->filterable(),
+
+                Number::make('直推业绩', 'direct_performance')
+                    ->sortable()
+                    ->step(0.01)
+                    ->readonly()
+                    ->filterable(),
+
+                Number::make('团队人数', 'team_count')
+                    ->sortable()
+                    ->readonly()
+                    ->filterable(),
+
+                Number::make('团队业绩', 'team_performance')
+                    ->sortable()
+                    ->step(0.01)
+                    ->readonly()
+                    ->filterable(),
+            ]),
+
+            Boolean::make('10%收益地址', 'is_10_performance')
+                ->sortable(),
+
+            Boolean::make('管理员', 'is_admin')
+                ->sortable(),
+
         ];
     }
 

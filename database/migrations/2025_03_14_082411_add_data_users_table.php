@@ -17,7 +17,9 @@ return new class extends Migration
             // 所有上级id
             $table->json('parent_ids')->nullable()->comment('所有上级id');
 
-            $table->string('address')->unique()->comment('钱包地址');
+            $table->string('address')->nullable()->unique()->comment('钱包地址');
+
+            $table->decimal('aesc', 10, 2)->default(0)->comment('AESC余额');
 
             $table->decimal('self_performance', 10, 2)->default(0)->comment('个人业绩');
             $table->integer('direct_count')->default(0)->comment('直推人数');
@@ -25,6 +27,7 @@ return new class extends Migration
             $table->integer('team_count')->default(0)->comment('团队人数');
             $table->decimal('team_performance', 10, 2)->default(0)->comment('团队业绩');
 
+            $table->boolean('is_10_performance')->default(false)->comment('是否是10%收益地址');
             $table->boolean('is_admin')->default(false)->comment('是否管理员');
         });
     }

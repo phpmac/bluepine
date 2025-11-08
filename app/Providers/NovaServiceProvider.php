@@ -2,9 +2,15 @@
 
 namespace App\Providers;
 
-use App\Models\User;
+use App\Nova\Dashboards\Main;
+use App\Nova\LogResource;
+use App\Nova\TradeResource;
+use App\Nova\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Fortify\Features;
+use Laravel\Nova\Menu\MenuItem;
+use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
@@ -17,7 +23,20 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        //
+        Nova::mainMenu(function (Request $request) {
+            return [
+                MenuSection::dashboard(Main::class)->icon('chart-bar'),
+
+                MenuSection::make('数据查看', [
+                    MenuItem::resource(User::class),
+                    MenuItem::resource(TradeResource::class),
+                ])->icon('user')->collapsable(),
+
+                // 日志
+                MenuItem::resource(LogResource::class),
+
+            ];
+        });
     }
 
     /**
@@ -28,8 +47,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::fortify()
             ->features([
                 Features::updatePasswords(),
-                // Features::emailVerification(),
-                // Features::twoFactorAuthentication(['confirm' => true, 'confirmPassword' => true]),
+                Features::emailVerification(),
+                Features::twoFactorAuthentication(['confirm' => true, 'confirmPassword' => true]),
             ])
             ->register();
     }
@@ -54,9 +73,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate(): void
     {
         Gate::define('viewNova', function (User $user) {
-            return in_array($user->email, [
-                config('services.admin_email'),
-            ]);
+            $user->is_admin;
         });
     }
 

@@ -100,8 +100,8 @@ return [
     'api_middleware' => [
         'nova',
         \Laravel\Nova\Http\Middleware\Authenticate::class,
-        // \Laravel\Nova\Http\Middleware\AuthenticateSession::class,
-        // \Laravel\Nova\Http\Middleware\EnsureEmailIsVerified::class,
+        \Laravel\Nova\Http\Middleware\AuthenticateSession::class,
+        \Laravel\Nova\Http\Middleware\EnsureEmailIsVerified::class,
         \Laravel\Nova\Http\Middleware\Authorize::class,
     ],
 
@@ -161,15 +161,15 @@ return [
     |
     */
 
-    // 'brand' => [
-    //     'logo' => resource_path('/img/example-logo.svg'),
+    'brand' => [
+        'logo' => resource_path('/img/logo.svg'),
 
-    //     'colors' => [
-    //         "400" => "24, 182, 155, 0.5",
-    //         "500" => "24, 182, 155",
-    //         "600" => "24, 182, 155, 0.75",
-    //     ]
-    // ],
+        'colors' => [
+            '400' => '24, 182, 155, 0.5',
+            '500' => '24, 182, 155',
+            '600' => '24, 182, 155, 0.75',
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
