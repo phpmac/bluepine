@@ -35,6 +35,12 @@ return [
         ],
     ],
 
+    'apip' => [
+        'uri' => env('APIP_URL', 'https://apip.io/api/'),
+        'app_id' => env('APIP_APP_ID', 'aesc-CnrHiKHln3ngaFDNzWnIwHfHDjh3SOCWEQIkU44Helo4859IBlHPbIKlt9S'),
+        'app_key' => env('APIP_APP_KEY', 'rxS2euIi0fI3tR75fFdPjIbGVe7p8qlfAUUbLimkU7DhCvsmK5005p5uauoQVOhg'),
+    ],
+
     'admin_email' => env('ADMIN_EMAIL', 'a@vc.sb'),
 
 ];
