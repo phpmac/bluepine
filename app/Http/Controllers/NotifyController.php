@@ -39,7 +39,7 @@ class NotifyController extends Controller
         $apip = new Apip;
         $apip->validate($request);
 
-        // logger($request->all());
+        logger($request->all());
 
         DB::transaction(function () use ($request) {
 
