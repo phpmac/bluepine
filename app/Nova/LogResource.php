@@ -60,8 +60,8 @@ class LogResource extends Resource
                 ->options([
                     LogType::PURCHASE->value => '购买',
                     LogType::CLAIM->value => '领取',
-                    LogType::ADD_WHITELIST->value => '添加白名单',
-                    LogType::REMOVE_WHITELIST->value => '移除白名单',
+                    LogType::ADD_WHITELIST->value => '设置10%收益地址',
+                    LogType::REMOVE_WHITELIST->value => '移除10%收益地址',
                 ])
                 ->displayUsingLabels()
                 ->sortable()

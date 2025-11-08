@@ -105,6 +105,13 @@ class User extends Resource
                 ->filterable()
                 ->readonly(),
 
+            Number::make('奖励数量', 'reward_amount')
+                ->sortable()
+                ->step(0.01)
+                ->readonly()
+                ->filterable()
+                ->readonly(),
+
             Panel::make('业绩统计', [
                 Number::make('个人业绩', 'self_performance')
                     ->sortable()
