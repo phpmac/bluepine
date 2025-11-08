@@ -43,81 +43,112 @@ class NotifyController extends Controller
 
         DB::transaction(function () use ($request) {
 
+            $data = [
+                'request' => $request->all(),
+                // 下面是安全填充
+                'buyer' => '-',
+                'account' => '-',
+                'user' => '-',
+                'tokenAmount' => 0,
+                'paymentAmount' => 0,
+                'referrer' => '-',
+                'referralAmount' => 0,
+            ];
+
             // 必须校验哈希唯一
-            throw_if(Trade::where('tx_hash', $request->hash)->exists(), "交易哈希 {$request->hash} 已存在");
-            throw_if(Log::where('tx_hash', $request->hash)->exists(), "日志哈希 {$request->hash} 已存在");
-
-            // 确保创建用户
-            $user = User::firstOrCreate([
-                'address' => $request->address,
-            ], [
-                'name' => substr($request->address, 0, 6).'...'.substr($request->address, -4),
-            ]);
-
-            // 确保创建上级用户
-            $parent = User::firstOrCreate([
-                'address' => $request->parent_address,
-            ], [
-                'name' => substr($request->parent_address, 0, 6).'...'.substr($request->parent_address, -4),
-            ]);
-
-            // 确保绑定上级
-            if (! $user->parent()->exists()) {
-                $user->bindParent($parent);
+            $trade_exists = Trade::where('tx_hash', $request->hash)->exists();
+            $log_exists = Log::where('tx_hash', $request->hash)->exists();
+            if ($trade_exists || $log_exists) {
+                return;
             }
 
             throw_if(! $request->event_name, '事件名称不能为空');
 
-            // 处理数量 默认是16
-            $amount = Utils::fromWei($request->amount, 16);
-
             // 匹配日志记录
             $logType = match ($request->event_name) {
-                'purchase' => LogType::PURCHASE,
-                'claim' => LogType::CLAIM,
+                'Purchase' => LogType::PURCHASE,
+                'Claim' => LogType::CLAIM,
                 'AddDirectReferralWhiteList' => LogType::ADD_WHITELIST,
                 'RemoveDirectReferralWhiteList' => LogType::REMOVE_WHITELIST,
                 default => throw new \Exception("未知的事件名称: {$request->event_name}"),
             };
 
-            $content = match ($request->event_name) {
-                'purchase' => "用户 {$user->name} 购买了 {$amount} 数量代币",
-                'claim' => "用户 {$user->name} 领取了 {$amount} 数量代币",
-                'AddDirectReferralWhiteList' => "管理员添加 {$request->params[0]} 为10%收益地址",
-                'RemoveDirectReferralWhiteList' => "管理员移除了 {$request->params[0]} 的10%收益地址",
-                default => throw new \Exception("未知的事件名称: {$request->event_name}"),
+            // 创建交易记录
+            if ($logType === TradeType::PURCHASE) {
+
+                // 解析参数
+                $data['buyer'] = $request->params[0];
+                $data['tokenAmount'] = Utils::fromWei($request->params[1], 16);
+                $data['paymentAmount'] = Utils::fromWei($request->params[2], 16);
+                $data['referrer'] = $request->params[3];
+                $data['referralAmount'] = Utils::fromWei($request->params[4], 16);
+
+                // 确保创建用户
+                $user = User::firstOrCreate([
+                    'address' => $data['buyer'],
+                ], [
+                    'name' => substr($data['buyer'], 0, 6).'...'.substr($data['buyer'], -4),
+                ]);
+
+                // 确保创建上级用户
+                $parent = User::firstOrCreate([
+                    'address' => $data['referrer'],
+                ], [
+                    'name' => substr($data['referrer'], 0, 6).'...'.substr($data['referrer'], -4),
+                ]);
+
+                // 确保绑定上级
+                if (! $user->parent()->exists()) {
+                    $user->bindParent($parent);
+                }
+
+                $user->increment('aesc', $data['tokenAmount']); // 记录余额
+                $user->increment('self_performance', $data['tokenAmount']); // 记录个人业绩
+                User::whereIn('id', $user->parent_ids ?? [])->increment('team_performance', $data['tokenAmount']);
+
+                $user->trades()->create([
+                    'amount' => $data['tokenAmount'],
+                    'type' => TradeType::PURCHASE,
+                    'block_number' => $request->block_number,
+                    'tx_hash' => $request->hash,
+                ]);
+            } elseif ($logType === TradeType::CLAIM) {
+
+                // 解析参数
+                $data['account'] = $request->params[0];
+                $data['tokenAmount'] = Utils::fromWei($request->params[1], 16);
+
+                $user = User::where('address', $data['account'])->firstOrFail();
+
+                $user->decrement('aesc', $data['tokenAmount']); // 记录余额
+
+                $user->trades()->create([
+                    'amount' => $data['tokenAmount'],
+                    'type' => TradeType::CLAIM,
+                    'block_number' => $request->block_number,
+                    'tx_hash' => $request->hash,
+                ]);
+            } elseif ($logType === LogType::ADD_WHITELIST) {
+                $data['user'] = $request->params[0];
+            } elseif ($logType === LogType::REMOVE_WHITELIST) {
+                $data['user'] = $request->params[0];
+            }
+
+            $content = match ($logType) {
+                LogType::PURCHASE => "用户 {$data['buyer']} 购买了 {$data['tokenAmount']} 数量代币",
+                LogType::CLAIM => "用户 {$data['account']} 领取了 {$data['tokenAmount']} 数量代币",
+                LogType::ADD_WHITELIST => "管理员添加 {$data['user']} 为10%收益地址",
+                LogType::REMOVE_WHITELIST => "管理员移除了 {$data['user']} 的10%收益地址",
+                default => throw new \Exception("未知的事件名称: {$logType}"),
             };
 
             // 创建日志记录
             Log::create([
                 'type' => $logType,
                 'tx_hash' => $request->hash,
-                'data' => $request->all(),
+                'data' => $data,
                 'content' => $content,
             ]);
-
-            // 创建交易记录
-            if ($request->event_name === TradeType::PURCHASE->value) {
-                $user->increment('aesc', $amount); // 记录余额
-                $user->increment('self_performance', $amount); // 记录个人业绩
-                User::whereIn('id', $user->parent_ids ?? [])->increment('team_performance', $amount);
-
-                $user->trades()->create([
-                    'amount' => $amount,
-                    'type' => TradeType::PURCHASE,
-                    'block_number' => $request->block_number,
-                    'tx_hash' => $request->hash,
-                ]);
-            } elseif ($request->event_name === TradeType::CLAIM->value) {
-                $user->decrement('aesc', $amount); // 记录余额
-
-                $user->trades()->create([
-                    'amount' => $amount,
-                    'type' => TradeType::CLAIM,
-                    'block_number' => $request->block_number,
-                    'tx_hash' => $request->hash,
-                ]);
-            }
         });
 
         return 'success';
