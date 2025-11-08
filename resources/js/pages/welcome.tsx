@@ -181,6 +181,7 @@ export default function Welcome() {
         }
 
         if (aescDecimalsData) {
+            console.log('aescDecimalsData', aescDecimalsData);
             setAescDecimalsState(aescDecimalsData);
         }
 

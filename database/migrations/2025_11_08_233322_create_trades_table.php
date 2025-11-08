@@ -17,7 +17,7 @@ return new class extends Migration
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->comment('用户ID');
 
-            $table->decimal('amount', 10, 2)->comment('交易数量');
+            $table->decimal('amount', 10, 4)->comment('交易数量');
             $table->enum('type', array_column(TradeType::cases(), 'value'))->comment('交易类型');
             $table->integer('block_number')->comment('区块高度');
             $table->string('tx_hash')->comment('交易哈希');

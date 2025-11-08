@@ -27,6 +27,7 @@ class User extends Authenticatable
         'parent_ids',
         'address',
         'aesc',
+        'reward_amount',
         'self_performance',
         'direct_count',
         'direct_performance',

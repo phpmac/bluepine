@@ -3,7 +3,7 @@
 use Web3\Utils;
 
 test('formEther', function () {
-    $result = Utils::fromWei('10000000000000', 'ether');
+    $result = Utils::fromWei('1056580544094325156812102785675286418920122552708', 'ether');
 
     // $result 是数组: [整数部分, 小数部分]
     // 索引 0: 整数部分 = 1

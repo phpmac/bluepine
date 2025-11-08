@@ -19,13 +19,14 @@ return new class extends Migration
 
             $table->string('address')->nullable()->unique()->comment('钱包地址');
 
-            $table->decimal('aesc', 10, 2)->default(0)->comment('AESC余额');
+            $table->decimal('aesc', 10, 4)->default(0)->comment('AESC余额');
+            $table->decimal('reward_amount', 10, 4)->default(0)->comment('奖励数量');
 
-            $table->decimal('self_performance', 10, 2)->default(0)->comment('个人业绩');
+            $table->decimal('self_performance', 10, 4)->default(0)->comment('个人业绩');
             $table->integer('direct_count')->default(0)->comment('直推人数');
-            $table->decimal('direct_performance', 10, 2)->default(0)->comment('直推业绩');
+            $table->decimal('direct_performance', 10, 4)->default(0)->comment('直推业绩');
             $table->integer('team_count')->default(0)->comment('团队人数');
-            $table->decimal('team_performance', 10, 2)->default(0)->comment('团队业绩');
+            $table->decimal('team_performance', 10, 4)->default(0)->comment('团队业绩');
 
             $table->boolean('is_10_performance')->default(false)->comment('是否是10%收益地址');
             $table->boolean('is_admin')->default(false)->comment('是否管理员');

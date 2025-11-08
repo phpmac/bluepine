@@ -82,10 +82,12 @@ class NotifyController extends Controller
 
                 // 解析参数
                 $data['buyer'] = $request->params[0];
-                $data['tokenAmount'] = formatUints($request->params[1], 'milli');
-                $data['paymentAmount'] = formatUints($request->params[2], 'ether');
+                $data['tokenAmount'] = formatUints($request->params[1], 16);
+                $data['paymentAmount'] = formatUints($request->params[2], 18);
                 $data['referrer'] = $request->params[3];
-                $data['referralAmount'] = formatUints($request->params[4], 'milli');
+                $data['referralAmount'] = formatUints($request->params[4], 16);
+
+                logger('data2', $data);
 
                 // 确保创建用户
                 $user = User::firstOrCreate([
@@ -100,6 +102,11 @@ class NotifyController extends Controller
                 ], [
                     'name' => substr($data['referrer'], 0, 6).'...'.substr($data['referrer'], -4),
                 ]);
+
+                // ! 确保上级余额增加显示
+                if (bccomp($data['tokenAmount'], '0', 4) > 0) {
+                    $parent->increment('reward_amount', $data['referralAmount']);
+                }
 
                 // 确保绑定上级
                 if (! $user->parent_id) {
@@ -130,7 +137,7 @@ class NotifyController extends Controller
 
                 // 解析参数
                 $data['account'] = $request->params[0];
-                $data['tokenAmount'] = formatUints($request->params[1], 'milli');
+                $data['tokenAmount'] = formatUints($request->params[1], 16);
 
                 $user = User::where('address', $data['account'])->firstOrFail();
 
