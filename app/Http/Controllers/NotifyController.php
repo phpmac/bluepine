@@ -152,10 +152,24 @@ class NotifyController extends Controller
             } elseif ($logType === LogType::ADD_WHITELIST) {
                 $data['user'] = $request->params[0];
 
+                $user = User::updateOrCreate([
+                    'address' => $data['user'],
+                ], [
+                    'name' => substr($data['user'], 0, 6).'...'.substr($data['user'], -4),
+                    'is_10_performance' => true,
+                ]);
+
                 // 更新用户的10%收益地址标识
                 User::where('address', $data['user'])->update(['is_10_performance' => true]);
             } elseif ($logType === LogType::REMOVE_WHITELIST) {
                 $data['user'] = $request->params[0];
+
+                $user = User::updateOrCreate([
+                    'address' => $data['user'],
+                ], [
+                    'name' => substr($data['user'], 0, 6).'...'.substr($data['user'], -4),
+                    'is_10_performance' => false,
+                ]);
 
                 // 移除用户的10%收益地址标识
                 User::where('address', $data['user'])->update(['is_10_performance' => false]);
