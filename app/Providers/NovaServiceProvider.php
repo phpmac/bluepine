@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User as ModelsUser;
 use App\Nova\Dashboards\Main;
 use App\Nova\LogResource;
 use App\Nova\TradeResource;
@@ -72,7 +73,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function gate(): void
     {
-        Gate::define('viewNova', function (User $user) {
+        Gate::define('viewNova', function (ModelsUser $user) {
             $user->is_admin;
         });
     }
