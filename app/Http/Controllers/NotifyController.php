@@ -10,7 +10,6 @@ use App\Models\Trade;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Web3\Utils;
 
 class NotifyController extends Controller
 {
@@ -39,7 +38,16 @@ class NotifyController extends Controller
         $apip = new Apip;
         $apip->validate($request);
 
-        logger($request->all());
+        logger('request', $request->all());
+
+        // 必须校验哈希唯一
+        $trade_exists = Trade::where('tx_hash', $request->hash)->exists();
+        $log_exists = Log::where('tx_hash', $request->hash)->exists();
+        if ($trade_exists || $log_exists) {
+            report("交易哈希 {$request->hash} 已存在");
+
+            return;
+        }
 
         DB::transaction(function () use ($request) {
 
@@ -55,13 +63,6 @@ class NotifyController extends Controller
                 'referralAmount' => 0,
             ];
 
-            // 必须校验哈希唯一
-            $trade_exists = Trade::where('tx_hash', $request->hash)->exists();
-            $log_exists = Log::where('tx_hash', $request->hash)->exists();
-            if ($trade_exists || $log_exists) {
-                return;
-            }
-
             throw_if(! $request->event_name, '事件名称不能为空');
 
             // 匹配日志记录
@@ -72,16 +73,19 @@ class NotifyController extends Controller
                 'RemoveDirectReferralWhiteList' => LogType::REMOVE_WHITELIST,
                 default => throw new \Exception("未知的事件名称: {$request->event_name}"),
             };
+            $data['logType'] = $logType;
+
+            logger('data', $data);
 
             // 创建交易记录
-            if ($logType === TradeType::PURCHASE) {
+            if ($logType === LogType::PURCHASE) {
 
                 // 解析参数
                 $data['buyer'] = $request->params[0];
-                $data['tokenAmount'] = Utils::fromWei($request->params[1], 16);
-                $data['paymentAmount'] = Utils::fromWei($request->params[2], 16);
+                $data['tokenAmount'] = formatUints($request->params[1], 'milli');
+                $data['paymentAmount'] = formatUints($request->params[2], 'ether');
                 $data['referrer'] = $request->params[3];
-                $data['referralAmount'] = Utils::fromWei($request->params[4], 16);
+                $data['referralAmount'] = formatUints($request->params[4], 'milli');
 
                 // 确保创建用户
                 $user = User::firstOrCreate([
@@ -98,13 +102,23 @@ class NotifyController extends Controller
                 ]);
 
                 // 确保绑定上级
-                if (! $user->parent()->exists()) {
+                if (! $user->parent_id) {
                     $user->bindParent($parent);
+                    $user->refresh(); // 重新加载用户数据以获取更新后的 parent_ids
                 }
 
                 $user->increment('aesc', $data['tokenAmount']); // 记录余额
                 $user->increment('self_performance', $data['tokenAmount']); // 记录个人业绩
-                User::whereIn('id', $user->parent_ids ?? [])->increment('team_performance', $data['tokenAmount']);
+
+                // 更新直属上级的直推业绩
+                if ($user->parent_id) {
+                    User::where('id', $user->parent_id)->increment('direct_performance', $data['tokenAmount']);
+                }
+
+                // 更新所有上级的团队业绩
+                if ($user->parent_ids) {
+                    User::whereIn('id', $user->parent_ids)->increment('team_performance', $data['tokenAmount']);
+                }
 
                 $user->trades()->create([
                     'amount' => $data['tokenAmount'],
@@ -112,11 +126,11 @@ class NotifyController extends Controller
                     'block_number' => $request->block_number,
                     'tx_hash' => $request->hash,
                 ]);
-            } elseif ($logType === TradeType::CLAIM) {
+            } elseif ($logType === LogType::CLAIM) {
 
                 // 解析参数
                 $data['account'] = $request->params[0];
-                $data['tokenAmount'] = Utils::fromWei($request->params[1], 16);
+                $data['tokenAmount'] = formatUints($request->params[1], 'milli');
 
                 $user = User::where('address', $data['account'])->firstOrFail();
 
@@ -130,8 +144,14 @@ class NotifyController extends Controller
                 ]);
             } elseif ($logType === LogType::ADD_WHITELIST) {
                 $data['user'] = $request->params[0];
+
+                // 更新用户的10%收益地址标识
+                User::where('address', $data['user'])->update(['is_10_performance' => true]);
             } elseif ($logType === LogType::REMOVE_WHITELIST) {
                 $data['user'] = $request->params[0];
+
+                // 移除用户的10%收益地址标识
+                User::where('address', $data['user'])->update(['is_10_performance' => false]);
             }
 
             $content = match ($logType) {
