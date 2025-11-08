@@ -21,6 +21,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'parent_id',
+        'parent_ids',
+        'address',
+        'self_performance',
+        'direct_count',
+        'direct_performance',
+        'team_count',
+        'team_performance',
+        'is_admin',
     ];
 
     /**
@@ -43,6 +52,28 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'parent_ids' => 'array',
+            'is_admin' => 'boolean',
         ];
+    }
+
+    /**
+     * 上级
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parent()
+    {
+        return $this->belongsTo(User::class, 'parent_id');
+    }
+
+    /**
+     * 下级
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function children()
+    {
+        return $this->hasMany(User::class, 'parent_id');
     }
 }

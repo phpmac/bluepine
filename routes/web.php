@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotifyController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -11,11 +12,13 @@ Route::get('/console', function () {
     return Inertia::render('console');
 })->name('console');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
-});
+Route::post('/notify', [NotifyController::class, 'store'])->name('notify');
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     Route::get('dashboard', function () {
+//         return Inertia::render('dashboard');
+//     })->name('dashboard');
+// });
+
+// require __DIR__.'/settings.php';
+// require __DIR__.'/auth.php';
