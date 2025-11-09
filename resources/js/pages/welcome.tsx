@@ -6,7 +6,6 @@ import { About } from '@/components/dapp/sections/About';
 import { Hero } from '@/components/dapp/sections/Hero';
 import { PrivateSaleOverview } from '@/components/dapp/sections/ICOOverview';
 import { Tokenomics } from '@/components/dapp/sections/Tokenomics';
-import { VestingTimeline } from '@/components/dapp/sections/VestingTimeline';
 import ieoAbi from '@/lib/abi';
 import { config as address } from '@/lib/address';
 import { erc20Abi } from '@/lib/erc20Abi';
@@ -256,9 +255,6 @@ export default function Welcome() {
 
                         {/* 代币经济学 */}
                         <Tokenomics />
-
-                        {/* 解锁时间表 */}
-                        <VestingTimeline />
 
                         {/* 项目介绍 */}
                         <About />

@@ -78,7 +78,7 @@ export const tokenomicsData: TokenomicsData[] = [
     },
     {
         name: '生态基金',
-        value: 480000000,
+        value: 640000000,
         percentage: 40,
         color: '#38bdf8', // 天蓝色
         nameKey: 'tokenomics.cards.ecofund.title',

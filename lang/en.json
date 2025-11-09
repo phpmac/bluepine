@@ -4,7 +4,6 @@
     "nav.hero": "Vision",
     "nav.private_sale_overview": "SALES",
     "nav.tokenomics": "Tokenomics",
-    "nav.vesting": "VESTING",
     "nav.about": "About",
     "buttons.connect_wallet": "Connect Wallet",
     "hero.badge": "CULTIVATING FUTURE | GROWING ON-CHAIN",
@@ -199,5 +198,6 @@
     "modal.purchase_success_desc": "Your purchase transaction has been successfully submitted to the blockchain",
     "modal.claim_success_title": "Claim Successful!",
     "modal.claim_success_desc": "Your token claim transaction has been successfully submitted to the blockchain",
-    "overview.participation_reminder": "Friendly reminder: Don't miss out on your rewards - Secure your spot now!"
+    "overview.participation_reminder": "Do not miss out your rewards - Secure your chances now !",
+    "overview.referrer_warning": "Verify Referrer wallet address carefully. All entries have no reverse !"
 }

@@ -333,10 +333,29 @@ export const PrivateSaleOverview: React.FC<{
                                     </div>
                                 </div>
 
-                                {/* 认购提示 */}
-                                <div className="rounded-lg border border-[#37e7ff]/30 bg-[#37e7ff]/10 p-3 backdrop-blur-sm">
-                                    <p className="text-center text-sm text-[#56f1ff]">{t('overview.participation_reminder')}</p>
+                                {/* 当前阶段进度展示 */}
+                                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <h4 className="text-sm font-semibold text-white">
+                                                {t('hero.stage_fmt', { num: Number(currentStage.index) + 1 })}
+                                            </h4>
+                                            <p className="mt-0.5 text-xs text-slate-400">
+                                                {t('hero.current_price_prefix')}&nbsp;
+                                                <span className="font-semibold text-[#56f1ff]">${currentStagePrice}</span>
+                                            </p>
+                                        </div>
+                                        <div className="text-right">
+                                            <p className="bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-2xl font-black text-transparent">
+                                                {currentStageProgress.toFixed(2)}%
+                                            </p>
+                                            <p className="text-[10px] text-slate-400">{t('hero.stage_progress')}</p>
+                                        </div>
+                                    </div>
                                 </div>
+
+                                {/* 认购提示 */}
+                                <p className="-mb-3 text-left text-[11px] text-red-400">{t('overview.participation_reminder')}</p>
 
                                 {/* AESC输入和邀请人地址 */}
                                 <div className="grid grid-cols-1 gap-3 md:grid-cols-10">
@@ -372,6 +391,9 @@ export const PrivateSaleOverview: React.FC<{
                                         />
                                     </div>
                                 </div>
+
+                                {/* 邀请人地址警告提示 */}
+                                <p className="-mb-3 text-[11px] text-red-400">{t('overview.referrer_warning')}</p>
 
                                 {/* 需支付提示 */}
                                 {isValidAescAmount && (

@@ -4,7 +4,6 @@
     "nav.hero": "愿景",
     "nav.private_sale_overview": "发售计划",
     "nav.tokenomics": "代币分配",
-    "nav.vesting": "释放节奏",
     "nav.about": "生态蓝图",
     "buttons.connect_wallet": "连接钱包",
     "hero.badge": "耕耘未来, 链上生长",
@@ -201,5 +200,6 @@
     "modal.purchase_success_desc": "您的认购交易已成功提交到区块链,点击查看区块链浏览器记录",
     "modal.claim_success_title": "领取成功!",
     "modal.claim_success_desc": "您的代币领取交易已成功提交到区块链,点击查看区块链浏览器记录",
-    "overview.participation_reminder": "温馨提示: 为避免奖励流失, 请立刻参与认购!"
+    "overview.participation_reminder": "温馨提示: 为避免奖励流失, 请立刻参与认购!",
+    "overview.referrer_warning": "注意: 请认真核实邀请人钱包地址! 填写错误, 无法挽回!"
 }

@@ -56,7 +56,6 @@ export const Header: React.FC = () => {
         { id: 'hero', label: t('nav.hero'), type: 'scroll' as const },
         { id: 'private-sale-overview', label: t('nav.private_sale_overview'), type: 'scroll' as const },
         { id: 'tokenomics', label: t('nav.tokenomics'), type: 'scroll' as const },
-        { id: 'vesting', label: t('nav.vesting'), type: 'scroll' as const },
         { id: 'about', label: t('nav.about'), type: 'scroll' as const },
         ...(import.meta.env.VITE_APP_ENV === 'local' ? [{ id: 'console', label: '测试控制台', type: 'link' as const, href: '/console' }] : []),
     ];
