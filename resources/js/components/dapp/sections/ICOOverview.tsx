@@ -201,7 +201,7 @@ export const PrivateSaleOverview: React.FC<{
 
     return (
         <section id="private-sale-overview" className="relative z-10 overflow-hidden py-24">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050a1a]/85 to-[#030712]" />
+            <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#050a1a]/85 to-[#030712]" />
             <div className="absolute inset-x-0 top-0 h-64 bg-[radial-gradient(circle_at_top,rgba(111,140,255,0.18),transparent_60%)]" />
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <motion.div
@@ -224,7 +224,7 @@ export const PrivateSaleOverview: React.FC<{
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="relative flex min-h-[520px] flex-col overflow-hidden rounded-[32px] bg-gradient-to-br from-[#111a38] via-[#0a1326] to-[#040916] shadow-[0_35px_90px_-45px_rgba(67,113,255,0.65)]"
+                        className="relative flex min-h-[520px] flex-col overflow-hidden rounded-[32px] bg-linear-to-br from-[#111a38] via-[#0a1326] to-[#040916] shadow-[0_35px_90px_-45px_rgba(67,113,255,0.65)]"
                     >
                         <div className="absolute -bottom-28 -left-20 size-72 rounded-full bg-[#56f1ff]/15 blur-3xl" />
                         <div className="absolute -top-24 right-12 size-56 rounded-full bg-[#22edc7]/12 blur-3xl" />
@@ -240,9 +240,9 @@ export const PrivateSaleOverview: React.FC<{
                             </div>
 
                             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                                <div className="rounded-2xl border border-white/10 bg-white/[0.08] px-4 py-5 shadow-[0_25px_50px_-35px_rgba(70,120,255,0.55)] backdrop-blur-lg">
+                                <div className="rounded-2xl border border-white/10 bg-white/8 px-4 py-5 shadow-[0_25px_50px_-35px_rgba(70,120,255,0.55)] backdrop-blur-lg">
                                     <div className="flex items-start gap-3">
-                                        <div className="flex size-9 items-center justify-center rounded-2xl bg-gradient-to-br from-[#5f66ff] via-[#4b76ff] to-[#2cd6ff] text-white shadow-[0_18px_30px_-20px_rgba(88,126,255,0.8)]">
+                                        <div className="flex size-9 items-center justify-center rounded-2xl bg-linear-to-br from-[#5f66ff] via-[#4b76ff] to-[#2cd6ff] text-white shadow-[0_18px_30px_-20px_rgba(88,126,255,0.8)]">
                                             <Target className="h-4 w-4" />
                                         </div>
                                         <div>
@@ -254,9 +254,9 @@ export const PrivateSaleOverview: React.FC<{
                                         </div>
                                     </div>
                                 </div>
-                                <div className="rounded-2xl border border-white/10 bg-white/[0.08] px-4 py-5 shadow-[0_25px_50px_-35px_rgba(70,120,255,0.55)] backdrop-blur-lg">
+                                <div className="rounded-2xl border border-white/10 bg-white/8 px-4 py-5 shadow-[0_25px_50px_-35px_rgba(70,120,255,0.55)] backdrop-blur-lg">
                                     <div className="flex items-start gap-3">
-                                        <div className="flex size-9 items-center justify-center rounded-2xl bg-gradient-to-br from-[#5f66ff] via-[#4b76ff] to-[#2cd6ff] text-white shadow-[0_18px_30px_-20px_rgba(88,126,255,0.8)]">
+                                        <div className="flex size-9 items-center justify-center rounded-2xl bg-linear-to-br from-[#5f66ff] via-[#4b76ff] to-[#2cd6ff] text-white shadow-[0_18px_30px_-20px_rgba(88,126,255,0.8)]">
                                             <Layers className="h-4 w-4" />
                                         </div>
                                         <div>
@@ -274,7 +274,7 @@ export const PrivateSaleOverview: React.FC<{
                                 </div>
                             </div>
 
-                            <div className="flex flex-1 flex-col justify-end rounded-2xl border border-white/10 bg-gradient-to-br from-[#616bff1f] via-[#0e1531] to-[#06101f] p-6 shadow-[0_25px_60px_-45px_rgba(60,110,255,0.6)]">
+                            <div className="flex flex-1 flex-col justify-end rounded-2xl border border-white/10 bg-linear-to-br from-[#616bff1f] via-[#0e1531] to-[#06101f] p-6 shadow-[0_25px_60px_-45px_rgba(60,110,255,0.6)]">
                                 <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                                     <div>
                                         <p className="mb-2 text-xs tracking-[0.3em] text-slate-300/80 uppercase">{t('overview.overall')}</p>
@@ -287,7 +287,7 @@ export const PrivateSaleOverview: React.FC<{
                                                 decimals={2}
                                                 prefix="$"
                                                 suffix="M"
-                                                className="bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-2xl font-black text-transparent"
+                                                className="bg-linear-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-2xl font-black text-transparent"
                                             />
                                             <p className="mt-1 text-left text-[11px] text-slate-400 md:text-right">{t('overview.raised')}</p>
                                         </div>
@@ -317,14 +317,14 @@ export const PrivateSaleOverview: React.FC<{
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="flex min-h-[520px] flex-col"
                     >
-                        <div className="relative flex-1 overflow-hidden rounded-[32px] border border-white/12 bg-gradient-to-br from-[#0e182f] via-[#071122] to-[#040b18] p-8 shadow-[0_30px_90px_-45px_rgba(60,110,255,0.68)]">
-                            <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+                        <div className="relative flex-1 overflow-hidden rounded-[32px] border border-white/12 bg-linear-to-br from-[#0e182f] via-[#071122] to-[#040b18] p-8 shadow-[0_30px_90px_-45px_rgba(60,110,255,0.68)]">
+                            <div className="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-white/25 to-transparent" />
                             <div className="absolute -right-20 -bottom-28 size-72 rounded-full bg-[#56f1ff]/10 blur-3xl" />
                             <div className="absolute -top-24 left-12 size-56 rounded-full bg-[#22edc7]/8 blur-3xl" />
 
                             <div id="token-purchase-form" className="relative z-10 flex flex-col gap-5">
                                 <div className="flex items-center gap-2.5">
-                                    <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#616bff] via-[#4b76ff] to-[#37e7ff]">
+                                    <div className="flex size-9 items-center justify-center rounded-xl bg-linear-to-br from-[#616bff] via-[#4b76ff] to-[#37e7ff]">
                                         <ShoppingCart className="h-4 w-4 text-white" />
                                     </div>
                                     <div>
@@ -346,7 +346,7 @@ export const PrivateSaleOverview: React.FC<{
                                             </p>
                                         </div>
                                         <div className="text-right">
-                                            <p className="bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-2xl font-black text-transparent">
+                                            <p className="bg-linear-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-2xl font-black text-transparent">
                                                 {currentStageProgress.toFixed(2)}%
                                             </p>
                                             <p className="text-[10px] text-slate-400">{t('hero.stage_progress')}</p>
@@ -430,7 +430,7 @@ export const PrivateSaleOverview: React.FC<{
                                     className={`w-full rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-300 ${
                                         !isConnected || !isValidAescAmount || !isValidReferrerAddress
                                             ? 'cursor-not-allowed border border-white/10 bg-white/8 text-slate-400'
-                                            : 'bg-gradient-to-r from-[#616bff] via-[#4b76ff] to-[#37e7ff] text-white shadow-[0_25px_60px_-30px_rgba(82,115,255,0.65)] hover:shadow-[0_30px_70px_-30px_rgba(67,240,255,0.65)]'
+                                            : 'bg-linear-to-r from-[#616bff] via-[#4b76ff] to-[#37e7ff] text-white shadow-[0_25px_60px_-30px_rgba(82,115,255,0.65)] hover:shadow-[0_30px_70px_-30px_rgba(67,240,255,0.65)]'
                                     }`}
                                 >
                                     {!isConnected
@@ -523,37 +523,6 @@ export const PrivateSaleOverview: React.FC<{
                                                 ? t('overview.claim_tokens')
                                                 : t('overview.no_claimable')}
                                     </motion.button>
-
-                                    {/* 领取提示信息 */}
-                                    <div className="mt-2.5 text-center">
-                                        {!isEnded ? (
-                                            <p className="flex items-center justify-center gap-1 text-[10px] text-gray-400/80">
-                                                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2}
-                                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                                                    />
-                                                </svg>
-                                                {t('overview.sale_in_progress_tip')}
-                                            </p>
-                                        ) : getUserClaimableAmount[0] > 0 || getUserClaimableAmount[1] > 0 ? (
-                                            <p className="flex items-center justify-center gap-1 text-[10px] text-[#22edc7]/80">
-                                                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2}
-                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                                    />
-                                                </svg>
-                                                {t('overview.sale_ended_can_claim')}
-                                            </p>
-                                        ) : (
-                                            <p className="text-[10px] text-slate-500">{t('overview.no_claimable_tokens')}</p>
-                                        )}
-                                    </div>
                                 </div>
                             </div>
                         </div>

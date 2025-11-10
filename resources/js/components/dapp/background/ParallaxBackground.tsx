@@ -199,7 +199,7 @@ export const ParallaxBackground: React.FC = () => {
                 {Array.from({ length: 5 }, (_, i) => (
                     <div
                         key={i}
-                        className="absolute h-full w-px bg-gradient-to-b from-transparent via-cyan-500 to-transparent opacity-20"
+                        className="absolute h-full w-px bg-linear-to-b from-transparent via-cyan-500 to-transparent opacity-20"
                         style={{
                             left: `${20 + i * 20}%`,
                             animationDelay: `${i * 0.5}s`,

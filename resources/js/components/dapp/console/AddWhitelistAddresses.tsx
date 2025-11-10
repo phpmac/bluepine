@@ -20,7 +20,7 @@ export const AddWhitelistAddresses: React.FC<AddWhitelistAddressesProps> = ({ on
     return (
         <Card className="p-5" hover={false}>
             <div className="mb-4 flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500/20 to-teal-600/20">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-emerald-500/20 to-teal-600/20">
                     <UserPlus className="h-4 w-4 text-emerald-400" />
                 </div>
                 <div>

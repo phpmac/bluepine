@@ -153,7 +153,7 @@ export default function ConsolePage() {
     return (
         <>
             <Head title="Console" />
-            <div className="min-h-screen bg-gradient-to-b from-[#040814] via-[#030a18] to-[#02040c]">
+            <div className="min-h-screen bg-linear-to-b from-[#040814] via-[#030a18] to-[#02040c]">
                 <div className="relative z-10 flex min-h-screen flex-col">
                     <Header />
 

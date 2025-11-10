@@ -184,6 +184,7 @@
     "overview.purchase_now": "Purchase Now",
     "overview.claimable_amount": "Claimable Amount",
     "overview.referral_reward_amount": "Referral Reward",
+    "overview.claimable_amount_label": "Remaining Claimable Amount",
     "overview.claiming": "Claiming...",
     "overview.sale_not_ended": "Sale Not Ended",
     "overview.claim_tokens": "Claim Tokens",

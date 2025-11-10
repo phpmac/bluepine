@@ -40,14 +40,14 @@ export const Footer: React.FC = () => {
     ];
     return (
         <footer className="relative overflow-hidden border-t border-white/10">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050a1a]/80 to-[#020510]" />
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#56f1ff]/40 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#050a1a]/80 to-[#020510]" />
+            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#56f1ff]/40 to-transparent" />
 
             <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
                     <div className="space-y-4">
                         <div className="flex items-center space-x-3">
-                            <div className="flex size-12 items-center justify-center rounded-3xl bg-gradient-to-br from-[#616bff95] to-[#43f0ff7a] shadow-[0_20px_50px_-25px_rgba(82,115,255,0.65)]">
+                            <div className="flex size-12 items-center justify-center rounded-3xl bg-linear-to-br from-[#616bff95] to-[#43f0ff7a] shadow-[0_20px_50px_-25px_rgba(82,115,255,0.65)]">
                                 <img src="/logo.svg" className="size-10" />
                             </div>
                             <div>

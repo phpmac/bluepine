@@ -73,7 +73,7 @@ export const LanguageSwitcher: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-full right-0 z-50 mt-2 w-40 overflow-hidden rounded-xl border border-white/15 bg-gradient-to-br from-[#0f1a2e] to-[#050a1a] shadow-[0_20px_50px_-30px_rgba(90,120,255,0.55)] backdrop-blur-xl"
+                        className="absolute top-full right-0 z-50 mt-2 w-40 overflow-hidden rounded-xl border border-white/15 bg-linear-to-br from-[#0f1a2e] to-[#050a1a] shadow-[0_20px_50px_-30px_rgba(90,120,255,0.55)] backdrop-blur-xl"
                     >
                         <div className="p-2">
                             {languages.map((lang) => (
@@ -82,7 +82,7 @@ export const LanguageSwitcher: React.FC = () => {
                                     onClick={() => handleLanguageChange(lang.code as Language)}
                                     className={`group relative flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-all duration-200 ${
                                         currentLang === lang.code
-                                            ? 'bg-gradient-to-r from-[#5b7fff] to-[#43f0ff] text-slate-900'
+                                            ? 'bg-linear-to-r from-[#5b7fff] to-[#43f0ff] text-slate-900'
                                             : 'text-slate-300 hover:bg-white/10 hover:text-white'
                                     }`}
                                 >

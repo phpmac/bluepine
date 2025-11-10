@@ -32,8 +32,8 @@ export const Hero: React.FC<{
 
     return (
         <section id="hero" className="relative z-10 flex min-h-screen items-center overflow-hidden pt-36 pb-24">
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#050613]/70 via-[#0a1733]/18 to-[#030814]/75" />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-[#081a3a]/28 to-transparent" />
+            <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-[#050613]/70 via-[#0a1733]/18 to-[#030814]/75" />
+            <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-[#081a3a]/28 to-transparent" />
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(76,112,255,0.18),transparent_62%)]" />
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(35,216,244,0.14),transparent_60%)]" />
 
@@ -57,7 +57,7 @@ export const Hero: React.FC<{
                             className="mt-6 text-2xl leading-tight font-black text-white sm:text-3xl xl:text-5xl"
                         >
                             {t('hero.title1')}
-                            <span className="block bg-gradient-to-r from-[#6a74ff] via-[#4fe3ff] to-[#20e3b2] bg-clip-text text-transparent">
+                            <span className="block bg-linear-to-r from-[#6a74ff] via-[#4fe3ff] to-[#20e3b2] bg-clip-text text-transparent">
                                 {t('hero.title2')}
                             </span>
                         </motion.h1>
@@ -103,7 +103,7 @@ export const Hero: React.FC<{
                             initial={{ opacity: 0, y: 35 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.45 }}
-                            className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#5f66ff33] via-[#1a1f3b] to-[#071321] p-8 shadow-[0_30px_70px_-35px_rgba(68,107,255,0.65)]"
+                            className="relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-[#5f66ff33] via-[#1a1f3b] to-[#071321] p-8 shadow-[0_30px_70px_-35px_rgba(68,107,255,0.65)]"
                         >
                             <div className="absolute -top-24 -right-24 size-48 rounded-full bg-[#52e3ff]/20 blur-3xl" />
                             <div className="relative">
@@ -119,7 +119,7 @@ export const Hero: React.FC<{
                                         </p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-3xl font-black text-transparent">
+                                        <p className="bg-linear-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-3xl font-black text-transparent">
                                             {currentStageProgress.toFixed(2)}%
                                         </p>
                                         <p className="text-xs text-slate-400">{t('hero.stage_progress')}</p>

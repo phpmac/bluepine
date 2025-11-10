@@ -34,9 +34,9 @@ export const CookieConsent: React.FC = () => {
                     transition={{ duration: 0.5 }}
                     className="fixed right-4 bottom-4 z-40 max-w-md md:right-6 md:bottom-6"
                 >
-                    <div className="relative overflow-hidden rounded-xl border border-white/15 bg-gradient-to-br from-[#0f1a2e] to-[#050a1a] shadow-[0_25px_70px_-30px_rgba(90,120,255,0.55)] backdrop-blur-2xl">
+                    <div className="relative overflow-hidden rounded-xl border border-white/15 bg-linear-to-br from-[#0f1a2e] to-[#050a1a] shadow-[0_25px_70px_-30px_rgba(90,120,255,0.55)] backdrop-blur-2xl">
                         {/* 背景动画 */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#5071ff]/5 via-transparent to-[#43f0ff]/5" />
+                        <div className="absolute inset-0 bg-linear-to-r from-[#5071ff]/5 via-transparent to-[#43f0ff]/5" />
                         <div className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-[#56f1ff]/10 blur-3xl" />
 
                         <div className="relative p-3 md:p-4">
@@ -44,7 +44,7 @@ export const CookieConsent: React.FC = () => {
                                 {/* 头部 */}
                                 <div className="flex items-start justify-between gap-2">
                                     <div className="flex items-start gap-2">
-                                        <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#5b7fff] to-[#43f0ff] text-white">
+                                        <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-[#5b7fff] to-[#43f0ff] text-white">
                                             <Cookie className="h-4 w-4" />
                                         </div>
                                         <div>
@@ -64,7 +64,7 @@ export const CookieConsent: React.FC = () => {
                                 <div className="flex flex-col gap-2 md:gap-3">
                                     <button
                                         onClick={handleAccept}
-                                        className="group relative w-full cursor-pointer rounded-lg bg-gradient-to-r from-[#6065ff] via-[#4b76ff] to-[#37e7ff] px-3 py-2 text-xs font-semibold text-slate-900 shadow-[0_20px_45px_-25px_rgba(82,115,255,0.75)] transition-all duration-300 hover:scale-105 hover:shadow-[0_25px_55px_-20px_rgba(82,115,255,0.85)] md:text-sm"
+                                        className="group relative w-full cursor-pointer rounded-lg bg-linear-to-r from-[#6065ff] via-[#4b76ff] to-[#37e7ff] px-3 py-2 text-xs font-semibold text-slate-900 shadow-[0_20px_45px_-25px_rgba(82,115,255,0.75)] transition-all duration-300 hover:scale-105 hover:shadow-[0_25px_55px_-20px_rgba(82,115,255,0.85)] md:text-sm"
                                     >
                                         <span className="relative z-10">{t('cookie.accept')}</span>
                                     </button>

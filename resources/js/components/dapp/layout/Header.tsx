@@ -93,7 +93,7 @@ export const Header: React.FC = () => {
                                     className="group relative cursor-pointer text-xs font-semibold tracking-[0.18em] text-slate-200/80 uppercase transition-colors duration-300 hover:text-white"
                                 >
                                     <span>{item.label}</span>
-                                    <span className="absolute inset-x-0 -bottom-3 h-px bg-gradient-to-r from-transparent via-[#5b7fff] to-transparent opacity-0 group-hover:opacity-100" />
+                                    <span className="absolute inset-x-0 -bottom-3 h-px bg-linear-to-r from-transparent via-[#5b7fff] to-transparent opacity-0 group-hover:opacity-100" />
                                 </Link>
                             ) : (
                                 <button
@@ -102,7 +102,7 @@ export const Header: React.FC = () => {
                                     className="group relative cursor-pointer text-xs font-semibold tracking-[0.18em] text-slate-200/80 uppercase transition-colors duration-300 hover:text-white"
                                 >
                                     <span>{item.label}</span>
-                                    <span className="absolute inset-x-0 -bottom-3 h-px bg-gradient-to-r from-transparent via-[#5b7fff] to-transparent opacity-0 group-hover:opacity-100" />
+                                    <span className="absolute inset-x-0 -bottom-3 h-px bg-linear-to-r from-transparent via-[#5b7fff] to-transparent opacity-0 group-hover:opacity-100" />
                                 </button>
                             ),
                         )}
