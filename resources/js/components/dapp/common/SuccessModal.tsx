@@ -45,7 +45,7 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({
             <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="relative mx-4 max-w-md rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-[#0a1628] to-[#051018] p-6 shadow-2xl"
+                className="relative mx-4 max-w-md rounded-2xl border border-emerald-500/30 bg-linear-to-br from-[#0a1628] to-[#051018] p-6 shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="mb-4 flex items-center justify-center">

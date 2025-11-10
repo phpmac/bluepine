@@ -23,7 +23,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
             </div>
             <div className={`w-full rounded-full bg-white/10 backdrop-blur-sm ${height} overflow-hidden`}>
                 <motion.div
-                    className={`${height} bg-gradient-to-r ${color} rounded-full`}
+                    className={`${height} bg-linear-to-r ${color} rounded-full`}
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
                     transition={{ duration: animated ? 1.5 : 0, ease: 'easeOut' }}

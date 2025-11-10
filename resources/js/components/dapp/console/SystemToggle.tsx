@@ -23,7 +23,7 @@ export const SystemToggle: React.FC<SystemToggleProps> = ({ enableData, enableSt
     return (
         <Card className="p-5" hover={false}>
             <div className="mb-4 flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-600/20">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-blue-500/20 to-purple-600/20">
                     <Power className="h-4 w-4 text-[#6ef3ff]" />
                 </div>
                 <div>

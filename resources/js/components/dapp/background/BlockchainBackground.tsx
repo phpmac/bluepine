@@ -53,7 +53,7 @@ export const BlockchainBackground: React.FC<BlockchainBackgroundProps> = ({
         >
             {/* 备用背景渐变,视频加载前显示 */}
             <div
-                className="absolute inset-0 bg-gradient-to-b from-[#050613] via-[#0a1733] to-[#030814]"
+                className="absolute inset-0 bg-linear-to-b from-[#050613] via-[#0a1733] to-[#030814]"
                 style={{
                     opacity: isVideoLoaded ? 0 : 1,
                     transition: 'opacity 0.6s ease-in-out',

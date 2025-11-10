@@ -42,7 +42,7 @@ export const Tokenomics: React.FC = () => {
 
     return (
         <section id="tokenomics" className="relative z-10 overflow-hidden py-16">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#030914] to-[#050a1a]" />
+            <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#030914] to-[#050a1a]" />
             <div className="absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(80,117,255,0.16),transparent_60%)]" />
 
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -66,13 +66,13 @@ export const Tokenomics: React.FC = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="relative flex h-full max-h-[420px] flex-col gap-5 overflow-hidden rounded-[26px] border border-white/12 bg-white/[0.07] p-5 shadow-[0_26px_70px_-55px_rgba(60,110,255,0.55)] backdrop-blur-xl md:p-6"
+                        className="relative flex h-full max-h-[420px] flex-col gap-5 overflow-hidden rounded-[26px] border border-white/12 bg-white/7 p-5 shadow-[0_26px_70px_-55px_rgba(60,110,255,0.55)] backdrop-blur-xl md:p-6"
                     >
                         <div className="absolute -top-24 -right-12 size-52 rounded-full bg-[#56f1ff]/16 blur-3xl" />
                         <div className="relative flex flex-col gap-4">
                             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                                 <div className="flex items-center gap-3">
-                                    <div className="rounded-2xl bg-gradient-to-br from-[#616bff95] to-[#43f0ff7a] p-2">
+                                    <div className="rounded-2xl bg-linear-to-br from-[#616bff95] to-[#43f0ff7a] p-2">
                                         <PieChartIcon className="h-5 w-5 text-white" />
                                     </div>
                                     <div>
@@ -81,7 +81,7 @@ export const Tokenomics: React.FC = () => {
                                             end={tokenInfo.totalSupply / 1000000000}
                                             decimals={1}
                                             suffix="B AESC"
-                                            className="bg-gradient-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-xl font-bold text-transparent"
+                                            className="bg-linear-to-r from-[#6b7dff] via-[#56f1ff] to-[#22edc7] bg-clip-text text-xl font-bold text-transparent"
                                         />
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@ export const Tokenomics: React.FC = () => {
                                             onMouseEnter={() => setHovered(index)}
                                             onMouseLeave={() => setHovered(null)}
                                             whileHover={{ y: -2 }}
-                                            className={`group rounded-2xl border border-white/12 bg-white/[0.06] px-4 py-3 transition-all duration-300 ${hovered === index ? 'border-white/35 shadow-[0_18px_40px_-28px_rgba(90,120,255,0.55)]' : ''}`}
+                                            className={`group rounded-2xl border border-white/12 bg-white/6 px-4 py-3 transition-all duration-300 ${hovered === index ? 'border-white/35 shadow-[0_18px_40px_-28px_rgba(90,120,255,0.55)]' : ''}`}
                                         >
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-3">
@@ -191,9 +191,9 @@ export const Tokenomics: React.FC = () => {
                             return (
                                 <div
                                     key={data.name}
-                                    className="group relative flex flex-col gap-3 overflow-hidden rounded-2xl border border-white/12 bg-white/[0.07] px-4 py-4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_18px_48px_-32px_rgba(90,120,255,0.55)]"
+                                    className="group relative flex flex-col gap-3 overflow-hidden rounded-2xl border border-white/12 bg-white/7 px-4 py-4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_18px_48px_-32px_rgba(90,120,255,0.55)]"
                                 >
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                                    <div className="absolute inset-0 bg-linear-to-br from-white/5 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                                     <div className="relative flex items-start gap-3">
                                         <span
                                             className="mt-1 inline-flex size-3 rounded-full"

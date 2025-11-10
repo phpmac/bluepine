@@ -58,7 +58,7 @@ export const About: React.FC = () => {
     const { t } = useLaravelReactI18n();
     return (
         <section id="about" className="relative z-10 overflow-hidden py-24">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#030713] to-[#050a1a]" />
+            <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#030713] to-[#050a1a]" />
             <div className="absolute inset-x-0 top-0 h-64 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.18),transparent_60%)]" />
 
             <div className="relative z-10 mx-auto max-w-7xl space-y-14 px-4 sm:px-6 lg:px-8">
@@ -67,7 +67,7 @@ export const About: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="relative overflow-hidden rounded-[32px] border border-white/12 bg-gradient-to-br from-[#121938] via-[#080f22] to-[#040915] px-8 py-10 md:px-12"
+                    className="relative overflow-hidden rounded-[32px] border border-white/12 bg-linear-to-br from-[#121938] via-[#080f22] to-[#040915] px-8 py-10 md:px-12"
                 >
                     <div className="absolute -top-32 right-12 size-64 rounded-full bg-[#56f1ff]/12 blur-3xl" />
                     <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
@@ -125,7 +125,7 @@ export const About: React.FC = () => {
                                     transition={{ duration: 0.45, delay: index * 0.05 }}
                                     className="relative flex items-start gap-4 overflow-hidden rounded-2xl border border-white/12 bg-white/10 px-5 py-6 backdrop-blur-lg"
                                 >
-                                    <div className="flex size-10 items-center justify-center rounded-2xl bg-gradient-to-br from-[#616bff99] to-[#43f0ff7a] text-white">
+                                    <div className="flex size-10 items-center justify-center rounded-2xl bg-linear-to-br from-[#616bff99] to-[#43f0ff7a] text-white">
                                         <Icon className="h-5 w-5" />
                                     </div>
                                     <div>
@@ -154,7 +154,7 @@ export const About: React.FC = () => {
                     </div>
 
                     <div className="relative overflow-hidden rounded-[28px] border border-white/12 bg-white/10 px-6 py-8 backdrop-blur-xl">
-                        <div className="absolute top-[74px] right-12 left-12 hidden h-px bg-gradient-to-r from-transparent via-white/35 to-transparent lg:flex" />
+                        <div className="absolute top-[74px] right-12 left-12 hidden h-px bg-linear-to-r from-transparent via-white/35 to-transparent lg:flex" />
                         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
                             {roadmap(t).map((phase, index) => {
                                 const isActive = phase.status === 'active';
@@ -170,10 +170,10 @@ export const About: React.FC = () => {
                                         transition={{ duration: 0.45, delay: index * 0.08 }}
                                         className={`relative h-full rounded-2xl border px-6 py-6 backdrop-blur-lg ${
                                             isActive
-                                                ? 'border-[#56f1ff]/40 bg-gradient-to-br from-[#54e7ff26] via-[#0f1a3c] to-[#041223] shadow-[0_30px_70px_-35px_rgba(86,241,255,0.55)]'
+                                                ? 'border-[#56f1ff]/40 bg-linear-to-br from-[#54e7ff26] via-[#0f1a3c] to-[#041223] shadow-[0_30px_70px_-35px_rgba(86,241,255,0.55)]'
                                                 : isUpcoming
-                                                  ? 'border-[#5eead4]/12 bg-gradient-to-br from-[#5eead40d] via-white/5 to-transparent'
-                                                  : 'border-[#c4b5fd]/12 bg-gradient-to-br from-[#c4b5fd0d] via-white/5 to-transparent'
+                                                  ? 'border-[#5eead4]/12 bg-linear-to-br from-[#5eead40d] via-white/5 to-transparent'
+                                                  : 'border-[#c4b5fd]/12 bg-linear-to-br from-[#c4b5fd0d] via-white/5 to-transparent'
                                         }`}
                                     >
                                         <div className="flex items-center justify-between">

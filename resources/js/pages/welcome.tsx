@@ -218,7 +218,7 @@ export default function Welcome() {
 
                     {/* 主要内容区域 */}
                     <main className="relative">
-                        <div className="pointer-events-none absolute inset-x-0 top-[100vh] bottom-0 z-0 bg-gradient-to-b from-[#050a1a]/95 via-[#040b1a]/96 to-[#030815]/98" />
+                        <div className="pointer-events-none absolute inset-x-0 top-[100vh] bottom-0 z-0 bg-linear-to-b from-[#050a1a]/95 via-[#040b1a]/96 to-[#030815]/98" />
 
                         {/* Hero 区域 */}
                         <Hero

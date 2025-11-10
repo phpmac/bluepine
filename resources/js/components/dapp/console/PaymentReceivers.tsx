@@ -22,7 +22,7 @@ export const PaymentReceivers: React.FC<PaymentReceiversProps> = ({ allStageInfo
     return (
         <Card className="p-5" hover={false}>
             <div className="mb-4 flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500/20 to-indigo-600/20">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-purple-500/20 to-indigo-600/20">
                     <Wallet className="h-4 w-4 text-purple-400" />
                 </div>
                 <div>
