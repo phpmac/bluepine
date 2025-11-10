@@ -49,6 +49,8 @@ class NotifyController extends Controller
             return;
         }
 
+        // TODO 需要判断是否是正式网
+
         DB::transaction(function () use ($request) {
 
             $data = [
