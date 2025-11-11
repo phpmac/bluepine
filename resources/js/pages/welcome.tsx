@@ -18,8 +18,6 @@ import { useAccount, useReadContract } from 'wagmi';
 export default function Welcome() {
     const { t } = useLaravelReactI18n();
 
-    // TODO 需要判断认购阶段是否已结束
-
     // 当前阶段销售数量
     const [currentStageDataState, setCurrentStageDataState] = useState<StageData>({
         index: 0n,
