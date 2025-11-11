@@ -35,10 +35,10 @@ class NotifyController extends Controller
     public function store(Request $request)
     {
 
+        logger('request', $request->all());
+
         $apip = new Apip;
         $apip->validate($request);
-
-        logger('request', $request->all());
 
         // 必须校验哈希唯一
         $trade_exists = Trade::where('tx_hash', $request->hash)->exists();
@@ -48,6 +48,8 @@ class NotifyController extends Controller
 
             return;
         }
+
+        throw_if($request->chain_name != 'BNB', '只支持BNB主网');
 
         DB::transaction(function () use ($request) {
 
