@@ -46,7 +46,7 @@ class NotifyController extends Controller
         if ($trade_exists || $log_exists) {
             report("交易哈希 {$request->hash} 已存在");
 
-            return;
+            return 'fail';
         }
 
         throw_if($request->chain_name != 'BNB', '只支持BNB主网');
