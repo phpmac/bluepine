@@ -143,7 +143,8 @@ class User extends Resource
             ]),
 
             Boolean::make('10%收益地址', 'is_10_performance')
-                ->sortable(),
+                ->sortable()
+                ->readonly(),
 
             Boolean::make('管理员', 'is_admin')
                 ->sortable(),
