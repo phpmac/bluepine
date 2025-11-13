@@ -90,8 +90,10 @@ class NotifyController extends Controller
                 $data['buyer'] = $request->params[0];
                 $data['tokenAmount'] = formatUints($request->params[1], 16);
                 $data['paymentAmount'] = formatUints($request->params[2], 18);
-                $data['referrer'] = $request->params[3];
-                $data['referralAmount'] = formatUints($request->params[4], 16);
+                $data['referrer'] = $request->params[3]; // 第一推荐人地址
+                $data['referralAmount'] = formatUints($request->params[4], 16); // 第一推荐人收益
+                $data['secondReferrer'] = isset($request->params[5]) ? $request->params[5] : '0x0000000000000000000000000000000000000000'; // 第二推荐人地址
+                $data['secondReferralAmount'] = isset($request->params[6]) ? formatUints($request->params[6], 16) : 0; // 第二推荐人收益
 
                 logger('data2', $data);
 
@@ -109,9 +111,21 @@ class NotifyController extends Controller
                     'name' => substr($data['referrer'], 0, 6).'...'.substr($data['referrer'], -4),
                 ]);
 
+                // 确保创建第二推荐人用户
+                $secondParent = User::firstOrCreate([
+                    'address' => $data['secondReferrer'],
+                ], [
+                    'name' => substr($data['secondReferrer'], 0, 6).'...'.substr($data['secondReferrer'], -4),
+                ]);
+
                 // ! 确保上级余额增加显示
-                if (bccomp($data['tokenAmount'], '0', 4) > 0) {
+                if (bccomp($data['referralAmount'], '0', 4) > 0) {
                     $parent->increment('reward_amount', $data['referralAmount']);
+                }
+
+                // ! 确保第二推荐人余额增加显示
+                if (bccomp($data['secondReferralAmount'], '0', 4) > 0) {
+                    $secondParent->increment('reward_amount', $data['secondReferralAmount']);
                 }
 
                 // 确保绑定上级
