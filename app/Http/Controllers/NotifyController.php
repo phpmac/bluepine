@@ -143,8 +143,8 @@ class NotifyController extends Controller
                 }
 
                 // 更新所有上级的团队业绩
-                // 只会给第一次绑定上级记录团队业绩
-                if ($user->parent_ids && $parent->id == $user->parent_id) {
+                // ! 按照系统记录的网体增加团队业绩
+                if ($user->parent_ids) {
                     User::whereIn('id', $user->parent_ids)->increment('team_performance', $data['tokenAmount']);
                 }
 
