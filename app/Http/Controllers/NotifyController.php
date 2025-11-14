@@ -49,7 +49,7 @@ class NotifyController extends Controller
             return 'fail';
         }
 
-        if ($request->chain_name != 'BNB') {
+        if ($request->chain_name != 'BNB' && app()->isProduction()) {
             report("只支持BNB主网,咱不支持 {$request->chain_name} 主网");
 
             return 'fail';
