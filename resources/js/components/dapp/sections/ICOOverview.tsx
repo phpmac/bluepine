@@ -42,6 +42,7 @@ export const PrivateSaleOverview: React.FC<{
 
     const [aescAmount, setAescAmount] = useState(''); // AESC认购数量
     const [referrerAddress, setReferrerAddress] = useState(''); // 邀请人地址
+    const [pendingOrder, setPendingOrder] = useState<{ tokenAmount: bigint; referrer: string } | null>(null); // 待执行的购买请求
 
     // 从localStorage读取推荐人地址
     useEffect(() => {
@@ -126,17 +127,16 @@ export const PrivateSaleOverview: React.FC<{
 
     // 监听授权成功后自动执行购买
     useEffect(() => {
-        if (isApproveSuccess && isValidAescAmount && isValidReferrerAddress) {
-            const tokenAmount = parseUnits(aescAmount, decimals);
-
+        if (isApproveSuccess && pendingOrder) {
             writeBuy({
                 address: address.buy as `0x${string}`,
                 abi: ieoAbi,
                 functionName: 'buy',
-                args: [tokenAmount, referrerAddress as `0x${string}`],
+                args: [pendingOrder.tokenAmount, pendingOrder.referrer as `0x${string}`],
             });
+            setPendingOrder(null);
         }
-    }, [isApproveSuccess, isValidAescAmount, isValidReferrerAddress, aescAmount, decimals, referrerAddress, writeBuy]);
+    }, [isApproveSuccess, pendingOrder, writeBuy]);
 
     // 弹窗状态管理
     const [showBuySuccessModal, setShowBuySuccessModal] = useState(false);
@@ -170,6 +170,7 @@ export const PrivateSaleOverview: React.FC<{
 
         // 检查授权额度,不足则先授权
         if (!usdtAllowance || usdtAllowance < usdtRequired) {
+            setPendingOrder({ tokenAmount, referrer: referrerAddress });
             writeApprove({
                 address: address.usdt as `0x${string}`,
                 abi: erc20Abi,
