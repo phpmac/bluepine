@@ -22,3 +22,6 @@ export const socialLinks = {
     telegramChannelChinese: 'https://t.me/AgriEcoSmartChain_ChineseVersion',
     youtube: 'https://www.youtube.com/@BluepineTechnologyFoundation',
 };
+
+// 私募认购链接
+export const icoLink = 'https://fd.bluepinefoundation.com/';
