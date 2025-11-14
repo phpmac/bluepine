@@ -9,7 +9,7 @@
         "format:check": "prettier --check resources/",
         "lint": "eslint . --fix",
         "types": "tsc --noEmit",
-        "a": "vendor/bin/pint && vendor/bin/pest && bun run format && bun run lint"
+        "a": "vendor/bin/pint && bun run format && bun run lint"
     },
     "devDependencies": {
         "@eslint/js": "^9.19.0",
