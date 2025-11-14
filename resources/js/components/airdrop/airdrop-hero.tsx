@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Clock, Gift, Layers, Zap } from 'lucide-react';
-// import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * Airdrop 页面英雄区组件
@@ -10,36 +10,56 @@ import { Clock, Gift, Layers, Zap } from 'lucide-react';
  */
 export function AirdropHero() {
     const { t } = useLaravelReactI18n();
-    // const [timeLeft, setTimeLeft] = useState({
-    //     days: 30,
-    //     hours: 0,
-    //     minutes: 0,
-    //     seconds: 0,
-    // });
+    const [timeLeft, setTimeLeft] = useState({
+        days: 30,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+    });
+    const [hasStarted, setHasStarted] = useState(false);
 
-    // // 倒计时逻辑
-    // useEffect(() => {
-    //     const targetDate = new Date('2025-12-31T23:59:59').getTime();
+    // 倒计时逻辑
+    useEffect(() => {
+        const startDate = new Date('2025-11-15T00:00:00+08:00').getTime();
+        const endDate = new Date('2025-12-13T00:00:00+08:00').getTime();
 
-    //     const timer = setInterval(() => {
-    //         const now = new Date().getTime();
-    //         const distance = targetDate - now;
+        const updateCountdown = () => {
+            const now = Date.now();
 
-    //         if (distance < 0) {
-    //             clearInterval(timer);
-    //             setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-    //         } else {
-    //             setTimeLeft({
-    //                 days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-    //                 hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-    //                 minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-    //                 seconds: Math.floor((distance % (1000 * 60)) / 1000),
-    //             });
-    //         }
-    //     }, 1000);
+            if (now < startDate) {
+                setHasStarted(false);
+                const distance = startDate - now;
+                setTimeLeft({
+                    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+                    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                    seconds: Math.floor((distance % (1000 * 60)) / 1000),
+                });
+                return;
+            }
 
-    //     return () => clearInterval(timer);
-    // }, []);
+            setHasStarted(true);
+
+            if (now >= endDate) {
+                setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+                return;
+            }
+
+            const distance = endDate - now;
+
+            setTimeLeft({
+                days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                seconds: Math.floor((distance % (1000 * 60)) / 1000),
+            });
+        };
+
+        updateCountdown();
+        const timer = setInterval(updateCountdown, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
 
     return (
         <>
@@ -233,41 +253,41 @@ export function AirdropHero() {
                                     <div className="mt-2 text-sm text-slate-300">{t('airdrop.hero.percent')}</div>
                                 </div>
 
-                                {/* TODO 暂时关闭 倒计时 */}
-                                {/* <div className="rounded-lg border-2 border-teal-500/30 bg-teal-500/10 p-8 backdrop-blur-sm">
-                                    <div className="mb-3 flex items-center justify-center text-sm font-semibold text-teal-300">
-                                        <Clock className="mr-2 h-4 w-4" />
-                                        {t('airdrop.hero.countdown')}
+                                {hasStarted ? (
+                                    <div className="rounded-lg border-2 border-teal-500/30 bg-teal-500/10 p-8 backdrop-blur-sm">
+                                        <div className="mb-3 flex items-center justify-center text-sm font-semibold text-teal-300">
+                                            <Clock className="mr-2 h-4 w-4" />
+                                            {t('airdrop.hero.countdown')}
+                                        </div>
+                                        <div className="grid grid-cols-4 gap-2">
+                                            {[
+                                                { labelKey: 'airdrop.hero.days', value: timeLeft.days },
+                                                { labelKey: 'airdrop.hero.hours', value: timeLeft.hours },
+                                                { labelKey: 'airdrop.hero.minutes', value: timeLeft.minutes },
+                                                { labelKey: 'airdrop.hero.seconds', value: timeLeft.seconds },
+                                            ].map((item, index) => (
+                                                <div key={index} className="text-center">
+                                                    <div className="mb-1 text-2xl font-bold text-white">{String(item.value).padStart(2, '0')}</div>
+                                                    <div className="text-xs text-slate-400">{t(item.labelKey)}</div>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                    <div className="grid grid-cols-4 gap-2">
-                                        {[
-                                            { labelKey: 'airdrop.hero.days', value: timeLeft.days },
-                                            { labelKey: 'airdrop.hero.hours', value: timeLeft.hours },
-                                            { labelKey: 'airdrop.hero.minutes', value: timeLeft.minutes },
-                                            { labelKey: 'airdrop.hero.seconds', value: timeLeft.seconds },
-                                        ].map((item, index) => (
-                                            <div key={index} className="text-center">
-                                                <div className="mb-1 text-2xl font-bold text-white">{String(item.value).padStart(2, '0')}</div>
-                                                <div className="text-xs text-slate-400">{t(item.labelKey)}</div>
-                                            </div>
-                                        ))}
+                                ) : (
+                                    <div className="flex items-center justify-center rounded-lg border-2 border-teal-500/30 bg-teal-500/10 p-8 backdrop-blur-sm">
+                                        <div className="flex items-center justify-center text-2xl font-bold text-teal-300">
+                                            <Clock className="mr-2 h-5 w-5" />
+                                            {t('airdrop.coming_soon')}
+                                        </div>
                                     </div>
-                                </div> */}
-
-                                {/* 即将开启 */}
-                                <div className="flex items-center justify-center rounded-lg border-2 border-teal-500/30 bg-teal-500/10 p-8 backdrop-blur-sm">
-                                    <div className="flex items-center justify-center text-2xl font-bold text-teal-300">
-                                        <Clock className="mr-2 h-5 w-5" />
-                                        {t('airdrop.coming_soon')}
-                                    </div>
-                                </div>
+                                )}
                             </div>
                         </div>
 
                         {/* 核心行动按钮 */}
                         <a
-                            href="https://app.galxe.com/quest/nXMwfnLRpfEetotHQmySjM/GCUuCt8FKq"
-                            target="_blank"
+                            href={!hasStarted ? '#participate' : 'https://app.galxe.com/quest/nXMwfnLRpfEetotHQmySjM/GCUuCt8FKq'}
+                            target={!hasStarted ? '_self' : '_blank'}
                             className="inline-flex cursor-pointer items-center rounded bg-linear-to-r from-emerald-500 to-teal-600 px-10 py-5 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                         >
                             <Zap className="mr-2 h-6 w-6" />
