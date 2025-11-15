@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Auth\PasswordValidationRules;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
@@ -78,11 +79,12 @@ class User extends Resource
                 ->rules('required', 'max:255')
                 ->filterable(),
 
-            // Text::make('邮箱', 'email')
-            //     ->sortable()
-            //     ->rules('nullable', 'email', 'max:254')
-            //     ->creationRules('unique:users,email')
-            //     ->updateRules('unique:users,email,{{resourceId}}'),
+            Text::make('邮箱', 'email')
+                ->sortable()
+                ->rules('nullable', 'email', 'max:254')
+                ->readonly()
+                ->creationRules('unique:users,email')
+                ->updateRules('unique:users,email,{{resourceId}}'),
 
             Text::make('钱包地址', 'address')
                 ->sortable()
@@ -149,6 +151,12 @@ class User extends Resource
             Boolean::make('管理员', 'is_admin')
                 ->sortable(),
 
+            DateTime::make('创建时间', 'created_at')
+                ->sortable()
+                ->readonly(),
+            DateTime::make('更新时间', 'updated_at')
+                ->sortable()
+                ->readonly(),
         ];
     }
 
