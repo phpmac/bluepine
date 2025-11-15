@@ -286,7 +286,7 @@ export function AirdropHero() {
 
                         {/* 核心行动按钮 */}
                         <a
-                            href={!hasStarted ? '#participate' : 'https://app.galxe.com/quest/nXMwfnLRpfEetotHQmySjM/GCUuCt8FKq'}
+                            href={!hasStarted ? '#participate' : 'https://app.galxe.com/quest/nXMwfnLRpfEetotHQmySjM/GCL9Jt8kbz'}
                             target={!hasStarted ? '_self' : '_blank'}
                             className="inline-flex cursor-pointer items-center rounded bg-linear-to-r from-emerald-500 to-teal-600 px-10 py-5 text-lg font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-700"
                         >
